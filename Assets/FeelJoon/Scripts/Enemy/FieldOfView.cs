@@ -2,86 +2,89 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldOfView : MonoBehaviour
+namespace ETeam.FeelJoon
 {
-    #region Variables
-    public float viewRadius = 5f;
-    [Range(0, 360)]
-    public float viewAngle = 90f;
-
-    public LayerMask targetMask;
-    public LayerMask obstacleMask;
-
-    private List<Transform> visibleTargets = new List<Transform>();
-
-    private Transform nearestTarget;
-    private float distanceToNearestTarget = 0.0f;
-
-    public float delay = 0.2f;
-
-    #endregion Variables
-
-    #region Properties
-    public List<Transform> VisibleTargets => visibleTargets;
-    public Transform NearestTarget => nearestTarget;
-
-    #endregion Properties
-
-    #region Unity Methods
-    void Start()
+    public class FieldOfView : MonoBehaviour
     {
-        
-    }
-
-    #endregion Unity Methods
-
-    #region Helper Methods
-    private IEnumerator FindTargetsWithDelay(float delay)
-    {
-        while(true)
+        #region Variables
+        public float viewRadius = 5f;
+        [Range(0, 360)]
+        public float viewAngle = 90f;
+    
+        public LayerMask targetMask;
+        public LayerMask obstacleMask;
+    
+        private List<Transform> visibleTargets = new List<Transform>();
+    
+        private Transform nearestTarget;
+        private float distanceToNearestTarget = 0.0f;
+    
+        public float delay = 0.2f;
+    
+        #endregion Variables
+    
+        #region Properties
+        public List<Transform> VisibleTargets => visibleTargets;
+        public Transform NearestTarget => nearestTarget;
+    
+        #endregion Properties
+    
+        #region Unity Methods
+        void Start()
         {
-            yield return new WaitForSeconds(delay);
-            FindVisibleTargets();
+            
         }
-    }
-
-    private void FindVisibleTargets()
-    {
-        distanceToNearestTarget = 0.0f;
-        nearestTarget = null;
-        visibleTargets.Clear();
-
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-        for(int i = 0; i < targetsInViewRadius.Length; i++)
+    
+        #endregion Unity Methods
+    
+        #region Helper Methods
+        private IEnumerator FindTargetsWithDelay(float delay)
         {
-            Transform target = targetsInViewRadius[i].transform;
-
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+            while(true)
             {
-                float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                yield return new WaitForSeconds(delay);
+                FindVisibleTargets();
+            }
+        }
+    
+        private void FindVisibleTargets()
+        {
+            distanceToNearestTarget = 0.0f;
+            nearestTarget = null;
+            visibleTargets.Clear();
+    
+            Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+            for(int i = 0; i < targetsInViewRadius.Length; i++)
+            {
+                Transform target = targetsInViewRadius[i].transform;
+    
+                Vector3 dirToTarget = (target.position - transform.position).normalized;
+                if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
                 {
-                    visibleTargets.Add(target);
-                    if (nearestTarget == null || (distanceToNearestTarget > dstToTarget))
+                    float dstToTarget = Vector3.Distance(transform.position, target.position);
+                    if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                     {
-                        nearestTarget = target;
-                        distanceToNearestTarget = dstToTarget;
+                        visibleTargets.Add(target);
+                        if (nearestTarget == null || (distanceToNearestTarget > dstToTarget))
+                        {
+                            nearestTarget = target;
+                            distanceToNearestTarget = dstToTarget;
+                        }
                     }
                 }
             }
         }
-    }
-
-    public Vector3 DirFromAngle(float angleInDegree, bool angleIsGlobal)
-    {
-        if (!angleIsGlobal)
+    
+        public Vector3 DirFromAngle(float angleInDegree, bool angleIsGlobal)
         {
-            angleInDegree += transform.eulerAngles.y;
+            if (!angleIsGlobal)
+            {
+                angleInDegree += transform.eulerAngles.y;
+            }
+    
+            return new Vector3(Mathf.Sin(angleInDegree * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegree * Mathf.Deg2Rad));
         }
-
-        return new Vector3(Mathf.Sin(angleInDegree * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegree * Mathf.Deg2Rad));
+    
+        #endregion Helper Methods
     }
-
-    #endregion Helper Methods
 }
