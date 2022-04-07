@@ -45,8 +45,8 @@ public sealed class StateMachine<T>
 	private State<T> currentState;
 	public State<T> CurrentState => currentState;
 
-	private State<T> priviousState;
-	public State<T> PriviousState => priviousState;
+	private State<T> previousState;
+	public State<T> PreviousState => previousState;
 
 	private float elapsedTimeInState = 0.0f;
 	public float ElapsedTimeInState => elapsedTimeInState;
@@ -89,7 +89,7 @@ public sealed class StateMachine<T>
 			currentState.OnExit();
 		}
 
-		priviousState = currentState;
+		previousState = currentState;
 		currentState = states[newType];
 		currentState.OnEnter();
 		elapsedTimeInState = 0.0f;
