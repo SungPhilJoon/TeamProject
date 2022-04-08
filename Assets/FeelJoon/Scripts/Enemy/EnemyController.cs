@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace ETeam.FeelJoon
 {
@@ -27,8 +26,6 @@ namespace ETeam.FeelJoon
         public int health;
 
         // [SerializeField] private NPCBattleUI battleUI;
-
-        public NavMeshAgent agent;
 
         #endregion Variables
 
@@ -63,10 +60,6 @@ namespace ETeam.FeelJoon
             stateMachine.AddState(new EnemyDeadState());
 
             animator = GetComponent<Animator>();
-            agent = GetComponent<NavMeshAgent>();
-
-            agent.SetDestination(new Vector3(0, 10, 0));
-            agent.Warp(new Vector3(0, 10, 0));
 
             health = maxHealth;
         }
@@ -97,6 +90,8 @@ namespace ETeam.FeelJoon
         #endregion Helper Methods
 
         #region IAttackable
+        public AttackBehaviour CurrentAttackBehaviour => throw new System.NotImplementedException();
+
         public void OnExecuteAttack()
         {
             throw new System.NotImplementedException();

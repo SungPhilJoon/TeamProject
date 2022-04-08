@@ -17,7 +17,7 @@ namespace ETeam.FeelJoon
         public override void OnInitialized()
         {
             animator = context.GetComponent<Animator>();
-            animator?.SetBool(hashAlive, context.IsAlive);
+            //animator?.SetBool(hashAlive, context.IsAlive);
         }
 
         public override void OnEnter()

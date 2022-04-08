@@ -29,6 +29,9 @@ namespace ETeam.KyungSeo
 
         private Vector3 calcVelocity; // 계산에 사용될 Vector3 레퍼런스 - PJ
 
+        public PlayerInput playerInput;
+        public TestPlayerActions actions;
+
         #endregion
 
         #region Properties
@@ -42,6 +45,11 @@ namespace ETeam.KyungSeo
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
+            playerInput = GetComponent<PlayerInput>();
+            actions = new TestPlayerActions();
+
+            playerInput.SwitchCurrentActionMap("ActionMap Name");
+            actions.Player.Enable();
         }
 
         private void Update()
