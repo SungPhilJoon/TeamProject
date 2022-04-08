@@ -14,10 +14,12 @@ namespace ETeam.KyungSeo
         private bool _isRightButton = false; // 마우스 우클릭 감지용 bool변수
         
         [SerializeField] private float camareSensitivity = 3;
+        public Transform target = null;
         private float limitMinX = -10; // 카메라 회전범위(최소)
         private float limitMaxX = 50; // 카메라 회전범위(최대)
         private float eulerAngleX;
         private float eulerAngleY;
+        
         #endregion
 
         #region Unity Methods
@@ -25,6 +27,13 @@ namespace ETeam.KyungSeo
         {
             StartCoroutine(MoveCamera());
         }
+
+        private void Update()
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, camareSensitivity * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, target.position, camareSensitivity * Time.deltaTime);
+        }
+
         #endregion
 
         #region Helper Methods

@@ -24,7 +24,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
     ""name"": ""TestPlayerActions"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""PlayerSword"",
             ""id"": ""b23b545c-7b8e-476c-9eb4-f688355a1362"",
             ""actions"": [
                 {
@@ -55,7 +55,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Skill"",
+                    ""name"": ""Skill1"",
                     ""type"": ""Button"",
                     ""id"": ""22302b6e-437a-4869-b619-0ec08752f48a"",
                     ""expectedControlType"": ""Button"",
@@ -64,9 +64,9 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Call UI"",
+                    ""name"": ""Skill2"",
                     ""type"": ""Button"",
-                    ""id"": ""7797d05a-2540-43c0-b86c-5eb21eb3a6bb"",
+                    ""id"": ""05f60481-156a-462c-b3f7-0ed3ac4d56f4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -82,13 +82,49 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Swap"",
-                    ""type"": ""Value"",
-                    ""id"": ""aeee6e9c-4c9d-4cbc-a23d-aa22868e3fd8"",
-                    ""expectedControlType"": ""Integer"",
+                    ""name"": ""SwapToBow"",
+                    ""type"": ""Button"",
+                    ""id"": ""91486e51-6f1b-4608-9c6f-7bfe2bc8f66e"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapToDefault"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd7d61b7-e710-4a92-aed2-0c0be1f865cd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Call Settings"",
+                    ""type"": ""Button"",
+                    ""id"": ""7797d05a-2540-43c0-b86c-5eb21eb3a6bb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Call Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""87d0c206-2eb8-4d2f-9592-cf29779a76ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Call Equipment"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ee01792-3d35-455a-ac4e-f67a4be6a7f5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -297,29 +333,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Skill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""562b7000-e9f3-4a4b-9d3e-d83497d7bb3d"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Skill"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""79d67db8-9db0-4287-87a2-d8d197762641"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Call UI"",
+                    ""action"": ""Skill1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -335,130 +349,181 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Swap"",
-                    ""id"": ""bd75ce76-c35d-4214-8d5d-a33f47298137"",
-                    ""path"": ""TwoModifiers"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Swap"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier1"",
-                    ""id"": ""83d7c888-68dd-4010-8d58-62b0df57faef"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Swap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""modifier2"",
-                    ""id"": ""2e325311-cadc-470a-8aa0-f61ae947334e"",
+                    ""name"": """",
+                    ""id"": ""cd1fdc0d-034f-4ff4-b41b-d404925539db"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Swap"",
+                    ""groups"": """",
+                    ""action"": ""SwapToBow"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4bf0c33-f39c-45a2-b81e-054b194fea9f"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Call Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79d67db8-9db0-4287-87a2-d8d197762641"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Call Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c96b595f-14b1-481a-a5ae-eae152d655ac"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Call Equipment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72608807-a6a9-424d-92e1-e41697034d5f"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0234e1b6-49d1-4942-b24b-6ac44d9dee5a"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapToDefault"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
         {
-            ""name"": ""UI"",
-            ""id"": ""2f409a87-ce07-4f7e-ab87-aaf68f6fee34"",
+            ""name"": ""PlayerBow"",
+            ""id"": ""b22a9053-1e36-480e-8ea3-5f4211ddd9be"",
             ""actions"": [
                 {
-                    ""name"": ""Navigate"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""19d26180-e32c-4620-98ed-9ef5e9afe871"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Submit"",
-                    ""type"": ""Button"",
-                    ""id"": ""cf5f2d7c-bb8f-492a-a391-fabc74fa9d87"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""75f05fa6-8047-4545-8f56-40411aff5337"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Point"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""e1561812-683e-421a-bcd2-e11a7d8bedc9"",
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""8d539428-35a9-4578-be19-f11d907bc933"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Click"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""cb835446-1d06-431f-9c51-1defbc34be2e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""ScrollWheel"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""f14abd67-835e-407c-956f-acbec8679da8"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MiddleClick"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""f89ae56d-6e25-41f9-948d-128916da7d4e"",
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""f2fa800d-7eec-4edd-b860-f32e708206df"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RightClick"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""5b3329e8-e4b1-48ee-bf5c-33414603c669"",
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""2672a2b7-a9b4-45d3-a4a6-10e5a52cf7a3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""TrackedDevicePosition"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""2fac5502-55f5-4422-b9f9-b238421e9205"",
-                    ""expectedControlType"": ""Vector3"",
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ef8e5a8-0dfe-4c3a-b0c4-92c768ee640c"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""TrackedDeviceOrientation"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""deabd67f-c77b-4c83-85cf-ef6802ba01fa"",
-                    ""expectedControlType"": ""Quaternion"",
+                    ""name"": ""Skill1"",
+                    ""type"": ""Button"",
+                    ""id"": ""4fb2df91-6412-4582-a62c-01a26ef0c5b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill2"",
+                    ""type"": ""Button"",
+                    ""id"": ""9eb1566e-2402-43fb-88f0-9b83e36b6fa3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""613255b8-85ba-45de-8469-6cc979724c1e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapToSword"",
+                    ""type"": ""Button"",
+                    ""id"": ""ccd2bf72-2ead-4f83-a49f-b3267c6b6c86"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapToDefault"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a8e40f9-6951-413d-b4f1-332e0dd0f86d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Call Settings"",
+                    ""type"": ""Button"",
+                    ""id"": ""3fb4869a-c687-4cd0-b6d5-e9d23a820712"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Call Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""60383c10-cacd-4f3c-89f9-0a54e5ec8197"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Call Equipment"",
+                    ""type"": ""Button"",
+                    ""id"": ""c627fc47-752b-4b1f-bf19-c3f6e9fc719a"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -466,420 +531,588 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Gamepad"",
-                    ""id"": ""809f371f-c5e2-4e7a-83a1-d867598f40dd"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""14a5d6e8-4aaf-4119-a9ef-34b8c2c548bf"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""9144cbe6-05e1-4687-a6d7-24f99d23dd81"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""2db08d65-c5fb-421b-983f-c71163608d67"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""58748904-2ea9-4a80-8579-b500e6a76df8"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""8ba04515-75aa-45de-966d-393d9bbd1c14"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""712e721c-bdfb-4b23-a86c-a0d9fcfea921"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""fcd248ae-a788-4676-a12e-f4d81205600b"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""1f04d9bc-c50b-41a1-bfcc-afb75475ec20"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""fb8277d4-c5cd-4663-9dc7-ee3f0b506d90"",
-                    ""path"": ""<Gamepad>/dpad"",
+                    ""id"": ""717e9f9c-4535-40e3-8b57-9e9995210feb"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Navigate"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Joystick"",
-                    ""id"": ""e25d9774-381c-4a61-b47c-7b6b299ad9f9"",
-                    ""path"": ""2DVector"",
+                    ""name"": ""WASD"",
+                    ""id"": ""87a618c0-ab41-42e2-b125-64da5397d314"",
+                    ""path"": ""Dpad"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Navigate"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""3db53b26-6601-41be-9887-63ac74e79d19"",
-                    ""path"": ""<Joystick>/stick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""0cb3e13e-3d90-4178-8ae6-d9c5501d653f"",
-                    ""path"": ""<Joystick>/stick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""0392d399-f6dd-4c82-8062-c1e9c0d34835"",
-                    ""path"": ""<Joystick>/stick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""942a66d9-d42f-43d6-8d70-ecb4ba5363bc"",
-                    ""path"": ""<Joystick>/stick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""ff527021-f211-4c02-933e-5976594c46ed"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""563fbfdd-0f09-408d-aa75-8642c4f08ef0"",
+                    ""id"": ""562c1f3c-4f2b-4b41-a4c3-41462572b462"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Navigate"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""eb480147-c587-4a33-85ed-eb0ab9942c43"",
+                    ""id"": ""abbdbeab-9fb1-4f06-acee-7d6b07768778"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Navigate"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""2bf42165-60bc-42ca-8072-8c13ab40239b"",
+                    ""id"": ""b58bb5e3-876f-47c4-954f-ccdc19d67382"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Navigate"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""85d264ad-e0a0-4565-b7ff-1a37edde51ac"",
+                    ""id"": ""af7cce9d-1e6b-4bac-8053-1ef32792bf77"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Navigate"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""74214943-c580-44e4-98eb-ad7eebe17902"",
+                    ""id"": ""e9c8c82d-4ced-4816-8bd0-d3839153a748"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Navigate"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""cea9b045-a000-445b-95b8-0c171af70a3b"",
+                    ""id"": ""ec81ff53-1469-4426-a814-49f9235fa4aa"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Navigate"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""8607c725-d935-4808-84b1-8354e29bab63"",
+                    ""id"": ""21d2caf3-0cff-4098-82b5-988ab5bc692e"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Navigate"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""4cda81dc-9edd-4e03-9d7c-a71a14345d0b"",
+                    ""id"": ""a5615c64-41a5-4ab3-abe3-a34c95c7b49b"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Navigate"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9e92bb26-7e3b-4ec4-b06b-3c8f8e498ddc"",
-                    ""path"": ""*/{Submit}"",
+                    ""id"": ""97e14f49-6ab1-4d93-8c4d-63cc55119f93"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Submit"",
+                    ""groups"": ""XR"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""82627dcc-3b13-4ba9-841d-e4b746d6553e"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""id"": ""6c591c20-e9f2-451c-b2d9-5a5d9f9eb083"",
+                    ""path"": ""<Joystick>/stick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c52c8e0b-8179-41d3-b8a1-d149033bbe86"",
-                    ""path"": ""<Mouse>/position"",
+                    ""id"": ""afb88599-baa2-41dc-9877-f9fc2344d0b3"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Point"",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e1394cbc-336e-44ce-9ea8-6007ed6193f7"",
-                    ""path"": ""<Pen>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Point"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5693e57a-238a-46ed-b5ae-e64e6e574302"",
-                    ""path"": ""<Touchscreen>/touch*/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Touch"",
-                    ""action"": ""Point"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4faf7dc9-b979-4210-aa8c-e808e1ef89f5"",
+                    ""id"": ""1636d1f7-6a95-4d7b-81db-af04e8181783"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Click"",
+                    ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8d66d5ba-88d7-48e6-b1cd-198bbfef7ace"",
-                    ""path"": ""<Pen>/tip"",
+                    ""id"": ""6329b041-d435-4312-b35a-fdf6cfb838a4"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Click"",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""47c2a644-3ebc-4dae-a106-589b7ca75b59"",
-                    ""path"": ""<Touchscreen>/touch*/press"",
+                    ""id"": ""9b4275f6-c482-422a-8c6c-b43c7ffecbd6"",
+                    ""path"": ""<Joystick>/trigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Touch"",
-                    ""action"": ""Click"",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bb9e6b34-44bf-4381-ac63-5aa15d19f677"",
-                    ""path"": ""<XRController>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""38c99815-14ea-4617-8627-164d27641299"",
-                    ""path"": ""<Mouse>/scroll"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""ScrollWheel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""24066f69-da47-44f3-a07e-0015fb02eb2e"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""MiddleClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4c191405-5738-4d4b-a523-c6a301dbf754"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""RightClick"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7236c0d9-6ca3-47cf-a6ee-a97f5b59ea77"",
-                    ""path"": ""<XRController>/devicePosition"",
+                    ""id"": ""d452c8c4-bb47-4db6-be7f-27344f05d82d"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""TrackedDevicePosition"",
+                    ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""23e01e3a-f935-4948-8d8b-9bcac77714fb"",
-                    ""path"": ""<XRController>/deviceRotation"",
+                    ""id"": ""ae90cac7-2a01-4f1c-a810-68c220adea18"",
+                    ""path"": ""<Keyboard>/#(F)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26d3c7a4-6a24-4863-9f4e-53cd8a39a14b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f42c3317-4419-49ba-ba89-1f3d737ecb4c"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad3032cf-7b12-4fff-8393-2b3789022460"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapToSword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""012ce2b9-c21a-4334-981f-c21d4c0d420e"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Call Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf5be37e-2d1f-46bb-bdf3-856a73ecb8ad"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Call Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80fb6516-b41a-435d-9cf9-a7225557df25"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98a8bdbd-3d7b-4948-be8e-5b3cede7adad"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Call Equipment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1440775d-b67d-4eb0-86e4-654f6b13be6d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""977b2475-37a0-4605-99a4-5306d950ea13"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapToDefault"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Default"",
+            ""id"": ""6ae84a51-13be-4658-85d4-efb02f5b97c3"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""dea756b9-cfc7-4624-a549-b8ce2c25938a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""32e423a6-c775-472b-9781-8d2cadf53454"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""172d1044-ef56-4af1-bd76-32ab718cce5a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Call Settings"",
+                    ""type"": ""Button"",
+                    ""id"": ""59387fb8-ba7c-4f22-be5a-ca99fdda069c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Call Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8b48b1e-6f25-4b1c-8aa2-83d517718b24"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Call Equipment"",
+                    ""type"": ""Button"",
+                    ""id"": ""90f8e8ac-8822-4e41-b79c-5d4e41306433"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapSword"",
+                    ""type"": ""Button"",
+                    ""id"": ""ccfae8c3-96c6-4785-8fb0-99be25cd9772"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapBow"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c169ee4-3c92-4d14-a1fc-0b12caa706fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""924db48f-cd8b-4686-be71-82f352e713a1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Call Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc3a0fd1-be19-4dea-86e5-52eed92046c1"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""74d7f502-d1c9-4859-a98a-5010908ed6e2"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0ebb1156-9279-4b1f-8b8a-0542484fb0bb"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""853c3e19-436c-4343-b437-c80d13e1fd9e"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""908c9dfe-f722-4417-9d72-f83d0f6f92ca"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""caa33e70-88c8-463c-8eaf-870ba7ff2c8e"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""b59a9ce4-712f-4cab-b310-008914ea39a5"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""dbcb6dfa-d263-46f0-9a83-9da71e469e03"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0068cd58-c9bc-4f85-8331-f785fb34a8a4"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""c0b22e12-f2a0-4a25-87f7-9e946a6a7f9f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17a02b5b-5414-4fa8-8d6b-67602071fef1"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""TrackedDeviceOrientation"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13c7889a-6716-45ed-a3c0-003351073f96"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f689ddc-60fd-49eb-84b2-004fb1c5c48d"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04eb968f-163d-49c0-932c-c9ed058c010b"",
+                    ""path"": ""<Keyboard>/#(F)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd0acd6b-2fcf-4168-b150-f546c3cc03e3"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Call Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27fab815-b841-432d-8e35-e316c6aa478a"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Call Equipment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95899524-c6d9-4231-88d9-4198f4bedcdf"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapSword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e8dd9f0-2ed3-4f7f-9741-6b2ca5f75d74"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapBow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -949,27 +1182,43 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-        m_Player_Interaction = m_Player.FindAction("Interaction", throwIfNotFound: true);
-        m_Player_Skill = m_Player.FindAction("Skill", throwIfNotFound: true);
-        m_Player_CallUI = m_Player.FindAction("Call UI", throwIfNotFound: true);
-        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_Swap = m_Player.FindAction("Swap", throwIfNotFound: true);
-        // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
-        m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
-        m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
-        m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
-        m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
-        m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
-        m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
-        m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
-        m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
-        m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // PlayerSword
+        m_PlayerSword = asset.FindActionMap("PlayerSword", throwIfNotFound: true);
+        m_PlayerSword_Move = m_PlayerSword.FindAction("Move", throwIfNotFound: true);
+        m_PlayerSword_Fire = m_PlayerSword.FindAction("Fire", throwIfNotFound: true);
+        m_PlayerSword_Interaction = m_PlayerSword.FindAction("Interaction", throwIfNotFound: true);
+        m_PlayerSword_Skill1 = m_PlayerSword.FindAction("Skill1", throwIfNotFound: true);
+        m_PlayerSword_Skill2 = m_PlayerSword.FindAction("Skill2", throwIfNotFound: true);
+        m_PlayerSword_Dash = m_PlayerSword.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerSword_SwapToBow = m_PlayerSword.FindAction("SwapToBow", throwIfNotFound: true);
+        m_PlayerSword_SwapToDefault = m_PlayerSword.FindAction("SwapToDefault", throwIfNotFound: true);
+        m_PlayerSword_CallSettings = m_PlayerSword.FindAction("Call Settings", throwIfNotFound: true);
+        m_PlayerSword_CallInventory = m_PlayerSword.FindAction("Call Inventory", throwIfNotFound: true);
+        m_PlayerSword_CallEquipment = m_PlayerSword.FindAction("Call Equipment", throwIfNotFound: true);
+        // PlayerBow
+        m_PlayerBow = asset.FindActionMap("PlayerBow", throwIfNotFound: true);
+        m_PlayerBow_Move = m_PlayerBow.FindAction("Move", throwIfNotFound: true);
+        m_PlayerBow_Fire = m_PlayerBow.FindAction("Fire", throwIfNotFound: true);
+        m_PlayerBow_Aim = m_PlayerBow.FindAction("Aim", throwIfNotFound: true);
+        m_PlayerBow_Interaction = m_PlayerBow.FindAction("Interaction", throwIfNotFound: true);
+        m_PlayerBow_Skill1 = m_PlayerBow.FindAction("Skill1", throwIfNotFound: true);
+        m_PlayerBow_Skill2 = m_PlayerBow.FindAction("Skill2", throwIfNotFound: true);
+        m_PlayerBow_Dash = m_PlayerBow.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerBow_SwapToSword = m_PlayerBow.FindAction("SwapToSword", throwIfNotFound: true);
+        m_PlayerBow_SwapToDefault = m_PlayerBow.FindAction("SwapToDefault", throwIfNotFound: true);
+        m_PlayerBow_CallSettings = m_PlayerBow.FindAction("Call Settings", throwIfNotFound: true);
+        m_PlayerBow_CallInventory = m_PlayerBow.FindAction("Call Inventory", throwIfNotFound: true);
+        m_PlayerBow_CallEquipment = m_PlayerBow.FindAction("Call Equipment", throwIfNotFound: true);
+        // Default
+        m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
+        m_Default_Move = m_Default.FindAction("Move", throwIfNotFound: true);
+        m_Default_Dash = m_Default.FindAction("Dash", throwIfNotFound: true);
+        m_Default_Interaction = m_Default.FindAction("Interaction", throwIfNotFound: true);
+        m_Default_CallSettings = m_Default.FindAction("Call Settings", throwIfNotFound: true);
+        m_Default_CallInventory = m_Default.FindAction("Call Inventory", throwIfNotFound: true);
+        m_Default_CallEquipment = m_Default.FindAction("Call Equipment", throwIfNotFound: true);
+        m_Default_SwapSword = m_Default.FindAction("SwapSword", throwIfNotFound: true);
+        m_Default_SwapBow = m_Default.FindAction("SwapBow", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1026,59 +1275,79 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Fire;
-    private readonly InputAction m_Player_Interaction;
-    private readonly InputAction m_Player_Skill;
-    private readonly InputAction m_Player_CallUI;
-    private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_Swap;
-    public struct PlayerActions
+    // PlayerSword
+    private readonly InputActionMap m_PlayerSword;
+    private IPlayerSwordActions m_PlayerSwordActionsCallbackInterface;
+    private readonly InputAction m_PlayerSword_Move;
+    private readonly InputAction m_PlayerSword_Fire;
+    private readonly InputAction m_PlayerSword_Interaction;
+    private readonly InputAction m_PlayerSword_Skill1;
+    private readonly InputAction m_PlayerSword_Skill2;
+    private readonly InputAction m_PlayerSword_Dash;
+    private readonly InputAction m_PlayerSword_SwapToBow;
+    private readonly InputAction m_PlayerSword_SwapToDefault;
+    private readonly InputAction m_PlayerSword_CallSettings;
+    private readonly InputAction m_PlayerSword_CallInventory;
+    private readonly InputAction m_PlayerSword_CallEquipment;
+    public struct PlayerSwordActions
     {
         private @TestPlayerActions m_Wrapper;
-        public PlayerActions(@TestPlayerActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Fire => m_Wrapper.m_Player_Fire;
-        public InputAction @Interaction => m_Wrapper.m_Player_Interaction;
-        public InputAction @Skill => m_Wrapper.m_Player_Skill;
-        public InputAction @CallUI => m_Wrapper.m_Player_CallUI;
-        public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @Swap => m_Wrapper.m_Player_Swap;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public PlayerSwordActions(@TestPlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerSword_Move;
+        public InputAction @Fire => m_Wrapper.m_PlayerSword_Fire;
+        public InputAction @Interaction => m_Wrapper.m_PlayerSword_Interaction;
+        public InputAction @Skill1 => m_Wrapper.m_PlayerSword_Skill1;
+        public InputAction @Skill2 => m_Wrapper.m_PlayerSword_Skill2;
+        public InputAction @Dash => m_Wrapper.m_PlayerSword_Dash;
+        public InputAction @SwapToBow => m_Wrapper.m_PlayerSword_SwapToBow;
+        public InputAction @SwapToDefault => m_Wrapper.m_PlayerSword_SwapToDefault;
+        public InputAction @CallSettings => m_Wrapper.m_PlayerSword_CallSettings;
+        public InputAction @CallInventory => m_Wrapper.m_PlayerSword_CallInventory;
+        public InputAction @CallEquipment => m_Wrapper.m_PlayerSword_CallEquipment;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerSword; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(PlayerSwordActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerSwordActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerSwordActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @Interaction.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
-                @Interaction.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
-                @Interaction.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteraction;
-                @Skill.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkill;
-                @Skill.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkill;
-                @Skill.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkill;
-                @CallUI.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCallUI;
-                @CallUI.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCallUI;
-                @CallUI.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCallUI;
-                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Swap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwap;
-                @Swap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwap;
-                @Swap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwap;
+                @Move.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnMove;
+                @Fire.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnFire;
+                @Interaction.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnInteraction;
+                @Skill1.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSkill1;
+                @Skill1.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSkill1;
+                @Skill1.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSkill1;
+                @Skill2.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSkill2;
+                @Skill2.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSkill2;
+                @Skill2.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSkill2;
+                @Dash.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnDash;
+                @SwapToBow.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSwapToBow;
+                @SwapToBow.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSwapToBow;
+                @SwapToBow.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSwapToBow;
+                @SwapToDefault.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSwapToDefault;
+                @SwapToDefault.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSwapToDefault;
+                @SwapToDefault.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnSwapToDefault;
+                @CallSettings.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallSettings;
+                @CallSettings.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallSettings;
+                @CallSettings.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallSettings;
+                @CallInventory.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallInventory;
+                @CallInventory.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallInventory;
+                @CallInventory.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallInventory;
+                @CallEquipment.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallEquipment;
+                @CallEquipment.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallEquipment;
+                @CallEquipment.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallEquipment;
             }
-            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerSwordActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Move.started += instance.OnMove;
@@ -1090,127 +1359,244 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @Interaction.started += instance.OnInteraction;
                 @Interaction.performed += instance.OnInteraction;
                 @Interaction.canceled += instance.OnInteraction;
-                @Skill.started += instance.OnSkill;
-                @Skill.performed += instance.OnSkill;
-                @Skill.canceled += instance.OnSkill;
-                @CallUI.started += instance.OnCallUI;
-                @CallUI.performed += instance.OnCallUI;
-                @CallUI.canceled += instance.OnCallUI;
+                @Skill1.started += instance.OnSkill1;
+                @Skill1.performed += instance.OnSkill1;
+                @Skill1.canceled += instance.OnSkill1;
+                @Skill2.started += instance.OnSkill2;
+                @Skill2.performed += instance.OnSkill2;
+                @Skill2.canceled += instance.OnSkill2;
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
-                @Swap.started += instance.OnSwap;
-                @Swap.performed += instance.OnSwap;
-                @Swap.canceled += instance.OnSwap;
+                @SwapToBow.started += instance.OnSwapToBow;
+                @SwapToBow.performed += instance.OnSwapToBow;
+                @SwapToBow.canceled += instance.OnSwapToBow;
+                @SwapToDefault.started += instance.OnSwapToDefault;
+                @SwapToDefault.performed += instance.OnSwapToDefault;
+                @SwapToDefault.canceled += instance.OnSwapToDefault;
+                @CallSettings.started += instance.OnCallSettings;
+                @CallSettings.performed += instance.OnCallSettings;
+                @CallSettings.canceled += instance.OnCallSettings;
+                @CallInventory.started += instance.OnCallInventory;
+                @CallInventory.performed += instance.OnCallInventory;
+                @CallInventory.canceled += instance.OnCallInventory;
+                @CallEquipment.started += instance.OnCallEquipment;
+                @CallEquipment.performed += instance.OnCallEquipment;
+                @CallEquipment.canceled += instance.OnCallEquipment;
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public PlayerSwordActions @PlayerSword => new PlayerSwordActions(this);
 
-    // UI
-    private readonly InputActionMap m_UI;
-    private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_Navigate;
-    private readonly InputAction m_UI_Submit;
-    private readonly InputAction m_UI_Cancel;
-    private readonly InputAction m_UI_Point;
-    private readonly InputAction m_UI_Click;
-    private readonly InputAction m_UI_ScrollWheel;
-    private readonly InputAction m_UI_MiddleClick;
-    private readonly InputAction m_UI_RightClick;
-    private readonly InputAction m_UI_TrackedDevicePosition;
-    private readonly InputAction m_UI_TrackedDeviceOrientation;
-    public struct UIActions
+    // PlayerBow
+    private readonly InputActionMap m_PlayerBow;
+    private IPlayerBowActions m_PlayerBowActionsCallbackInterface;
+    private readonly InputAction m_PlayerBow_Move;
+    private readonly InputAction m_PlayerBow_Fire;
+    private readonly InputAction m_PlayerBow_Aim;
+    private readonly InputAction m_PlayerBow_Interaction;
+    private readonly InputAction m_PlayerBow_Skill1;
+    private readonly InputAction m_PlayerBow_Skill2;
+    private readonly InputAction m_PlayerBow_Dash;
+    private readonly InputAction m_PlayerBow_SwapToSword;
+    private readonly InputAction m_PlayerBow_SwapToDefault;
+    private readonly InputAction m_PlayerBow_CallSettings;
+    private readonly InputAction m_PlayerBow_CallInventory;
+    private readonly InputAction m_PlayerBow_CallEquipment;
+    public struct PlayerBowActions
     {
         private @TestPlayerActions m_Wrapper;
-        public UIActions(@TestPlayerActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
-        public InputAction @Submit => m_Wrapper.m_UI_Submit;
-        public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
-        public InputAction @Point => m_Wrapper.m_UI_Point;
-        public InputAction @Click => m_Wrapper.m_UI_Click;
-        public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
-        public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
-        public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
-        public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
-        public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public PlayerBowActions(@TestPlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerBow_Move;
+        public InputAction @Fire => m_Wrapper.m_PlayerBow_Fire;
+        public InputAction @Aim => m_Wrapper.m_PlayerBow_Aim;
+        public InputAction @Interaction => m_Wrapper.m_PlayerBow_Interaction;
+        public InputAction @Skill1 => m_Wrapper.m_PlayerBow_Skill1;
+        public InputAction @Skill2 => m_Wrapper.m_PlayerBow_Skill2;
+        public InputAction @Dash => m_Wrapper.m_PlayerBow_Dash;
+        public InputAction @SwapToSword => m_Wrapper.m_PlayerBow_SwapToSword;
+        public InputAction @SwapToDefault => m_Wrapper.m_PlayerBow_SwapToDefault;
+        public InputAction @CallSettings => m_Wrapper.m_PlayerBow_CallSettings;
+        public InputAction @CallInventory => m_Wrapper.m_PlayerBow_CallInventory;
+        public InputAction @CallEquipment => m_Wrapper.m_PlayerBow_CallEquipment;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerBow; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void SetCallbacks(IUIActions instance)
+        public static implicit operator InputActionMap(PlayerBowActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerBowActions instance)
         {
-            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerBowActionsCallbackInterface != null)
             {
-                @Navigate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
-                @Navigate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
-                @Navigate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
-                @Submit.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSubmit;
-                @Submit.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSubmit;
-                @Submit.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSubmit;
-                @Cancel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
-                @Point.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
-                @Point.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
-                @Point.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
-                @Click.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
-                @Click.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
-                @Click.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
-                @ScrollWheel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollWheel;
-                @ScrollWheel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollWheel;
-                @ScrollWheel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollWheel;
-                @MiddleClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMiddleClick;
-                @MiddleClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMiddleClick;
-                @MiddleClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMiddleClick;
-                @RightClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
-                @RightClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
-                @RightClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
-                @TrackedDevicePosition.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDevicePosition;
-                @TrackedDevicePosition.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDevicePosition;
-                @TrackedDevicePosition.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDevicePosition;
-                @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
-                @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
-                @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                @Move.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnMove;
+                @Fire.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnFire;
+                @Aim.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnAim;
+                @Interaction.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnInteraction;
+                @Skill1.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSkill1;
+                @Skill1.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSkill1;
+                @Skill1.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSkill1;
+                @Skill2.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSkill2;
+                @Skill2.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSkill2;
+                @Skill2.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSkill2;
+                @Dash.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnDash;
+                @SwapToSword.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSwapToSword;
+                @SwapToSword.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSwapToSword;
+                @SwapToSword.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSwapToSword;
+                @SwapToDefault.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSwapToDefault;
+                @SwapToDefault.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSwapToDefault;
+                @SwapToDefault.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnSwapToDefault;
+                @CallSettings.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallSettings;
+                @CallSettings.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallSettings;
+                @CallSettings.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallSettings;
+                @CallInventory.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallInventory;
+                @CallInventory.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallInventory;
+                @CallInventory.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallInventory;
+                @CallEquipment.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallEquipment;
+                @CallEquipment.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallEquipment;
+                @CallEquipment.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallEquipment;
             }
-            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerBowActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Navigate.started += instance.OnNavigate;
-                @Navigate.performed += instance.OnNavigate;
-                @Navigate.canceled += instance.OnNavigate;
-                @Submit.started += instance.OnSubmit;
-                @Submit.performed += instance.OnSubmit;
-                @Submit.canceled += instance.OnSubmit;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
-                @Point.started += instance.OnPoint;
-                @Point.performed += instance.OnPoint;
-                @Point.canceled += instance.OnPoint;
-                @Click.started += instance.OnClick;
-                @Click.performed += instance.OnClick;
-                @Click.canceled += instance.OnClick;
-                @ScrollWheel.started += instance.OnScrollWheel;
-                @ScrollWheel.performed += instance.OnScrollWheel;
-                @ScrollWheel.canceled += instance.OnScrollWheel;
-                @MiddleClick.started += instance.OnMiddleClick;
-                @MiddleClick.performed += instance.OnMiddleClick;
-                @MiddleClick.canceled += instance.OnMiddleClick;
-                @RightClick.started += instance.OnRightClick;
-                @RightClick.performed += instance.OnRightClick;
-                @RightClick.canceled += instance.OnRightClick;
-                @TrackedDevicePosition.started += instance.OnTrackedDevicePosition;
-                @TrackedDevicePosition.performed += instance.OnTrackedDevicePosition;
-                @TrackedDevicePosition.canceled += instance.OnTrackedDevicePosition;
-                @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
-                @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
-                @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
+                @Skill1.started += instance.OnSkill1;
+                @Skill1.performed += instance.OnSkill1;
+                @Skill1.canceled += instance.OnSkill1;
+                @Skill2.started += instance.OnSkill2;
+                @Skill2.performed += instance.OnSkill2;
+                @Skill2.canceled += instance.OnSkill2;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @SwapToSword.started += instance.OnSwapToSword;
+                @SwapToSword.performed += instance.OnSwapToSword;
+                @SwapToSword.canceled += instance.OnSwapToSword;
+                @SwapToDefault.started += instance.OnSwapToDefault;
+                @SwapToDefault.performed += instance.OnSwapToDefault;
+                @SwapToDefault.canceled += instance.OnSwapToDefault;
+                @CallSettings.started += instance.OnCallSettings;
+                @CallSettings.performed += instance.OnCallSettings;
+                @CallSettings.canceled += instance.OnCallSettings;
+                @CallInventory.started += instance.OnCallInventory;
+                @CallInventory.performed += instance.OnCallInventory;
+                @CallInventory.canceled += instance.OnCallInventory;
+                @CallEquipment.started += instance.OnCallEquipment;
+                @CallEquipment.performed += instance.OnCallEquipment;
+                @CallEquipment.canceled += instance.OnCallEquipment;
             }
         }
     }
-    public UIActions @UI => new UIActions(this);
+    public PlayerBowActions @PlayerBow => new PlayerBowActions(this);
+
+    // Default
+    private readonly InputActionMap m_Default;
+    private IDefaultActions m_DefaultActionsCallbackInterface;
+    private readonly InputAction m_Default_Move;
+    private readonly InputAction m_Default_Dash;
+    private readonly InputAction m_Default_Interaction;
+    private readonly InputAction m_Default_CallSettings;
+    private readonly InputAction m_Default_CallInventory;
+    private readonly InputAction m_Default_CallEquipment;
+    private readonly InputAction m_Default_SwapSword;
+    private readonly InputAction m_Default_SwapBow;
+    public struct DefaultActions
+    {
+        private @TestPlayerActions m_Wrapper;
+        public DefaultActions(@TestPlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Default_Move;
+        public InputAction @Dash => m_Wrapper.m_Default_Dash;
+        public InputAction @Interaction => m_Wrapper.m_Default_Interaction;
+        public InputAction @CallSettings => m_Wrapper.m_Default_CallSettings;
+        public InputAction @CallInventory => m_Wrapper.m_Default_CallInventory;
+        public InputAction @CallEquipment => m_Wrapper.m_Default_CallEquipment;
+        public InputAction @SwapSword => m_Wrapper.m_Default_SwapSword;
+        public InputAction @SwapBow => m_Wrapper.m_Default_SwapBow;
+        public InputActionMap Get() { return m_Wrapper.m_Default; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DefaultActions set) { return set.Get(); }
+        public void SetCallbacks(IDefaultActions instance)
+        {
+            if (m_Wrapper.m_DefaultActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMove;
+                @Dash.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDash;
+                @Interaction.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteraction;
+                @CallSettings.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCallSettings;
+                @CallSettings.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCallSettings;
+                @CallSettings.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCallSettings;
+                @CallInventory.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCallInventory;
+                @CallInventory.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCallInventory;
+                @CallInventory.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCallInventory;
+                @CallEquipment.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCallEquipment;
+                @CallEquipment.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCallEquipment;
+                @CallEquipment.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnCallEquipment;
+                @SwapSword.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSwapSword;
+                @SwapSword.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSwapSword;
+                @SwapSword.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSwapSword;
+                @SwapBow.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSwapBow;
+                @SwapBow.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSwapBow;
+                @SwapBow.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSwapBow;
+            }
+            m_Wrapper.m_DefaultActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
+                @CallSettings.started += instance.OnCallSettings;
+                @CallSettings.performed += instance.OnCallSettings;
+                @CallSettings.canceled += instance.OnCallSettings;
+                @CallInventory.started += instance.OnCallInventory;
+                @CallInventory.performed += instance.OnCallInventory;
+                @CallInventory.canceled += instance.OnCallInventory;
+                @CallEquipment.started += instance.OnCallEquipment;
+                @CallEquipment.performed += instance.OnCallEquipment;
+                @CallEquipment.canceled += instance.OnCallEquipment;
+                @SwapSword.started += instance.OnSwapSword;
+                @SwapSword.performed += instance.OnSwapSword;
+                @SwapSword.canceled += instance.OnSwapSword;
+                @SwapBow.started += instance.OnSwapBow;
+                @SwapBow.performed += instance.OnSwapBow;
+                @SwapBow.canceled += instance.OnSwapBow;
+            }
+        }
+    }
+    public DefaultActions @Default => new DefaultActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1256,27 +1642,44 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_XRSchemeIndex];
         }
     }
-    public interface IPlayerActions
+    public interface IPlayerSwordActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
-        void OnSkill(InputAction.CallbackContext context);
-        void OnCallUI(InputAction.CallbackContext context);
+        void OnSkill1(InputAction.CallbackContext context);
+        void OnSkill2(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnSwap(InputAction.CallbackContext context);
+        void OnSwapToBow(InputAction.CallbackContext context);
+        void OnSwapToDefault(InputAction.CallbackContext context);
+        void OnCallSettings(InputAction.CallbackContext context);
+        void OnCallInventory(InputAction.CallbackContext context);
+        void OnCallEquipment(InputAction.CallbackContext context);
     }
-    public interface IUIActions
+    public interface IPlayerBowActions
     {
-        void OnNavigate(InputAction.CallbackContext context);
-        void OnSubmit(InputAction.CallbackContext context);
-        void OnCancel(InputAction.CallbackContext context);
-        void OnPoint(InputAction.CallbackContext context);
-        void OnClick(InputAction.CallbackContext context);
-        void OnScrollWheel(InputAction.CallbackContext context);
-        void OnMiddleClick(InputAction.CallbackContext context);
-        void OnRightClick(InputAction.CallbackContext context);
-        void OnTrackedDevicePosition(InputAction.CallbackContext context);
-        void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
+        void OnSkill1(InputAction.CallbackContext context);
+        void OnSkill2(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnSwapToSword(InputAction.CallbackContext context);
+        void OnSwapToDefault(InputAction.CallbackContext context);
+        void OnCallSettings(InputAction.CallbackContext context);
+        void OnCallInventory(InputAction.CallbackContext context);
+        void OnCallEquipment(InputAction.CallbackContext context);
+    }
+    public interface IDefaultActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
+        void OnCallSettings(InputAction.CallbackContext context);
+        void OnCallInventory(InputAction.CallbackContext context);
+        void OnCallEquipment(InputAction.CallbackContext context);
+        void OnSwapSword(InputAction.CallbackContext context);
+        void OnSwapBow(InputAction.CallbackContext context);
     }
 }

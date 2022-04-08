@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace ETeam.KyungSeo
 {
     [RequireComponent(typeof(CharacterController))]
-    public class TestPlayerController : MonoBehaviour
+    public partial class TestPlayerController : MonoBehaviour
     {
         #region Variables
         [SerializeField] private float moveSpeed; // 이동 스피드
@@ -21,6 +21,7 @@ namespace ETeam.KyungSeo
         private bool isUIOn = false; // 테스트 UI표시용
 
         private CharacterController controller; // 캐싱할 CharacterController - PJ
+        private Animator animator; // 애니메이터 캐싱용
 
         public float gravity = -29.81f; // 중력 계수 - PJ // KS 상세 : rigidbody를 사용하지 않는 중력계수라고 하네요~
         public Vector3 drags; // 저항력 -PJ
@@ -34,22 +35,17 @@ namespace ETeam.KyungSeo
 
         #endregion
 
-        #region Properties
-
-        // 여기에 프로퍼티를 선언합니다.
-
-        #endregion
-
         #region Unity Methods
 
         private void Awake()
         {
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
+            animator = GetComponentInChildren<Animator>();
             actions = new TestPlayerActions();
 
-            playerInput.SwitchCurrentActionMap("ActionMap Name");
-            actions.Player.Enable();
+            playerInput.SwitchCurrentActionMap("Default");
+            actions.Default.Enable();
         }
 
         private void Update()
@@ -89,7 +85,7 @@ namespace ETeam.KyungSeo
 
         #endregion
 
-        #region Input Methods
+        #region Input Methods : Movements
 
         public void Move(InputAction.CallbackContext callbackContext)
         {
@@ -106,34 +102,9 @@ namespace ETeam.KyungSeo
             }
         }
 
-        public void Attack()
-        {
-            // State에 맞는 공격 애니메이션 호출
-            // 공격하기
-        }
-
-        public void UseSkill()
-        {
-            // 뭘 입력했냐에 따라 스킬 사용
-        }
-
-        public void SwapWeapon(InputAction.CallbackContext callbackContext)
-        {
-            if (callbackContext.started)
-            {
-                Debug.Log(callbackContext.ReadValue<float>().GetHashCode().ToString());
-            }
-        }
-
-        public void Interact()
-        {
-            // Interact가 가능한 오브젝트면
-            // interact
-        }
-
         public void Dash(InputAction.CallbackContext callbackContext)
         {
-            if(callbackContext.started)
+            if (callbackContext.started)
             {
                 Vector3 dashVelocity = Vector3.Scale(transform.forward, dashDistance * new Vector3((Mathf.Log(1 / (drags.x * Time.deltaTime + 1)) / -Time.deltaTime),
                     0,
@@ -144,7 +115,47 @@ namespace ETeam.KyungSeo
             // 이동방향으로.. 밀어버리나? 개너무한 부분;
         }
 
-        public void CallUI()
+        #endregion
+
+        public void Interact()
+        {
+            // Interact가 가능한 오브젝트면
+            // interact
+        }
+
+        #region Input Methods : Swap
+
+        public void SwapToBow(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.started)
+            {
+                // 무기 스왑 애니메이션
+                playerInput.SwitchCurrentActionMap("PlayerBow");
+                Debug.Log(playerInput.currentActionMap.ToString());
+                actions.PlayerSword.Disable();
+                actions.Default.Disable();
+                actions.PlayerBow.Enable();
+            }
+        }
+        
+        public void SwapToSword(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.started)
+            {
+                // 무기 스왑 애니메이션
+                playerInput.SwitchCurrentActionMap("PlayerSword");
+                Debug.Log(playerInput.currentActionMap.ToString());
+                actions.PlayerBow.Disable();
+                actions.Default.Disable();
+                actions.PlayerSword.Enable();
+            }
+        }
+
+        #endregion
+
+        #region Input Methods : Call UIs
+
+        public void CallSettings(InputAction.CallbackContext callbackContext)
         {
             // 이게 맞나? 어쨌든 테스트 -> 이건 플레이어 말고 게임매니저 같은곳에 넣어야 하나?
             if (!isUIOn)
@@ -157,6 +168,16 @@ namespace ETeam.KyungSeo
                 isUIOn = false;
                 testUI.gameObject.SetActive(false);
             }
+        }
+
+        public void CallInventory(InputAction.CallbackContext callbackContext)
+        {
+
+        }
+
+        public void CallEquipment(InputAction.CallbackContext callbackContext)
+        {
+
         }
 
         #endregion
