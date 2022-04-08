@@ -574,6 +574,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4059dd938f1a25b4d8bbfcc959ea1fbd, type: 2}
+    - target: {fileID: 5316820693925015571, guid: fdf678a7193c58346a367114b3da57ac, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdf678a7193c58346a367114b3da57ac, type: 3}
 --- !u!1 &1315828575
@@ -1471,11 +1475,35 @@ MonoBehaviour:
     m_ActionId: 6c169ee4-3c92-4d14-a1fc-0b12caa706fd
     m_ActionName: Default/SwapBow[/Keyboard/2]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2067266404}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.TestPlayerController, Assembly-CSharp
+        m_MethodName: SwapDefault
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: dd7d61b7-e710-4a92-aed2-0c0be1f865cd
     m_ActionName: PlayerSword/SwapToDefault[/Keyboard/x]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2067266404}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.TestPlayerController, Assembly-CSharp
+        m_MethodName: SwapDefault
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3a8e40f9-6951-413d-b4f1-332e0dd0f86d
     m_ActionName: PlayerBow/SwapToDefault[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0

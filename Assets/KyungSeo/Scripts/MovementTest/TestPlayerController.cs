@@ -33,6 +33,8 @@ namespace ETeam.KyungSeo
         public PlayerInput playerInput;
         public TestPlayerActions actions;
 
+        private readonly int hashSwapIndex = Animator.StringToHash("SwapIndex");
+
         #endregion
 
         #region Unity Methods
@@ -130,6 +132,7 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 // 무기 스왑 애니메이션
+                animator.SetInteger(hashSwapIndex, 2);
                 playerInput.SwitchCurrentActionMap("PlayerBow");
                 Debug.Log(playerInput.currentActionMap.ToString());
                 actions.PlayerSword.Disable();
@@ -143,11 +146,25 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 // 무기 스왑 애니메이션
+                animator.SetInteger(hashSwapIndex, 1);
                 playerInput.SwitchCurrentActionMap("PlayerSword");
                 Debug.Log(playerInput.currentActionMap.ToString());
                 actions.PlayerBow.Disable();
                 actions.Default.Disable();
                 actions.PlayerSword.Enable();
+            }
+        }
+
+        public void SwapDefault(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.started)
+            {
+                animator.SetInteger(hashSwapIndex, 0);
+                playerInput.SwitchCurrentActionMap("Default");
+                Debug.Log(playerInput.currentActionMap.ToString());
+                actions.PlayerBow.Disable();
+                actions.PlayerSword.Disable();
+                actions.Default.Enable();
             }
         }
 
