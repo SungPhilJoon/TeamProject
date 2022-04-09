@@ -57,7 +57,7 @@ namespace ETeam.KyungSeo
             
             if (!_isRightButton)
             {
-                focus.rotation = Quaternion.Euler(new Vector3(30, 0, 0));
+                focus.rotation = Quaternion.Lerp(Quaternion.Euler(focus.rotation.eulerAngles.x,focus.rotation.eulerAngles.y,0), Quaternion.Euler(new Vector3(30, 0, 0)), cameraSensitivy * Time.deltaTime);
                 // Vector3 worldPosition = (Vector3.forward * -distance) + (Vector3.up * height);
                 // Vector3 flatTargetPosition = target.position;
                 // flatTargetPosition.y += offsetHeight;
