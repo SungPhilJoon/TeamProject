@@ -31,7 +31,6 @@ namespace ETeam.KyungSeo
         private Vector3 calcVelocity; // 계산에 사용될 Vector3 레퍼런스 - PJ
 
         public PlayerInput playerInput;
-        public TestPlayerActions actions;
 
         #endregion
 
@@ -42,10 +41,8 @@ namespace ETeam.KyungSeo
             base.Awake();
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
-            actions = new TestPlayerActions();
 
             playerInput.SwitchCurrentActionMap("Default");
-            actions.Default.Enable();
         }
 
         protected override void Update()
@@ -139,10 +136,6 @@ namespace ETeam.KyungSeo
                 // 무기 스왑 애니메이션
                 animator.SetInteger(hashSwapIndex, 2);
                 playerInput.SwitchCurrentActionMap("PlayerBow");
-                Debug.Log(playerInput.currentActionMap.ToString());
-                actions.PlayerSword.Disable();
-                actions.Default.Disable();
-                actions.PlayerBow.Enable();
             }
         }
         
@@ -153,10 +146,6 @@ namespace ETeam.KyungSeo
                 // 무기 스왑 애니메이션
                 animator.SetInteger(hashSwapIndex, 1);
                 playerInput.SwitchCurrentActionMap("PlayerSword");
-                Debug.Log(playerInput.currentActionMap.ToString());
-                actions.PlayerBow.Disable();
-                actions.Default.Disable();
-                actions.PlayerSword.Enable();
             }
         }
 
@@ -166,10 +155,6 @@ namespace ETeam.KyungSeo
             {
                 animator.SetInteger(hashSwapIndex, 0);
                 playerInput.SwitchCurrentActionMap("Default");
-                Debug.Log(playerInput.currentActionMap.ToString());
-                actions.PlayerBow.Disable();
-                actions.PlayerSword.Disable();
-                actions.Default.Enable();
             }
         }
 

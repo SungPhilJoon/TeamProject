@@ -17,61 +17,43 @@ namespace ETeam.KyungSeo
         public Transform target = null;
         public Transform focus;
 
-        private float limitMinX = -10; // 카메라 회전범위(최소)
-        private float limitMaxX = 50; // 카메라 회전범위(최대)
-        private float eulerAngleX;
-        private float eulerAngleY;
-
         public float distance;
         public float height;
         public float lerpPercent;
 
         public float rotateSpeed = 15f;
-        private float offsetHeight = 0.7f;
+
+        private Vector3 calcVector;
         
         #endregion
 
-            #region Unity Methods
+        #region Unity Methods
         private void Start()
         {
+            calcVector = Vector3.zero;
             StartCoroutine(MoveCamera());
         }
 
         private void LateUpdate()
         {
-            // Vector3 cameraFocus = target.position;
-
-            // cameraFocus.y += offsetHeight;
-            // target.position = cameraFocus;
-
-            // // transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, camareSensitivity * Time.deltaTime);
-            // transform.position = Vector3.Lerp(transform.position, target.position, camareSensitivity * Time.deltaTime);
-            // transform.LookAt(cameraFocus);
-            
             if (!target)
             {
                 return;
             }
-            
+
+            float z = Mouse.current.scroll.y.ReadValue();
+
+            transform.position += new Vector3(0, 0, Mathf.Clamp(z * Time.deltaTime / 2f, 0, 2));
+
+            calcVector += new Vector3(0, (z * Time.deltaTime) * -1f, z * Time.deltaTime);
+
             focus.position = Vector3.Lerp(focus.position, target.position, cameraSensitivy * Time.deltaTime);
-            
+            calcVector = new Vector3(0, Mathf.Clamp(calcVector.y, -5, 5), Mathf.Clamp(calcVector.z, -5f, 5f));
+            focus.position = calcVector;
+
             if (!_isRightButton)
             {
                 focus.rotation = Quaternion.Lerp(Quaternion.Euler(focus.rotation.eulerAngles.x,focus.rotation.eulerAngles.y,0), Quaternion.Euler(new Vector3(30, 0, 0)), cameraSensitivy * Time.deltaTime);
-                // Vector3 worldPosition = (Vector3.forward * -distance) + (Vector3.up * height);
-                // Vector3 flatTargetPosition = target.position;
-                // flatTargetPosition.y += offsetHeight;
-                //
-                // Vector3 finalPosition = flatTargetPosition + worldPosition;
-                //
-                // Vector3 lerpedPosition = Vector3.Lerp(focus.position, finalPosition, lerpPercent);
-                //
-                // focus.position = lerpedPosition;
-
-
-
-
-                // transform.LookAt(flatTargetPosition);
             }
         }
 
@@ -82,19 +64,10 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.performed) // 우클릭중이면 true 떼면 false
             {
-                Debug.Log("움직이는 중~~");
                 _isRightButton = true;
             }
             if (callbackContext.canceled)
                 _isRightButton = false;
-        }
-        
-        private float ClampAngle(float angle, float min, float max)
-        {
-            if (angle < -360) angle += 360;
-            if (angle > 360) angle -= 360;
-
-            return Mathf.Clamp(angle, min, max);
         }
 
         private IEnumerator MoveCamera()
@@ -107,6 +80,16 @@ namespace ETeam.KyungSeo
                         new Vector3(Mathf.Clamp(focus.eulerAngles.x + (-Mouse.current.delta.y.ReadValue()), 10, 80),
                             focus.eulerAngles.y + (Mouse.current.delta.x.ReadValue()), 0);
                 }
+
+                yield return null;
+            }
+        }
+
+        private IEnumerator Zoom()
+        {
+            while (true)
+            {
+                
 
                 yield return null;
             }
