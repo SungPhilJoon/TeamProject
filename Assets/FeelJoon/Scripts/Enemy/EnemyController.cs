@@ -56,7 +56,6 @@ namespace ETeam.FeelJoon
             stateMachine = new StateMachine<EnemyController>(this, new EnemyIdleState());
             stateMachine.AddState(new EnemyMoveState());
             stateMachine.AddState(new EnemyAttackState());
-            stateMachine.AddState(new EnemyHitState());
             stateMachine.AddState(new EnemyDeadState());
 
             animator = GetComponent<Animator>();

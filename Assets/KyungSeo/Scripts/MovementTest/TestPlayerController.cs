@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using ETeam.FeelJoon;
 
 namespace ETeam.KyungSeo
 {
     [RequireComponent(typeof(CharacterController))]
-    public partial class TestPlayerController : MonoBehaviour
+    public partial class TestPlayerController : PlayerController
     {
         #region Variables
         [SerializeField] private float moveSpeed; // 이동 스피드
@@ -21,7 +22,6 @@ namespace ETeam.KyungSeo
         private bool isUIOn = false; // 테스트 UI표시용
 
         private CharacterController controller; // 캐싱할 CharacterController - PJ
-        private Animator animator; // 애니메이터 캐싱용
 
         public float gravity = -29.81f; // 중력 계수 - PJ // KS 상세 : rigidbody를 사용하지 않는 중력계수라고 하네요~
         public Vector3 drags; // 저항력 -PJ
@@ -33,26 +33,24 @@ namespace ETeam.KyungSeo
         public PlayerInput playerInput;
         public TestPlayerActions actions;
 
-        private readonly int hashSwapIndex = Animator.StringToHash("SwapIndex");
-
         #endregion
 
         #region Unity Methods
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
-            animator = GetComponentInChildren<Animator>();
             actions = new TestPlayerActions();
 
             playerInput.SwitchCurrentActionMap("Default");
             actions.Default.Enable();
         }
 
-        private void Update()
+        protected override void Update()
         {
-
+            base.Update();
             isGround = controller.isGrounded;
             if (isGround && calcVelocity.y < 0)
             {
@@ -96,12 +94,18 @@ namespace ETeam.KyungSeo
                 inputValue = callbackContext.ReadValue<Vector2>();
                 movement.x = inputValue.x;
                 movement.z = inputValue.y;
+                isMove = true;
+                stateMachine.ChangeState<PlayerMove>();
             }
 
             if (callbackContext.canceled) // 키를 떼면 정지
             {
                 movement = Vector2.zero;
+                isMove = false;
+                stateMachine.ChangeState<PlayerIdle>();
             }
+
+            // animator.SetBool(hashIsMove, movement.sqrMagnitude > 0);
         }
 
         public void Dash(InputAction.CallbackContext callbackContext)
@@ -112,6 +116,7 @@ namespace ETeam.KyungSeo
                     0,
                     (Mathf.Log(1 / (drags.z * Time.deltaTime + 1)) / -Time.deltaTime)));
                 calcVelocity += dashVelocity;
+                stateMachine.ChangeState<PlayerDash>();
             }
 
             // 이동방향으로.. 밀어버리나? 개너무한 부분;
