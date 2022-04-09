@@ -15,7 +15,7 @@ namespace ETeam.KyungSeo
         
         [SerializeField] private float cameraSensitivy = 3;
         public Transform target = null;
-        public Transform cameraArm;
+        public Transform focus;
 
         private float limitMinX = -10; // 카메라 회전범위(최소)
         private float limitMaxX = 50; // 카메라 회전범위(최대)
@@ -25,6 +25,8 @@ namespace ETeam.KyungSeo
         public float distance;
         public float height;
         public float lerpPercent;
+
+        public float rotateSpeed = 15f;
         private float offsetHeight = 0.7f;
         
         #endregion
@@ -51,16 +53,19 @@ namespace ETeam.KyungSeo
                 return;
             }
 
-            Vector3 worldPosition = (Vector3.forward * -distance) + (Vector3.up * height);
-            Vector3 flatTargetPosition = target.position;
-            flatTargetPosition.y += offsetHeight;
+            if (!_isRightButton)
+            {
+                Vector3 worldPosition = (Vector3.forward * -distance) + (Vector3.up * height);
+                Vector3 flatTargetPosition = target.position;
+                flatTargetPosition.y += offsetHeight;
 
-            Vector3 finalPosition = flatTargetPosition + worldPosition;
+                Vector3 finalPosition = flatTargetPosition + worldPosition;
 
-            Vector3 lerpedPosition = Vector3.Lerp(transform.position, finalPosition, lerpPercent);
-            transform.position = lerpedPosition;
+                Vector3 lerpedPosition = Vector3.Lerp(transform.position, finalPosition, lerpPercent);
+                transform.position = lerpedPosition;
 
-            transform.LookAt(flatTargetPosition);
+                transform.LookAt(flatTargetPosition);
+            }
         }
 
         #endregion
@@ -91,38 +96,12 @@ namespace ETeam.KyungSeo
             {
                 if (_isRightButton) // 우클릭 드래그 중에만 
                 {
-                    eulerAngleY = Mouse.current.delta.x.ReadValue() * cameraSensitivy; // 마우스 좌/우 이동으로 카메라 y축 회전
-                    eulerAngleX = Mouse.current.delta.y.ReadValue() * cameraSensitivy; // 마우스 위/아래 이동으로 카메라 x축 회전
-                    
-                    // Debug.Log(eulerAngleX.ToString());
-                    // Debug.Log(eulerAngleY.ToString());
+                    focus.position = target.position;
 
-                    // eulerAngleX = ClampAngle(eulerAngleX, limitMinX, limitMaxX);
-        
-                    // Vector3 Y = Quaternion.AngleAxis(eulerAngleY / 100f, target.up) * cameraArm.forward;
-                    // Vector3 X = Quaternion.AngleAxis(eulerAngleX / 100f, target.right) * cameraArm.forward;
+                    focus.eulerAngles =
+                        new Vector3(Mathf.Clamp(focus.eulerAngles.x + Mouse.current.delta.y.ReadValue(), 10, 80),
+                            focus.eulerAngles.y + (-Mouse.current.delta.x.ReadValue()), 0);
 
-                    // // 카메라 x축 회전의 경우 회전 범위를 설정
-                    // //eulerAngleX = ClampAngle(eulerAngleX, limitMinX, limitMaxX);
-
-                    // // cameraArm.rotation = Quaternion.Euler(eulerAngleX, eulerAngleY, 0);
-                    // cameraArm.rotation = Quaternion.Euler(X + Y);
-                    
-                    Vector3 cameraAngle = cameraArm.rotation.eulerAngles;
-
-                    float x = cameraAngle.x - eulerAngleX;
-
-                    if (x < 180)
-                    {
-                        x = Mathf.Clamp(x, -1f, 70f);
-                    }
-                    else
-                    {
-                        x = Mathf.Clamp(x, 355f, 361f);
-                    }
-
-                    cameraArm.rotation = Quaternion.Euler(x, cameraAngle.y + eulerAngleY, cameraAngle.z);
-                    
                     yield return null;
                 }
 
