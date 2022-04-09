@@ -31,7 +31,7 @@ namespace ETeam.KyungSeo
         
         #endregion
 
-        #region Unity Methods
+            #region Unity Methods
         private void Start()
         {
             StartCoroutine(MoveCamera());
@@ -47,24 +47,31 @@ namespace ETeam.KyungSeo
             // // transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, camareSensitivity * Time.deltaTime);
             // transform.position = Vector3.Lerp(transform.position, target.position, camareSensitivity * Time.deltaTime);
             // transform.LookAt(cameraFocus);
-
+            
             if (!target)
             {
                 return;
             }
-
+            
+            focus.position = Vector3.Lerp(focus.position, target.position, cameraSensitivy * Time.deltaTime);
+            
             if (!_isRightButton)
             {
-                Vector3 worldPosition = (Vector3.forward * -distance) + (Vector3.up * height);
-                Vector3 flatTargetPosition = target.position;
-                flatTargetPosition.y += offsetHeight;
+                focus.rotation = Quaternion.Euler(new Vector3(30, 0, 0));
+                // Vector3 worldPosition = (Vector3.forward * -distance) + (Vector3.up * height);
+                // Vector3 flatTargetPosition = target.position;
+                // flatTargetPosition.y += offsetHeight;
+                //
+                // Vector3 finalPosition = flatTargetPosition + worldPosition;
+                //
+                // Vector3 lerpedPosition = Vector3.Lerp(focus.position, finalPosition, lerpPercent);
+                //
+                // focus.position = lerpedPosition;
 
-                Vector3 finalPosition = flatTargetPosition + worldPosition;
 
-                Vector3 lerpedPosition = Vector3.Lerp(transform.position, finalPosition, lerpPercent);
-                transform.position = lerpedPosition;
 
-                transform.LookAt(flatTargetPosition);
+
+                // transform.LookAt(flatTargetPosition);
             }
         }
 
@@ -96,13 +103,9 @@ namespace ETeam.KyungSeo
             {
                 if (_isRightButton) // 우클릭 드래그 중에만 
                 {
-                    focus.position = target.position;
-
                     focus.eulerAngles =
-                        new Vector3(Mathf.Clamp(focus.eulerAngles.x + Mouse.current.delta.y.ReadValue(), 10, 80),
-                            focus.eulerAngles.y + (-Mouse.current.delta.x.ReadValue()), 0);
-
-                    yield return null;
+                        new Vector3(Mathf.Clamp(focus.eulerAngles.x + (-Mouse.current.delta.y.ReadValue()), 10, 80),
+                            focus.eulerAngles.y + (Mouse.current.delta.x.ReadValue()), 0);
                 }
 
                 yield return null;
