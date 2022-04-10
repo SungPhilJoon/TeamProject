@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using ETeam.FeelJoon;
+using UnityEngine.Serialization;
 
 namespace ETeam.KyungSeo
 {
@@ -15,11 +16,16 @@ namespace ETeam.KyungSeo
         [SerializeField] private float moveSpeed; // 이동 스피드
         [SerializeField] private float dashDistance = 5.0f; // 대쉬 거리 - PJ
 
-        [SerializeField] private Image testUI; // 테스트로 UI(설정창)를 띄우고 끄게 해 보려고
+        [SerializeField] private Image settingsUI; // 테스트로 UI(설정창)를 띄우고 끄게 해 보려고
+        [SerializeField] private Image inventoryUI;
+        [SerializeField] private Image equipmentUI;
 
         private Vector2 inputValue = Vector2.zero; // 입력 Vector
         private Vector3 movement = Vector3.zero; // 이동 방향 Vector
-        private bool isUIOn = false; // 테스트 UI표시용
+        
+        private bool isSettingOn = false; // 테스트 UI표시용
+        private bool isInventoryOn = false;
+        private bool isEquipmentOn = false;
 
         private CharacterController controller; // 캐싱할 CharacterController - PJ
 
@@ -168,26 +174,55 @@ namespace ETeam.KyungSeo
         public void CallSettings(InputAction.CallbackContext callbackContext)
         {
             // 이게 맞나? 어쨌든 테스트 -> 이건 플레이어 말고 게임매니저 같은곳에 넣어야 하나?
-            if (!isUIOn)
+            if (!isSettingOn)
             {
-                isUIOn = true;
-                testUI.gameObject.SetActive(true);
+                isSettingOn = true;
+                settingsUI.gameObject.SetActive(true);
             }
             else
             {
-                isUIOn = false;
-                testUI.gameObject.SetActive(false);
+                if (isInventoryOn)
+                {
+                    isInventoryOn = false;
+                    inventoryUI.gameObject.SetActive(false);
+                }
+                if (isEquipmentOn)
+                {
+                    isEquipmentOn = false;
+                    equipmentUI.gameObject.SetActive(false);
+                }
+                
+                isSettingOn = false;
+                settingsUI.gameObject.SetActive(false);
             }
         }
 
         public void CallInventory(InputAction.CallbackContext callbackContext)
         {
-
+            if (!isInventoryOn)
+            {
+                isInventoryOn = true;
+                inventoryUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                isInventoryOn = false;
+                inventoryUI.gameObject.SetActive(false);
+            }
         }
 
         public void CallEquipment(InputAction.CallbackContext callbackContext)
         {
-
+            if (!isEquipmentOn)
+            {
+                isEquipmentOn = true;
+                equipmentUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                isEquipmentOn = false;
+                equipmentUI.gameObject.SetActive(false);
+            }
         }
 
         #endregion
