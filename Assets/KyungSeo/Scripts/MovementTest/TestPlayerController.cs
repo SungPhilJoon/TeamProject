@@ -32,6 +32,9 @@ namespace ETeam.KyungSeo
 
         public PlayerInput playerInput;
 
+        // 인벤토리
+        public InventoryObject inventory;
+
         #endregion
 
         #region Unity Methods
@@ -191,6 +194,17 @@ namespace ETeam.KyungSeo
 
         #region Helper Methods
         // 여기에 사용자 정의 함수를 선언합니다.
+        public bool PickupItem(PickupItem pickupItem, int amount = 1)
+        {
+            if (pickupItem.itemObject != null && inventory.AddItem(new Item(pickupItem.itemObject), amount))
+            {
+                Destroy(pickupItem.gameObject);
+                return true;
+            }
+
+            return false;
+        }
+
         #endregion
     }
 }

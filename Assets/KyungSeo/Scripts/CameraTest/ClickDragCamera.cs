@@ -43,13 +43,13 @@ namespace ETeam.KyungSeo
 
             float z = Mouse.current.scroll.y.ReadValue();
 
-            transform.position += new Vector3(0, 0, Mathf.Clamp(z * Time.deltaTime / 2f, 0, 2));
+            transform.localPosition += new Vector3(0, 0, Mathf.Clamp(z * Time.deltaTime / 2f, -2, 2));
 
-            calcVector += new Vector3(0, (z * Time.deltaTime) * -1f, z * Time.deltaTime);
+            //calcVector += new Vector3(0, (z * Time.deltaTime) * -1f, z * Time.deltaTime);
 
             focus.position = Vector3.Lerp(focus.position, target.position, cameraSensitivy * Time.deltaTime);
-            calcVector = new Vector3(0, Mathf.Clamp(calcVector.y, -5, 5), Mathf.Clamp(calcVector.z, -5f, 5f));
-            focus.position = calcVector;
+            //calcVector = new Vector3(0, Mathf.Clamp(calcVector.y, -5, 5), Mathf.Clamp(calcVector.z, -5f, 5f));
+            //focus.position = calcVector;
 
             if (!_isRightButton)
             {
