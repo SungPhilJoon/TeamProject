@@ -9,6 +9,10 @@ namespace ETeam.FeelJoon
         #region Variables
         private Animator animator;
 
+        protected readonly int hashIsMove = Animator.StringToHash("IsMove");
+        protected readonly int hashAttackIndex = Animator.StringToHash("AttackIndex");
+        protected readonly int hashAttack = Animator.StringToHash("Attack");
+
         #endregion Variables
 
         #region State
@@ -33,10 +37,13 @@ namespace ETeam.FeelJoon
 
             if (context.IsAvailableAttack)
             {
+                // animator.SetTrigger(hashAttack);
+                // animator.SetInteger(hashAttackIndex, Random.Range(0, 2));
                 stateMachine.ChangeState<EnemyAttackState>();
             }
             else
             {
+                animator.SetBool(hashIsMove, true);
                 stateMachine.ChangeState<EnemyMoveState>();
             }
         }

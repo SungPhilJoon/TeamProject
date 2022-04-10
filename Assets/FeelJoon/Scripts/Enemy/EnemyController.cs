@@ -15,15 +15,22 @@ namespace ETeam.FeelJoon
 
         protected Animator animator;
 
-        private Transform target;
-        public float viewRadius;
+        // private Transform target;
         public LayerMask targetMask;
+
+        public FieldOfView enemyFOV;
 
         public float attackRange;
 
         [Header("체력")]
         public int maxHealth = 100;
         public int health;
+
+        [Header("전투")]
+        public int damage;
+        public float coolTime;
+
+        protected readonly int hashHitTrigger = Animator.StringToHash("Hit");
 
         // [SerializeField] private NPCBattleUI battleUI;
 
@@ -32,18 +39,18 @@ namespace ETeam.FeelJoon
         #region Properties
         public StateMachine<EnemyController> StateMachine => stateMachine;
 
-        public Transform Target => target;
+        public Transform Target => enemyFOV.target;
 
         public bool IsAvailableAttack
         {
             get
             {
-                if (target == null)
+                if (Target == null)
                 {
                     return false;
                 }
 
-                float distance = Vector3.Distance(transform.position, target.transform.position);
+                float distance = Vector3.Distance(transform.position, Target.transform.position);
                 return (distance <= attackRange);
             }
         }
@@ -61,6 +68,8 @@ namespace ETeam.FeelJoon
             animator = GetComponent<Animator>();
 
             health = maxHealth;
+
+            enemyFOV = GetComponent<FieldOfView>();
         }
 
         protected virtual void Update()
@@ -73,17 +82,17 @@ namespace ETeam.FeelJoon
         #region Helper Methods
         public Transform SearchEnemy()
         {
-            target = null;
+            // Target = null;
 
-            Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-            if (targetInViewRadius.Length <= 0)
-            {
-                return null;
-            }
+            // Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+            // if (targetInViewRadius.Length <= 0)
+            // {
+            //     return null;
+            // }
 
-            target = targetInViewRadius[0].transform;
+            // Target = targetInViewRadius[0].transform;
 
-            return target;
+            return Target;
         }
 
         #endregion Helper Methods
@@ -93,7 +102,8 @@ namespace ETeam.FeelJoon
 
         public void OnExecuteAttack()
         {
-            throw new System.NotImplementedException();
+            IDamageable damageable = Target.GetComponent<IDamageable>();
+            damageable.TakeDamage(damage);
         }
 
         #endregion IAttackable
@@ -103,7 +113,21 @@ namespace ETeam.FeelJoon
 
         public void TakeDamage(int damage, GameObject hitEffectPrefab)
         {
-            throw new System.NotImplementedException();
+            if (!IsAlive)
+            {
+                return;
+            }
+
+            health -= damage;
+
+            if (IsAlive) 
+            {
+                animator.SetTrigger(hashHitTrigger);
+            }
+            else
+            {
+                stateMachine.ChangeState<EnemyDeadState>();
+            }
         }
 
         #endregion IDamageable

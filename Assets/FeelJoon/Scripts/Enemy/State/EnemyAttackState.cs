@@ -10,6 +10,11 @@ namespace ETeam.FeelJoon
         private Animator animator;
         private IAttackable attackable;
 
+        private Transform target;
+
+        protected readonly int hashAttackIndex = Animator.StringToHash("AttackIndex");
+        protected readonly int hashAttack = Animator.StringToHash("Attack");
+
         #endregion Variables
 
         #region State
@@ -27,17 +32,27 @@ namespace ETeam.FeelJoon
                 return;
             }
 
+            target = context.Target;
+            if (target == null)
+            {
+                stateMachine.ChangeState<EnemyIdleState>();
+                return;
+            }
 
+            animator.SetInteger(hashAttackIndex, Random.Range(0, 2));
+            animator.SetTrigger(hashAttack);
         }
 
         public override void Update(float deltaTime)
         {
-            
+            if (stateMachine.ElapsedTimeInState > context.coolTime)
+            {
+                stateMachine.ChangeState<EnemyIdleState>();
+            }
         }
 
         public override void OnExit()
         {
-            stateMachine.ChangeState<EnemyIdleState>();
         }
 
         #endregion State

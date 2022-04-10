@@ -28,7 +28,7 @@ public class IdleRandomStatemachineBehaviour : StateMachineBehaviour
         }
         if(stateInfo.normalizedTime > randomNormalTime && !animator.IsInTransition(0))
         {
-            animator.SetInteger(hashIdleIndex, 1);
+            animator.SetInteger(hashIdleIndex, Random.Range(1, numberOfStates));
         }
     }
 

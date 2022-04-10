@@ -9,7 +9,7 @@ namespace ETeam.FeelJoon
         #region Variables
         private Animator animator;
 
-        protected readonly int hashAlive = Animator.StringToHash("Alive");
+        protected readonly int hashAlive = Animator.StringToHash("IsAlive");
 
         #endregion Variables
 

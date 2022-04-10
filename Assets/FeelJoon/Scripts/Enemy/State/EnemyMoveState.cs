@@ -12,6 +12,8 @@ namespace ETeam.FeelJoon
         private CharacterController controller;
         private NavMeshAgent agent;
 
+        protected readonly int hashIsMove = Animator.StringToHash("IsMove");
+
         #endregion Variables
 
         #region State
@@ -43,6 +45,7 @@ namespace ETeam.FeelJoon
                 return;
             }
 
+            animator.SetBool(hashIsMove, false);
             stateMachine.ChangeState<EnemyIdleState>();
         }
 

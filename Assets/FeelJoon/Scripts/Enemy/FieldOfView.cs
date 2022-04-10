@@ -8,31 +8,23 @@ namespace ETeam.FeelJoon
     {
         #region Variables
         public float viewRadius = 5f;
-        [Range(0, 360)]
-        public float viewAngle = 90f;
+        //[Range(0, 360)]
+        //public float viewAngle = 90f;
     
         public LayerMask targetMask;
         public LayerMask obstacleMask;
     
-        private List<Transform> visibleTargets = new List<Transform>();
-    
-        private Transform nearestTarget;
+        public Transform target;
         private float distanceToNearestTarget = 0.0f;
     
         public float delay = 0.2f;
     
         #endregion Variables
     
-        #region Properties
-        public List<Transform> VisibleTargets => visibleTargets;
-        public Transform NearestTarget => nearestTarget;
-    
-        #endregion Properties
-    
         #region Unity Methods
         void Start()
         {
-            
+            StartCoroutine(FindTargetsWithDelay(delay));
         }
     
         #endregion Unity Methods
@@ -43,46 +35,28 @@ namespace ETeam.FeelJoon
             while(true)
             {
                 yield return new WaitForSeconds(delay);
-                FindVisibleTargets();
+                FindVisibleTarget();
             }
         }
     
-        private void FindVisibleTargets()
+        private void FindVisibleTarget()
         {
             distanceToNearestTarget = 0.0f;
-            nearestTarget = null;
-            visibleTargets.Clear();
+            this.target = null;
     
             Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-            for(int i = 0; i < targetsInViewRadius.Length; i++)
+            if (targetsInViewRadius.Length == 0)
             {
-                Transform target = targetsInViewRadius[i].transform;
-    
-                Vector3 dirToTarget = (target.position - transform.position).normalized;
-                if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
-                {
-                    float dstToTarget = Vector3.Distance(transform.position, target.position);
-                    if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
-                    {
-                        visibleTargets.Add(target);
-                        if (nearestTarget == null || (distanceToNearestTarget > dstToTarget))
-                        {
-                            nearestTarget = target;
-                            distanceToNearestTarget = dstToTarget;
-                        }
-                    }
-                }
+                return;
             }
-        }
-    
-        public Vector3 DirFromAngle(float angleInDegree, bool angleIsGlobal)
-        {
-            if (!angleIsGlobal)
+            Transform target = targetsInViewRadius[0].transform;
+
+            Vector3 dirToTarget = (target.position- transform.position);
+            float dstToTarget = Vector3.Distance(transform.position, target.position);
+            if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
             {
-                angleInDegree += transform.eulerAngles.y;
+                    this.target = target;
             }
-    
-            return new Vector3(Mathf.Sin(angleInDegree * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegree * Mathf.Deg2Rad));
         }
     
         #endregion Helper Methods
