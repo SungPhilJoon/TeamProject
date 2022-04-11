@@ -19,8 +19,12 @@ namespace ETeam.FeelJoon
 
         [HideInInspector]
         public Animator animator;
+        public PlayerStance playerStance;
+        public float attackRange;
+        [SerializeField]
+        private List<AttackBehaviour> skillList = new List<AttackBehaviour>();
 
-        private Transform target;
+        protected Transform target;
         public LayerMask targetMask;
 
         public Transform hitTransform;
@@ -32,8 +36,6 @@ namespace ETeam.FeelJoon
         public int health;
 
         protected readonly int hashSwapIndex = Animator.StringToHash("SwapIndex");
-        protected readonly int hashIsMove = Animator.StringToHash("IsMove");
-        protected readonly int hashDashTrigger = Animator.StringToHash("DashTrigger");
         protected readonly int hashHitTrigger = Animator.StringToHash("HitTrigger");
 
         #endregion Variables
@@ -41,7 +43,19 @@ namespace ETeam.FeelJoon
         #region Properties
         public StateMachine<PlayerController> StateMachine => stateMachine;
 
-        public Transform Target => target;
+        public Transform Target
+        {
+            get => target;
+
+            set => target = value;
+        }
+
+        public float AttackRange
+        {
+            get => attackRange;
+
+            set => attackRange = CurrentAttackBehaviour?.range ?? 6.0f;
+        }
 
         public bool IsMove
         {
@@ -64,6 +78,8 @@ namespace ETeam.FeelJoon
 
             isMove = false;
 
+            playerStance = PlayerStance.Default;
+
             health = maxHealth;
         }
 
@@ -74,8 +90,17 @@ namespace ETeam.FeelJoon
 
         #endregion Unity Methods
 
+        #region Helper Methods
+        
+
+        #endregion Helper Methods
+
         #region IAttackable
-        public AttackBehaviour CurrentAttackBehaviour => throw new System.NotImplementedException();
+        public AttackBehaviour CurrentAttackBehaviour
+        {
+            get;
+            protected set;
+        }
 
         public void OnExecuteAttack()
         {

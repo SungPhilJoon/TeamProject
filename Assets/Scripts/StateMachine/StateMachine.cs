@@ -93,6 +93,7 @@ public sealed class StateMachine<T>
 		currentState = states[newType];
 		currentState.OnEnter();
 		elapsedTimeInState = 0.0f;
+        Debug.Log(currentState.ToString());
 
 		return currentState as R;
 	}

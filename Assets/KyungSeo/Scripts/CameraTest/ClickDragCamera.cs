@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.LowLevel;
 
 namespace ETeam.KyungSeo
 {
+    [ExecuteInEditMode]
     public class ClickDragCamera : MonoBehaviour
     {
         #region Variables

@@ -14,6 +14,7 @@ public class Singleton<T> where T : class
 			{
 				instance = System.Activator.CreateInstance(typeof(T)) as T;
 			}
+
 			return instance;
 		}
 	}

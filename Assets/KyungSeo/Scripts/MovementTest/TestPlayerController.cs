@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using ETeam.FeelJoon;
-using UnityEngine.Serialization;
 
 namespace ETeam.KyungSeo
 {
@@ -91,6 +90,27 @@ namespace ETeam.KyungSeo
 
         #endregion
 
+        #region Helper Methods
+        private void SetTarget(out Transform newTarget, LayerMask targetMask, float distance = 3.0f)
+        {
+            Collider[] targetColliders = Physics.OverlapSphere(transform.position, distance, targetMask);
+
+            foreach (Collider targetCollider in targetColliders)
+            {
+                IInteractable interactable = targetCollider.GetComponent<IInteractable>();
+
+                if (interactable != null)
+                {
+                    newTarget = targetCollider.transform;
+                    return;
+                }
+            }
+
+            newTarget = null;
+        }
+
+        #endregion Helper Methods
+
         #region Input Methods : Movements
 
         public void Move(InputAction.CallbackContext callbackContext)
@@ -110,8 +130,6 @@ namespace ETeam.KyungSeo
                 isMove = false;
                 stateMachine.ChangeState<PlayerIdle>();
             }
-
-            // animator.SetBool(hashIsMove, movement.sqrMagnitude > 0);
         }
 
         public void Dash(InputAction.CallbackContext callbackContext)
@@ -130,10 +148,41 @@ namespace ETeam.KyungSeo
 
         #endregion
 
-        public void Interact()
+        #region Input Methods : Attack
+        public void Attack(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.started)
+            {
+                stateMachine.ChangeState<PlayerAttack>();
+            }
+            else if (callbackContext.performed)
+            {
+                NormalComboAttack(true);
+            }
+            else if(callbackContext.canceled)
+            {
+                NormalComboAttack(false);
+                stateMachine.ChangeState<PlayerIdle>();
+            }
+        }
+
+        #endregion Input Methods : Attack
+
+        public void Interact(InputAction.CallbackContext callbackContext)
         {
             // Interact가 가능한 오브젝트면
             // interact
+            if (callbackContext.started)
+            {
+                SetTarget(out target, targetMask);
+
+                if (target != null)
+                {
+                    IInteractable interactable = target.GetComponent<IInteractable>();
+                    interactable?.Interact(this.gameObject);
+                    target = null;
+                }
+            }
         }
 
         #region Input Methods : Swap
@@ -143,6 +192,7 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 // 무기 스왑 애니메이션
+                playerStance = PlayerStance.Bow;
                 animator.SetInteger(hashSwapIndex, 2);
                 playerInput.SwitchCurrentActionMap("PlayerBow");
             }
@@ -153,6 +203,7 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 // 무기 스왑 애니메이션
+                playerStance = PlayerStance.Sword;
                 animator.SetInteger(hashSwapIndex, 1);
                 playerInput.SwitchCurrentActionMap("PlayerSword");
             }
@@ -162,6 +213,7 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
+                playerStance = PlayerStance.Default;
                 animator.SetInteger(hashSwapIndex, 0);
                 playerInput.SwitchCurrentActionMap("Default");
             }

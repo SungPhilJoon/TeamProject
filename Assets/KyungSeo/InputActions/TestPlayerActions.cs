@@ -1117,6 +1117,34 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerDead"",
+            ""id"": ""1008f3ed-09a0-4f02-9907-5b90cae883db"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5565110-6f8d-46ca-8780-f897efc8af72"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fd028113-6c90-4af4-8539-6e12a08db7b0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1219,6 +1247,9 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         m_Default_CallEquipment = m_Default.FindAction("Call Equipment", throwIfNotFound: true);
         m_Default_SwapSword = m_Default.FindAction("SwapSword", throwIfNotFound: true);
         m_Default_SwapBow = m_Default.FindAction("SwapBow", throwIfNotFound: true);
+        // PlayerDead
+        m_PlayerDead = asset.FindActionMap("PlayerDead", throwIfNotFound: true);
+        m_PlayerDead_Newaction = m_PlayerDead.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1597,6 +1628,39 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         }
     }
     public DefaultActions @Default => new DefaultActions(this);
+
+    // PlayerDead
+    private readonly InputActionMap m_PlayerDead;
+    private IPlayerDeadActions m_PlayerDeadActionsCallbackInterface;
+    private readonly InputAction m_PlayerDead_Newaction;
+    public struct PlayerDeadActions
+    {
+        private @TestPlayerActions m_Wrapper;
+        public PlayerDeadActions(@TestPlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_PlayerDead_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerDead; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerDeadActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerDeadActions instance)
+        {
+            if (m_Wrapper.m_PlayerDeadActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_PlayerDeadActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_PlayerDeadActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_PlayerDeadActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_PlayerDeadActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public PlayerDeadActions @PlayerDead => new PlayerDeadActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1681,5 +1745,9 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         void OnCallEquipment(InputAction.CallbackContext context);
         void OnSwapSword(InputAction.CallbackContext context);
         void OnSwapBow(InputAction.CallbackContext context);
+    }
+    public interface IPlayerDeadActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }
