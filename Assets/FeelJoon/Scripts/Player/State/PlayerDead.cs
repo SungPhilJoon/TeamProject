@@ -8,6 +8,7 @@ namespace ETeam.FeelJoon
     {
         #region Variables
         private readonly int hashIsAlive = Animator.StringToHash("IsAlive");
+        private readonly int hashOnDeadTrigger = Animator.StringToHash("OnDeadTrigger");
 
         #endregion Variables
 
@@ -19,6 +20,7 @@ namespace ETeam.FeelJoon
         public override void OnEnter()
         {
             context.animator.SetBool(hashIsAlive, context.IsAlive);
+            context.animator.SetTrigger(hashOnDeadTrigger);
         }
 
         public override void Update(float deltaTime)

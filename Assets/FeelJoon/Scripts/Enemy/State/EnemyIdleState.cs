@@ -30,7 +30,7 @@ namespace ETeam.FeelJoon
         public override void Update(float deltaTime)
         {
             Transform enemy = context.SearchEnemy();
-            if (enemy == null)
+            if (!enemy.GetComponent<IDamageable>().IsAlive || enemy == null)
             {
                 return;
             }

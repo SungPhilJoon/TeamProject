@@ -45,7 +45,7 @@ namespace ETeam.FeelJoon
         {
             get
             {
-                if (Target == null)
+                if (Target == null || !Target.GetComponent<IDamageable>().IsAlive)
                 {
                     return false;
                 }

@@ -82,7 +82,6 @@ namespace ETeam.FeelJoon
 
         public void TakeDamage(int damage, GameObject hitEffectPrefab = null)
         {
-            Debug.Log("¾Æ¾ß");
             if (!IsAlive)
             {
                 return;
