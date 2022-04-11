@@ -18,7 +18,6 @@ namespace ETeam.KyungSeo
         private void NormalBowAttack(Transform spawnPoint)
         {
             Arrow arrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
-            arrow.gameObject.SetActive(true);
             arrow.moveSpeed = 10f;
         }
 

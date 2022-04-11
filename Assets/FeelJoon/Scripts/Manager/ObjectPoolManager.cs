@@ -13,7 +13,7 @@ namespace ETeam.FeelJoon
     public class ObjectPoolManager<T> where T : MonoBehaviour
     {
         #region Variables
-        private T context;
+        public Transform spawnPoint;
 
         private Dictionary<string, List<T>> pooledObjects = new Dictionary<string, List<T>>();
 
@@ -23,15 +23,11 @@ namespace ETeam.FeelJoon
         public Dictionary<string, List<T>> PooledObjects => pooledObjects;
 
         #endregion Properties
-        
-        public ObjectPoolManager(string initialKey)
-        {
-            pooledObjects[initialKey] = new List<T>();
-            CreatePooledObjects(initialKey);
-        }
 
         public ObjectPoolManager(string initialKey, Transform spawnPoint)
         {
+            this.spawnPoint = spawnPoint;
+
             pooledObjects[initialKey] = new List<T>();
             CreatePooledObjects(initialKey, spawnPoint);
         }
@@ -41,17 +37,15 @@ namespace ETeam.FeelJoon
         #endregion Unity Methods
 
         #region Helper Methods
-        public void CreatePooledObjects(string key, Transform spawnPoint = null, T pooledObject = null)
+        public void CreatePooledObjects(string key, Transform spawnPoint, T pooledObject = null)
         {
             if (pooledObjects.ContainsKey(key))
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    // GameObject newGO = Resources.Load<GameObject>("Prefabs/" + key);
                     GameObject newGO = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + key), spawnPoint);
                     if (spawnPoint != null)
                     {
-                        // GameObject newGO = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + key), spawnPoint);
                         newGO.transform.position = spawnPoint.position;
                     }
                     newGO.SetActive(false);
@@ -63,7 +57,7 @@ namespace ETeam.FeelJoon
             }
             
             pooledObjects[key] = new List<T>();
-            CreatePooledObjects(key);
+            CreatePooledObjects(key, this.spawnPoint);
         }
 
         public T GetPooledObject(string key)
@@ -74,13 +68,13 @@ namespace ETeam.FeelJoon
                 {
                     if (!pooledObject.gameObject.activeSelf)
                     {
-                        // pooledObject.gameObject.SetActive(true);
+                        pooledObject.gameObject.SetActive(true);
                         return pooledObject;
                     }
                 }
 
                 int beforeCreateCount = pooledObjects[key].Count;
-                CreatePooledObjects(key);
+                CreatePooledObjects(key, this.spawnPoint);
                 pooledObjects[key][beforeCreateCount].gameObject.SetActive(true);
                 return pooledObjects[key][beforeCreateCount];
             }
