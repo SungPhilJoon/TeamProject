@@ -5,6 +5,13 @@ using ETeam.KyungSeo;
 
 namespace ETeam.FeelJoon
 {
+    public enum PlayerStance
+    {
+        Default,
+        Sword,
+        Bow,
+    }
+
     public class PlayerController : MonoBehaviour, IAttackable, IDamageable
     {
         #region Variables

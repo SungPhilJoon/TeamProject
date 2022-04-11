@@ -2923,7 +2923,7 @@ MonoBehaviour:
   attackRange: 4
   maxHealth: 100
   health: 0
-  damage: 0
+  damage: 10
   coolTime: 2
 --- !u!114 &637578298
 MonoBehaviour:
@@ -8676,7 +8676,7 @@ MonoBehaviour:
   attackRange: 4
   maxHealth: 100
   health: 0
-  damage: 0
+  damage: 100
   coolTime: 2
 --- !u!195 &1550181490
 NavMeshAgent:
@@ -10376,7 +10376,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   hitTransform: {fileID: 1121412703}
-  maxHealth: 100
+  maxHealth: 50
   health: 0
   moveSpeed: 5
   dashDistance: 5
