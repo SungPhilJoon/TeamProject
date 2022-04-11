@@ -852,11 +852,11 @@ AnimatorStateMachine:
   - {fileID: 5607173628199345019}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1880661228278307427}
-    second: []
   - first: {fileID: -6891045506889284105}
     second: []
   - first: {fileID: -6647068012631546059}
+    second: []
+  - first: {fileID: 1880661228278307427}
     second: []
   - first: {fileID: 2989766061796559919}
     second: []
