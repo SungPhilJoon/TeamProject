@@ -13,7 +13,6 @@ namespace ETeam.FeelJoon
 
         protected readonly int hashOnNormalAttack = Animator.StringToHash("OnNormalAttack");
         protected readonly int hashIsComboAttack = Animator.StringToHash("IsComboAttack");
-        protected readonly int hashComboAttack = Animator.StringToHash("ComboAttack");
 
         #endregion Variables
 
@@ -40,7 +39,7 @@ namespace ETeam.FeelJoon
             }
             else
             {
-
+                
             }
         }
 

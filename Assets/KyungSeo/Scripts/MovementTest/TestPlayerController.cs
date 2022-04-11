@@ -49,6 +49,7 @@ namespace ETeam.KyungSeo
             base.Awake();
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
+            objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
 
             playerInput.SwitchCurrentActionMap("Default");
         }
@@ -153,6 +154,7 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
+                NormalBowAttack(spawnPoint);
                 stateMachine.ChangeState<PlayerAttack>();
             }
             else if (callbackContext.performed)

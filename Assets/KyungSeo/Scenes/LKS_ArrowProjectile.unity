@@ -802,6 +802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b532768c46268e47b9fcecb2eb1d108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 111768, guid: babd1bcdc6fed9e468570f693955f569, type: 3}
+  arrowPrefab: {fileID: 182122, guid: 2a7c2e03886fce64fa924427a39c2134, type: 3}
   arrowSpawnPosition: {fileID: 1592775875}
   arrowRange: 100

@@ -21,8 +21,6 @@ namespace ETeam.FeelJoon
         public Animator animator;
         public PlayerStance playerStance;
         public float attackRange;
-        [SerializeField]
-        private List<AttackBehaviour> skillList = new List<AttackBehaviour>();
 
         protected Transform target;
         public LayerMask targetMask;

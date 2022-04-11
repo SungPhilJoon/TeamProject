@@ -24,12 +24,16 @@ namespace ETeam.FeelJoon
 
         #endregion Properties
         
-        public ObjectPoolManager(T context, string initialKey)
+        public ObjectPoolManager(string initialKey)
         {
-            this.context = context;
-
             pooledObjects[initialKey] = new List<T>();
-            CreatePooledObjects(initialKey, context);
+            CreatePooledObjects(initialKey);
+        }
+
+        public ObjectPoolManager(string initialKey, Transform spawnPoint)
+        {
+            pooledObjects[initialKey] = new List<T>();
+            CreatePooledObjects(initialKey, spawnPoint);
         }
 
         #region Unity Methods
@@ -37,14 +41,21 @@ namespace ETeam.FeelJoon
         #endregion Unity Methods
 
         #region Helper Methods
-        public void CreatePooledObjects(string key, T pooledObject)
+        public void CreatePooledObjects(string key, Transform spawnPoint = null, T pooledObject = null)
         {
             if (pooledObjects.ContainsKey(key))
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    GameObject newGO = Resources.Load<GameObject>(Application.dataPath + "/FeelJoon/Resources/Prefabs/" + key);
+                    // GameObject newGO = Resources.Load<GameObject>("Prefabs/" + key);
+                    GameObject newGO = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + key), spawnPoint);
+                    if (spawnPoint != null)
+                    {
+                        // GameObject newGO = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + key), spawnPoint);
+                        newGO.transform.position = spawnPoint.position;
+                    }
                     newGO.SetActive(false);
+                    pooledObject = newGO.GetComponent<T>();
                     pooledObjects[key].Add(pooledObject);
                 }
 
@@ -52,19 +63,29 @@ namespace ETeam.FeelJoon
             }
             
             pooledObjects[key] = new List<T>();
-            CreatePooledObjects(key, pooledObject);
+            CreatePooledObjects(key);
         }
 
-        public GameObject GetPooledObject(string key, GameObject pooledObjectGO)
+        public T GetPooledObject(string key)
         {
-            GameObject returnGO = new GameObject();
-            
-            if (context == null)
+            if (pooledObjects.ContainsKey(key))
             {
-                return null;
+                foreach(T pooledObject in pooledObjects[key])
+                {
+                    if (!pooledObject.gameObject.activeSelf)
+                    {
+                        // pooledObject.gameObject.SetActive(true);
+                        return pooledObject;
+                    }
+                }
+
+                int beforeCreateCount = pooledObjects[key].Count;
+                CreatePooledObjects(key);
+                pooledObjects[key][beforeCreateCount].gameObject.SetActive(true);
+                return pooledObjects[key][beforeCreateCount];
             }
 
-            return pooledObjectGO;
+            return null;
         }
 
         #endregion Helper Methods
