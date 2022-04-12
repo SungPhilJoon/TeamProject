@@ -1,13 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ETeam.KyungSeo;
 
-public class Arrow : MonoBehaviour
+namespace ETeam.FeelJoon
 {
-    public float moveSpeed = 0f;
-
-    void Update()
+    public class Arrow : MonoBehaviour
     {
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);   
+        public float moveSpeed = 0f;
+        public int damage;
+
+        void Update()
+        {
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+
+            damageable?.TakeDamage(damage);
+            gameObject.SetActive(false);
+        }
     }
 }

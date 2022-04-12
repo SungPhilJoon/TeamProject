@@ -43,11 +43,9 @@ namespace ETeam.FeelJoon
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    GameObject newGO = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + key), spawnPoint);
-                    if (spawnPoint != null)
-                    {
-                        newGO.transform.position = spawnPoint.position;
-                    }
+                    GameObject newGO = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + key), 
+                        spawnPoint.position, 
+                        Quaternion.identity);
                     newGO.SetActive(false);
                     pooledObject = newGO.GetComponent<T>();
                     pooledObjects[key].Add(pooledObject);

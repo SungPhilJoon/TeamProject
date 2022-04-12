@@ -15,9 +15,11 @@ namespace ETeam.KyungSeo
         #endregion Variables
 
         #region Helper Methods
-        private void NormalBowAttack(Transform spawnPoint)
+        public void NormalBowAttack()
         {
             Arrow arrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
+            arrow.transform.position = spawnPoint.position;
+            arrow.transform.forward = spawnPoint.forward;
             arrow.moveSpeed = 10f;
         }
 

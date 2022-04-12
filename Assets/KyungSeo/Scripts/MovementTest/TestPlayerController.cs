@@ -154,7 +154,7 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                NormalBowAttack(spawnPoint);
+                NormalBowAttack();
                 stateMachine.ChangeState<PlayerAttack>();
             }
             else if (callbackContext.performed)
