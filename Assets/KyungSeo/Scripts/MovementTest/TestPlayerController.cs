@@ -21,7 +21,7 @@ namespace ETeam.KyungSeo
 
         private Vector2 inputValue = Vector2.zero; // 입력 Vector
         private Vector3 movement = Vector3.zero; // 이동 방향 Vector
-        
+
         public bool isSettingOn = false; // 테스트 UI표시용
         public bool isInventoryOn = false;
         public bool isEquipmentOn = false;
@@ -79,7 +79,7 @@ namespace ETeam.KyungSeo
             calcVelocity.x /= 1 + drags.x * Time.deltaTime;
             calcVelocity.y /= 1 + drags.y * Time.deltaTime;
             calcVelocity.z /= 1 + drags.z * Time.deltaTime;
-            
+
             controller.Move(calcVelocity * Time.deltaTime);
         }
 
@@ -149,17 +149,33 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 // NormalBowAttack();
-                attackStateController.OnEnterSwordAttackStateHandler += EnterNormalSwordAttack;
-                attackStateController.OnEnterSwordAttackStateHandler += EnterNormalComboAttack;
-                attackStateController.OnExitSwordAttackStateHandler += ExitNormalComboAttack;
+                switch (playerStance)
+                {
+                    case PlayerStance.Sword:
+                        AttackStanceToUsedEnter(true, EnterNormalSwordAttack, EnterNormalComboAttack);
+                        AttackStanceToUsedExit(true, ExitNormalComboAttack);
+                        break;
+                    case PlayerStance.Bow:
+                        AttackStanceToUsedEnter(true, EnterNormalBowAttack);
+                        AttackStanceToUsedExit(true, ExitNormalBowAttack);
+                        break;
+                }
                 stateMachine.ChangeState<PlayerAttack>();
             }
-            else if(callbackContext.canceled)
+            else if (callbackContext.canceled)
             {
                 stateMachine.ChangeState<PlayerIdle>();
-                attackStateController.OnEnterSwordAttackStateHandler -= EnterNormalComboAttack;
-                attackStateController.OnEnterSwordAttackStateHandler -= EnterNormalSwordAttack;
-                attackStateController.OnEnterSwordAttackStateHandler -= ExitNormalComboAttack;
+                switch (playerStance)
+                {
+                    case PlayerStance.Sword:
+                        AttackStanceToUsedEnter(false, EnterNormalSwordAttack, EnterNormalComboAttack);
+                        AttackStanceToUsedExit(false, ExitNormalComboAttack);
+                        break;
+                    case PlayerStance.Bow:
+                        AttackStanceToUsedEnter(false, EnterNormalBowAttack);
+                        AttackStanceToUsedExit(false, ExitNormalBowAttack);
+                        break;
+                }
             }
         }
 
@@ -188,18 +204,16 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                // 무기 스왑 애니메이션
                 playerStance = PlayerStance.Bow;
                 animator.SetInteger(hashSwapIndex, 2);
                 playerInput.SwitchCurrentActionMap("PlayerBow");
             }
         }
-        
+
         public void SwapToSword(InputAction.CallbackContext callbackContext)
         {
             if (callbackContext.started)
             {
-                // 무기 스왑 애니메이션
                 playerStance = PlayerStance.Sword;
                 animator.SetInteger(hashSwapIndex, 1);
                 playerInput.SwitchCurrentActionMap("PlayerSword");
@@ -240,7 +254,7 @@ namespace ETeam.KyungSeo
                     isEquipmentOn = false;
                     equipmentUI.gameObject.SetActive(false);
                 }
-                
+
                 isSettingOn = false;
                 settingsUI.gameObject.SetActive(false);
             }
@@ -289,22 +303,39 @@ namespace ETeam.KyungSeo
             return false;
         }
 
-        public void AttackStanceToUsed(PlayerStance playerStance, params Action[] attackState)
+        public void AttackStanceToUsedEnter(bool isAdded, params Action[] attackStates)
         {
-            switch(playerStance)
+            if (isAdded)
             {
-                case PlayerStance.Sword:
-                    for (int i = 0; i < attackState.Length; i++)
-                    {
-                        attackStateController.OnEnterSwordAttackStateHandler += attackState[i];
-                    }
-                    break;
-                case PlayerStance.Bow:
-                    for (int i = 0; i < attackState.Length; i++)
-                    {
-                        attackStateController.OnEnterSwordAttackStateHandler += attackState[i];
-                    }
-                    break;
+                for (int i = 0; i < attackStates.Length; i++)
+                {
+                    attackStateController.OnEnterAttackStateHandler += attackStates[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < attackStates.Length; i++)
+                {
+                    attackStateController.OnEnterAttackStateHandler -= attackStates[i];
+                }
+            }
+        }
+
+        public void AttackStanceToUsedExit(bool isAdded, params Action[] attackStates)
+        {
+            if (isAdded)
+            {
+                for (int i = 0; i < attackStates.Length; i++)
+                {
+                    attackStateController.OnExitAttackStateHandler += attackStates[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < attackStates.Length; i++)
+                {
+                    attackStateController.OnExitAttackStateHandler -= attackStates[i];
+                }
             }
         }
 
