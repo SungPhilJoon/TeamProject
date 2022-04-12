@@ -10,7 +10,7 @@ namespace ETeam.FeelJoon
         public static string NameOfProjectile = "Projectile";
     }
 
-    public class ObjectPoolManager<T> where T : MonoBehaviour
+    public sealed class ObjectPoolManager<T> where T : MonoBehaviour
     {
         #region Variables
         public Transform spawnPoint;
