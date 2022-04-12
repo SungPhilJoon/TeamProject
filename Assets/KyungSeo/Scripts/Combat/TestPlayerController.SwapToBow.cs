@@ -25,6 +25,7 @@ namespace ETeam.KyungSeo
         {
             animator.SetTrigger(hashOnNormalAttack);
             Arrow arrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
+            arrow.gameObject.SetActive(true);
             arrow.transform.position = spawnPoint.position;
             arrow.transform.forward = spawnPoint.forward;
             arrow.moveSpeed = 10f;

@@ -11,7 +11,7 @@ namespace ETeam.FeelJoon
         public int damage;
         public float delay = 2f;
 
-        void Start()
+        void OnEnable()
         {
             StartCoroutine(SetBackArrow(delay));
         }

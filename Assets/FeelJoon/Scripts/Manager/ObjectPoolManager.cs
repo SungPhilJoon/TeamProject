@@ -66,7 +66,7 @@ namespace ETeam.FeelJoon
                 {
                     if (!pooledObject.gameObject.activeSelf)
                     {
-                        pooledObject.gameObject.SetActive(true);
+                        // pooledObject.gameObject.SetActive(true);
                         return pooledObject;
                     }
                 }
