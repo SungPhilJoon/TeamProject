@@ -9,11 +9,8 @@ namespace ETeam.FeelJoon
     public class AttackStateController : MonoBehaviour
     {
         #region Actions
-        public Action OnEnterSwordAttackStateHandler;
-        public Action OnExitSwordAttackStateHandler;
-
-        public Action OnEnterBowAttackStateHandler;
-        public Action OnExitBowAttackStateHandler;
+        public Action OnEnterAttackStateHandler;
+        public Action OnExitAttackStateHandler;
 
         #endregion Actions
 

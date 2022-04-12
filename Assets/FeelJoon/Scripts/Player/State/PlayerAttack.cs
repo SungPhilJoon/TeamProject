@@ -25,17 +25,7 @@ namespace ETeam.FeelJoon
 
         public override void OnEnter()
         {
-            playerStance = context.playerStance;
-
-            switch (playerStance)
-            {
-                case PlayerStance.Sword:
-                    attackStateController.OnEnterSwordAttackStateHandler();
-                    break;
-                case PlayerStance.Bow:
-                    attackStateController.OnEnterBowAttackStateHandler();
-                    break;
-            }
+            attackStateController.OnEnterAttackStateHandler();
         }
 
         public override void Update(float deltaTime)
@@ -45,15 +35,7 @@ namespace ETeam.FeelJoon
 
         public override void OnExit()
         {
-            switch (playerStance)
-            {
-                case PlayerStance.Sword:
-                    attackStateController.OnExitSwordAttackStateHandler();
-                    break;
-                case PlayerStance.Bow:
-                    attackStateController.OnExitBowAttackStateHandler();
-                    break;
-            }
+            attackStateController.OnExitAttackStateHandler();
         }
     }
 }

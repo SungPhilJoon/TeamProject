@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,14 +16,25 @@ namespace ETeam.KyungSeo
         #endregion Variables
 
         #region Helper Methods
-        public void NormalBowAttack()
+        
+
+        #endregion Helper Methods
+
+        #region Action Methods
+        public void EnterNormalBowAttack()
         {
+            animator.SetTrigger(hashOnNormalAttack);
             Arrow arrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
             arrow.transform.position = spawnPoint.position;
             arrow.transform.forward = spawnPoint.forward;
             arrow.moveSpeed = 10f;
         }
 
-        #endregion Helper Methods
+        public void ExitNormalBowAttack()
+        {
+
+        }
+
+        #endregion Action Methods
     }
 }

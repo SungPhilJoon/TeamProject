@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ETeam.FeelJoon;
-using UnityEngine.Events;
 
 namespace ETeam.KyungSeo
 {
@@ -16,6 +16,11 @@ namespace ETeam.KyungSeo
         #endregion Variables
 
         #region Helper Methods
+
+
+        #endregion Helper Methods
+
+        #region Action Methods
         public void EnterNormalSwordAttack()
         {
             animator.SetTrigger(hashOnNormalAttack);
@@ -39,6 +44,6 @@ namespace ETeam.KyungSeo
             }
         }
 
-        #endregion Helper Methods
+        #endregion Action Methods
     }
 }
