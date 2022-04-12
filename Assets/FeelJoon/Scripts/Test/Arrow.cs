@@ -9,6 +9,12 @@ namespace ETeam.FeelJoon
     {
         public float moveSpeed = 0f;
         public int damage;
+        public float delay = 2f;
+
+        void Start()
+        {
+            StartCoroutine(SetBackArrow(delay));
+        }
 
         void Update()
         {
@@ -20,6 +26,12 @@ namespace ETeam.FeelJoon
             IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
 
             damageable?.TakeDamage(damage);
+            gameObject.SetActive(false);
+        }
+
+        private IEnumerator SetBackArrow(float delay)
+        {
+            yield return new WaitForSeconds(delay);
             gameObject.SetActive(false);
         }
     }
