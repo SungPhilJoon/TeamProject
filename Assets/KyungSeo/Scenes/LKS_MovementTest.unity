@@ -11027,6 +11027,7 @@ GameObject:
   - component: {fileID: 2067266406}
   - component: {fileID: 2067266403}
   - component: {fileID: 2067266404}
+  - component: {fileID: 2067266399}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -11034,6 +11035,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2067266399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067266398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e3f6f54c2020e489f002f668f3659c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2067266402
 Transform:
   m_ObjectHideFlags: 0
@@ -11554,6 +11567,7 @@ MonoBehaviour:
   gravity: -29.81
   drags: {x: 10, y: 10, z: 10}
   playerInput: {fileID: 0}
+  attackStateController: {fileID: 0}
   inventory: {fileID: 0}
 --- !u!143 &2067266406
 CharacterController:

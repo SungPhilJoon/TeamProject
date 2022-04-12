@@ -10,6 +10,7 @@ namespace ETeam.FeelJoon
         #region Variables
         private Animator animator;
         private PlayerStance playerStance;
+        private AttackStateController attackStateController;
 
         protected readonly int hashOnNormalAttack = Animator.StringToHash("OnNormalAttack");
         protected readonly int hashIsComboAttack = Animator.StringToHash("IsComboAttack");
@@ -19,33 +20,40 @@ namespace ETeam.FeelJoon
         public override void OnInitialized()
         {
             animator = context.GetComponentInChildren<Animator>();
-            playerStance = context.playerStance;
+            attackStateController = context.GetComponent<AttackStateController>();
         }
 
         public override void OnEnter()
         {
-            animator.SetTrigger(hashOnNormalAttack);
+            playerStance = context.playerStance;
+
+            switch (playerStance)
+            {
+                case PlayerStance.Sword:
+                    attackStateController.OnEnterSwordAttackStateHandler();
+                    break;
+                case PlayerStance.Bow:
+                    attackStateController.OnEnterBowAttackStateHandler();
+                    break;
+            }
         }
 
         public override void Update(float deltaTime)
         {
-            if (playerStance == PlayerStance.Sword)
-            {
-                
-            }
-            else if (playerStance == PlayerStance.Bow)
-            {
-
-            }
-            else
-            {
-                
-            }
+            
         }
 
         public override void OnExit()
         {
-            
+            switch (playerStance)
+            {
+                case PlayerStance.Sword:
+                    attackStateController.OnExitSwordAttackStateHandler();
+                    break;
+                case PlayerStance.Bow:
+                    attackStateController.OnExitBowAttackStateHandler();
+                    break;
+            }
         }
     }
 }

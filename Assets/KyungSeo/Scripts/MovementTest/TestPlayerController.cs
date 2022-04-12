@@ -37,7 +37,11 @@ namespace ETeam.KyungSeo
 
         public PlayerInput playerInput;
 
+        [Header("전투")]
+        public AttackStateController attackStateController;
+
         // 인벤토리
+        [Header("인벤토리")]
         public InventoryObject inventory;
 
         #endregion
@@ -49,6 +53,7 @@ namespace ETeam.KyungSeo
             base.Awake();
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
+            attackStateController = GetComponent<AttackStateController>();
             objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
 
             playerInput.SwitchCurrentActionMap("Default");
@@ -76,17 +81,6 @@ namespace ETeam.KyungSeo
             calcVelocity.z /= 1 + drags.z * Time.deltaTime;
             
             controller.Move(calcVelocity * Time.deltaTime);
-            
-            // controller.Move(movement * Time.deltaTime * moveSpeed);
-            // if (movement != Vector3.zero)
-            // {
-            //     transform.forward = movement;
-            // }
-
-            
-            
-            // // 업데이트 말고 다른곳에서 할 방법은?
-            // transform.Translate(movement * moveSpeed * Time.deltaTime);
         }
 
         #endregion
@@ -154,17 +148,18 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                NormalBowAttack();
+                // NormalBowAttack();
+                attackStateController.OnEnterSwordAttackStateHandler += EnterNormalSwordAttack;
+                attackStateController.OnEnterSwordAttackStateHandler += EnterNormalComboAttack;
+                attackStateController.OnExitSwordAttackStateHandler += ExitNormalComboAttack;
                 stateMachine.ChangeState<PlayerAttack>();
-            }
-            else if (callbackContext.performed)
-            {
-                NormalComboAttack(true);
             }
             else if(callbackContext.canceled)
             {
-                NormalComboAttack(false);
                 stateMachine.ChangeState<PlayerIdle>();
+                attackStateController.OnEnterSwordAttackStateHandler -= EnterNormalComboAttack;
+                attackStateController.OnEnterSwordAttackStateHandler -= EnterNormalSwordAttack;
+                attackStateController.OnEnterSwordAttackStateHandler -= ExitNormalComboAttack;
             }
         }
 
@@ -292,6 +287,25 @@ namespace ETeam.KyungSeo
             }
 
             return false;
+        }
+
+        public void AttackStanceToUsed(PlayerStance playerStance, params Action[] attackState)
+        {
+            switch(playerStance)
+            {
+                case PlayerStance.Sword:
+                    for (int i = 0; i < attackState.Length; i++)
+                    {
+                        attackStateController.OnEnterSwordAttackStateHandler += attackState[i];
+                    }
+                    break;
+                case PlayerStance.Bow:
+                    for (int i = 0; i < attackState.Length; i++)
+                    {
+                        attackStateController.OnEnterSwordAttackStateHandler += attackState[i];
+                    }
+                    break;
+            }
         }
 
         #endregion

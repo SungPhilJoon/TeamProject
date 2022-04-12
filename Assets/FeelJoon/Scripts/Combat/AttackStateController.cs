@@ -1,65 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ETeam.KyungSeo;
 
 namespace ETeam.FeelJoon
 {
     public class AttackStateController : MonoBehaviour
     {
-        #region delegates
-        public delegate void OnEnterAttackState();
-        public delegate void OnExitAttackState();
+        #region Actions
+        public Action OnEnterSwordAttackStateHandler;
+        public Action OnExitSwordAttackStateHandler;
 
-        public OnEnterAttackState enterAttackStateHandler;
-        public OnExitAttackState exitAttackStateHandler;
+        public Action OnEnterBowAttackStateHandler;
+        public Action OnExitBowAttackStateHandler;
 
-        #endregion delegates
+        #endregion Actions
 
-        #region Properties
-        public bool IsInAttackState
-        {
-            get;
-            private set;
-        }
+        #region Variables
 
-        #endregion Properties
+        #endregion Variables
 
         #region Unity Methods
         void Start()
         {
-            enterAttackStateHandler = new OnEnterAttackState(EnterAttackState);
-            exitAttackStateHandler = new OnExitAttackState(ExitAttackState);
+            
         }
 
         #endregion Unity Methods
 
         #region Helper Methods
-        public void OnStartOfAttackState()
-        {
-            IsInAttackState = true;
-            enterAttackStateHandler();
-        }
-
-        public void OnEndOfAttackState()
-        {
-            IsInAttackState = false;
-            exitAttackStateHandler();
-        }
-
-        public void EnterAttackState()
-        {
-
-        }
-
-        public void ExitAttackState()
-        {
-
-        }
-
-        public void OnCheckAttackCollider()
-        {
-            GetComponent<IAttackable>()?.OnExecuteAttack();
-        }
 
         #endregion Helper Methods
     }
