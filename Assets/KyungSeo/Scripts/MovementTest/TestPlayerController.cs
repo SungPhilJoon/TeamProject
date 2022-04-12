@@ -22,9 +22,9 @@ namespace ETeam.KyungSeo
         private Vector2 inputValue = Vector2.zero; // 입력 Vector
         private Vector3 movement = Vector3.zero; // 이동 방향 Vector
         
-        private bool isSettingOn = false; // 테스트 UI표시용
-        private bool isInventoryOn = false;
-        private bool isEquipmentOn = false;
+        public bool isSettingOn = false; // 테스트 UI표시용
+        public bool isInventoryOn = false;
+        public bool isEquipmentOn = false;
 
         private CharacterController controller; // 캐싱할 CharacterController - PJ
 
