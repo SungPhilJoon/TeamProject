@@ -32,7 +32,7 @@ namespace ETeam.FeelJoon
 
         protected readonly int hashHitTrigger = Animator.StringToHash("Hit");
 
-        // [SerializeField] private NPCBattleUI battleUI;
+        [SerializeField] private NPCBattleUI battleUI;
 
         #endregion Variables
 
@@ -70,6 +70,13 @@ namespace ETeam.FeelJoon
             health = maxHealth;
 
             enemyFOV = GetComponent<FieldOfView>();
+
+            if (battleUI != null)
+            {
+                battleUI.MinimumValue = 0;
+                battleUI.MaximumValue = maxHealth;
+                battleUI.Value = health;
+            }
         }
 
         protected virtual void Update()
@@ -119,6 +126,12 @@ namespace ETeam.FeelJoon
             }
 
             health -= damage;
+
+            if (battleUI != null)
+            {
+                battleUI.Value = health;
+                battleUI.CreateDamageText(damage);
+            }
 
             if (IsAlive) 
             {

@@ -19,12 +19,11 @@ namespace ETeam.FeelJoon
         public override void OnInitialized()
         {
             animator = context.GetComponent<Animator>();
-
         }
 
         public override void OnEnter()
         {
-            
+            animator.SetBool(hashIsMove, false);
         }
 
         public override void Update(float deltaTime)

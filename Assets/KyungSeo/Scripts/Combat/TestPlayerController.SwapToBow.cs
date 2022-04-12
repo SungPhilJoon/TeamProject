@@ -36,6 +36,16 @@ namespace ETeam.KyungSeo
 
         }
 
+        public void EnterSkillBowAttack()
+        {
+
+        }
+
+        public void ExitSkillBowAttack()
+        {
+
+        }
+
         #endregion Action Methods
     }
 }

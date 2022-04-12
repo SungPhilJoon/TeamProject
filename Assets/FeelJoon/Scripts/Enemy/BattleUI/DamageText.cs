@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +10,8 @@ namespace ETeam.FeelJoon
     {
         #region Variables
         public float delayTimeToDestroy = 1.0f;
-        private int damage;
-        private Text text;
+        private int damage = 0;
+        private TextMeshProUGUI text;
 
         #endregion Variables
 
@@ -29,10 +30,14 @@ namespace ETeam.FeelJoon
         #endregion Properties
 
         #region Unity Methods
+        void Awake()
+        {
+            text = GetComponent<TextMeshProUGUI>();
+        }
+
         void Start()
         {
             Destroy(this.gameObject, delayTimeToDestroy);
-            text = GetComponent<Text>();
         }
 
         #endregion Unity Methods

@@ -34,6 +34,7 @@ namespace ETeam.FeelJoon
             Transform enemy = context.SearchEnemy();
             if (enemy == null)
             {
+                stateMachine.ChangeState<EnemyIdleState>();
                 return;
             }
 

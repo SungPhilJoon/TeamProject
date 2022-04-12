@@ -148,7 +148,6 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                // NormalBowAttack();
                 switch (playerStance)
                 {
                     case PlayerStance.Sword:
@@ -179,12 +178,44 @@ namespace ETeam.KyungSeo
             }
         }
 
+        public void Skill1(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.started)
+            {
+                switch (playerStance)
+                {
+                    case PlayerStance.Sword:
+                        AttackStanceToUsedEnter(true, EnterSkillSwordAttack);
+                        AttackStanceToUsedExit(true, ExitSkillSwordAttack);
+                        break;
+                    case PlayerStance.Bow:
+                        AttackStanceToUsedEnter(true, EnterSkillBowAttack);
+                        AttackStanceToUsedExit(true, ExitSkillBowAttack);
+                        break;
+                }
+                stateMachine.ChangeState<PlayerAttack>();
+            }
+            else if (callbackContext.canceled)
+            {
+                stateMachine.ChangeState<PlayerIdle>();
+                switch (playerStance)
+                {
+                    case PlayerStance.Sword:
+                        AttackStanceToUsedEnter(false, EnterSkillSwordAttack);
+                        AttackStanceToUsedExit(false, ExitSkillSwordAttack);
+                        break;
+                    case PlayerStance.Bow:
+                        AttackStanceToUsedEnter(false, EnterSkillBowAttack);
+                        AttackStanceToUsedExit(false, ExitSkillBowAttack);
+                        break;
+                }
+            }
+        }
+
         #endregion Input Methods : Attack
 
         public void Interact(InputAction.CallbackContext callbackContext)
         {
-            // Interact가 가능한 오브젝트면
-            // interact
             if (callbackContext.started)
             {
                 SetTarget(out target, targetMask);
@@ -303,6 +334,11 @@ namespace ETeam.KyungSeo
             return false;
         }
 
+        /// <summary>
+        /// AttackState가 들어오면 발생하는 이벤트들을 더하거나 뺄 수 있는 함수 입니다.
+        /// </summary>
+        /// <param name="isAdded">이벤트를 더할건지 뺄건지 결정하는 매개변수 입니다.</param>
+        /// <param name="attackStates"></param>
         public void AttackStanceToUsedEnter(bool isAdded, params Action[] attackStates)
         {
             if (isAdded)
@@ -321,6 +357,11 @@ namespace ETeam.KyungSeo
             }
         }
 
+        /// <summary>
+        /// AttackState가 나가면 발생하는 이벤트들을 더하거나 뺄 수 있는 함수 입니다.
+        /// </summary>
+        /// <param name="isAdded">이벤트를 더할건지 뺄건지 결정하는 매개변수 입니다.</param>
+        /// <param name="attackStates"></param>
         public void AttackStanceToUsedExit(bool isAdded, params Action[] attackStates)
         {
             if (isAdded)

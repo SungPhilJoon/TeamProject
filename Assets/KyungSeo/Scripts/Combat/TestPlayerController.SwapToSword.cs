@@ -36,12 +36,14 @@ namespace ETeam.KyungSeo
             animator.SetBool(hashIsComboAttack, false);
         }
 
-        public void Skill1(InputAction.CallbackContext callbackContext)
+        public void EnterSkillSwordAttack()
         {
-            if (callbackContext.started)
-            {
-                
-            }
+
+        }
+
+        public void ExitSkillSwordAttack()
+        {
+
         }
 
         #endregion Action Methods
