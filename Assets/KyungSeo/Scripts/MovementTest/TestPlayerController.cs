@@ -26,6 +26,8 @@ namespace ETeam.KyungSeo
         public bool isInventoryOn = false;
         public bool isEquipmentOn = false;
 
+        public GameObject weaponErrorText;
+
         private CharacterController controller; // 캐싱할 CharacterController - PJ
 
         public float gravity = -29.81f; // 중력 계수 - PJ // KS 상세 : rigidbody를 사용하지 않는 중력계수라고 하네요~
@@ -250,9 +252,9 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 playerStance = PlayerStance.Bow;
-                SwapWeapon(bowPrefab);
                 animator.SetInteger(hashSwapIndex, (int)playerStance);
                 playerInput.SwitchCurrentActionMap("PlayerBow");
+                SwapWeapon(bowPrefab);
             }
         }
 
@@ -261,9 +263,9 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 playerStance = PlayerStance.Sword;
-                SwapWeapon(swordPrefab);
                 animator.SetInteger(hashSwapIndex, (int)playerStance);
                 playerInput.SwitchCurrentActionMap("PlayerSword");
+                SwapWeapon(swordPrefab);
             }
         }
 
@@ -272,9 +274,9 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 playerStance = PlayerStance.Default;
-                SwapWeapon(defaultWeaponPrefab);
                 animator.SetInteger(hashSwapIndex, (int)playerStance);
                 playerInput.SwitchCurrentActionMap("Default");
+                SwapWeapon(defaultWeaponPrefab);
             }
         }
 
@@ -353,10 +355,31 @@ namespace ETeam.KyungSeo
 
         private void SwapWeapon(GameObject weaponToSwap)
         {
-            previousWeapon = equipmentWeapon;
-            equipmentWeapon = weaponToSwap;
-            previousWeapon.SetActive(false);
-            equipmentWeapon.SetActive(true);
+            try
+            {
+                previousWeapon = equipmentWeapon;
+                if (weaponToSwap == null)
+                {
+                    throw new Exception();
+                }
+                equipmentWeapon = weaponToSwap;
+            }
+            catch(Exception e)
+            {
+                Debug.Log("장착된 무기가 없습니다.");
+                weaponErrorText.SetActive(true);
+                equipmentWeapon = defaultWeaponPrefab;
+                playerStance = PlayerStance.Default;
+                animator.SetInteger(hashSwapIndex, (int)playerStance);
+                playerInput.SwitchCurrentActionMap("Default");
+            }
+            finally
+            {
+                previousWeapon.SetActive(false);
+                equipmentWeapon.SetActive(true);
+            }
+            //previousWeapon = equipmentWeapon;
+            //equipmentWeapon = weaponToSwap;
         }
 
         /// <summary>
