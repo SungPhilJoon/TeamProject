@@ -251,9 +251,13 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                playerStance = PlayerStance.Bow;
-                animator.SetInteger(hashSwapIndex, (int)playerStance);
-                playerInput.SwitchCurrentActionMap("PlayerBow");
+                if (bowPrefab != null)
+                {
+                    playerStance = PlayerStance.Bow;
+                    animator.SetInteger(hashSwapIndex, (int)playerStance);
+                    playerInput.SwitchCurrentActionMap("PlayerBow");
+                }
+
                 SwapWeapon(bowPrefab);
             }
         }
@@ -262,9 +266,13 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                playerStance = PlayerStance.Sword;
-                animator.SetInteger(hashSwapIndex, (int)playerStance);
-                playerInput.SwitchCurrentActionMap("PlayerSword");
+                if (swordPrefab != null)
+                {
+                    playerStance = PlayerStance.Sword;
+                    animator.SetInteger(hashSwapIndex, (int)playerStance);
+                    playerInput.SwitchCurrentActionMap("PlayerSword");
+                }
+
                 SwapWeapon(swordPrefab);
             }
         }
@@ -360,18 +368,17 @@ namespace ETeam.KyungSeo
                 previousWeapon = equipmentWeapon;
                 if (weaponToSwap == null)
                 {
-                    throw new Exception();
+                    throw new NullReferenceException();
                 }
                 equipmentWeapon = weaponToSwap;
             }
-            catch(Exception e)
+            catch(NullReferenceException e)
             {
                 Debug.Log("장착된 무기가 없습니다.");
+
                 weaponErrorText.SetActive(true);
-                equipmentWeapon = defaultWeaponPrefab;
-                playerStance = PlayerStance.Default;
+
                 animator.SetInteger(hashSwapIndex, (int)playerStance);
-                playerInput.SwitchCurrentActionMap("Default");
             }
             finally
             {
