@@ -9,6 +9,9 @@ namespace ETeam.KyungSeo
     public partial class TestPlayerController : PlayerController
     {
         #region Variables
+        [Header("활 오브젝트")]
+        [SerializeField] private GameObject bowPrefab;
+
         public Transform spawnPoint;
 
         public ObjectPoolManager<Arrow> objectPoolManager;

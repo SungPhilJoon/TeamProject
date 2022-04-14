@@ -39,12 +39,24 @@ namespace ETeam.KyungSeo
 
         [Header("전투")]
         public AttackStateController attackStateController;
+        [SerializeField] private GameObject defaultWeaponPrefab;
+        private GameObject previousWeapon;
+        private GameObject equipmentWeapon;
 
         // 인벤토리
         [Header("인벤토리")]
         public InventoryObject inventory;
 
-        #endregion
+        #endregion Variables
+
+        #region Properties
+        public override int Damage
+        {
+            get => damage;
+            protected set => damage = value;
+        }
+
+        #endregion Properties
 
         #region Unity Methods
 
@@ -57,6 +69,8 @@ namespace ETeam.KyungSeo
             objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
 
             playerInput.SwitchCurrentActionMap("Default");
+
+            equipmentWeapon = defaultWeaponPrefab;
         }
 
         protected override void Update()
@@ -236,7 +250,8 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 playerStance = PlayerStance.Bow;
-                animator.SetInteger(hashSwapIndex, 2);
+                SwapWeapon(bowPrefab);
+                animator.SetInteger(hashSwapIndex, (int)playerStance);
                 playerInput.SwitchCurrentActionMap("PlayerBow");
             }
         }
@@ -246,7 +261,8 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 playerStance = PlayerStance.Sword;
-                animator.SetInteger(hashSwapIndex, 1);
+                SwapWeapon(swordPrefab);
+                animator.SetInteger(hashSwapIndex, (int)playerStance);
                 playerInput.SwitchCurrentActionMap("PlayerSword");
             }
         }
@@ -256,7 +272,8 @@ namespace ETeam.KyungSeo
             if (callbackContext.started)
             {
                 playerStance = PlayerStance.Default;
-                animator.SetInteger(hashSwapIndex, 0);
+                SwapWeapon(defaultWeaponPrefab);
+                animator.SetInteger(hashSwapIndex, (int)playerStance);
                 playerInput.SwitchCurrentActionMap("Default");
             }
         }
@@ -332,6 +349,14 @@ namespace ETeam.KyungSeo
             }
 
             return false;
+        }
+
+        private void SwapWeapon(GameObject weaponToSwap)
+        {
+            previousWeapon = equipmentWeapon;
+            equipmentWeapon = weaponToSwap;
+            previousWeapon.SetActive(false);
+            equipmentWeapon.SetActive(true);
         }
 
         /// <summary>

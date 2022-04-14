@@ -10,6 +10,15 @@ namespace ETeam.KyungSeo
     public partial class TestPlayerController : PlayerController
     {
         #region Variables
+        [Header("Ä® ¿ÀºêÁ§Æ®")]
+        [SerializeField] private GameObject swordPrefab;
+
+        [Header("Ä® µ¥¹ÌÁö")]
+        [SerializeField] private int swordNormalDamage = 30;
+        [SerializeField] private int swordSkillDamage = 50;
+
+        [SerializeField] private BoxCollider manualCollision;
+
         protected readonly int hashIsComboAttack = Animator.StringToHash("IsComboAttack");
         protected readonly int hashOnNormalAttack = Animator.StringToHash("OnNormalAttack");
 
@@ -23,6 +32,8 @@ namespace ETeam.KyungSeo
         #region Action Methods
         public void EnterNormalSwordAttack()
         {
+            manualCollision.enabled = true;
+            Damage = swordNormalDamage;
             animator.SetTrigger(hashOnNormalAttack);
         }
 
@@ -33,6 +44,7 @@ namespace ETeam.KyungSeo
 
         public void ExitNormalComboAttack()
         {
+            manualCollision.enabled = false;
             animator.SetBool(hashIsComboAttack, false);
         }
 

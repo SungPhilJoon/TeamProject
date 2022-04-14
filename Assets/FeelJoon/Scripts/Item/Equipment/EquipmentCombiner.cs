@@ -39,6 +39,7 @@ public class EquipmentCombiner
         }
 
         meshRenderer.bones = boneTransforms;
+        Debug.Log(renderer.sharedMesh.ToString());
         meshRenderer.sharedMesh = renderer.sharedMesh;
         meshRenderer.materials = renderer.sharedMaterials;
 

@@ -148,7 +148,7 @@ Material:
     - _Ap_RimLight_FeatherOff: 0
     - _Ap_RimLight_Power: 0.1
     - _BaseColor_Step: 0.5
-    - _BaseShade_Feather: 0.11
+    - _BaseShade_Feather: 0.153
     - _Base_Speed: 0
     - _BlurLevelMatcap: 0
     - _BlurLevelSGM: 0

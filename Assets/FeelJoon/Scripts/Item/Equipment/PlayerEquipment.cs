@@ -146,6 +146,8 @@ namespace ETeam.FeelJoon
                 return null;
             }
 
+            Debug.Log(itemObject.modelPrefab.ToString());
+            Debug.Log(itemObject.boneNames.ToString());
             Transform itemTransform = combiner.AddLimb(itemObject.modelPrefab, itemObject.boneNames);
 
             if (itemTransform != null)

@@ -26,6 +26,8 @@ namespace ETeam.FeelJoon
         protected Transform target;
         public LayerMask targetMask;
 
+        protected int damage;
+
         public Transform hitTransform;
 
         protected bool isMove;
@@ -54,6 +56,12 @@ namespace ETeam.FeelJoon
             get => attackRange;
 
             set => attackRange = CurrentAttackBehaviour?.range ?? 6.0f;
+        }
+
+        public virtual int Damage
+        {
+            get;
+            protected set;
         }
 
         public bool IsMove
@@ -103,7 +111,8 @@ namespace ETeam.FeelJoon
 
         public void OnExecuteAttack()
         {
-            
+            IDamageable damageable = target.GetComponent<IDamageable>();
+            damageable.TakeDamage(damage);
         }
 
         #endregion IAttackable
