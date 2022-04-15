@@ -87,7 +87,7 @@ namespace ETeam.KyungSeo
             controller.Move(movement * Time.deltaTime * moveSpeed);
             if (movement != Vector3.zero)
             {
-                transform.forward = movement;
+                transform.forward = movement; // Vector3.Lerp(transform.forward, new Vector3(focus.forward.x, 0f, focus.forward.z), 10f * Time.deltaTime);
             }
 
             calcVelocity.y += gravity * Time.deltaTime;
@@ -138,6 +138,7 @@ namespace ETeam.KyungSeo
             if (callbackContext.canceled) // 키를 떼면 정지
             {
                 movement = Vector2.zero;
+
                 isMove = false;
                 stateMachine.ChangeState<PlayerIdle>();
             }

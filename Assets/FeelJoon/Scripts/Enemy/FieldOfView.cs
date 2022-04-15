@@ -15,7 +15,6 @@ namespace ETeam.FeelJoon
         public LayerMask obstacleMask;
     
         public Transform target;
-        private float distanceToNearestTarget = 0.0f;
     
         public float delay = 0.2f;
     
@@ -41,7 +40,6 @@ namespace ETeam.FeelJoon
     
         private void FindVisibleTarget()
         {
-            distanceToNearestTarget = 0.0f;
             this.target = null;
     
             Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);

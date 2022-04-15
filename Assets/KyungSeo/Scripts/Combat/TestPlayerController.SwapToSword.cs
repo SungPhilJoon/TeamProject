@@ -19,8 +19,12 @@ namespace ETeam.KyungSeo
 
         [SerializeField] private BoxCollider manualCollision;
 
+        [Header("ÄðÅ¸ÀÓ")]
+        public float coolTime;
+
         protected readonly int hashIsComboAttack = Animator.StringToHash("IsComboAttack");
         protected readonly int hashOnNormalAttack = Animator.StringToHash("OnNormalAttack");
+        protected readonly int hashSwordSkill = Animator.StringToHash("SwordSkill");
 
         #endregion Variables
 
@@ -50,12 +54,14 @@ namespace ETeam.KyungSeo
 
         public void EnterSkillSwordAttack()
         {
-
+            manualCollision.enabled = true;
+            Damage = swordSkillDamage;
+            animator.SetTrigger(hashSwordSkill);
         }
 
         public void ExitSkillSwordAttack()
         {
-
+            manualCollision.enabled = false;
         }
 
         #endregion Action Methods

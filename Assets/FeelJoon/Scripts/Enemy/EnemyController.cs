@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace ETeam.FeelJoon
 {
+    public enum EnemyType
+    {
+        Melee,
+        Projectile,
+        Boss,
+    }
+
     /// <summary>
     /// EnemyController의 기본 데이타 클래스 입니다.
     /// 근거리와 원거리 Enemy는 이 클래스를 상속 받아야 합니다. 
@@ -15,8 +22,11 @@ namespace ETeam.FeelJoon
 
         protected Animator animator;
 
+        protected ObjectPoolManager<Projectile> objectPoolManager;
+
         // private Transform target;
         public LayerMask targetMask;
+        public EnemyType enemyType;
 
         public FieldOfView enemyFOV;
 
@@ -29,6 +39,8 @@ namespace ETeam.FeelJoon
         [Header("전투")]
         public int damage;
         public float coolTime;
+
+        public Transform projectilePoint;
 
         protected readonly int hashHitTrigger = Animator.StringToHash("Hit");
 
@@ -58,6 +70,16 @@ namespace ETeam.FeelJoon
         #endregion Properties
 
         #region Unity Methods
+        protected virtual void Awake()
+        {
+            if (enemyType == EnemyType.Melee)
+            {
+                return;
+            }
+
+            objectPoolManager = new ObjectPoolManager<Projectile>(PooledObjectNameList.NameOfProjectile, projectilePoint);
+        }
+
         protected virtual void Start()
         {
             stateMachine = new StateMachine<EnemyController>(this, new EnemyIdleState());
@@ -107,10 +129,19 @@ namespace ETeam.FeelJoon
         #region IAttackable
         public AttackBehaviour CurrentAttackBehaviour => throw new System.NotImplementedException();
 
-        public void OnExecuteAttack()
+        public void OnExecuteMeleeAttack()
         {
             IDamageable damageable = Target.GetComponent<IDamageable>();
             damageable.TakeDamage(damage);
+        }
+
+        public void OnExecuteProjectileAttack()
+        {
+            Projectile projectile = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfProjectile);
+            projectile.gameObject.SetActive(true);
+            projectile.transform.position = projectilePoint.position;
+            projectile.transform.forward = (Target.position - projectilePoint.position).normalized;
+            projectile.moveSpeed = 5f;
         }
 
         #endregion IAttackable

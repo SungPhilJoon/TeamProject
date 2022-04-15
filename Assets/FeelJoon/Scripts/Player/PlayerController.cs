@@ -109,10 +109,15 @@ namespace ETeam.FeelJoon
             protected set;
         }
 
-        public void OnExecuteAttack()
+        public void OnExecuteMeleeAttack()
         {
             IDamageable damageable = target.GetComponent<IDamageable>();
             damageable.TakeDamage(damage);
+        }
+
+        public void OnExecuteProjectileAttack()
+        {
+
         }
 
         #endregion IAttackable

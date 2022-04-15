@@ -11,6 +11,8 @@ namespace ETeam.FeelJoon
             get;
         }
 
-        void OnExecuteAttack();
+        void OnExecuteMeleeAttack();
+
+        void OnExecuteProjectileAttack();
     }
 }

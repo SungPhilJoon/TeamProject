@@ -26,6 +26,8 @@ namespace ETeam.FeelJoon
 
         public override void OnEnter()
         {
+            context.transform.LookAt(context.Target);
+
             if (attackable == null)
             {
                 stateMachine.ChangeState<EnemyIdleState>();
@@ -39,7 +41,10 @@ namespace ETeam.FeelJoon
                 return;
             }
 
-            animator.SetInteger(hashAttackIndex, Random.Range(0, 2));
+            if (context.enemyType == EnemyType.Melee)
+            {
+                animator.SetInteger(hashAttackIndex, Random.Range(0, 2));
+            }
             animator.SetTrigger(hashAttack);
         }
 

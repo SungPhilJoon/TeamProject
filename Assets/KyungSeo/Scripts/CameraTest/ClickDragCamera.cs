@@ -23,16 +23,14 @@ namespace ETeam.KyungSeo
         public float lerpPercent;
 
         public float rotateSpeed = 15f;
-
-        private Vector3 calcVector;
         
         #endregion
 
         #region Unity Methods
         private void Start()
         {
-            calcVector = Vector3.zero;
             StartCoroutine(MoveCamera());
+            StartCoroutine(Zoom());
         }
 
         private void LateUpdate()
@@ -42,10 +40,6 @@ namespace ETeam.KyungSeo
                 return;
             }
 
-            float z = Mouse.current.scroll.y.ReadValue();
-
-            transform.localPosition += new Vector3(0, 0, Mathf.Clamp(z * Time.deltaTime / 2f, -2, 2));
-
             //calcVector += new Vector3(0, (z * Time.deltaTime) * -1f, z * Time.deltaTime);
 
             focus.position = Vector3.Lerp(focus.position, target.position, cameraSensitivy * Time.deltaTime);
@@ -54,7 +48,7 @@ namespace ETeam.KyungSeo
 
             if (!_isRightButton)
             {
-                focus.rotation = Quaternion.Lerp(Quaternion.Euler(focus.rotation.eulerAngles.x,focus.rotation.eulerAngles.y,0), Quaternion.Euler(new Vector3(30, 0, 0)), cameraSensitivy * Time.deltaTime);
+                focus.rotation = Quaternion.Slerp(Quaternion.Euler(focus.rotation.eulerAngles.x, focus.rotation.eulerAngles.y, 0), Quaternion.Euler(new Vector3(30, 0, 0)), cameraSensitivy * Time.deltaTime);
             }
         }
 
@@ -90,7 +84,9 @@ namespace ETeam.KyungSeo
         {
             while (true)
             {
-                
+                float z = Mouse.current.scroll.y.ReadValue();
+
+                transform.localPosition += new Vector3(0, 0, Mathf.Clamp(z * Time.deltaTime / 2f, -2, 2));
 
                 yield return null;
             }

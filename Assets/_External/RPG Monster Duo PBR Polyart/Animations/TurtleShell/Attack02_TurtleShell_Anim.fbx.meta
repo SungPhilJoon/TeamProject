@@ -261,7 +261,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.27835053
-        functionName: OnExecuteAttack
+        functionName: OnExecuteMeleeAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
