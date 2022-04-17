@@ -12,8 +12,11 @@ namespace ETeam.KyungSeo
         #region Variables
 
         private TestPlayerController _playerController;
+        private ClickDragCamera _camera;
+        
         public AudioMixer mixer;
         public Slider audioSlider;
+        public Slider sensitivitySlider;
         public GameObject aboutUs;
 
         #endregion
@@ -29,6 +32,7 @@ namespace ETeam.KyungSeo
         private void Awake()
         {
             _playerController = FindObjectOfType<TestPlayerController>();
+            _camera = FindObjectOfType<ClickDragCamera>();
         }
 
         #endregion
@@ -40,6 +44,12 @@ namespace ETeam.KyungSeo
             mixer.SetFloat("GameVolume", Mathf.Log10(sliderValue) * 20);
         }
 
+        // 좀 더 고민이 필요...
+        public void SetSensitivity(float sliderValue)
+        {
+            _camera.cameraSensitivy = sliderValue;
+        }
+
         #endregion
         
         #region UI : Buttons
@@ -47,7 +57,11 @@ namespace ETeam.KyungSeo
         public void OnExitClick()
         {
             gameObject.SetActive(false);
-            _playerController.isSettingOn = false;
+            if (_playerController.isSettingOn)
+            {
+                Time.timeScale = 1;
+                _playerController.isSettingOn = false;
+            }
         }
 
         public void OnMuteButton()

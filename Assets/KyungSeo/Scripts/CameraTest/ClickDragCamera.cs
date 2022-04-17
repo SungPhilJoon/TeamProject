@@ -14,7 +14,7 @@ namespace ETeam.KyungSeo
         #region Variables
         private bool _isRightButton = false; // 마우스 우클릭 감지용 bool변수
         
-        [SerializeField] private float cameraSensitivy = 3;
+        public float cameraSensitivy = 3;
         public Transform target = null;
         public Transform focus;
 

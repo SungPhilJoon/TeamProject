@@ -22,9 +22,9 @@ namespace ETeam.KyungSeo
         private Vector2 inputValue = Vector2.zero; // 입력 Vector
         private Vector3 movement = Vector3.zero; // 이동 방향 Vector
 
-        public bool isSettingOn = false; // 테스트 UI표시용
-        public bool isInventoryOn = false;
-        public bool isEquipmentOn = false;
+        [HideInInspector] public bool isSettingOn = false; // 테스트 UI표시용
+        [HideInInspector] public bool isInventoryOn = false;
+        [HideInInspector] public bool isEquipmentOn = false;
 
         public GameObject weaponErrorText;
 
@@ -299,6 +299,7 @@ namespace ETeam.KyungSeo
             if (!isSettingOn)
             {
                 isSettingOn = true;
+                Time.timeScale = 0;
                 settingsUI.gameObject.SetActive(true);
             }
             else
@@ -315,6 +316,7 @@ namespace ETeam.KyungSeo
                 }
 
                 isSettingOn = false;
+                Time.timeScale = 1;
                 settingsUI.gameObject.SetActive(false);
             }
         }
