@@ -37,6 +37,15 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""TurnCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""60a7a72b-cbd1-459d-80cd-2350d2c8fb89"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""e0a0858f-8d03-4436-b37d-8635ecba7439"",
@@ -413,6 +422,17 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""SwapToDefault"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""caec344c-624c-4f54-b537-51490f9cf927"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -428,6 +448,15 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TurnCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8376c26-8fed-4c9e-b769-e4f6f20e4c08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Fire"",
@@ -826,6 +855,17 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""SwapToDefault"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""449f11de-d664-47fa-98a1-717f23622761"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -900,6 +940,15 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""name"": ""SwapBow"",
                     ""type"": ""Button"",
                     ""id"": ""6c169ee4-3c92-4d14-a1fc-0b12caa706fd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TurnCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""e30ea24c-9c50-4ee4-b04b-f1d04a2b62c3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1115,6 +1164,17 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""SwapBow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a18f3a28-bc0e-40bd-bef7-85ac738d2752"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1213,6 +1273,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         // PlayerSword
         m_PlayerSword = asset.FindActionMap("PlayerSword", throwIfNotFound: true);
         m_PlayerSword_Move = m_PlayerSword.FindAction("Move", throwIfNotFound: true);
+        m_PlayerSword_TurnCamera = m_PlayerSword.FindAction("TurnCamera", throwIfNotFound: true);
         m_PlayerSword_Fire = m_PlayerSword.FindAction("Fire", throwIfNotFound: true);
         m_PlayerSword_Interaction = m_PlayerSword.FindAction("Interaction", throwIfNotFound: true);
         m_PlayerSword_Skill1 = m_PlayerSword.FindAction("Skill1", throwIfNotFound: true);
@@ -1226,6 +1287,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         // PlayerBow
         m_PlayerBow = asset.FindActionMap("PlayerBow", throwIfNotFound: true);
         m_PlayerBow_Move = m_PlayerBow.FindAction("Move", throwIfNotFound: true);
+        m_PlayerBow_TurnCamera = m_PlayerBow.FindAction("TurnCamera", throwIfNotFound: true);
         m_PlayerBow_Fire = m_PlayerBow.FindAction("Fire", throwIfNotFound: true);
         m_PlayerBow_Aim = m_PlayerBow.FindAction("Aim", throwIfNotFound: true);
         m_PlayerBow_Interaction = m_PlayerBow.FindAction("Interaction", throwIfNotFound: true);
@@ -1247,6 +1309,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         m_Default_CallEquipment = m_Default.FindAction("Call Equipment", throwIfNotFound: true);
         m_Default_SwapSword = m_Default.FindAction("SwapSword", throwIfNotFound: true);
         m_Default_SwapBow = m_Default.FindAction("SwapBow", throwIfNotFound: true);
+        m_Default_TurnCamera = m_Default.FindAction("TurnCamera", throwIfNotFound: true);
         // PlayerDead
         m_PlayerDead = asset.FindActionMap("PlayerDead", throwIfNotFound: true);
         m_PlayerDead_Newaction = m_PlayerDead.FindAction("New action", throwIfNotFound: true);
@@ -1310,6 +1373,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerSword;
     private IPlayerSwordActions m_PlayerSwordActionsCallbackInterface;
     private readonly InputAction m_PlayerSword_Move;
+    private readonly InputAction m_PlayerSword_TurnCamera;
     private readonly InputAction m_PlayerSword_Fire;
     private readonly InputAction m_PlayerSword_Interaction;
     private readonly InputAction m_PlayerSword_Skill1;
@@ -1325,6 +1389,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         private @TestPlayerActions m_Wrapper;
         public PlayerSwordActions(@TestPlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerSword_Move;
+        public InputAction @TurnCamera => m_Wrapper.m_PlayerSword_TurnCamera;
         public InputAction @Fire => m_Wrapper.m_PlayerSword_Fire;
         public InputAction @Interaction => m_Wrapper.m_PlayerSword_Interaction;
         public InputAction @Skill1 => m_Wrapper.m_PlayerSword_Skill1;
@@ -1347,6 +1412,9 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnMove;
+                @TurnCamera.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnTurnCamera;
+                @TurnCamera.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnTurnCamera;
+                @TurnCamera.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnTurnCamera;
                 @Fire.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnFire;
@@ -1384,6 +1452,9 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @TurnCamera.started += instance.OnTurnCamera;
+                @TurnCamera.performed += instance.OnTurnCamera;
+                @TurnCamera.canceled += instance.OnTurnCamera;
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
@@ -1423,6 +1494,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerBow;
     private IPlayerBowActions m_PlayerBowActionsCallbackInterface;
     private readonly InputAction m_PlayerBow_Move;
+    private readonly InputAction m_PlayerBow_TurnCamera;
     private readonly InputAction m_PlayerBow_Fire;
     private readonly InputAction m_PlayerBow_Aim;
     private readonly InputAction m_PlayerBow_Interaction;
@@ -1439,6 +1511,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         private @TestPlayerActions m_Wrapper;
         public PlayerBowActions(@TestPlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerBow_Move;
+        public InputAction @TurnCamera => m_Wrapper.m_PlayerBow_TurnCamera;
         public InputAction @Fire => m_Wrapper.m_PlayerBow_Fire;
         public InputAction @Aim => m_Wrapper.m_PlayerBow_Aim;
         public InputAction @Interaction => m_Wrapper.m_PlayerBow_Interaction;
@@ -1462,6 +1535,9 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnMove;
+                @TurnCamera.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnTurnCamera;
+                @TurnCamera.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnTurnCamera;
+                @TurnCamera.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnTurnCamera;
                 @Fire.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnFire;
@@ -1502,6 +1578,9 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @TurnCamera.started += instance.OnTurnCamera;
+                @TurnCamera.performed += instance.OnTurnCamera;
+                @TurnCamera.canceled += instance.OnTurnCamera;
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
@@ -1551,6 +1630,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_CallEquipment;
     private readonly InputAction m_Default_SwapSword;
     private readonly InputAction m_Default_SwapBow;
+    private readonly InputAction m_Default_TurnCamera;
     public struct DefaultActions
     {
         private @TestPlayerActions m_Wrapper;
@@ -1563,6 +1643,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         public InputAction @CallEquipment => m_Wrapper.m_Default_CallEquipment;
         public InputAction @SwapSword => m_Wrapper.m_Default_SwapSword;
         public InputAction @SwapBow => m_Wrapper.m_Default_SwapBow;
+        public InputAction @TurnCamera => m_Wrapper.m_Default_TurnCamera;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1596,6 +1677,9 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @SwapBow.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSwapBow;
                 @SwapBow.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSwapBow;
                 @SwapBow.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSwapBow;
+                @TurnCamera.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnTurnCamera;
+                @TurnCamera.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnTurnCamera;
+                @TurnCamera.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnTurnCamera;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -1624,6 +1708,9 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @SwapBow.started += instance.OnSwapBow;
                 @SwapBow.performed += instance.OnSwapBow;
                 @SwapBow.canceled += instance.OnSwapBow;
+                @TurnCamera.started += instance.OnTurnCamera;
+                @TurnCamera.performed += instance.OnTurnCamera;
+                @TurnCamera.canceled += instance.OnTurnCamera;
             }
         }
     }
@@ -1709,6 +1796,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
     public interface IPlayerSwordActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnTurnCamera(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
         void OnSkill1(InputAction.CallbackContext context);
@@ -1723,6 +1811,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
     public interface IPlayerBowActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnTurnCamera(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
@@ -1745,6 +1834,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         void OnCallEquipment(InputAction.CallbackContext context);
         void OnSwapSword(InputAction.CallbackContext context);
         void OnSwapBow(InputAction.CallbackContext context);
+        void OnTurnCamera(InputAction.CallbackContext context);
     }
     public interface IPlayerDeadActions
     {

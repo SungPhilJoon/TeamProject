@@ -892,6 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973043d6fcc885c43b3fa911f41a2c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCameraTurn: 0
   cameraSensitivy: 3
   target: {fileID: 2067266402}
   focus: {fileID: 553946245}
@@ -7477,6 +7478,30 @@ PrefabInstance:
       propertyPath: weaponErrorText
       value: 
       objectReference: {fileID: 1582868436}
+    - target: {fileID: 7644081197255851406, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[32].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 223168208}
+    - target: {fileID: 7644081197255851406, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[33].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 223168208}
+    - target: {fileID: 7644081197255851406, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[34].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 223168208}
+    - target: {fileID: 7644081197255851406, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[32].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CameraTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644081197255851406, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[33].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CameraTurn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7644081197255851406, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[34].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CameraTurn
+      objectReference: {fileID: 0}
     - target: {fileID: 7644081197255851407, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
       propertyPath: m_RootOrder
       value: 4

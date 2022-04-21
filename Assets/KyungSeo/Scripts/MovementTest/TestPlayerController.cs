@@ -154,8 +154,6 @@ namespace ETeam.KyungSeo
                 calcVelocity += dashVelocity;
                 stateMachine.ChangeState<PlayerDash>();
             }
-
-            // 이동방향으로.. 밀어버리나? 개너무한 부분;
         }
 
         #endregion
@@ -295,7 +293,6 @@ namespace ETeam.KyungSeo
 
         public void CallSettings(InputAction.CallbackContext callbackContext)
         {
-            // 이게 맞나? 어쨌든 테스트 -> 이건 플레이어 말고 게임매니저 같은곳에 넣어야 하나?
             if (!isSettingOn)
             {
                 isSettingOn = true;
@@ -388,8 +385,6 @@ namespace ETeam.KyungSeo
                 previousWeapon.SetActive(false);
                 equipmentWeapon.SetActive(true);
             }
-            //previousWeapon = equipmentWeapon;
-            //equipmentWeapon = weaponToSwap;
         }
 
         /// <summary>

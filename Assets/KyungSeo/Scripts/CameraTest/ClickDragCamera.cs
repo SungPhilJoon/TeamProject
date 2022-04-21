@@ -12,7 +12,10 @@ namespace ETeam.KyungSeo
     public class ClickDragCamera : MonoBehaviour
     {
         #region Variables
-        private bool _isRightButton = false; // 마우스 우클릭 감지용 bool변수
+        [HideInInspector]
+        public bool isRightButton = false; // 마우스 우클릭 감지용 bool변수
+        [HideInInspector]
+        public bool isCameraTurn = false; // 컨트롤 키를 누른 상태에서 마우스 우클릭을 하여 드래그 한다면 캐릭터를 기준으로 회전할 수 있게 해주는 변수
         
         public float cameraSensitivy = 3;
         public Transform target = null;
@@ -23,7 +26,7 @@ namespace ETeam.KyungSeo
         public float lerpPercent;
 
         public float rotateSpeed = 15f;
-        
+
         #endregion
 
         #region Unity Methods
@@ -46,9 +49,9 @@ namespace ETeam.KyungSeo
             //calcVector = new Vector3(0, Mathf.Clamp(calcVector.y, -5, 5), Mathf.Clamp(calcVector.z, -5f, 5f));
             //focus.position = calcVector;
 
-            if (!_isRightButton)
+            if (!isCameraTurn)
             {
-                focus.rotation = Quaternion.Slerp(Quaternion.Euler(focus.rotation.eulerAngles.x, focus.rotation.eulerAngles.y, 0), Quaternion.Euler(new Vector3(30, 0, 0)), cameraSensitivy * Time.deltaTime);
+                focus.rotation = Quaternion.Slerp(Quaternion.Euler(focus.rotation.eulerAngles.x, focus.rotation.eulerAngles.y, 0), Quaternion.Euler(new Vector3(30, target.rotation.eulerAngles.y, 0)), cameraSensitivy * Time.deltaTime);
             }
         }
 
@@ -59,24 +62,45 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.performed) // 우클릭중이면 true 떼면 false
             {
-                _isRightButton = true;
+                isRightButton = true;
             }
             if (callbackContext.canceled)
-                _isRightButton = false;
+                isRightButton = false;
+        }
+
+        public void CameraTurn(InputAction.CallbackContext callbackContext)
+        {
+            if(callbackContext.performed)
+            {
+                isCameraTurn = true;
+            }
+            if(callbackContext.canceled)
+            {
+                isCameraTurn = false;
+            }
         }
 
         private IEnumerator MoveCamera()
         {
             while (true)
             {
-                if (_isRightButton) // 우클릭 드래그 중에만 
+                yield return null;
+
+                if (isCameraTurn && isRightButton) // 컨트롤 버튼 누르는 중 + 우클릭 드래그 중에만 
                 {
                     focus.eulerAngles =
                         new Vector3(Mathf.Clamp(focus.eulerAngles.x + (-Mouse.current.delta.y.ReadValue()), 10, 80),
                             focus.eulerAngles.y + (Mouse.current.delta.x.ReadValue()), 0);
+                    continue;
                 }
 
-                yield return null;
+                if(isRightButton) // 우클릭 드래그 중에는 캐릭터의 로테이션을 바꿈
+                {
+                    focus.eulerAngles =
+                        new Vector3(Mathf.Clamp(focus.eulerAngles.x + (-Mouse.current.delta.y.ReadValue()), 10, 80),
+                            focus.eulerAngles.y + (Mouse.current.delta.x.ReadValue()), 0);
+                    target.forward = new Vector3((focus.forward.x), 0, (focus.forward.z));
+                }
             }
         }
 

@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "TurnCamera",
+                    "type": "Button",
+                    "id": "60a7a72b-cbd1-459d-80cd-2350d2c8fb89",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "e0a0858f-8d03-4436-b37d-8635ecba7439",
@@ -391,6 +400,17 @@
                     "action": "SwapToDefault",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "caec344c-624c-4f54-b537-51490f9cf927",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TurnCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -406,6 +426,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "TurnCamera",
+                    "type": "Button",
+                    "id": "c8376c26-8fed-4c9e-b769-e4f6f20e4c08",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Fire",
@@ -804,6 +833,17 @@
                     "action": "SwapToDefault",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "449f11de-d664-47fa-98a1-717f23622761",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TurnCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -878,6 +918,15 @@
                     "name": "SwapBow",
                     "type": "Button",
                     "id": "6c169ee4-3c92-4d14-a1fc-0b12caa706fd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TurnCamera",
+                    "type": "Button",
+                    "id": "e30ea24c-9c50-4ee4-b04b-f1d04a2b62c3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1091,6 +1140,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwapBow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a18f3a28-bc0e-40bd-bef7-85ac738d2752",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TurnCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
