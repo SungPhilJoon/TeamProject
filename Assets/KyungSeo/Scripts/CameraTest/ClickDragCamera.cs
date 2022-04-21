@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using ETeam.FeelJoon;
 
 namespace ETeam.KyungSeo
 {
@@ -51,7 +52,7 @@ namespace ETeam.KyungSeo
 
             if (!isCameraTurn)
             {
-                focus.rotation = Quaternion.Slerp(Quaternion.Euler(focus.rotation.eulerAngles.x, focus.rotation.eulerAngles.y, 0), Quaternion.Euler(new Vector3(30, target.rotation.eulerAngles.y, 0)), cameraSensitivy * Time.deltaTime);
+                focus.rotation = Quaternion.Slerp(Quaternion.Euler(focus.rotation.eulerAngles.x, focus.rotation.eulerAngles.y, 0), Quaternion.Euler(new Vector3(30, target.eulerAngles.y, 0)), cameraSensitivy * Time.deltaTime);
             }
         }
 
@@ -89,15 +90,16 @@ namespace ETeam.KyungSeo
                 if (isCameraTurn && isRightButton) // 컨트롤 버튼 누르는 중 + 우클릭 드래그 중에만 
                 {
                     focus.eulerAngles =
-                        new Vector3(Mathf.Clamp(focus.eulerAngles.x + (-Mouse.current.delta.y.ReadValue()), 10, 80),
+                        new Vector3(Mathf.Clamp(focus.eulerAngles.x + (-Mouse.current.delta.y.ReadValue()), 0, 80),
                             focus.eulerAngles.y + (Mouse.current.delta.x.ReadValue()), 0);
+                    target.GetComponent<PlayerController>().IsMove = false;
                     continue;
                 }
 
                 if(isRightButton) // 우클릭 드래그 중에는 캐릭터의 로테이션을 바꿈
                 {
                     focus.eulerAngles =
-                        new Vector3(Mathf.Clamp(focus.eulerAngles.x + (-Mouse.current.delta.y.ReadValue()), 10, 80),
+                        new Vector3(Mathf.Clamp(focus.eulerAngles.x + (-Mouse.current.delta.y.ReadValue()), 0, 80),
                             focus.eulerAngles.y + (Mouse.current.delta.x.ReadValue()), 0);
                     target.forward = new Vector3((focus.forward.x), 0, (focus.forward.z));
                 }

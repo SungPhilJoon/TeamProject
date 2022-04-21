@@ -12,7 +12,7 @@ namespace ETeam.KyungSeo
     public partial class TestPlayerController : PlayerController
     {
         #region Variables
-        [SerializeField] private float moveSpeed; // 이동 스피드
+        public float moveSpeed; // 이동 스피드
         [SerializeField] private float dashDistance = 5.0f; // 대쉬 거리 - PJ
 
         [SerializeField] private Image settingsUI; // 테스트로 UI(설정창)를 띄우고 끄게 해 보려고
@@ -21,12 +21,15 @@ namespace ETeam.KyungSeo
 
         private Vector2 inputValue = Vector2.zero; // 입력 Vector
         private Vector3 movement = Vector3.zero; // 이동 방향 Vector
+        private Vector3 moveDir = Vector3.zero;
+
+        public Transform focus;
+        private Camera camera;
+        private ClickDragCamera clickDragCamera;
 
         [HideInInspector] public bool isSettingOn = false; // 테스트 UI표시용
         [HideInInspector] public bool isInventoryOn = false;
         [HideInInspector] public bool isEquipmentOn = false;
-
-        public GameObject weaponErrorText;
 
         private CharacterController controller; // 캐싱할 CharacterController - PJ
 
@@ -38,6 +41,8 @@ namespace ETeam.KyungSeo
         private Vector3 calcVelocity; // 계산에 사용될 Vector3 레퍼런스 - PJ
 
         public PlayerInput playerInput;
+
+        public GameObject weaponErrorText;
 
         [Header("전투")]
         public AttackStateController attackStateController;
@@ -68,6 +73,8 @@ namespace ETeam.KyungSeo
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
             attackStateController = GetComponent<AttackStateController>();
+            camera = Camera.main;
+            clickDragCamera = camera.GetComponent<ClickDragCamera>();
             objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
 
             playerInput.SwitchCurrentActionMap("Default");
@@ -83,11 +90,19 @@ namespace ETeam.KyungSeo
             {
                 calcVelocity.y = 0;
             }
+            // transform.forward = new Vector3(focus.forward.x, 0f, focus.forward.z); // Vector3.Lerp(transform.forward, new Vector3(focus.forward.x, 0f, focus.forward.z), 10f * Time.deltaTime);
 
-            controller.Move(movement * Time.deltaTime * moveSpeed);
-            if (movement != Vector3.zero)
+            // focus.forward = movement;
+
+            isMove = (Vector3.SqrMagnitude(movement) != 0);
+
+            if (isMove)
             {
-                transform.forward = movement; // Vector3.Lerp(transform.forward, new Vector3(focus.forward.x, 0f, focus.forward.z), 10f * Time.deltaTime);
+                Vector3 lookForward = new Vector3(focus.forward.x, 0f, focus.forward.z).normalized;
+                Vector3 lookRight = new Vector3(focus.right.x, 0f, focus.right.z).normalized;
+                Vector3 moveDir = lookForward * movement.z + lookRight * movement.x;
+
+                controller.Move(moveDir * Time.deltaTime * moveSpeed);
             }
 
             calcVelocity.y += gravity * Time.deltaTime;
@@ -121,7 +136,7 @@ namespace ETeam.KyungSeo
         }
 
         #endregion Helper Methods
-
+         
         #region Input Methods : Movements
 
         public void Move(InputAction.CallbackContext callbackContext)
@@ -130,16 +145,16 @@ namespace ETeam.KyungSeo
             {
                 inputValue = callbackContext.ReadValue<Vector2>();
                 movement.x = inputValue.x;
+                movement.y = 0f;
                 movement.z = inputValue.y;
-                isMove = true;
+                // isMove = true;
                 stateMachine.ChangeState<PlayerMove>();
             }
 
             if (callbackContext.canceled) // 키를 떼면 정지
             {
                 movement = Vector2.zero;
-
-                isMove = false;
+                // isMove = false;
                 stateMachine.ChangeState<PlayerIdle>();
             }
         }
