@@ -16,8 +16,8 @@ namespace ETeam.KyungSeo
         [SerializeField] private float dashDistance = 5.0f; // 대쉬 거리 - PJ
 
         [SerializeField] private Image settingsUI; // 테스트로 UI(설정창)를 띄우고 끄게 해 보려고
-        [SerializeField] private Image inventoryUI;
-        [SerializeField] private Image equipmentUI;
+        [SerializeField] private Image inventoryUI; // 캐릭터 인벤토리
+        [SerializeField] private Image equipmentUI; // 캐릭터 장비창
 
         private Vector2 inputValue = Vector2.zero; // 입력 Vector
         private Vector3 movement = Vector3.zero; // 이동 방향 Vector

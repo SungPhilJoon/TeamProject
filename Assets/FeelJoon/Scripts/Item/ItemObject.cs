@@ -4,16 +4,16 @@ using UnityEngine;
 
 public enum ItemType : int
 {
-    Helmet = 0,
-    Chest = 1,
-    Pants = 2,
-    Boots = 3,
-    Pauldrons = 4,
-    Gloves = 5,
-    LeftWeapon = 6,
-    RightWeapon = 7,
-    Food,
-    Default,
+    //Helmet = 0,
+    //Chest = 1,
+    //Pants = 2,
+    //Boots = 3,
+    //Pauldrons = 4,
+    //Gloves = 5,
+    LeftWeapon = 0,
+    RightWeapon = 1,
+    //Food,
+    //Default,
 }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory System/Items/New Item")]

@@ -13,9 +13,9 @@ namespace ETeam.FeelJoon
 
         private EquipmentCombiner combiner;
 
-        private ItemInstances[] itemInstances = new ItemInstances[8];
+        private ItemInstances[] itemInstances = new ItemInstances[2];
 
-        public ItemObject[] defaultItemObjects = new ItemObject[8];
+        public ItemObject[] defaultItemObjects = new ItemObject[2];
 
         #endregion Variables
 
@@ -58,15 +58,15 @@ namespace ETeam.FeelJoon
 
             switch (type)
             {
-                case ItemType.Helmet:
-                case ItemType.Chest:
-                case ItemType.Pants:
-                case ItemType.Boots:
-                case ItemType.Gloves:
-                    itemInstances[index] = EquipSkinnedItem(itemObject);
-                    break;
+                //case ItemType.Helmet:
+                //case ItemType.Chest:
+                //case ItemType.Pants:
+                //case ItemType.Boots:
+                //case ItemType.Gloves:
+                //    itemInstances[index] = EquipSkinnedItem(itemObject);
+                //    break;
 
-                case ItemType.Pauldrons:
+                //case ItemType.Pauldrons:
                 case ItemType.LeftWeapon:
                 case ItemType.RightWeapon:
                     itemInstances[index] = EquipMeshItem(itemObject);
@@ -116,15 +116,15 @@ namespace ETeam.FeelJoon
 
             switch (slot.allowedItems[0])
             {
-                case ItemType.Helmet:
-                case ItemType.Chest:
-                case ItemType.Pants:
-                case ItemType.Boots:
-                case ItemType.Gloves:
-                    itemInstances[index] = EquipSkinnedItem(itemObject);
-                    break;
+                //case ItemType.Helmet:
+                //case ItemType.Chest:
+                //case ItemType.Pants:
+                //case ItemType.Boots:
+                //case ItemType.Gloves:
+                //    itemInstances[index] = EquipSkinnedItem(itemObject);
+                //    break;
 
-                case ItemType.Pauldrons:
+                // case ItemType.Pauldrons:
                 case ItemType.LeftWeapon:
                 case ItemType.RightWeapon:
                     itemInstances[index] = EquipMeshItem(itemObject);
@@ -136,7 +136,7 @@ namespace ETeam.FeelJoon
                 itemInstances[index].name = slot.allowedItems[0].ToString();
             }
 
-            GetComponent<PlayerController>().animator.Rebind();
+            GetComponentInChildren<PlayerController>().animator.Rebind();
         }
 
         private ItemInstances EquipSkinnedItem(ItemObject itemObject)
