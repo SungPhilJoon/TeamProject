@@ -18,10 +18,14 @@ MonoBehaviour:
     slots:
     - allowedItems: 
       item:
-        id: -1
-        name: 
-        buffs: []
-      amount: 0
+        id: 2
+        name: GreatSword01
+        buffs:
+        - stat: 0
+          value: 0
+          min: 0
+          max: 0
+      amount: 1
     - allowedItems: 
       item:
         id: -1

@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ETeam.KyungSeo;
 
-public class GroundItem : MonoBehaviour
+namespace ETeam.FeelJoon
 {
-    public ItemObject itemObject;
-
-    void OnValidate()
+    public class GroundItem : MonoBehaviour
     {
+        public ItemObject itemObject;
+
+        void OnValidate()
+        {
 #if UNITY_EDITOR
-        GetComponent<SpriteRenderer>().sprite = itemObject.icon;
+            GetComponent<SpriteRenderer>().sprite = itemObject.icon;
 #endif
+        }
     }
 }

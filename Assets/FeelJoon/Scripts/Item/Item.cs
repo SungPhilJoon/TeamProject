@@ -2,32 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ETeam.KyungSeo;
 
-[Serializable]
-public class Item
+namespace ETeam.FeelJoon
 {
-    public int id = -1;
-    public string name;
-
-    public ItemBuff[] buffs;
-
-    public Item()
+    [Serializable]
+    public class Item
     {
-        id = -1;
-        name = "";
-    }
+        public int id = -1;
+        public string name;
 
-    public Item(ItemObject itemObject)
-    {
-        name = itemObject.name;
-        id = itemObject.data.id;
+        public ItemBuff[] buffs;
 
-        buffs = new ItemBuff[itemObject.data.buffs.Length];
-        for (int i = 0; i < buffs.Length; i++)
+        public Item()
         {
-            buffs[i] = new ItemBuff(itemObject.data.buffs[i].Min, itemObject.data.buffs[i].Max) {
-                stat = itemObject.data.buffs[i].stat
-            };
+            id = -1;
+            name = "";
+        }
+
+        public Item(ItemObject itemObject)
+        {
+            name = itemObject.name;
+            id = itemObject.data.id;
+
+            buffs = new ItemBuff[itemObject.data.buffs.Length];
+            for (int i = 0; i < buffs.Length; i++)
+            {
+                buffs[i] = new ItemBuff(itemObject.data.buffs[i].Min, itemObject.data.buffs[i].Max)
+                {
+                    stat = itemObject.data.buffs[i].stat
+                };
+            }
         }
     }
 }

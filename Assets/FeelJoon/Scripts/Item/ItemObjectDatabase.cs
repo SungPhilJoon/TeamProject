@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ETeam.KyungSeo;
 
-[CreateAssetMenu(fileName = "New Item Dataabase", menuName = "Inventory System/Items/Database")]
-public class ItemObjectDatabase : ScriptableObject
+namespace ETeam.FeelJoon
 {
-    public ItemObject[] itemObjects;
-
-    public void OnValidate()
+    [CreateAssetMenu(fileName = "New Item Dataabase", menuName = "Inventory System/Items/Database")]
+    public class ItemObjectDatabase : ScriptableObject
     {
-        for (int i = 0; i < itemObjects.Length; i++)
+        public ItemObject[] itemObjects;
+
+        public void OnValidate()
         {
-            itemObjects[i].data.id = i;
+            for (int i = 0; i < itemObjects.Length; i++)
+            {
+                itemObjects[i].data.id = i;
+            }
         }
     }
 }

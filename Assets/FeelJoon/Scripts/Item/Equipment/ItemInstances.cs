@@ -1,23 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ETeam.KyungSeo;
 
-public class ItemInstances : MonoBehaviour
+namespace ETeam.FeelJoon
 {
-    #region Variables
-    public List<Transform> itemTransforms = new List<Transform>();
-
-    #endregion Variables
-
-    #region Helper Methods
-    private void OnDestroy()
+    [Serializable]
+    public class ItemInstances : MonoBehaviour
     {
-        foreach(Transform item in itemTransforms)
-        {
-            Destroy(item.gameObject);
-        }
-    }
+        #region Variables
+        public List<Transform> itemTransforms = new List<Transform>();
 
-    #endregion Helper Methods
+        #endregion Variables
+
+        #region Helper Methods
+        public void OnDestroy()
+        {
+            foreach (Transform item in itemTransforms)
+            {
+                Destroy(item.gameObject);
+            }
+        }
+
+        #endregion Helper Methods
+    }
 }

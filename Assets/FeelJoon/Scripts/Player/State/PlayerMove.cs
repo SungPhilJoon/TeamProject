@@ -8,17 +8,14 @@ namespace ETeam.FeelJoon
     {
         #region Variables
         private Animator animator;
-        private CharacterController controller;
 
         private readonly int hashIsMove = Animator.StringToHash("IsMove");
-        private readonly int hashDashTrigger = Animator.StringToHash("DashTrigger");
 
         #endregion Variables
 
         public override void OnInitialized()
         {
             animator = context.GetComponentInChildren<Animator>();
-            controller = context.GetComponent<CharacterController>();
         }
 
         public override void OnEnter()

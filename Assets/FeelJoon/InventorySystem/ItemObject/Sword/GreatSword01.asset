@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d6d337f580d1d45854d6cac23384a0, type: 3}
   m_Name: GreatSword01
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   stackable: 0
   icon: {fileID: 2177018490394213437, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
-  modelPrefab: {fileID: 3887808240496885540, guid: 3f1f734f4792300439f8d1875b7ce865, type: 3}
+  modelPrefab: {fileID: 8045601669049900088, guid: db9c622fd2549ea468a7af4d0df2c126, type: 3}
   data:
     id: 2
     name: 

@@ -21,11 +21,9 @@ namespace ETeam.KyungSeo
 
         private Vector2 inputValue = Vector2.zero; // 입력 Vector
         private Vector3 movement = Vector3.zero; // 이동 방향 Vector
-        private Vector3 moveDir = Vector3.zero;
 
         public Transform focus;
         private Camera camera;
-        private ClickDragCamera clickDragCamera;
 
         [HideInInspector] public bool isSettingOn = false; // 테스트 UI표시용
         [HideInInspector] public bool isInventoryOn = false;
@@ -53,6 +51,7 @@ namespace ETeam.KyungSeo
         // 인벤토리
         [Header("인벤토리")]
         public InventoryObject inventory;
+        public InventoryObject equipment;
 
         #endregion Variables
 
@@ -74,7 +73,6 @@ namespace ETeam.KyungSeo
             playerInput = GetComponent<PlayerInput>();
             attackStateController = GetComponent<AttackStateController>();
             camera = Camera.main;
-            clickDragCamera = camera.GetComponent<ClickDragCamera>();
             objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
 
             playerInput.SwitchCurrentActionMap("Default");
@@ -90,11 +88,6 @@ namespace ETeam.KyungSeo
             {
                 calcVelocity.y = 0;
             }
-            // transform.forward = new Vector3(focus.forward.x, 0f, focus.forward.z); // Vector3.Lerp(transform.forward, new Vector3(focus.forward.x, 0f, focus.forward.z), 10f * Time.deltaTime);
-
-            // focus.forward = movement;
-
-            isMove = (Vector3.SqrMagnitude(movement) != 0);
 
             if (isMove)
             {
@@ -102,6 +95,7 @@ namespace ETeam.KyungSeo
                 Vector3 lookRight = new Vector3(focus.right.x, 0f, focus.right.z).normalized;
                 Vector3 moveDir = lookForward * movement.z + lookRight * movement.x;
 
+                transform.forward = Vector3.Lerp(transform.forward, moveDir, 10f * Time.deltaTime);
                 controller.Move(moveDir * Time.deltaTime * moveSpeed);
             }
 
@@ -115,27 +109,6 @@ namespace ETeam.KyungSeo
         }
 
         #endregion
-
-        #region Helper Methods
-        private void SetTarget(out Transform newTarget, LayerMask targetMask, float distance = 3.0f)
-        {
-            Collider[] targetColliders = Physics.OverlapSphere(transform.position, distance, targetMask);
-
-            foreach (Collider targetCollider in targetColliders)
-            {
-                IInteractable interactable = targetCollider.GetComponent<IInteractable>();
-
-                if (interactable != null)
-                {
-                    newTarget = targetCollider.transform;
-                    return;
-                }
-            }
-
-            newTarget = null;
-        }
-
-        #endregion Helper Methods
          
         #region Input Methods : Movements
 
@@ -147,14 +120,14 @@ namespace ETeam.KyungSeo
                 movement.x = inputValue.x;
                 movement.y = 0f;
                 movement.z = inputValue.y;
-                // isMove = true;
+                isMove = true;
                 stateMachine.ChangeState<PlayerMove>();
             }
 
             if (callbackContext.canceled) // 키를 떼면 정지
             {
                 movement = Vector2.zero;
-                // isMove = false;
+                isMove = false;
                 stateMachine.ChangeState<PlayerIdle>();
             }
         }
@@ -171,7 +144,7 @@ namespace ETeam.KyungSeo
             }
         }
 
-        #endregion
+        #endregion Input Methods : Movements
 
         #region Input Methods : Attack
         public void Attack(InputAction.CallbackContext callbackContext)
@@ -364,7 +337,6 @@ namespace ETeam.KyungSeo
         #endregion
 
         #region Helper Methods
-        // 여기에 사용자 정의 함수를 선언합니다.
         public bool PickupItem(PickupItem pickupItem, int amount = 1)
         {
             if (pickupItem.itemObject != null && inventory.AddItem(new Item(pickupItem.itemObject), amount))
@@ -374,6 +346,24 @@ namespace ETeam.KyungSeo
             }
 
             return false;
+        }
+
+        private void SetTarget(out Transform newTarget, LayerMask targetMask, float distance = 3.0f)
+        {
+            Collider[] targetColliders = Physics.OverlapSphere(transform.position, distance, targetMask);
+
+            foreach (Collider targetCollider in targetColliders)
+            {
+                IInteractable interactable = targetCollider.GetComponent<IInteractable>();
+
+                if (interactable != null)
+                {
+                    newTarget = targetCollider.transform;
+                    return;
+                }
+            }
+
+            newTarget = null;
         }
 
         private void SwapWeapon(GameObject weaponToSwap)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using ETeam.KyungSeo;
+using UnityEngine.SceneManagement;
 
 namespace ETeam.FeelJoon
 {
@@ -13,7 +14,7 @@ namespace ETeam.FeelJoon
 
         private EquipmentCombiner combiner;
 
-        private ItemInstances[] itemInstances = new ItemInstances[2];
+        public ItemInstances[] itemInstances = new ItemInstances[2];
 
         public ItemObject[] defaultItemObjects = new ItemObject[2];
 
@@ -41,7 +42,7 @@ namespace ETeam.FeelJoon
 
         //private void OnDestroy()
         //{
-        //    foreach(ItemInstances item in itemInstances)
+        //    foreach (ItemInstances item in itemInstances)
         //    {
         //        item.Destroy();
         //    }
@@ -67,13 +68,13 @@ namespace ETeam.FeelJoon
                 //    break;
 
                 //case ItemType.Pauldrons:
-                case ItemType.LeftWeapon:
                 case ItemType.RightWeapon:
+                case ItemType.LeftWeapon:
                     itemInstances[index] = EquipMeshItem(itemObject);
                     break;
             }
 
-            GetComponent<PlayerController>().animator.Rebind();
+            // GetComponent<PlayerController>().animator.Rebind();
         }
 
         private void RemoveItemBy(ItemType type)
@@ -82,22 +83,22 @@ namespace ETeam.FeelJoon
             if (itemInstances[index] != null)
             {
                 Destroy(itemInstances[index].gameObject);
+                // Destroy(itemInstances[index].gameObject);
                 itemInstances[index] = null;
             }
         }
 
         private void OnRemoveItem(InventorySlot slot)
         {
-            ItemObject itemObject = slot.ItemObject;
+            ItemObject itemObject = slot.SlotItemObject;
             if (itemObject == null)
             {
-
                 // destroy default items
                 RemoveItemBy(slot.allowedItems[0]);
                 return;
             }
 
-            if (slot.ItemObject.modelPrefab != null)
+            if (slot.SlotItemObject.modelPrefab != null)
             {
                 RemoveItemBy(slot.allowedItems[0]);
             }
@@ -105,7 +106,7 @@ namespace ETeam.FeelJoon
 
         private void OnEquipItem(InventorySlot slot)
         {
-            ItemObject itemObject = slot.ItemObject;
+            ItemObject itemObject = slot.SlotItemObject;
             if (itemObject == null)
             {
                 EquipDefaultItemBy(slot.allowedItems[0]);
@@ -125,18 +126,18 @@ namespace ETeam.FeelJoon
                 //    break;
 
                 // case ItemType.Pauldrons:
-                case ItemType.LeftWeapon:
                 case ItemType.RightWeapon:
+                case ItemType.LeftWeapon:
                     itemInstances[index] = EquipMeshItem(itemObject);
                     break;
             }
 
-            if (itemInstances[index] != null)
-            {
-                itemInstances[index].name = slot.allowedItems[0].ToString();
-            }
+            //if (itemInstances[index] != null)
+            //{
+            //    itemInstances[index].name = slot.allowedItems[0].ToString();
+            //}
 
-            GetComponentInChildren<PlayerController>().animator.Rebind();
+            // GetComponent<PlayerController>().animator.Rebind();
         }
 
         private ItemInstances EquipSkinnedItem(ItemObject itemObject)
@@ -146,14 +147,13 @@ namespace ETeam.FeelJoon
                 return null;
             }
 
-            Debug.Log(itemObject.modelPrefab.ToString());
-            Debug.Log(itemObject.boneNames.ToString());
             Transform itemTransform = combiner.AddLimb(itemObject.modelPrefab, itemObject.boneNames);
 
             if (itemTransform != null)
             {
-                ItemInstances instance = itemTransform.gameObject.AddComponent<ItemInstances>();
+                ItemInstances instance = new ItemInstances();
                 instance.itemTransforms.Add(itemTransform);
+
                 return instance;
             }
 
@@ -168,9 +168,17 @@ namespace ETeam.FeelJoon
             }
 
             Transform[] itemTransforms = combiner.AddMesh(itemObject.modelPrefab);
+            for (int i = 0; i < itemTransforms.Length; i++)
+            {
+                Debug.Log(itemTransforms[i] == null);
+            }
             if (itemTransforms.Length > 0)
             {
-                ItemInstances instance = new GameObject().AddComponent<ItemInstances>();
+                ItemInstances instance = itemTransforms[0].gameObject.AddComponent<ItemInstances>();
+                //for (int i = 0; i < itemTransforms.Length; i++)
+                //{
+                //    instance.itemTransforms.Add(itemTransforms[i]);
+                //}
                 instance.itemTransforms.AddRange(itemTransforms.ToList<Transform>());
                 instance.transform.parent = transform;
 

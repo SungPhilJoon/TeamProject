@@ -52,7 +52,7 @@ namespace ETeam.KyungSeo
 
             if (!isCameraTurn)
             {
-                focus.rotation = Quaternion.Slerp(Quaternion.Euler(focus.rotation.eulerAngles.x, focus.rotation.eulerAngles.y, 0), Quaternion.Euler(new Vector3(30, target.eulerAngles.y, 0)), cameraSensitivy * Time.deltaTime);
+                focus.rotation = Quaternion.Slerp(Quaternion.Euler(focus.rotation.eulerAngles.x, focus.rotation.eulerAngles.y, 0), Quaternion.Euler(new Vector3(30, focus.eulerAngles.y, 0)), cameraSensitivy * Time.deltaTime);
             }
         }
 
@@ -92,7 +92,6 @@ namespace ETeam.KyungSeo
                     focus.eulerAngles =
                         new Vector3(Mathf.Clamp(focus.eulerAngles.x + (-Mouse.current.delta.y.ReadValue()), 0, 80),
                             focus.eulerAngles.y + (Mouse.current.delta.x.ReadValue()), 0);
-                    target.GetComponent<PlayerController>().IsMove = false;
                     continue;
                 }
 
