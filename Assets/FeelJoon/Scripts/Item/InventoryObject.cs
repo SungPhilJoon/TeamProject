@@ -95,9 +95,11 @@ namespace ETeam.FeelJoon
 
             if (itemSlotB.CanPlaceInSlot(itemSlotA.SlotItemObject) && itemSlotA.CanPlaceInSlot(itemSlotB.SlotItemObject))
             {
-                InventorySlot tempSlot = new InventorySlot(itemSlotB.item, itemSlotB.amount);
+                //InventorySlot tempSlot = new InventorySlot(itemSlotB.item, itemSlotB.amount);
+                Item tempItem = itemSlotB.item;
+                int tempAmount = itemSlotB.amount;
                 itemSlotB.UpdateSlot(itemSlotA.item, itemSlotA.amount);
-                itemSlotA.UpdateSlot(tempSlot.item, tempSlot.amount);
+                itemSlotA.UpdateSlot(tempItem, tempAmount);
             }
         }
 
