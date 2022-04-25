@@ -59,12 +59,14 @@ namespace ETeam.FeelJoon
         private Transform[] ProcessMeshObject(MeshRenderer[] meshRenderers)
         {
             List<Transform> itemTransforms = new List<Transform>();
+            int i = 0;
 
             foreach (MeshRenderer renderer in meshRenderers)
             {
                 if (renderer.transform.parent != null)
                 {
                     Transform parent = rootBoneDictionary[renderer.transform.parent.name.GetHashCode()];
+                    Debug.Log("Item Generate" + i++.ToString());
 
                     GameObject itemGo = GameObject.Instantiate(renderer.gameObject, parent);
                     itemTransforms.Add(itemGo.transform);

@@ -28,37 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2177507722551171610}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7644081196462277998
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7644081196462277993}
-  m_Layer: 6
-  m_Name: SpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7644081196462277993
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7644081196462277998}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7644081197255851407}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7644081197255851443
 GameObject:
@@ -93,7 +63,6 @@ Transform:
   m_Children:
   - {fileID: 7644081197937451186}
   - {fileID: 5572673307168930258}
-  - {fileID: 7644081196462277993}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -667,7 +636,7 @@ MonoBehaviour:
   maxHealth: 10000
   health: 0
   bowPrefab: {fileID: 0}
-  spawnPoint: {fileID: 7644081196462277993}
+  spawnPoint: {fileID: 0}
   swordPrefab: {fileID: 0}
   swordNormalDamage: 30
   swordSkillDamage: 50
@@ -678,16 +647,18 @@ MonoBehaviour:
   settingsUI: {fileID: 0}
   inventoryUI: {fileID: 0}
   equipmentUI: {fileID: 0}
+  focus: {fileID: 0}
   isSettingOn: 0
   isInventoryOn: 0
   isEquipmentOn: 0
-  weaponErrorText: {fileID: 0}
   gravity: -29.81
   drags: {x: 10, y: 10, z: 10}
   playerInput: {fileID: 0}
+  weaponErrorText: {fileID: 0}
   attackStateController: {fileID: 0}
   defaultWeaponPrefab: {fileID: 1014495930}
   inventory: {fileID: 11400000, guid: 58c58be2cdbc69d45b532bc1a59e7dc7, type: 2}
+  equipment: {fileID: 0}
 --- !u!114 &7644081197255851442
 MonoBehaviour:
   m_ObjectHideFlags: 0

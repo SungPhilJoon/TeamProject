@@ -27,25 +27,33 @@ namespace ETeam.FeelJoon
         #region Unity Methods
         void Awake()
         {
-            Debug.Log("들어오니?");
-
             CreateSlotUIs();
 
             for (int i = 0; i < inventoryObject.Slots.Length; i++)
             {
                 inventoryObject.Slots[i].parent = inventoryObject;
+                inventoryObject.Slots[i].OnPreUpdate += OnPreUpdate;
                 inventoryObject.Slots[i].OnPostUpdate += OnPostUpdate;
             }
 
             AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
             AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
+
+            gameObject.SetActive(false);
         }
 
         protected virtual void Start()
         {
             for (int i = 0; i < inventoryObject.Slots.Length; i++)
             {
-                inventoryObject.Slots[i].UpdateSlot(inventoryObject.Slots[i].item, inventoryObject.Slots[i].amount);
+                if (inventoryObject.Slots[i].amount <= 0)
+                {
+                    inventoryObject.Slots[i].item = new Item();
+                }
+
+                OnPostUpdate(inventoryObject.Slots[i]);
+
+                // inventoryObject.Slots[i].UpdateSlot(inventoryObject.Slots[i].item, inventoryObject.Slots[i].amount);
             }
         }
 
@@ -66,6 +74,11 @@ namespace ETeam.FeelJoon
             EventTrigger.Entry eventTrigger = new EventTrigger.Entry { eventID = type };
             eventTrigger.callback.AddListener(action);
             trigger.triggers.Add(eventTrigger);
+        }
+
+        public void OnPreUpdate(InventorySlot slot)
+        {
+
         }
 
         public void OnPostUpdate(InventorySlot slot)

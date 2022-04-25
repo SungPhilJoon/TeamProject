@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8045601670235177887}
   m_Layer: 0
-  m_Name: Prop_03_GreatSword
+  m_Name: GuideDummy Prop_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

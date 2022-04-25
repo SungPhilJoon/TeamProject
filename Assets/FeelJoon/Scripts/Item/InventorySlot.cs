@@ -21,7 +21,14 @@ namespace ETeam.FeelJoon
         public Item item;
         public int amount;
 
-        public ItemObject SlotItemObject => item.id >= 0 ? parent.database.itemObjects[item.id] : null;
+        public ItemObject SlotItemObject
+        {
+            get
+            {
+                return item.id >= 0 ? parent.database.itemObjects[item.id]
+                     : null;
+            }
+        }
 
         public InventorySlot() => UpdateSlot(new Item(), 0);
         public InventorySlot(Item item, int amount) => UpdateSlot(item, amount);
@@ -41,12 +48,12 @@ namespace ETeam.FeelJoon
                 item = new Item();
             }
 
-            OnPreUpdate?.Invoke(this);
+            OnPreUpdate(this);
 
             this.item = item;
             this.amount = amount;
 
-            OnPostUpdate?.Invoke(this);
+            OnPostUpdate(this);
         }
 
         public bool CanPlaceInSlot(ItemObject itemObject)

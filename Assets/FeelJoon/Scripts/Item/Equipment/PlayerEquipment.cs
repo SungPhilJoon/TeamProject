@@ -18,12 +18,15 @@ namespace ETeam.FeelJoon
 
         public ItemObject[] defaultItemObjects = new ItemObject[2];
 
+        private Transform myTransform;
+
         #endregion Variables
 
         #region Unity Methods
         void Awake()
         {
             combiner = new EquipmentCombiner(gameObject);
+            myTransform = GetComponent<Transform>();
 
             for (int i = 0; i < equipment.Slots.Length; i++)
             {
@@ -44,7 +47,7 @@ namespace ETeam.FeelJoon
         //{
         //    foreach (ItemInstances item in itemInstances)
         //    {
-        //        item.Destroy();
+        //        Destroy(item.gameObject);
         //    }
         //}
 
@@ -83,7 +86,6 @@ namespace ETeam.FeelJoon
             if (itemInstances[index] != null)
             {
                 Destroy(itemInstances[index].gameObject);
-                // Destroy(itemInstances[index].gameObject);
                 itemInstances[index] = null;
             }
         }
@@ -98,7 +100,7 @@ namespace ETeam.FeelJoon
                 return;
             }
 
-            if (slot.SlotItemObject.modelPrefab != null)
+            if (itemObject.modelPrefab != null)
             {
                 RemoveItemBy(slot.allowedItems[0]);
             }
@@ -170,17 +172,20 @@ namespace ETeam.FeelJoon
             Transform[] itemTransforms = combiner.AddMesh(itemObject.modelPrefab);
             for (int i = 0; i < itemTransforms.Length; i++)
             {
-                Debug.Log(itemTransforms[i] == null);
+                Debug.Log(itemTransforms[i].gameObject.name);
             }
             if (itemTransforms.Length > 0)
             {
-                ItemInstances instance = itemTransforms[0].gameObject.AddComponent<ItemInstances>();
-                //for (int i = 0; i < itemTransforms.Length; i++)
-                //{
-                //    instance.itemTransforms.Add(itemTransforms[i]);
-                //}
+                ItemInstances instance = new GameObject().AddComponent<ItemInstances>();
                 instance.itemTransforms.AddRange(itemTransforms.ToList<Transform>());
-                instance.transform.parent = transform;
+                try
+                {
+                    instance.transform.parent = myTransform; // combiner.rootBoneDictionary[itemTransforms[0].parent.name.GetHashCode()];
+                }
+                catch(MissingReferenceException e)
+                {
+                    // Debug.Log(e.Source);
+                }
 
                 return instance;
             }
