@@ -31,7 +31,7 @@ namespace ETeam.FeelJoon
 
         public override void Update(float deltaTime)
         {
-            Transform enemy = context.SearchEnemy();
+            Transform enemy = context.Target;
             if (enemy == null)
             {
                 stateMachine.ChangeState<EnemyIdleState>();

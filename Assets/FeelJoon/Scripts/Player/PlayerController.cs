@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using ETeam.KyungSeo;
 using System;
 
@@ -35,6 +36,11 @@ namespace ETeam.FeelJoon
         [Header("체력")]
         public int maxHealth = 100;
         public int health;
+
+        [Header("캐릭터 UI")]
+        [SerializeField] private float closeupSpeed;
+        [SerializeField] private RawImage characterFace;
+        [SerializeField] private Transform characterFaceCameraTransform;
 
         protected readonly int hashSwapIndex = Animator.StringToHash("SwapIndex");
         protected readonly int hashHitTrigger = Animator.StringToHash("HitTrigger");
@@ -98,7 +104,32 @@ namespace ETeam.FeelJoon
         #endregion Unity Methods
 
         #region Helper Methods
-        
+        private IEnumerator ChangePlayerUIColor()
+        {
+            Color originColor = characterFace.color;
+            characterFace.color = Color.red;
+            yield return StartCoroutine(CloseUpPlayer());
+            characterFace.color = originColor;
+        }
+
+        private IEnumerator CloseUpPlayer()
+        {
+            while (characterFaceCameraTransform.localPosition.z > 0.8)
+            {
+                characterFaceCameraTransform.localPosition -= new Vector3(0f, 0f, Time.deltaTime * closeupSpeed);
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.5f);
+
+            while (characterFaceCameraTransform.localPosition.z < 1.6)
+            {
+                characterFaceCameraTransform.localPosition += new Vector3(0f, 0f, Time.deltaTime * closeupSpeed);
+                yield return null;
+            }
+
+            yield return null;
+        }
 
         #endregion Helper Methods
 
@@ -141,7 +172,9 @@ namespace ETeam.FeelJoon
 
             if (IsAlive)
             {
-                animator?.SetTrigger(hashHitTrigger);
+                // animator?.SetTrigger(hashHitTrigger);
+                StopAllCoroutines();
+                StartCoroutine(ChangePlayerUIColor());
             }
             else
             {

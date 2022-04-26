@@ -40,6 +40,7 @@ namespace ETeam.FeelJoon
         [Header("¿¸≈ı")]
         public int damage;
         public float coolTime;
+        private ManualCollision enemyManualCollision;
 
         public Transform projectilePoint;
 
@@ -95,6 +96,8 @@ namespace ETeam.FeelJoon
 
             enemyFOV = GetComponent<FieldOfView>();
 
+            enemyManualCollision = GetComponentInChildren<ManualCollision>();
+
             if (battleUI != null)
             {
                 battleUI.MinimumValue = 0;
@@ -116,31 +119,23 @@ namespace ETeam.FeelJoon
 
         #endregion Unity Methods
 
-        #region Helper Methods
-        public Transform SearchEnemy()
-        {
-            // Target = null;
-
-            // Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-            // if (targetInViewRadius.Length <= 0)
-            // {
-            //     return null;
-            // }
-
-            // Target = targetInViewRadius[0].transform;
-
-            return Target;
-        }
-
-        #endregion Helper Methods
-
         #region IAttackable
         public AttackBehaviour CurrentAttackBehaviour => throw new System.NotImplementedException();
 
         public void OnExecuteMeleeAttack()
         {
-            IDamageable damageable = Target.GetComponent<IDamageable>();
-            damageable.TakeDamage(damage);
+            enemyManualCollision.CheckCollision();
+
+            foreach (Collider targetCollider in enemyManualCollision.targetColliders)
+            {
+                if (targetCollider == null)
+                {
+                    continue;
+                }
+
+                IDamageable damageable = targetCollider.GetComponent<IDamageable>();
+                damageable.TakeDamage(damage);
+            }
         }
 
         public void OnExecuteProjectileAttack()

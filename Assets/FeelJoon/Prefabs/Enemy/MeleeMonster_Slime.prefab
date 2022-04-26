@@ -532,6 +532,7 @@ Transform:
   - {fileID: 3128971925795028012}
   - {fileID: 3129249846874614838}
   - {fileID: 1216769740}
+  - {fileID: 8394030169675504120}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 220, z: 0}
@@ -608,12 +609,14 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 64
+  enemyType: 0
   enemyFOV: {fileID: 0}
   attackRange: 4
   maxHealth: 100
   health: 0
   damage: 100
   coolTime: 2
+  projectilePoint: {fileID: 0}
   battleUI: {fileID: 1216769745}
 --- !u!195 &3126621444051470056
 NavMeshAgent:
@@ -946,3 +949,48 @@ Transform:
   m_Father: {fileID: 3128968415113930034}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 79.03938, y: 90, z: 0}
+--- !u!1 &8092377364215290256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8394030169675504120}
+  - component: {fileID: 4572936573879702726}
+  m_Layer: 7
+  m_Name: ManualCollision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8394030169675504120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8092377364215290256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.5, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3129358202837166138}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4572936573879702726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8092377364215290256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405724a3a76ed7d44bb81a728022f81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  boxSize: {x: 1, y: 1, z: 3}

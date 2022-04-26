@@ -14,7 +14,7 @@ namespace ETeam.KyungSeo
         
         [Header("에임모드 카메라 관련")] [SerializeField] private Image imageAim;
         [SerializeField] private float _defaultModeFOV = 60; // 기본모드에서의 카메라 FOV
-        [SerializeField] private float _aimModeFOV = 30; // Aim모드에서의 카메라 FOW
+        [SerializeField] private float _aimModeFOV = 30; // Aim모드에서의 카메라 FOV
         private bool _isAimOn = false; // 에임모드 체크용
 
         private RaycastHit hit;
@@ -25,6 +25,14 @@ namespace ETeam.KyungSeo
         private void Awake()
         {
             imageAim.enabled = false;
+        }
+
+        private void Update()
+        {
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+
+            transform.Translate(new Vector3(h, 0f, v) * Time.deltaTime * 15f);
         }
 
         public void Shoot(InputAction.CallbackContext callbackContext)

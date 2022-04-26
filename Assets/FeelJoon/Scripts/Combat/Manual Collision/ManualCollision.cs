@@ -10,10 +10,12 @@ namespace ETeam.FeelJoon
         #region Variables
         [SerializeField] protected Transform parent;
 
+        public Collider[] targetColliders = new Collider[10];
+
         #endregion Variables
 
         #region Helper Methods
-        protected abstract void CheckCollision();
+        public abstract void CheckCollision();
 
         #endregion Helper Methods
     }

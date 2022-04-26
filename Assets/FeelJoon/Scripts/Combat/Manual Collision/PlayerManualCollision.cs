@@ -31,7 +31,7 @@ namespace ETeam.FeelJoon
         #endregion Unity Methods
 
         #region Helper Methods
-        protected override void CheckCollision()
+        public override void CheckCollision()
         {
             playerController.OnExecuteMeleeAttack();
         }
