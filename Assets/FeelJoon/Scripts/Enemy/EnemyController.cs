@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using ETeam.KyungSeo;
 
 namespace ETeam.FeelJoon
@@ -41,6 +42,9 @@ namespace ETeam.FeelJoon
         public int damage;
         public float coolTime;
         private ManualCollision enemyManualCollision;
+
+        [Header("아이템 드롭")]
+        [SerializeField] private ItemObjectDatabase database;
 
         public Transform projectilePoint;
 
@@ -119,6 +123,31 @@ namespace ETeam.FeelJoon
 
         #endregion Unity Methods
 
+        #region Helper Methods
+        private void DropItem()
+        {
+            ItemObject dropItemObject = database.itemObjects[Random.Range(0, database.itemObjects.Length)];
+
+            GameObject dropItem = new GameObject();
+            dropItem.layer = LayerMask.NameToLayer("Interactable");
+
+            Vector2 randomItemPosition = Random.insideUnitCircle * 0.2f;
+            dropItem.transform.position = new Vector3(randomItemPosition.x + transform.position.x, 
+                0.5f + transform.position.y, 
+                randomItemPosition.y + transform.position.z);
+
+            SpriteRenderer itemImage = dropItem.AddComponent<SpriteRenderer>();
+            itemImage.sprite = dropItemObject.icon;
+
+            SphereCollider itemCollider = dropItem.AddComponent<SphereCollider>();
+            itemCollider.radius = 0.3f;
+
+            dropItem.AddComponent<PickupItem>().itemObject = dropItemObject;
+            dropItem.AddComponent<CameraFacing>();
+        }
+
+        #endregion Helper Methods
+
         #region IAttackable
         public AttackBehaviour CurrentAttackBehaviour => throw new System.NotImplementedException();
 
@@ -173,6 +202,7 @@ namespace ETeam.FeelJoon
             }
             else
             {
+                DropItem();
                 stateMachine.ChangeState<EnemyDeadState>();
             }
         }

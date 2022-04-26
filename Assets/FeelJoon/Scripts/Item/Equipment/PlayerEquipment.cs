@@ -18,7 +18,7 @@ namespace ETeam.FeelJoon
 
         public ItemObject[] defaultItemObjects = new ItemObject[2];
 
-        private TestPlayerController controller;
+        private MainPlayerController controller;
 
         private Transform myTransform;
 
@@ -28,7 +28,7 @@ namespace ETeam.FeelJoon
         void Awake()
         {
             combiner = new EquipmentCombiner(gameObject);
-            controller = GetComponent<TestPlayerController>();
+            controller = GetComponent<MainPlayerController>();
             myTransform = GetComponent<Transform>();
 
             for (int i = 0; i < equipment.Slots.Length; i++)

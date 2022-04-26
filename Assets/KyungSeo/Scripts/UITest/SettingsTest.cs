@@ -11,7 +11,7 @@ namespace ETeam.KyungSeo
     {
         #region Variables
 
-        private TestPlayerController _playerController;
+        private MainPlayerController _playerController;
         private ClickDragCamera _camera;
         
         public AudioMixer mixer;
@@ -31,7 +31,7 @@ namespace ETeam.KyungSeo
 
         private void Awake()
         {
-            _playerController = FindObjectOfType<TestPlayerController>();
+            _playerController = FindObjectOfType<MainPlayerController>();
             _camera = FindObjectOfType<ClickDragCamera>();
         }
 

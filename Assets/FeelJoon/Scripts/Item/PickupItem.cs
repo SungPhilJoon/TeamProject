@@ -18,9 +18,9 @@ namespace ETeam.FeelJoon
         #region Unity Methods
         void OnValidate()
         {
-#if UNITY_EDITOR
-            GetComponent<SpriteRenderer>().sprite = itemObject.icon;
-#endif
+//#if UNITY_EDITOR
+//            GetComponent<SpriteRenderer>().sprite = itemObject.icon;
+//#endif
         }
 
         void OnDrawGizmosSelected()
@@ -39,8 +39,8 @@ namespace ETeam.FeelJoon
             {
                 return false;
             }
-            return false;
-            // return other.GetComponent<PlayerController>()?.PickupItem(this) ?? false;
+            
+            return other.GetComponent<MainPlayerController>()?.PickupItem(this) ?? false;
         }
 
         public void StopInteract(GameObject other)

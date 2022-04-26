@@ -5,11 +5,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using ETeam.FeelJoon;
+using UnityEngine.EventSystems;
 
 namespace ETeam.KyungSeo
 {
     [RequireComponent(typeof(CharacterController))]
-    public partial class TestPlayerController : PlayerController
+    public partial class MainPlayerController : PlayerController
     {
         #region Variables
         public float moveSpeed; // 이동 스피드
@@ -219,6 +220,7 @@ namespace ETeam.KyungSeo
 
         #endregion Input Methods : Attack
 
+        #region Input Methods : Interact
         public void Interact(InputAction.CallbackContext callbackContext)
         {
             if (callbackContext.started)
@@ -233,6 +235,8 @@ namespace ETeam.KyungSeo
                 }
             }
         }
+
+        #endregion Interact
 
         #region Input Methods : Swap
 
@@ -330,11 +334,13 @@ namespace ETeam.KyungSeo
             if (!isInventoryOn)
             {
                 isInventoryOn = true;
+                Time.timeScale = 0;
                 inventoryUI.gameObject.SetActive(true);
             }
             else
             {
                 isInventoryOn = false;
+                Time.timeScale = 1;
                 inventoryUI.gameObject.SetActive(false);
             }
         }
@@ -344,11 +350,13 @@ namespace ETeam.KyungSeo
             if (!isEquipmentOn)
             {
                 isEquipmentOn = true;
+                Time.timeScale = 0;
                 equipmentUI.gameObject.SetActive(true);
             }
             else
             {
                 isEquipmentOn = false;
+                Time.timeScale = 1;
                 equipmentUI.gameObject.SetActive(false);
             }
         }
@@ -373,9 +381,7 @@ namespace ETeam.KyungSeo
 
             foreach (Collider targetCollider in targetColliders)
             {
-                IInteractable interactable = targetCollider.GetComponent<IInteractable>();
-
-                if (interactable != null)
+                if (targetCollider.TryGetComponent(out IInteractable interactable))
                 {
                     newTarget = targetCollider.transform;
                     return;

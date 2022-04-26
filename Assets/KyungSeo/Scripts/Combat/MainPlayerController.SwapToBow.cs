@@ -6,7 +6,7 @@ using ETeam.FeelJoon;
 
 namespace ETeam.KyungSeo
 {
-    public partial class TestPlayerController : PlayerController
+    public partial class MainPlayerController : PlayerController
     {
         #region Variables
         [Header("활 오브젝트")]
