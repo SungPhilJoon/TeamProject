@@ -10,12 +10,12 @@ public class Singleton<T> where T : class
 	{
 		get
 		{
-			if (instance == null)
-			{
-				instance = System.Activator.CreateInstance(typeof(T)) as T;
-			}
+            if (instance == null)
+            {
+                instance = System.Activator.CreateInstance(typeof(T)) as T;
+            }
 
-			return instance;
+            return instance;
 		}
 	}
 }

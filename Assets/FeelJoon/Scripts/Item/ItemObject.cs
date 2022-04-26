@@ -13,8 +13,8 @@ namespace ETeam.FeelJoon
         //Boots = 3,
         //Pauldrons = 4,
         //Gloves = 5,
-        RightWeapon = 0,
-        LeftWeapon = 1,
+        Sword = 0,
+        Bow = 1,
         Food = 2,
         //Default,
     }

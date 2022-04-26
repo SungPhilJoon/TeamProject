@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using ETeam.KyungSeo;
+using System;
+using System.Linq;
 
 namespace ETeam.FeelJoon
 {
@@ -55,6 +57,46 @@ namespace ETeam.FeelJoon
         protected override void OnRightClick(InventorySlot slot)
         {
             inventoryObject.UseItem(slot);
+        }
+
+        public void TrimAll()
+        {
+            InventorySlot emptySlot = inventoryObject.GetEmptySlot();
+
+            for (int i = 0; i < inventoryObject.Slots.Length; i++)
+            {
+                if (inventoryObject.Slots[i].SlotItemObject != null &&
+                    inventoryObject.IsContainItem(inventoryObject.Slots[i].SlotItemObject))
+                {
+                    inventoryObject.SwapItems(emptySlot, inventoryObject.Slots[i]);
+                    if (i + 1 == inventoryObject.Slots.Length)
+                    {
+                        break;
+                    }
+                    emptySlot = inventoryObject.GetEmptySlot();
+                }
+            }
+        }
+
+        public void SortAll()
+        {
+            TrimAll();
+
+            for (int i = 0; i < inventoryObject.Slots.Length; i++)
+            {
+                if (inventoryObject.Slots[i].SlotItemObject == null)
+                {
+                    break;
+                }
+
+                for (int j = i + 1; j < inventoryObject.Slots.Length; j++)
+                {
+                    if (inventoryObject.Slots[i].item.id < inventoryObject.Slots[j].item.id)
+                    {
+                        inventoryObject.SwapItems(inventoryObject.Slots[i], inventoryObject.Slots[j]);
+                    }
+                }
+            }
         }
     }
 }

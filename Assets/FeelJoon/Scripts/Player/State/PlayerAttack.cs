@@ -9,7 +9,7 @@ namespace ETeam.FeelJoon
     {
         #region Variables
         private Animator animator;
-        private PlayerStance playerStance;
+        private PlayerWeapon playerStance;
         private AttackStateController attackStateController;
 
         protected readonly int hashOnNormalAttack = Animator.StringToHash("OnNormalAttack");

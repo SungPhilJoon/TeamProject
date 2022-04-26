@@ -6,7 +6,7 @@ using System;
 
 namespace ETeam.FeelJoon
 {
-    public enum PlayerStance
+    public enum PlayerWeapon
     {
         Default,
         Sword,
@@ -20,7 +20,7 @@ namespace ETeam.FeelJoon
 
         [HideInInspector]
         public Animator animator;
-        public PlayerStance playerStance;
+        public PlayerWeapon playerWeapon;
         public float attackRange;
 
         protected Transform target;
@@ -85,7 +85,7 @@ namespace ETeam.FeelJoon
 
             isMove = false;
 
-            playerStance = PlayerStance.Default;
+            playerWeapon = PlayerWeapon.Default;
 
             health = maxHealth;
         }

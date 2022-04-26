@@ -101,11 +101,13 @@ namespace ETeam.FeelJoon
         public void OnEnterSlot(GameObject go)
         {
             MouseData.slotHoveredOver = go;
+            MouseData.slotHoveredOver.GetComponent<Image>().color = Color.yellow;
         }
 
         public void OnExitSlot(GameObject go)
         {
             MouseData.slotHoveredOver = null;
+            go.GetComponent<Image>().color = new Color(184f / 255f, 152f / 255f, 109f / 255f, 1f);
         }
 
         public void OnStartDrag(GameObject go)

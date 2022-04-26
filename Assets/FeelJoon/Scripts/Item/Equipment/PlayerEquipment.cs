@@ -18,6 +18,8 @@ namespace ETeam.FeelJoon
 
         public ItemObject[] defaultItemObjects = new ItemObject[2];
 
+        private TestPlayerController controller;
+
         private Transform myTransform;
 
         #endregion Variables
@@ -26,6 +28,7 @@ namespace ETeam.FeelJoon
         void Awake()
         {
             combiner = new EquipmentCombiner(gameObject);
+            controller = GetComponent<TestPlayerController>();
             myTransform = GetComponent<Transform>();
 
             for (int i = 0; i < equipment.Slots.Length; i++)
@@ -71,8 +74,8 @@ namespace ETeam.FeelJoon
                 //    break;
 
                 //case ItemType.Pauldrons:
-                case ItemType.RightWeapon:
-                case ItemType.LeftWeapon:
+                case ItemType.Sword:
+                case ItemType.Bow:
                     itemInstances[index] = EquipMeshItem(itemObject);
                     break;
             }
@@ -128,8 +131,8 @@ namespace ETeam.FeelJoon
                 //    break;
 
                 // case ItemType.Pauldrons:
-                case ItemType.RightWeapon:
-                case ItemType.LeftWeapon:
+                case ItemType.Sword:
+                case ItemType.Bow:
                     itemInstances[index] = EquipMeshItem(itemObject);
                     break;
             }
@@ -178,14 +181,7 @@ namespace ETeam.FeelJoon
             {
                 ItemInstances instance = new GameObject().AddComponent<ItemInstances>();
                 instance.itemTransforms.AddRange(itemTransforms.ToList<Transform>());
-                try
-                {
-                    instance.transform.parent = myTransform; // combiner.rootBoneDictionary[itemTransforms[0].parent.name.GetHashCode()];
-                }
-                catch(MissingReferenceException e)
-                {
-                    // Debug.Log(e.Source);
-                }
+                instance.transform.parent = myTransform; // combiner.rootBoneDictionary[itemTransforms[0].parent.name.GetHashCode()];
 
                 return instance;
             }

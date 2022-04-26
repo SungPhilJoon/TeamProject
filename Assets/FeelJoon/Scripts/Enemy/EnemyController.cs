@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ETeam.KyungSeo;
 
 namespace ETeam.FeelJoon
 {
@@ -86,6 +87,7 @@ namespace ETeam.FeelJoon
             stateMachine.AddState(new EnemyMoveState());
             stateMachine.AddState(new EnemyAttackState());
             stateMachine.AddState(new EnemyDeadState());
+            stateMachine.AddState(new EnemyVictoryState());
 
             animator = GetComponent<Animator>();
 
@@ -103,6 +105,12 @@ namespace ETeam.FeelJoon
 
         protected virtual void Update()
         {
+            if (GameManager.Instance.IsPlayerDead)
+            {
+                stateMachine.ChangeState<EnemyVictoryState>();
+                return;
+            }
+
             stateMachine.Update(Time.deltaTime);
         }
 

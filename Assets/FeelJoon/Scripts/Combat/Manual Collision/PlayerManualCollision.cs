@@ -15,6 +15,7 @@ namespace ETeam.FeelJoon
         #region Unity Methods
         void Awake()
         {
+            parent = GameManager.Instance.Player.transform;
             playerController = parent.GetComponent<PlayerController>();
         }
 

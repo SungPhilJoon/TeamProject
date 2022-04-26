@@ -52,6 +52,7 @@ namespace ETeam.KyungSeo
         [Header("인벤토리")]
         public InventoryObject inventory;
         public InventoryObject equipment;
+        private PlayerEquipment playerEquipment;
 
         #endregion Variables
 
@@ -74,6 +75,7 @@ namespace ETeam.KyungSeo
             attackStateController = GetComponent<AttackStateController>();
             camera = Camera.main;
             objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
+            playerEquipment = GetComponent<PlayerEquipment>();
 
             playerInput.SwitchCurrentActionMap("Default");
 
@@ -151,13 +153,13 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                switch (playerStance)
+                switch (playerWeapon)
                 {
-                    case PlayerStance.Sword:
+                    case PlayerWeapon.Sword:
                         AttackStanceToUsedEnter(true, EnterNormalSwordAttack, EnterNormalComboAttack);
                         AttackStanceToUsedExit(true, ExitNormalComboAttack);
                         break;
-                    case PlayerStance.Bow:
+                    case PlayerWeapon.Bow:
                         AttackStanceToUsedEnter(true, EnterNormalBowAttack);
                         AttackStanceToUsedExit(true, ExitNormalBowAttack);
                         break;
@@ -167,13 +169,13 @@ namespace ETeam.KyungSeo
             else if (callbackContext.canceled)
             {
                 stateMachine.ChangeState<PlayerIdle>();
-                switch (playerStance)
+                switch (playerWeapon)
                 {
-                    case PlayerStance.Sword:
+                    case PlayerWeapon.Sword:
                         AttackStanceToUsedEnter(false, EnterNormalSwordAttack, EnterNormalComboAttack);
                         AttackStanceToUsedExit(false, ExitNormalComboAttack);
                         break;
-                    case PlayerStance.Bow:
+                    case PlayerWeapon.Bow:
                         AttackStanceToUsedEnter(false, EnterNormalBowAttack);
                         AttackStanceToUsedExit(false, ExitNormalBowAttack);
                         break;
@@ -185,13 +187,13 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                switch (playerStance)
+                switch (playerWeapon)
                 {
-                    case PlayerStance.Sword:
+                    case PlayerWeapon.Sword:
                         AttackStanceToUsedEnter(true, EnterSkillSwordAttack);
                         AttackStanceToUsedExit(true, ExitSkillSwordAttack);
                         break;
-                    case PlayerStance.Bow:
+                    case PlayerWeapon.Bow:
                         AttackStanceToUsedEnter(true, EnterSkillBowAttack);
                         AttackStanceToUsedExit(true, ExitSkillBowAttack);
                         break;
@@ -201,13 +203,13 @@ namespace ETeam.KyungSeo
             else if (callbackContext.canceled)
             {
                 stateMachine.ChangeState<PlayerIdle>();
-                switch (playerStance)
+                switch (playerWeapon)
                 {
-                    case PlayerStance.Sword:
+                    case PlayerWeapon.Sword:
                         AttackStanceToUsedEnter(false, EnterSkillSwordAttack);
                         AttackStanceToUsedExit(false, ExitSkillSwordAttack);
                         break;
-                    case PlayerStance.Bow:
+                    case PlayerWeapon.Bow:
                         AttackStanceToUsedEnter(false, EnterSkillBowAttack);
                         AttackStanceToUsedExit(false, ExitSkillBowAttack);
                         break;
@@ -238,10 +240,18 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
+                bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
+                bowPrefab.SetActive(true);
+
+                if (equipment.Slots[(int)ItemType.Bow].SlotItemObject == null)
+                {
+                    bowPrefab = null;
+                }
+
                 if (bowPrefab != null)
                 {
-                    playerStance = PlayerStance.Bow;
-                    animator.SetInteger(hashSwapIndex, (int)playerStance);
+                    playerWeapon = PlayerWeapon.Bow;
+                    animator.SetInteger(hashSwapIndex, (int)playerWeapon);
                     playerInput.SwitchCurrentActionMap("PlayerBow");
                 }
 
@@ -253,10 +263,19 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
+                swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0].gameObject;
+                swordPrefab.SetActive(true);
+                manualCollision = swordPrefab.GetComponent<BoxCollider>();
+
+                if (equipment.Slots[(int)ItemType.Sword].SlotItemObject == null)
+                {
+                    swordPrefab = null;
+                }
+
                 if (swordPrefab != null)
                 {
-                    playerStance = PlayerStance.Sword;
-                    animator.SetInteger(hashSwapIndex, (int)playerStance);
+                    playerWeapon = PlayerWeapon.Sword;
+                    animator.SetInteger(hashSwapIndex, (int)playerWeapon);
                     playerInput.SwitchCurrentActionMap("PlayerSword");
                 }
 
@@ -268,8 +287,8 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                playerStance = PlayerStance.Default;
-                animator.SetInteger(hashSwapIndex, (int)playerStance);
+                playerWeapon = PlayerWeapon.Default;
+                animator.SetInteger(hashSwapIndex, (int)playerWeapon);
                 playerInput.SwitchCurrentActionMap("Default");
                 SwapWeapon(defaultWeaponPrefab);
             }
@@ -383,7 +402,7 @@ namespace ETeam.KyungSeo
 
                 weaponErrorText.SetActive(true);
 
-                animator.SetInteger(hashSwapIndex, (int)playerStance);
+                animator.SetInteger(hashSwapIndex, (int)playerWeapon);
             }
             finally
             {

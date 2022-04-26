@@ -69,6 +69,7 @@ namespace ETeam.FeelJoon
                     Debug.Log("Item Generate" + i++.ToString());
 
                     GameObject itemGo = GameObject.Instantiate(renderer.gameObject, parent);
+                    itemGo.SetActive(false);
                     itemTransforms.Add(itemGo.transform);
                 }
             }
