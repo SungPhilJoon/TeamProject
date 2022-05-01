@@ -22,6 +22,9 @@ namespace ETeam.FeelJoon
 
         private Transform myTransform;
 
+        [HideInInspector]
+        public BoxCollider manualCollision;
+
         #endregion Variables
 
         #region Unity Methods
@@ -46,13 +49,19 @@ namespace ETeam.FeelJoon
             }
         }
 
-        //private void OnDestroy()
-        //{
-        //    foreach (ItemInstances item in itemInstances)
-        //    {
-        //        Destroy(item.gameObject);
-        //    }
-        //}
+        private void OnDestroy()
+        {
+            for (int i = 0; i < equipment.Slots.Length; i++)
+            {
+                equipment.Slots[i].OnPreUpdate -= OnRemoveItem;
+                equipment.Slots[i].OnPostUpdate -= OnEquipItem;
+            }
+
+            //    foreach (ItemInstances item in itemInstances)
+            //    {
+            //        Destroy(item.gameObject);
+            //    }
+        }
 
         #endregion Unity Methods
 
@@ -182,6 +191,7 @@ namespace ETeam.FeelJoon
                 ItemInstances instance = new GameObject().AddComponent<ItemInstances>();
                 instance.itemTransforms.AddRange(itemTransforms.ToList<Transform>());
                 instance.transform.parent = myTransform; // combiner.rootBoneDictionary[itemTransforms[0].parent.name.GetHashCode()];
+                manualCollision = instance.GetComponentInChildren<BoxCollider>();
 
                 return instance;
             }

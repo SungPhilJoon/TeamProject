@@ -30,6 +30,8 @@ namespace ETeam.KyungSeo
         [HideInInspector] public bool isInventoryOn = false;
         [HideInInspector] public bool isEquipmentOn = false;
 
+        private bool isOnUI = false;
+
         private CharacterController controller; // 캐싱할 CharacterController - PJ
 
         public float gravity = -29.81f; // 중력 계수 - PJ // KS 상세 : rigidbody를 사용하지 않는 중력계수라고 하네요~
@@ -47,7 +49,7 @@ namespace ETeam.KyungSeo
         public AttackStateController attackStateController;
         [SerializeField] private GameObject defaultWeaponPrefab;
         private GameObject previousWeapon;
-        private GameObject equipmentWeapon;
+        public GameObject equipmentWeapon;
 
         // 인벤토리
         [Header("인벤토리")]
@@ -81,11 +83,21 @@ namespace ETeam.KyungSeo
             playerInput.SwitchCurrentActionMap("Default");
 
             equipmentWeapon = defaultWeaponPrefab;
+
+            inventory.OnUseItem += OnUseItem;
+        }
+
+        void Start()
+        {
+            StartCoroutine(CheckEquipWeapon());
         }
 
         protected override void Update()
         {
             base.Update();
+
+            isOnUI = EventSystem.current.IsPointerOverGameObject();
+
             isGround = controller.isGrounded;
             if (isGround && calcVelocity.y < 0)
             {
@@ -152,9 +164,9 @@ namespace ETeam.KyungSeo
         #region Input Methods : Attack
         public void Attack(InputAction.CallbackContext callbackContext)
         {
-            if (callbackContext.started)
+            if (!isOnUI && callbackContext.started)
             {
-                switch (playerWeapon)
+                switch (currentPlayerWeapon)
                 {
                     case PlayerWeapon.Sword:
                         AttackStanceToUsedEnter(true, EnterNormalSwordAttack, EnterNormalComboAttack);
@@ -167,10 +179,10 @@ namespace ETeam.KyungSeo
                 }
                 stateMachine.ChangeState<PlayerAttack>();
             }
-            else if (callbackContext.canceled)
+            else if (!isOnUI && callbackContext.canceled)
             {
                 stateMachine.ChangeState<PlayerIdle>();
-                switch (playerWeapon)
+                switch (currentPlayerWeapon)
                 {
                     case PlayerWeapon.Sword:
                         AttackStanceToUsedEnter(false, EnterNormalSwordAttack, EnterNormalComboAttack);
@@ -186,9 +198,9 @@ namespace ETeam.KyungSeo
 
         public void Skill1(InputAction.CallbackContext callbackContext)
         {
-            if (callbackContext.started)
+            if (!isOnUI && callbackContext.started)
             {
-                switch (playerWeapon)
+                switch (currentPlayerWeapon)
                 {
                     case PlayerWeapon.Sword:
                         AttackStanceToUsedEnter(true, EnterSkillSwordAttack);
@@ -201,10 +213,10 @@ namespace ETeam.KyungSeo
                 }
                 stateMachine.ChangeState<PlayerAttack>();
             }
-            else if (callbackContext.canceled)
+            else if (!isOnUI && callbackContext.canceled)
             {
                 stateMachine.ChangeState<PlayerIdle>();
-                switch (playerWeapon)
+                switch (currentPlayerWeapon)
                 {
                     case PlayerWeapon.Sword:
                         AttackStanceToUsedEnter(false, EnterSkillSwordAttack);
@@ -244,22 +256,19 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
-                bowPrefab.SetActive(true);
-
                 if (equipment.Slots[(int)ItemType.Bow].SlotItemObject == null)
                 {
                     bowPrefab = null;
                 }
 
+                SwapWeapon(bowPrefab, PlayerWeapon.Bow);
+
                 if (bowPrefab != null)
                 {
-                    playerWeapon = PlayerWeapon.Bow;
-                    animator.SetInteger(hashSwapIndex, (int)playerWeapon);
+                    animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
                     playerInput.SwitchCurrentActionMap("PlayerBow");
                 }
 
-                SwapWeapon(bowPrefab);
             }
         }
 
@@ -267,23 +276,18 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0].gameObject;
-                swordPrefab.SetActive(true);
-                manualCollision = swordPrefab.GetComponent<BoxCollider>();
-
                 if (equipment.Slots[(int)ItemType.Sword].SlotItemObject == null)
                 {
                     swordPrefab = null;
                 }
 
+                SwapWeapon(swordPrefab, PlayerWeapon.Sword);
+
                 if (swordPrefab != null)
                 {
-                    playerWeapon = PlayerWeapon.Sword;
-                    animator.SetInteger(hashSwapIndex, (int)playerWeapon);
+                    animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
                     playerInput.SwitchCurrentActionMap("PlayerSword");
                 }
-
-                SwapWeapon(swordPrefab);
             }
         }
 
@@ -291,10 +295,9 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                playerWeapon = PlayerWeapon.Default;
-                animator.SetInteger(hashSwapIndex, (int)playerWeapon);
+                SwapWeapon(defaultWeaponPrefab, PlayerWeapon.Default);
+                animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
                 playerInput.SwitchCurrentActionMap("Default");
-                SwapWeapon(defaultWeaponPrefab);
             }
         }
 
@@ -334,13 +337,11 @@ namespace ETeam.KyungSeo
             if (!isInventoryOn)
             {
                 isInventoryOn = true;
-                Time.timeScale = 0;
                 inventoryUI.gameObject.SetActive(true);
             }
             else
             {
                 isInventoryOn = false;
-                Time.timeScale = 1;
                 inventoryUI.gameObject.SetActive(false);
             }
         }
@@ -350,20 +351,18 @@ namespace ETeam.KyungSeo
             if (!isEquipmentOn)
             {
                 isEquipmentOn = true;
-                Time.timeScale = 0;
                 equipmentUI.gameObject.SetActive(true);
             }
             else
             {
                 isEquipmentOn = false;
-                Time.timeScale = 1;
                 equipmentUI.gameObject.SetActive(false);
             }
         }
 
         #endregion
 
-        #region Helper Methods
+        #region Inventory
         public bool PickupItem(PickupItem pickupItem, int amount = 1)
         {
             if (pickupItem.itemObject != null && inventory.AddItem(new Item(pickupItem.itemObject), amount))
@@ -374,6 +373,21 @@ namespace ETeam.KyungSeo
 
             return false;
         }
+
+        private void OnUseItem(ItemObject itemObject)
+        {
+            foreach(ItemBuff buff in itemObject.data.buffs)
+            {
+                if (buff.stat == CharacterAttribute.Health)
+                {
+                    this.health += buff.value;
+                }
+            }
+        }
+
+        #endregion Inventory
+
+        #region Helper Methods
 
         private void SetTarget(out Transform newTarget, LayerMask targetMask, float distance = 3.0f)
         {
@@ -391,16 +405,19 @@ namespace ETeam.KyungSeo
             newTarget = null;
         }
 
-        private void SwapWeapon(GameObject weaponToSwap)
+        private void SwapWeapon(GameObject weaponToSwap, PlayerWeapon changedPlayerWeapon)
         {
             try
             {
                 previousWeapon = equipmentWeapon;
+
                 if (weaponToSwap == null)
                 {
                     throw new NullReferenceException();
                 }
+
                 equipmentWeapon = weaponToSwap;
+                currentPlayerWeapon = changedPlayerWeapon;
             }
             catch(NullReferenceException e)
             {
@@ -408,12 +425,89 @@ namespace ETeam.KyungSeo
 
                 weaponErrorText.SetActive(true);
 
-                animator.SetInteger(hashSwapIndex, (int)playerWeapon);
+                animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
             }
             finally
             {
+                if (previousWeapon)
+
                 previousWeapon.SetActive(false);
                 equipmentWeapon.SetActive(true);
+            }
+        }
+
+        private IEnumerator CheckEquipWeapon()
+        {
+            swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0].gameObject;
+            bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
+
+            while (true)
+            {
+                yield return null;
+
+                if (currentPlayerWeapon == PlayerWeapon.Default)
+                {
+                    swordPrefab.SetActive(false);
+                    bowPrefab.SetActive(false);
+                }
+
+                if (currentPlayerWeapon == PlayerWeapon.Sword)
+                {
+                    bowPrefab?.SetActive(false);
+
+                    try
+                    {
+                        if (manualCollision == null)
+                        {
+                            manualCollision = swordPrefab.GetComponent<BoxCollider>();
+                        }
+                        else if (playerEquipment.manualCollision != null)
+                        {
+                            manualCollision = playerEquipment.manualCollision;
+                        }
+
+                        if (manualCollision == null)
+                        {
+                            throw new NullReferenceException();
+                        }
+                    }
+                    catch(NullReferenceException e)
+                    {
+                        Debug.Log("장착된 무기가 없습니다.");
+                        weaponErrorText.SetActive(true);
+
+                        SwapWeapon(defaultWeaponPrefab, PlayerWeapon.Default);
+                        animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
+                        playerInput.SwitchCurrentActionMap("Default");
+                    }
+                }
+
+                if (currentPlayerWeapon == PlayerWeapon.Bow)
+                {
+                    swordPrefab?.SetActive(false);
+
+                    try
+                    {
+                        if (equipment.Slots[(int)ItemType.Bow].SlotItemObject == null)
+                        {
+                            throw new NullReferenceException();
+                        }
+                    }
+                    catch(NullReferenceException e)
+                    {
+                        Debug.Log("장착된 무기가 없습니다.");
+                        weaponErrorText.SetActive(true);
+
+                        SwapWeapon(defaultWeaponPrefab, PlayerWeapon.Default);
+                        animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
+                        playerInput.SwitchCurrentActionMap("Default");
+                    }
+
+                    // bowPrefab.SetActive(true);
+                }
+
+                swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0].gameObject;
+                bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
             }
         }
 

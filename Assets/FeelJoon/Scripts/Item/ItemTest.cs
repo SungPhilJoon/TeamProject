@@ -18,7 +18,7 @@ namespace ETeam.FeelJoon
         {
             if (databaseObject.itemObjects.Length > 0)
             {
-                ItemObject newItemObject = databaseObject.itemObjects[Random.Range(0, databaseObject.itemObjects.Length - 1)];
+                ItemObject newItemObject = databaseObject.itemObjects[Random.Range(0, databaseObject.itemObjects.Length)];
                 Item newItem = new Item(newItemObject);
 
                 inventoryObject.AddItem(newItem, 1);

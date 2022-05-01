@@ -21,7 +21,7 @@ namespace ETeam.FeelJoon
 
         [HideInInspector]
         public Animator animator;
-        public PlayerWeapon playerWeapon;
+        public PlayerWeapon currentPlayerWeapon;
         public float attackRange;
 
         protected Transform target;
@@ -91,7 +91,7 @@ namespace ETeam.FeelJoon
 
             isMove = false;
 
-            playerWeapon = PlayerWeapon.Default;
+            currentPlayerWeapon = PlayerWeapon.Default;
 
             health = maxHealth;
         }

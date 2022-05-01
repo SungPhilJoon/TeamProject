@@ -9,8 +9,7 @@ namespace ETeam.KyungSeo
     public partial class MainPlayerController : PlayerController
     {
         #region Variables
-        [Header("활 오브젝트")]
-        [SerializeField] private GameObject bowPrefab;
+        [SerializeField] private GameObject bowPrefab = null;
 
         public Transform spawnPoint;
 
