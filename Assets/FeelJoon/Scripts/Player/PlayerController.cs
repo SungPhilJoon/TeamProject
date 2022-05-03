@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using ETeam.KyungSeo;
 using System;
@@ -41,6 +42,9 @@ namespace ETeam.FeelJoon
         [SerializeField] private float closeupSpeed;
         [SerializeField] private RawImage characterFace;
         [SerializeField] private Transform characterFaceCameraTransform;
+        public Transform reviveTransform;
+        public GameObject gameoverUI;
+        [HideInInspector] public TMP_Text gameoverText;
 
         protected readonly int hashSwapIndex = Animator.StringToHash("SwapIndex");
         protected readonly int hashHitTrigger = Animator.StringToHash("HitTrigger");
@@ -88,12 +92,13 @@ namespace ETeam.FeelJoon
             stateMachine.AddState(new PlayerDead());
 
             animator = GetComponentInChildren<Animator>();
-
             isMove = false;
 
             currentPlayerWeapon = PlayerWeapon.Default;
 
             health = maxHealth;
+            gameoverUI.SetActive(false);
+            gameoverText = gameoverUI.GetComponentInChildren<TMP_Text>();
         }
 
         protected virtual void Update()
@@ -130,7 +135,7 @@ namespace ETeam.FeelJoon
 
             yield return null;
         }
-
+        
         #endregion Helper Methods
 
         #region IAttackable
@@ -179,9 +184,9 @@ namespace ETeam.FeelJoon
             else
             {
                 stateMachine.ChangeState<PlayerDead>();
+                gameoverUI.SetActive(true);
             }
         }
-
         #endregion IDamageable
     }
 }
