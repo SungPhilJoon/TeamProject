@@ -8,18 +8,12 @@ namespace ETeam.FeelJoon
     public class PlayerAttack : State<PlayerController>
     {
         #region Variables
-        private Animator animator;
-        private PlayerWeapon playerStance;
         private AttackStateController attackStateController;
-
-        protected readonly int hashOnNormalAttack = Animator.StringToHash("OnNormalAttack");
-        protected readonly int hashIsComboAttack = Animator.StringToHash("IsComboAttack");
 
         #endregion Variables
 
         public override void OnInitialized()
         {
-            animator = context.GetComponentInChildren<Animator>();
             attackStateController = context.GetComponent<AttackStateController>();
         }
 

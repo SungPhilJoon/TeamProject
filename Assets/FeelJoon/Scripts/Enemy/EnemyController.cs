@@ -26,10 +26,10 @@ namespace ETeam.FeelJoon
 
         protected ObjectPoolManager<Projectile> objectPoolManager;
 
-        // private Transform target;
         public LayerMask targetMask;
         public EnemyType enemyType;
 
+        [HideInInspector]
         public FieldOfView enemyFOV;
 
         public float attackRange;
@@ -46,7 +46,9 @@ namespace ETeam.FeelJoon
         [Header("아이템 드롭")]
         [SerializeField] private ItemObjectDatabase database;
 
-        public Transform projectilePoint;
+        private Transform projectilePoint;
+        private Vector3 generatePosition; // 다시 생성될 몬스터의 위치
+        [SerializeField] private float delay = 3f;
 
         protected readonly int hashHitTrigger = Animator.StringToHash("Hit");
 
@@ -73,7 +75,27 @@ namespace ETeam.FeelJoon
             }
         }
 
+<<<<<<< Updated upstream
         public Animator EnemyAnimator => animator;
+=======
+        public Transform ProjectilePoint
+        {
+            get => projectilePoint;
+
+            set
+            {
+                if (enemyType == EnemyType.Melee)
+                {
+                    projectilePoint = null;
+                }
+
+                if (enemyType == EnemyType.Projectile)
+                {
+                    projectilePoint = value;
+                }
+            }
+        }
+>>>>>>> Stashed changes
 
         #endregion Properties
 
@@ -85,7 +107,11 @@ namespace ETeam.FeelJoon
                 return;
             }
 
+            ProjectilePoint = transform.GetChild(transform.childCount - 1);
+
             objectPoolManager = new ObjectPoolManager<Projectile>(PooledObjectNameList.NameOfProjectile, projectilePoint);
+
+            generatePosition = transform.position;
         }
 
         protected virtual void Start()
@@ -110,6 +136,8 @@ namespace ETeam.FeelJoon
                 battleUI.MaximumValue = maxHealth;
                 battleUI.Value = health;
             }
+
+            GameManager.Instance.GenerateMonsterUpdate = GenerateMonsterUpdate;
         }
 
         protected virtual void Update()
@@ -146,6 +174,26 @@ namespace ETeam.FeelJoon
 
             dropItem.AddComponent<PickupItem>().itemObject = dropItemObject;
             dropItem.AddComponent<CameraFacing>();
+        }
+
+        private void GenerateMonsterUpdate(float delay)
+        {
+            StartCoroutine(MonsterDelayGenerated(delay));
+        }
+
+        private IEnumerator MonsterDelayGenerated(float delay)
+        {
+            float normalTime = 0f;
+
+            while (normalTime < delay)
+            {
+                normalTime += Time.deltaTime;
+
+                yield return null;
+            }
+
+            transform.position = generatePosition;
+            this.gameObject.SetActive(true);
         }
 
         #endregion Helper Methods

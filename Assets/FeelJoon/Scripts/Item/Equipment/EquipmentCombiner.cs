@@ -66,7 +66,6 @@ namespace ETeam.FeelJoon
                 if (renderer.transform.parent != null)
                 {
                     Transform parent = rootBoneDictionary[renderer.transform.parent.name.GetHashCode()];
-                    Debug.Log("Item Generate" + i++.ToString());
 
                     GameObject itemGo = GameObject.Instantiate(renderer.gameObject, parent);
                     // itemGo.SetActive(false);

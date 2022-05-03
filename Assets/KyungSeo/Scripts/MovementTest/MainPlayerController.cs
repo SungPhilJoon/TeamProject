@@ -13,9 +13,11 @@ namespace ETeam.KyungSeo
     public partial class MainPlayerController : PlayerController
     {
         #region Variables
+        [Header("이동속도")]
         public float moveSpeed; // 이동 스피드
         [SerializeField] private float dashDistance = 5.0f; // 대쉬 거리 - PJ
 
+        [Header("Setting UIs")]
         [SerializeField] private Image settingsUI; // 테스트로 UI(설정창)를 띄우고 끄게 해 보려고
         [SerializeField] private Image inventoryUI; // 캐릭터 인벤토리
         [SerializeField] private Image equipmentUI; // 캐릭터 장비창
@@ -23,6 +25,7 @@ namespace ETeam.KyungSeo
         private Vector2 inputValue = Vector2.zero; // 입력 Vector
         private Vector3 movement = Vector3.zero; // 이동 방향 Vector
 
+        [Header("카메라")]
         public Transform focus;
         private Camera camera;
         private ClickDragCamera cameraFocus;
@@ -35,23 +38,24 @@ namespace ETeam.KyungSeo
 
         public CharacterController controller; // 캐싱할 CharacterController - PJ
 
-        public float gravity = -29.81f; // 중력 계수 - PJ // KS 상세 : rigidbody를 사용하지 않는 중력계수라고 하네요~
-        public Vector3 drags; // 저항력 -PJ
+        [Header("저항 계수")]
+        public float gravity = -29.81f; // 중력 계수 : rigidbody를 사용하지 않기 위한 중력계수
+        public Vector3 drags; // 저항력
 
         private bool isGround = false;
 
         private Vector3 calcVelocity; // 계산에 사용될 Vector3 레퍼런스 - PJ
 
-        public PlayerInput playerInput;
+        private PlayerInput playerInput;
 
+        [Header("에러 텍스트")]
         public GameObject weaponErrorText;
 
         [Header("전투")]
         public AttackStateController attackStateController;
         [SerializeField] private GameObject defaultWeaponPrefab;
         private GameObject previousWeapon;
-        public GameObject equipmentWeapon;
-
+        private GameObject equipmentWeapon;
         // 인벤토리
         [Header("인벤토리")]
         public InventoryObject inventory;
@@ -79,6 +83,11 @@ namespace ETeam.KyungSeo
             attackStateController = GetComponent<AttackStateController>();
             camera = Camera.main;
 
+<<<<<<< Updated upstream
+=======
+            spawnPoint = transform.GetChild(transform.childCount - 1);
+
+>>>>>>> Stashed changes
             objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
             playerEquipment = GetComponent<PlayerEquipment>();
             cameraFocus = FindObjectOfType<ClickDragCamera>();
@@ -136,6 +145,7 @@ namespace ETeam.KyungSeo
         }
 
         #endregion
+<<<<<<< Updated upstream
 
         #region Input Methods : Movements
 
@@ -373,6 +383,8 @@ namespace ETeam.KyungSeo
         }
 
         #endregion
+=======
+>>>>>>> Stashed changes
 
         #region Inventory
         public bool PickupItem(PickupItem pickupItem, int amount = 1)
@@ -400,7 +412,7 @@ namespace ETeam.KyungSeo
         #endregion Inventory
 
         #region Helper Methods
-
+        
         private void SetTarget(out Transform newTarget, LayerMask targetMask, float distance = 3.0f)
         {
             Collider[] targetColliders = Physics.OverlapSphere(transform.position, distance, targetMask);
@@ -416,7 +428,12 @@ namespace ETeam.KyungSeo
 
             newTarget = null;
         }
-
+        
+        /// <summary>
+        /// 무기를 스왑해주는 함수입니다. 만약 스왑할 무기가 장착되어 있지 않으면 에러 텍스트를 보여줍니다.
+        /// </summary>
+        /// <param name="weaponToSwap"></param>
+        /// <param name="changedPlayerWeapon"></param>
         private void SwapWeapon(GameObject weaponToSwap, PlayerWeapon changedPlayerWeapon)
         {
             try
@@ -448,6 +465,10 @@ namespace ETeam.KyungSeo
             }
         }
 
+        /// <summary>
+        /// 매 시간 호출하고 체크하여 무기를 업데이트 해주는 함수입니다.
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator CheckEquipWeapon()
         {
             swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0].gameObject;
@@ -459,13 +480,14 @@ namespace ETeam.KyungSeo
 
                 if (currentPlayerWeapon == PlayerWeapon.Default)
                 {
-                    swordPrefab.SetActive(false);
-                    bowPrefab.SetActive(false);
+                    swordPrefab?.SetActive(false);
+                    bowPrefab?.SetActive(false);
                 }
 
                 if (currentPlayerWeapon == PlayerWeapon.Sword)
                 {
                     bowPrefab?.SetActive(false);
+                    swordPrefab.SetActive(true);
 
                     try
                     {
@@ -497,6 +519,7 @@ namespace ETeam.KyungSeo
                 if (currentPlayerWeapon == PlayerWeapon.Bow)
                 {
                     swordPrefab?.SetActive(false);
+                    bowPrefab?.SetActive(true);
 
                     try
                     {
@@ -523,6 +546,7 @@ namespace ETeam.KyungSeo
             }
         }
 
+<<<<<<< Updated upstream
         /// <summary>
         /// AttackState가 들어오면 발생하는 이벤트들을 더하거나 뺄 수 있는 함수 입니다.
         /// </summary>
@@ -575,5 +599,8 @@ namespace ETeam.KyungSeo
         //}
 
         #endregion
+=======
+        #endregion Helper Methods
+>>>>>>> Stashed changes
     }
 }

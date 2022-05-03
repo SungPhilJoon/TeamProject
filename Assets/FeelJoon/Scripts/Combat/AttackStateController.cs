@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ETeam.KyungSeo;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 namespace ETeam.FeelJoon
 {
@@ -19,14 +21,26 @@ namespace ETeam.FeelJoon
         #endregion Variables
 
         #region Unity Methods
-        void Start()
-        {
-            
-        }
 
         #endregion Unity Methods
 
         #region Helper Methods
+        public void AttackStanceToUsed(PlayerWeapon currentPlayerWeapon,
+            Action enterSwordAttack, Action exitSwordAttack,
+            Action enterBowAttack, Action exitBowAttack)
+        {
+            switch (currentPlayerWeapon)
+            {
+                case PlayerWeapon.Sword:
+                    OnEnterAttackStateHandler = enterSwordAttack;
+                    OnExitAttackStateHandler = exitSwordAttack;
+                    break;
+                case PlayerWeapon.Bow:
+                    OnEnterAttackStateHandler = enterBowAttack;
+                    OnExitAttackStateHandler = exitBowAttack;
+                    break;
+            }
+        }
 
         #endregion Helper Methods
     }

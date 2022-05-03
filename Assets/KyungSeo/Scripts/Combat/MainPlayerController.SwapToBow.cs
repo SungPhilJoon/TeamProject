@@ -11,11 +11,18 @@ namespace ETeam.KyungSeo
     public partial class MainPlayerController : PlayerController
     {
         #region Variables
+<<<<<<< Updated upstream
         //[SerializeField] private GameObject bowPrefab = null;
 
         [Header("활 오브젝트")]
         [SerializeField] private GameObject bowPrefab;
         public Transform spawnPoint;
+=======
+        private GameObject bowPrefab = null;
+
+        private Transform spawnPoint;
+
+>>>>>>> Stashed changes
         public ObjectPoolManager<Arrow> objectPoolManager;
         
 

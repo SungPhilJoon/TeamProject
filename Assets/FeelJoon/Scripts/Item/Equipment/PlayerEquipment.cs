@@ -14,11 +14,10 @@ namespace ETeam.FeelJoon
 
         private EquipmentCombiner combiner;
 
+        [HideInInspector]
         public ItemInstances[] itemInstances = new ItemInstances[2];
 
         public ItemObject[] defaultItemObjects = new ItemObject[2];
-
-        private MainPlayerController controller;
 
         private Transform myTransform;
 
@@ -31,7 +30,6 @@ namespace ETeam.FeelJoon
         void Awake()
         {
             combiner = new EquipmentCombiner(gameObject);
-            controller = GetComponent<MainPlayerController>();
             myTransform = GetComponent<Transform>();
 
             for (int i = 0; i < equipment.Slots.Length; i++)
@@ -182,16 +180,12 @@ namespace ETeam.FeelJoon
             }
 
             Transform[] itemTransforms = combiner.AddMesh(itemObject.modelPrefab);
-            for (int i = 0; i < itemTransforms.Length; i++)
-            {
-                Debug.Log(itemTransforms[i].gameObject.name);
-            }
             if (itemTransforms.Length > 0)
             {
                 ItemInstances instance = new GameObject().AddComponent<ItemInstances>();
                 instance.itemTransforms.AddRange(itemTransforms.ToList<Transform>());
-                instance.transform.parent = myTransform; // combiner.rootBoneDictionary[itemTransforms[0].parent.name.GetHashCode()];
-                manualCollision = instance.GetComponentInChildren<BoxCollider>();
+                instance.transform.parent = myTransform;
+                manualCollision = instance.itemTransforms[0].GetComponent<BoxCollider>();
 
                 return instance;
             }

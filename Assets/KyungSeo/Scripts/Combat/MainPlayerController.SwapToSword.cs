@@ -10,20 +10,21 @@ namespace ETeam.KyungSeo
     public partial class MainPlayerController : PlayerController
     {
         #region Variables
-        [SerializeField] private GameObject swordPrefab = null;
+        private GameObject swordPrefab = null;
 
         [Header("Ä® µ¥¹ÌÁö")]
         [SerializeField] private int swordNormalDamage = 30;
         [SerializeField] private int swordSkillDamage = 50;
 
-        [SerializeField] private BoxCollider manualCollision;
+        private BoxCollider manualCollision;
 
         [Header("ÄðÅ¸ÀÓ")]
-        public float coolTime;
+        public float skill1_CoolTime = 5f;
 
         protected readonly int hashIsComboAttack = Animator.StringToHash("IsComboAttack");
         protected readonly int hashOnNormalAttack = Animator.StringToHash("OnNormalAttack");
         protected readonly int hashSwordSkill = Animator.StringToHash("SwordSkill");
+        protected readonly int hashIsOnStopLooping = Animator.StringToHash("IsOnStopLooping");
 
         #endregion Variables
 
@@ -38,14 +39,11 @@ namespace ETeam.KyungSeo
             manualCollision.enabled = true;
             Damage = swordNormalDamage;
             animator.SetTrigger(hashOnNormalAttack);
-        }
 
-        public void EnterNormalComboAttack()
-        {
             animator.SetBool(hashIsComboAttack, true);
         }
 
-        public void ExitNormalComboAttack()
+        public void ExitNormalSwordAttack()
         {
             manualCollision.enabled = false;
             animator.SetBool(hashIsComboAttack, false);
@@ -56,13 +54,42 @@ namespace ETeam.KyungSeo
             manualCollision.enabled = true;
             Damage = swordSkillDamage;
             animator.SetTrigger(hashSwordSkill);
+            animator.SetBool(hashIsOnStopLooping, false);
+
+            if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
+            {
+                ps.Play();
+            }
         }
 
         public void ExitSkillSwordAttack()
         {
             manualCollision.enabled = false;
+            animator.SetBool(hashIsOnStopLooping, true);
+
+            if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
+            {
+                ps.Stop();
+            }
         }
 
         #endregion Action Methods
+
+        #region CoolTime
+        private IEnumerator Skill1_CoolTime(float skill1_CoolTime)
+        {
+            float normalTime = 0f;
+
+            while (skill1_CoolTime > normalTime)
+            {
+                normalTime += Time.fixedDeltaTime;
+
+                yield return new WaitForFixedUpdate();
+            }
+
+
+        }
+
+        #endregion CoolTime
     }
 }

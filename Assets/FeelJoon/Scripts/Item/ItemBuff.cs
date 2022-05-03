@@ -12,11 +12,12 @@ namespace ETeam.FeelJoon
         Intellect,
         Stamina,
         Strength,
-        Health
+        Health,
+        Mana
     }
 
     [Serializable]
-    public class ItemBuff
+    public class ItemBuff : IModifier
     {
         public CharacterAttribute stat;
         public int value;
@@ -40,9 +41,12 @@ namespace ETeam.FeelJoon
             value = UnityEngine.Random.Range(min, max);
         }
 
+        #region IModifier interface
         public void AddValue(ref int v)
         {
             v += value;
         }
+
+        #endregion IModifier interface
     }
 }

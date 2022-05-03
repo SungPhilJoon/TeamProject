@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> where T : class
+public class Singleton<T> : MonoBehaviour where T : class
 {
 	private static T instance;
 
@@ -18,4 +18,9 @@ public class Singleton<T> where T : class
             return instance;
 		}
 	}
+
+    protected virtual void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 }

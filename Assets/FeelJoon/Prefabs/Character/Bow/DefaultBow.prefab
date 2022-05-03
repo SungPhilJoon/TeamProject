@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3791733761698135434}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GuideDummy Prop_L
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6124818652076352761}
   - component: {fileID: 6124818652076352760}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Default_Bow
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +112,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6124818652257416069}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DefaultBow
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

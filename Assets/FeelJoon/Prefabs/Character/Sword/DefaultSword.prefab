@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8045601669049900087}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DefaultSword
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8045601669955419461}
   - component: {fileID: 8045601669955419460}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Default_Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8045601670235177887}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GuideDummy Prop_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}

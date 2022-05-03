@@ -23,7 +23,6 @@ namespace ETeam.FeelJoon
         [HideInInspector]
         public Animator animator;
         public PlayerWeapon currentPlayerWeapon;
-        public float attackRange;
 
         protected Transform target;
         public LayerMask targetMask;
@@ -59,13 +58,6 @@ namespace ETeam.FeelJoon
             get => target;
 
             set => target = value;
-        }
-
-        public float AttackRange
-        {
-            get => attackRange;
-
-            set => attackRange = CurrentAttackBehaviour?.range ?? 6.0f;
         }
 
         public virtual int Damage
@@ -178,7 +170,7 @@ namespace ETeam.FeelJoon
             if (IsAlive)
             {
                 // animator?.SetTrigger(hashHitTrigger);
-                StopAllCoroutines();
+                StopCoroutine(ChangePlayerUIColor());
                 StartCoroutine(ChangePlayerUIColor());
             }
             else

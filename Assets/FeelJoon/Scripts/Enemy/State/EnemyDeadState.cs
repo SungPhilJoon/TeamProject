@@ -30,7 +30,8 @@ namespace ETeam.FeelJoon
         {
             if (stateMachine.ElapsedTimeInState > 3.0f)
             {
-                GameObject.Destroy(context.gameObject);
+                context.gameObject.SetActive(false);
+                // GameObject.Destroy(context.gameObject);
             }
         }
 
