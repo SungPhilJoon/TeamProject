@@ -73,6 +73,8 @@ namespace ETeam.FeelJoon
             }
         }
 
+        public Animator EnemyAnimator => animator;
+
         #endregion Properties
 
         #region Unity Methods
@@ -115,7 +117,7 @@ namespace ETeam.FeelJoon
             if (GameManager.Instance.IsPlayerDead)
             {
                 stateMachine.ChangeState<EnemyVictoryState>();
-                return;
+                Debug.Log(stateMachine.CurrentState);
             }
 
             stateMachine.Update(Time.deltaTime);

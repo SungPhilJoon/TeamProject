@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
@@ -27,10 +28,23 @@ namespace ETeam.KyungSeo
         public float lerpPercent;
 
         public float rotateSpeed = 15f;
+        
+        [Header("에임모드 카메라 관련")] [SerializeField] private Image imageAim;
+        [SerializeField] private float _defaultModeFOV = 60; // 기본모드에서의 카메라 FOV
+        [SerializeField] private float _aimModeFOV = 30; // Aim모드에서의 카메라 FOV
+        [SerializeField] private Transform aimFocus; 
+        internal bool _isAimOn; // 에임모드 체크용
 
         #endregion
 
         #region Unity Methods
+
+        private void Awake()
+        {
+            imageAim.enabled = false;
+            _isAimOn = false;
+        }
+
         private void Start()
         {
             StartCoroutine(MoveCamera());
@@ -43,10 +57,16 @@ namespace ETeam.KyungSeo
             {
                 return;
             }
-
             //calcVector += new Vector3(0, (z * Time.deltaTime) * -1f, z * Time.deltaTime);
 
+            if (_isAimOn)
+            {
+                transform.LookAt(aimFocus);
+                return;
+            }
+            
             focus.position = Vector3.Lerp(focus.position, target.position, cameraSensitivy * Time.deltaTime);
+            //focus.position = Vector3.Lerp(focus.position, target.position + Vector3.up * 3, cameraSensitivy * Time.deltaTime);
             //calcVector = new Vector3(0, Mathf.Clamp(calcVector.y, -5, 5), Mathf.Clamp(calcVector.z, -5f, 5f));
             //focus.position = calcVector;
 
@@ -115,6 +135,35 @@ namespace ETeam.KyungSeo
 
                 yield return null;
             }
+        }
+        
+        public IEnumerator AimCameraMove()
+        {
+            _isAimOn = !_isAimOn;
+            imageAim.enabled = !imageAim.enabled;
+
+            float current = 0;
+            float percent = 0;
+            float time = 0.35f;
+
+            float start = Camera.main.fieldOfView;
+            float end = _isAimOn ? _aimModeFOV : _defaultModeFOV;
+            
+            Camera.main.transform.parent = _isAimOn ? aimFocus : focus;
+            Vector3 offset = _isAimOn ? aimFocus.position : focus.position;
+            
+            while (percent < 1)
+            {
+                current += Time.deltaTime;
+                percent = current / time;
+                
+                Camera.main.fieldOfView = Mathf.Lerp(start, end, percent); // mode에 따라 카메라의 시야각을 변경
+                Camera.main.transform.position =
+                    Vector3.Lerp(Camera.main.transform.position, offset, percent);
+
+                yield return null;
+            }
+            yield return null;
         }
         #endregion
     }

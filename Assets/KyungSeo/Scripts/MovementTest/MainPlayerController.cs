@@ -25,6 +25,7 @@ namespace ETeam.KyungSeo
 
         public Transform focus;
         private Camera camera;
+        private ClickDragCamera cameraFocus;
 
         [HideInInspector] public bool isSettingOn = false; // 테스트 UI표시용
         [HideInInspector] public bool isInventoryOn = false;
@@ -32,7 +33,7 @@ namespace ETeam.KyungSeo
 
         private bool isOnUI = false;
 
-        private CharacterController controller; // 캐싱할 CharacterController - PJ
+        public CharacterController controller; // 캐싱할 CharacterController - PJ
 
         public float gravity = -29.81f; // 중력 계수 - PJ // KS 상세 : rigidbody를 사용하지 않는 중력계수라고 하네요~
         public Vector3 drags; // 저항력 -PJ
@@ -77,8 +78,10 @@ namespace ETeam.KyungSeo
             playerInput = GetComponent<PlayerInput>();
             attackStateController = GetComponent<AttackStateController>();
             camera = Camera.main;
+
             objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
             playerEquipment = GetComponent<PlayerEquipment>();
+            cameraFocus = FindObjectOfType<ClickDragCamera>();
 
             playerInput.SwitchCurrentActionMap("Default");
 
@@ -92,10 +95,9 @@ namespace ETeam.KyungSeo
             StartCoroutine(CheckEquipWeapon());
         }
 
+
         protected override void Update()
         {
-            base.Update();
-
             isOnUI = EventSystem.current.IsPointerOverGameObject();
 
             isGround = controller.isGrounded;
@@ -103,28 +105,38 @@ namespace ETeam.KyungSeo
             {
                 calcVelocity.y = 0;
             }
+                isGround = controller.isGrounded;
+                if (isGround && calcVelocity.y < 0)
+                {
+                    calcVelocity.y = 0;
+                }
 
-            if (isMove)
-            {
-                Vector3 lookForward = new Vector3(focus.forward.x, 0f, focus.forward.z).normalized;
-                Vector3 lookRight = new Vector3(focus.right.x, 0f, focus.right.z).normalized;
-                Vector3 moveDir = lookForward * movement.z + lookRight * movement.x;
+                if (isMove)
+                {
+                    Vector3 lookForward = new Vector3(focus.forward.x, 0f, focus.forward.z).normalized;
+                    Vector3 lookRight = new Vector3(focus.right.x, 0f, focus.right.z).normalized;
+                    Vector3 moveDir = lookForward * movement.z + lookRight * movement.x;
 
-                transform.forward = Vector3.Lerp(transform.forward, moveDir, 10f * Time.deltaTime);
-                controller.Move(moveDir * Time.deltaTime * moveSpeed);
+                    transform.forward = Vector3.Lerp(transform.forward, moveDir, 10f * Time.deltaTime);
+                    controller.Move(moveDir * Time.deltaTime * moveSpeed);
+                }
+
+                calcVelocity.y += gravity * Time.deltaTime;
+
+                calcVelocity.x /= 1 + drags.x * Time.deltaTime;
+                calcVelocity.y /= 1 + drags.y * Time.deltaTime;
+                calcVelocity.z /= 1 + drags.z * Time.deltaTime;
+
+            if (IsAlive)
+            { 
+                controller.Move(calcVelocity * Time.deltaTime); 
             }
 
-            calcVelocity.y += gravity * Time.deltaTime;
-
-            calcVelocity.x /= 1 + drags.x * Time.deltaTime;
-            calcVelocity.y /= 1 + drags.y * Time.deltaTime;
-            calcVelocity.z /= 1 + drags.z * Time.deltaTime;
-
-            controller.Move(calcVelocity * Time.deltaTime);
+            base.Update();
         }
 
         #endregion
-         
+
         #region Input Methods : Movements
 
         public void Move(InputAction.CallbackContext callbackContext)
@@ -556,6 +568,11 @@ namespace ETeam.KyungSeo
                 }
             }
         }
+        
+        //public void Revive()
+        //{
+        //    GameManager.Instance.Revive();
+        //}
 
         #endregion
     }

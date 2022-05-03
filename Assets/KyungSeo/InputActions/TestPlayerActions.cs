@@ -815,7 +815,7 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""80fb6516-b41a-435d-9cf9-a7225557df25"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
