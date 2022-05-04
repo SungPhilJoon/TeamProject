@@ -13,47 +13,46 @@ public class GameManager : Singleton<GameManager>
     #endregion Actions
 
     #region Variables
-<<<<<<< Updated upstream
-    private GameObject player = GameObject.FindGameObjectWithTag("Player");
-    // ¾ÆÀÌÅÛ Àû¿ë µî Ã¼·Â¿¡ Á¢±ÙÇÏ·Á¸é ÇÃ·¹ÀÌ¾î ÄÁÆ®·Ñ·¯°¡ ÇÊ¿äÇØº¸¿©¼­ ³Ö¾îºÃ½À´Ï´Ù.
-    private MainPlayerController mainPlayer = GameObject.FindObjectOfType<MainPlayerController>();
-    private EnemyController[] enemyController = GameObject.FindObjectsOfType<EnemyController>();
-    private static readonly int Dead = Animator.StringToHash("IsPlayerDead");
-=======
     [SerializeField] private GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-    [SerializeField] private EnemyController[] enemies;
->>>>>>> Stashed changes
+    [SerializeField] private MainPlayerController mainPlayer;
+
+    [SerializeField] private EnemyController[] enemies = FindObjectsOfType<EnemyController>();
+
+    private readonly int Dead = Animator.StringToHash("IsPlayerDead");
 
     #endregion Variables
 
     #region Properties
     public GameObject Player => player;
 
-    public EnemyController[] EnemyController => enemyController;
+    public EnemyController[] EnemyController => enemies;
     
     public bool IsPlayerDead => !player.gameObject.activeSelf;
 
     #endregion Properties
 
-    public void Revive() // ¹ö±× ¹ß»ýÁß. ·Ö?
+    public void Revive() // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½. ï¿½ï¿½?
     {
         mainPlayer = player.GetComponent<MainPlayerController>();
+
         mainPlayer.controller.enabled = false;
         mainPlayer.transform.position = mainPlayer.reviveTransform.position;
         mainPlayer.controller.enabled = true;
+
         mainPlayer.health = mainPlayer.maxHealth;
-        //playerController.animator.Rebind();
+
         mainPlayer.StateMachine.ChangeState<PlayerIdle>();
         mainPlayer.animator.ResetTrigger("OnDeadTrigger");
         mainPlayer.animator.SetBool("IsAlive", true);
-        mainPlayer.playerInput.SwitchCurrentActionMap("Default");
+
+        // mainPlayer.PlayerInput.SwitchCurrentActionMap("Default");
         mainPlayer.gameoverUI.SetActive(false);
 
-        for (int i = 0; i < enemyController.Length; i++)
+        for (int i = 0; i < enemies.Length; i++)
         {
-            enemyController[i].EnemyAnimator.SetBool(Dead,false);
-            enemyController[i].StateMachine.ChangeState<EnemyIdleState>();
+            enemies[i].EnemyAnimator.SetBool(Dead, false);
+            enemies[i].StateMachine.ChangeState<EnemyIdleState>();
         }
     }
 }

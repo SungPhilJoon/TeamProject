@@ -12,6 +12,8 @@ namespace ETeam.FeelJoon
         private CharacterController controller;
         private PlayerInput playerInput;
 
+        private InputActionMap currentActionMap;
+
         private readonly int hashIsAlive = Animator.StringToHash("IsAlive");
         private readonly int hashOnDeadTrigger = Animator.StringToHash("OnDeadTrigger");
 
@@ -26,8 +28,11 @@ namespace ETeam.FeelJoon
 
         public override void OnEnter()
         {
-            Debug.Log("»˜»˜ ¡◊æ˘∂•");
+            currentActionMap = playerInput.currentActionMap;
             playerInput.SwitchCurrentActionMap("PlayerDead");
+
+            Debug.Log("»˜»˜ ¡◊æ˘∂•");
+
             animator.SetBool(hashIsAlive, context.IsAlive);
             animator.SetTrigger(hashOnDeadTrigger);
         }
@@ -40,6 +45,7 @@ namespace ETeam.FeelJoon
             if (stateMachine.ElapsedTimeInState > 5.0f)
             {
                 Debug.Log("∞≥∞∞¿Ã ∫Œ»∞!");
+                playerInput.currentActionMap = currentActionMap;
                 GameManager.Instance.Revive();
 
                 // context.gameObject.SetActive(false);

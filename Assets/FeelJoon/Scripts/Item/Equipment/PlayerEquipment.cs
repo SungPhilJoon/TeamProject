@@ -14,7 +14,6 @@ namespace ETeam.FeelJoon
 
         private EquipmentCombiner combiner;
 
-        [HideInInspector]
         public ItemInstances[] itemInstances = new ItemInstances[2];
 
         public ItemObject[] defaultItemObjects = new ItemObject[2];
@@ -34,7 +33,9 @@ namespace ETeam.FeelJoon
 
             for (int i = 0; i < equipment.Slots.Length; i++)
             {
+                equipment.Slots[i].OnPreUpdate -= OnRemoveItem;
                 equipment.Slots[i].OnPreUpdate += OnRemoveItem;
+                equipment.Slots[i].OnPostUpdate -= OnEquipItem;
                 equipment.Slots[i].OnPostUpdate += OnEquipItem;
             }
         }
@@ -182,6 +183,7 @@ namespace ETeam.FeelJoon
             Transform[] itemTransforms = combiner.AddMesh(itemObject.modelPrefab);
             if (itemTransforms.Length > 0)
             {
+                Debug.Log("¿Ö ³ª¿Í");
                 ItemInstances instance = new GameObject().AddComponent<ItemInstances>();
                 instance.itemTransforms.AddRange(itemTransforms.ToList<Transform>());
                 instance.transform.parent = myTransform;

@@ -10,7 +10,7 @@ namespace ETeam.KyungSeo
     public partial class MainPlayerController : PlayerController
     {
         #region Variables
-        private GameObject swordPrefab = null;
+        [SerializeField] private GameObject swordPrefab = null;
 
         [Header("Ä® µ¥¹ÌÁö")]
         [SerializeField] private int swordNormalDamage = 30;

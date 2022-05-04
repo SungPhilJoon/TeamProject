@@ -59,7 +59,6 @@ namespace ETeam.FeelJoon
         private Transform[] ProcessMeshObject(MeshRenderer[] meshRenderers)
         {
             List<Transform> itemTransforms = new List<Transform>();
-            int i = 0;
 
             foreach (MeshRenderer renderer in meshRenderers)
             {
@@ -80,6 +79,7 @@ namespace ETeam.FeelJoon
         {
             foreach (Transform child in root)
             {
+                // Debug.Log()
                 rootBoneDictionary.Add(child.name.GetHashCode(), child);
 
                 TraverseHierarchy(child);

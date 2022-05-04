@@ -11,26 +11,13 @@ namespace ETeam.KyungSeo
     public partial class MainPlayerController : PlayerController
     {
         #region Variables
-<<<<<<< Updated upstream
-        //[SerializeField] private GameObject bowPrefab = null;
 
-        [Header("활 오브젝트")]
-        [SerializeField] private GameObject bowPrefab;
-        public Transform spawnPoint;
-=======
         private GameObject bowPrefab = null;
 
         private Transform spawnPoint;
 
->>>>>>> Stashed changes
         public ObjectPoolManager<Arrow> objectPoolManager;
         
-
-        #endregion Variables
-
-        #region Helper Methods
-        
-
         #endregion Helper Methods
 
         #region Action Methods
@@ -40,17 +27,18 @@ namespace ETeam.KyungSeo
             Arrow arrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
             arrow.gameObject.SetActive(true);
             arrow.transform.position = spawnPoint.position;
-            
-            if(!cameraFocus._isAimOn)
-                arrow.transform.forward = spawnPoint.forward;
-            else
-            {
-                Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    arrow.transform.forward = (hit.point - arrow.transform.position).normalized;
-                }
-            }
+            arrow.transform.forward = spawnPoint.forward;
+
+            //if(!cameraFocus._isAimOn)
+            //    arrow.transform.forward = spawnPoint.forward;
+            //else
+            //{
+            //    Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+            //    if (Physics.Raycast(ray, out RaycastHit hit))
+            //    {
+            //        arrow.transform.forward = (hit.point - arrow.transform.position).normalized;
+            //    }
+            //}
             
             arrow.moveSpeed = 10f;
         }

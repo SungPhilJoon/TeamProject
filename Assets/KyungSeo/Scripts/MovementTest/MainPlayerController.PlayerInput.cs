@@ -13,7 +13,7 @@ namespace ETeam.KyungSeo
 
         public void Move(InputAction.CallbackContext callbackContext)
         {
-            if (callbackContext.performed) // 키 누르고있으면 이동하도록 value 읽기
+            if (IsAlive && callbackContext.performed) // 키 누르고있으면 이동하도록 value 읽기
             {
                 inputValue = callbackContext.ReadValue<Vector2>();
                 movement.x = inputValue.x;
@@ -23,7 +23,7 @@ namespace ETeam.KyungSeo
                 stateMachine.ChangeState<PlayerMove>();
             }
 
-            if (callbackContext.canceled) // 키를 떼면 정지
+            if (IsAlive && callbackContext.canceled) // 키를 떼면 정지
             {
                 movement = Vector2.zero;
                 isMove = false;
@@ -48,16 +48,22 @@ namespace ETeam.KyungSeo
         #region Input Methods : Attack
         public void Attack(InputAction.CallbackContext callbackContext)
         {
-            AttackInput(currentPlayerWeapon, callbackContext,
-                EnterNormalSwordAttack, ExitNormalSwordAttack,
-                EnterNormalBowAttack, ExitNormalBowAttack);
+            if (IsAlive)
+            {
+                AttackInput(currentPlayerWeapon, callbackContext,
+                    EnterNormalSwordAttack, ExitNormalSwordAttack,
+                    EnterNormalBowAttack, ExitNormalBowAttack);
+            }
         }
 
         public void Skill1(InputAction.CallbackContext callbackContext)
         {
-            AttackInput(currentPlayerWeapon, callbackContext,
-                EnterSkillSwordAttack, ExitSkillSwordAttack,
-                EnterSkillBowAttack, ExitSkillBowAttack);
+            if (IsAlive)
+            {
+                AttackInput(currentPlayerWeapon, callbackContext,
+                    EnterSkillSwordAttack, ExitSkillSwordAttack,
+                    EnterSkillBowAttack, ExitSkillBowAttack);
+            }
         }
 
         private void AttackInput(PlayerWeapon currentPlayerWeapon,

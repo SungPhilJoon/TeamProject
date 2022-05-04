@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1014495930
+--- !u!1 &359076883
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1014495931}
+  - component: {fileID: 359076884}
   m_Layer: 6
   m_Name: DefaultWeapon
   m_TagString: Untagged
@@ -16,19 +16,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &1014495931
+--- !u!4 &359076884
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014495930}
+  m_GameObject: {fileID: 359076883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2177507722551171610}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1056602940
 GameObject:
@@ -122,7 +122,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 19f0fda3861e2014aadfc6487ed5e4b7, type: 2}
   m_TargetDisplay: 1
@@ -162,7 +162,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2177507722551171610}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042826285
 GameObject:
@@ -437,7 +437,19 @@ MonoBehaviour:
     m_ActionId: f2fa800d-7eec-4edd-b860-f32e708206df
     m_ActionName: PlayerBow/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: AimIn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2672a2b7-a9b4-45d3-a4a6-10e5a52cf7a3
     m_ActionName: PlayerBow/Aim[/Keyboard/r]
   - m_PersistentCalls:
@@ -807,20 +819,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   currentPlayerWeapon: 0
-  attackRange: 0
   targetMask:
     serializedVersion: 2
     m_Bits: 384
   hitTransform: {fileID: 7644081197937451186}
-  maxHealth: 500
+  maxHealth: 100
   health: 0
   closeupSpeed: 3
   characterFace: {fileID: 0}
   characterFaceCameraTransform: {fileID: 1302949263}
-  spawnPoint: {fileID: 2042826286}
+  reviveTransform: {fileID: 0}
+  gameoverUI: {fileID: 0}
+  gameoverText: {fileID: 0}
+  swordPrefab: {fileID: 0}
   swordNormalDamage: 30
   swordSkillDamage: 50
-  manualCollision: {fileID: 0}
   skill1_CoolTime: 5
   moveSpeed: 5
   dashDistance: 5
@@ -831,12 +844,12 @@ MonoBehaviour:
   isSettingOn: 0
   isInventoryOn: 0
   isEquipmentOn: 0
+  controller: {fileID: 0}
   gravity: -29.81
   drags: {x: 10, y: 10, z: 10}
-  playerInput: {fileID: 0}
   weaponErrorText: {fileID: 0}
   attackStateController: {fileID: 0}
-  defaultWeaponPrefab: {fileID: 1014495930}
+  defaultWeaponPrefab: {fileID: 8045601669049900088, guid: db9c622fd2549ea468a7af4d0df2c126, type: 3}
   inventory: {fileID: 11400000, guid: 58c58be2cdbc69d45b532bc1a59e7dc7, type: 2}
   equipment: {fileID: 11400000, guid: cd413d767adb19b458c72db0009fbe99, type: 2}
 --- !u!114 &7644081197255851442
@@ -895,7 +908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7644081197937451187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 2.01}
+  m_LocalPosition: {x: 0, y: 1, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7644081197255851407}

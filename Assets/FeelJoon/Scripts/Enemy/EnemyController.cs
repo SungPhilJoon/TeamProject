@@ -14,8 +14,8 @@ namespace ETeam.FeelJoon
     }
 
     /// <summary>
-    /// EnemyControllerÀÇ ±âº» µ¥ÀÌÅ¸ Å¬·¡½º ÀÔ´Ï´Ù.
-    /// ±Ù°Å¸®¿Í ¿ø°Å¸® Enemy´Â ÀÌ Å¬·¡½º¸¦ »ó¼Ó ¹Þ¾Æ¾ß ÇÕ´Ï´Ù. 
+    /// EnemyControllerï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½Å¸ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.
+    /// ï¿½Ù°Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å¸ï¿½ Enemyï¿½ï¿½ ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¾ï¿½ ï¿½Õ´Ï´ï¿½. 
     /// </summary>
     public class EnemyController : MonoBehaviour, IAttackable, IDamageable
     {
@@ -34,20 +34,20 @@ namespace ETeam.FeelJoon
 
         public float attackRange;
 
-        [Header("Ã¼·Â")]
+        [Header("Ã¼ï¿½ï¿½")]
         public int maxHealth = 100;
         public int health;
 
-        [Header("ÀüÅõ")]
+        [Header("ï¿½ï¿½ï¿½ï¿½")]
         public int damage;
         public float coolTime;
         private ManualCollision enemyManualCollision;
 
-        [Header("¾ÆÀÌÅÛ µå·Ó")]
+        [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½")]
         [SerializeField] private ItemObjectDatabase database;
 
         private Transform projectilePoint;
-        private Vector3 generatePosition; // ´Ù½Ã »ý¼ºµÉ ¸ó½ºÅÍÀÇ À§Ä¡
+        private Vector3 generatePosition; // ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
         [SerializeField] private float delay = 3f;
 
         protected readonly int hashHitTrigger = Animator.StringToHash("Hit");
@@ -75,9 +75,6 @@ namespace ETeam.FeelJoon
             }
         }
 
-<<<<<<< Updated upstream
-        public Animator EnemyAnimator => animator;
-=======
         public Transform ProjectilePoint
         {
             get => projectilePoint;
@@ -95,7 +92,8 @@ namespace ETeam.FeelJoon
                 }
             }
         }
->>>>>>> Stashed changes
+
+        public Animator EnemyAnimator => animator;
 
         #endregion Properties
 

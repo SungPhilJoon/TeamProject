@@ -71,6 +71,8 @@ namespace ETeam.KyungSeo
             protected set => damage = value;
         }
 
+        public PlayerInput PlayerInput => playerInput;
+
         #endregion Properties
 
         #region Unity Methods
@@ -83,14 +85,11 @@ namespace ETeam.KyungSeo
             attackStateController = GetComponent<AttackStateController>();
             camera = Camera.main;
 
-<<<<<<< Updated upstream
-=======
             spawnPoint = transform.GetChild(transform.childCount - 1);
 
->>>>>>> Stashed changes
             objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
+
             playerEquipment = GetComponent<PlayerEquipment>();
-            cameraFocus = FindObjectOfType<ClickDragCamera>();
 
             playerInput.SwitchCurrentActionMap("Default");
 
@@ -126,7 +125,7 @@ namespace ETeam.KyungSeo
                     Vector3 lookRight = new Vector3(focus.right.x, 0f, focus.right.z).normalized;
                     Vector3 moveDir = lookForward * movement.z + lookRight * movement.x;
 
-                    transform.forward = Vector3.Lerp(transform.forward, moveDir, 10f * Time.deltaTime);
+                    transform.forward = Vector3.Lerp(transform.forward, moveDir, 30f * Time.deltaTime);
                     controller.Move(moveDir * Time.deltaTime * moveSpeed);
                 }
 
@@ -145,246 +144,6 @@ namespace ETeam.KyungSeo
         }
 
         #endregion
-<<<<<<< Updated upstream
-
-        #region Input Methods : Movements
-
-        public void Move(InputAction.CallbackContext callbackContext)
-        {
-            if (callbackContext.performed) // 키 누르고있으면 이동하도록 value 읽기
-            {
-                inputValue = callbackContext.ReadValue<Vector2>();
-                movement.x = inputValue.x;
-                movement.y = 0f;
-                movement.z = inputValue.y;
-                isMove = true;
-                stateMachine.ChangeState<PlayerMove>();
-            }
-
-            if (callbackContext.canceled) // 키를 떼면 정지
-            {
-                movement = Vector2.zero;
-                isMove = false;
-                stateMachine.ChangeState<PlayerIdle>();
-            }
-        }
-
-        public void Dash(InputAction.CallbackContext callbackContext)
-        {
-            if (callbackContext.started)
-            {
-                Vector3 dashVelocity = Vector3.Scale(transform.forward, dashDistance * new Vector3((Mathf.Log(1 / (drags.x * Time.deltaTime + 1)) / -Time.deltaTime),
-                    0,
-                    (Mathf.Log(1 / (drags.z * Time.deltaTime + 1)) / -Time.deltaTime)));
-                calcVelocity += dashVelocity;
-                stateMachine.ChangeState<PlayerDash>();
-            }
-        }
-
-        #endregion Input Methods : Movements
-
-        #region Input Methods : Attack
-        public void Attack(InputAction.CallbackContext callbackContext)
-        {
-            if (!isOnUI && callbackContext.started)
-            {
-                switch (currentPlayerWeapon)
-                {
-                    case PlayerWeapon.Sword:
-                        AttackStanceToUsedEnter(true, EnterNormalSwordAttack, EnterNormalComboAttack);
-                        AttackStanceToUsedExit(true, ExitNormalComboAttack);
-                        break;
-                    case PlayerWeapon.Bow:
-                        AttackStanceToUsedEnter(true, EnterNormalBowAttack);
-                        AttackStanceToUsedExit(true, ExitNormalBowAttack);
-                        break;
-                }
-                stateMachine.ChangeState<PlayerAttack>();
-            }
-            else if (!isOnUI && callbackContext.canceled)
-            {
-                stateMachine.ChangeState<PlayerIdle>();
-                switch (currentPlayerWeapon)
-                {
-                    case PlayerWeapon.Sword:
-                        AttackStanceToUsedEnter(false, EnterNormalSwordAttack, EnterNormalComboAttack);
-                        AttackStanceToUsedExit(false, ExitNormalComboAttack);
-                        break;
-                    case PlayerWeapon.Bow:
-                        AttackStanceToUsedEnter(false, EnterNormalBowAttack);
-                        AttackStanceToUsedExit(false, ExitNormalBowAttack);
-                        break;
-                }
-            }
-        }
-
-        public void Skill1(InputAction.CallbackContext callbackContext)
-        {
-            if (!isOnUI && callbackContext.started)
-            {
-                switch (currentPlayerWeapon)
-                {
-                    case PlayerWeapon.Sword:
-                        AttackStanceToUsedEnter(true, EnterSkillSwordAttack);
-                        AttackStanceToUsedExit(true, ExitSkillSwordAttack);
-                        break;
-                    case PlayerWeapon.Bow:
-                        AttackStanceToUsedEnter(true, EnterSkillBowAttack);
-                        AttackStanceToUsedExit(true, ExitSkillBowAttack);
-                        break;
-                }
-                stateMachine.ChangeState<PlayerAttack>();
-            }
-            else if (!isOnUI && callbackContext.canceled)
-            {
-                stateMachine.ChangeState<PlayerIdle>();
-                switch (currentPlayerWeapon)
-                {
-                    case PlayerWeapon.Sword:
-                        AttackStanceToUsedEnter(false, EnterSkillSwordAttack);
-                        AttackStanceToUsedExit(false, ExitSkillSwordAttack);
-                        break;
-                    case PlayerWeapon.Bow:
-                        AttackStanceToUsedEnter(false, EnterSkillBowAttack);
-                        AttackStanceToUsedExit(false, ExitSkillBowAttack);
-                        break;
-                }
-            }
-        }
-
-        #endregion Input Methods : Attack
-
-        #region Input Methods : Interact
-        public void Interact(InputAction.CallbackContext callbackContext)
-        {
-            if (callbackContext.started)
-            {
-                SetTarget(out target, targetMask);
-
-                if (target != null)
-                {
-                    IInteractable interactable = target.GetComponent<IInteractable>();
-                    interactable?.Interact(this.gameObject);
-                    target = null;
-                }
-            }
-        }
-
-        #endregion Interact
-
-        #region Input Methods : Swap
-
-        public void SwapToBow(InputAction.CallbackContext callbackContext)
-        {
-            if (callbackContext.started)
-            {
-                if (equipment.Slots[(int)ItemType.Bow].SlotItemObject == null)
-                {
-                    bowPrefab = null;
-                }
-
-                SwapWeapon(bowPrefab, PlayerWeapon.Bow);
-
-                if (bowPrefab != null)
-                {
-                    animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
-                    playerInput.SwitchCurrentActionMap("PlayerBow");
-                }
-
-            }
-        }
-
-        public void SwapToSword(InputAction.CallbackContext callbackContext)
-        {
-            if (callbackContext.started)
-            {
-                if (equipment.Slots[(int)ItemType.Sword].SlotItemObject == null)
-                {
-                    swordPrefab = null;
-                }
-
-                SwapWeapon(swordPrefab, PlayerWeapon.Sword);
-
-                if (swordPrefab != null)
-                {
-                    animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
-                    playerInput.SwitchCurrentActionMap("PlayerSword");
-                }
-            }
-        }
-
-        public void SwapDefault(InputAction.CallbackContext callbackContext)
-        {
-            if (callbackContext.started)
-            {
-                SwapWeapon(defaultWeaponPrefab, PlayerWeapon.Default);
-                animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
-                playerInput.SwitchCurrentActionMap("Default");
-            }
-        }
-
-        #endregion
-
-        #region Input Methods : Call UIs
-
-        public void CallSettings(InputAction.CallbackContext callbackContext)
-        {
-            if (!isSettingOn)
-            {
-                isSettingOn = true;
-                Time.timeScale = 0;
-                settingsUI.gameObject.SetActive(true);
-            }
-            else
-            {
-                if (isInventoryOn)
-                {
-                    isInventoryOn = false;
-                    inventoryUI.gameObject.SetActive(false);
-                }
-                if (isEquipmentOn)
-                {
-                    isEquipmentOn = false;
-                    equipmentUI.gameObject.SetActive(false);
-                }
-
-                isSettingOn = false;
-                Time.timeScale = 1;
-                settingsUI.gameObject.SetActive(false);
-            }
-        }
-
-        public void CallInventory(InputAction.CallbackContext callbackContext)
-        {
-            if (!isInventoryOn)
-            {
-                isInventoryOn = true;
-                inventoryUI.gameObject.SetActive(true);
-            }
-            else
-            {
-                isInventoryOn = false;
-                inventoryUI.gameObject.SetActive(false);
-            }
-        }
-
-        public void CallEquipment(InputAction.CallbackContext callbackContext)
-        {
-            if (!isEquipmentOn)
-            {
-                isEquipmentOn = true;
-                equipmentUI.gameObject.SetActive(true);
-            }
-            else
-            {
-                isEquipmentOn = false;
-                equipmentUI.gameObject.SetActive(false);
-            }
-        }
-
-        #endregion
-=======
->>>>>>> Stashed changes
 
         #region Inventory
         public bool PickupItem(PickupItem pickupItem, int amount = 1)
@@ -471,7 +230,7 @@ namespace ETeam.KyungSeo
         /// <returns></returns>
         private IEnumerator CheckEquipWeapon()
         {
-            swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0].gameObject;
+            swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0]?.gameObject;
             bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
 
             while (true)
@@ -537,8 +296,6 @@ namespace ETeam.KyungSeo
                         animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
                         playerInput.SwitchCurrentActionMap("Default");
                     }
-
-                    // bowPrefab.SetActive(true);
                 }
 
                 swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0].gameObject;
@@ -546,61 +303,6 @@ namespace ETeam.KyungSeo
             }
         }
 
-<<<<<<< Updated upstream
-        /// <summary>
-        /// AttackState가 들어오면 발생하는 이벤트들을 더하거나 뺄 수 있는 함수 입니다.
-        /// </summary>
-        /// <param name="isAdded">이벤트를 더할건지 뺄건지 결정하는 매개변수 입니다.</param>
-        /// <param name="attackStates"></param>
-        public void AttackStanceToUsedEnter(bool isAdded, params Action[] attackStates)
-        {
-            if (isAdded)
-            {
-                for (int i = 0; i < attackStates.Length; i++)
-                {
-                    attackStateController.OnEnterAttackStateHandler += attackStates[i];
-                }
-            }
-            else
-            {
-                for (int i = 0; i < attackStates.Length; i++)
-                {
-                    attackStateController.OnEnterAttackStateHandler -= attackStates[i];
-                }
-            }
-        }
-
-        /// <summary>
-        /// AttackState가 나가면 발생하는 이벤트들을 더하거나 뺄 수 있는 함수 입니다.
-        /// </summary>
-        /// <param name="isAdded">이벤트를 더할건지 뺄건지 결정하는 매개변수 입니다.</param>
-        /// <param name="attackStates"></param>
-        public void AttackStanceToUsedExit(bool isAdded, params Action[] attackStates)
-        {
-            if (isAdded)
-            {
-                for (int i = 0; i < attackStates.Length; i++)
-                {
-                    attackStateController.OnExitAttackStateHandler += attackStates[i];
-                }
-            }
-            else
-            {
-                for (int i = 0; i < attackStates.Length; i++)
-                {
-                    attackStateController.OnExitAttackStateHandler -= attackStates[i];
-                }
-            }
-        }
-        
-        //public void Revive()
-        //{
-        //    GameManager.Instance.Revive();
-        //}
-
-        #endregion
-=======
         #endregion Helper Methods
->>>>>>> Stashed changes
     }
 }
