@@ -250,16 +250,7 @@ namespace ETeam.KyungSeo
 
                     try
                     {
-                        if (manualCollision == null)
-                        {
-                            manualCollision = swordPrefab.GetComponent<BoxCollider>();
-                        }
-                        else if (playerEquipment.manualCollision != null)
-                        {
-                            manualCollision = playerEquipment.manualCollision;
-                        }
-
-                        if (manualCollision == null)
+                        if (equipment.Slots[(int)ItemType.Sword].SlotItemObject == null)
                         {
                             throw new NullReferenceException();
                         }

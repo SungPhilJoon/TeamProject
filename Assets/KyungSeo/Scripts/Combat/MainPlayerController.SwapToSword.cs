@@ -16,8 +16,6 @@ namespace ETeam.KyungSeo
         [SerializeField] private int swordNormalDamage = 30;
         [SerializeField] private int swordSkillDamage = 50;
 
-        private BoxCollider manualCollision;
-
         [Header("ÄðÅ¸ÀÓ")]
         public float skill1_CoolTime = 5f;
 
@@ -36,7 +34,6 @@ namespace ETeam.KyungSeo
         #region Action Methods
         public void EnterNormalSwordAttack()
         {
-            manualCollision.enabled = true;
             Damage = swordNormalDamage;
             animator.SetTrigger(hashOnNormalAttack);
 
@@ -45,13 +42,11 @@ namespace ETeam.KyungSeo
 
         public void ExitNormalSwordAttack()
         {
-            manualCollision.enabled = false;
             animator.SetBool(hashIsComboAttack, false);
         }
 
         public void EnterSkillSwordAttack()
         {
-            manualCollision.enabled = true;
             Damage = swordSkillDamage;
             animator.SetTrigger(hashSwordSkill);
             animator.SetBool(hashIsOnStopLooping, false);
@@ -64,7 +59,6 @@ namespace ETeam.KyungSeo
 
         public void ExitSkillSwordAttack()
         {
-            manualCollision.enabled = false;
             animator.SetBool(hashIsOnStopLooping, true);
 
             if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))

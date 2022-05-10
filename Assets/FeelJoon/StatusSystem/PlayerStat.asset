@@ -10,8 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f26069f32ba3e74d975953ba1c7fe96, type: 3}
-  m_Name: New Stats
+  m_Name: PlayerStat
   m_EditorClassIdentifier: 
-  attributes: []
-  level: 0
+  attributes:
+  - type: 0
+    value:
+      modifiedValue: 100
+  - type: 0
+    value:
+      modifiedValue: 100
+  level: 1
   exp: 0

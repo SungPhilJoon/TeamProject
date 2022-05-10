@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
+  owner: {fileID: 0}
   damage: 50
-  delay: 1
+  delay: 0.5
 --- !u!136 &7143774080145858304
 CapsuleCollider:
   m_ObjectHideFlags: 0

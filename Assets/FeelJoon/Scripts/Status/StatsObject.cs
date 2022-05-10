@@ -97,10 +97,9 @@ namespace ETeam.FeelJoon
             level = 1;
             exp = 0;
 
-            SetBaseValue(CharacterAttribute.Agility, 100);
-            SetBaseValue(CharacterAttribute.Intellect, 100);
-            SetBaseValue(CharacterAttribute.Stamina, 100);
             SetBaseValue(CharacterAttribute.Strength, 100);
+            SetBaseValue(CharacterAttribute.Defensive, 100);
+            SetBaseValue(CharacterAttribute.CriticalRate, 100);
             SetBaseValue(CharacterAttribute.Health, 100);
             SetBaseValue(CharacterAttribute.Mana, 100);
 

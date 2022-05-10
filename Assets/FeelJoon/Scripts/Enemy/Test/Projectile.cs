@@ -9,17 +9,30 @@ namespace ETeam.FeelJoon
     {
         #region Variables
         public float moveSpeed = 0f;
-        public int damage;
         public float delay = 2f;
+        private int damage;
 
-        public GameObject owner;
+        public EnemyController owner;
 
         #endregion Variables
 
+        #region Properties
+        public Transform Target
+        {
+            get => owner.Target;
+        }
+
+        #endregion Properties
+
         #region Unity Methods
+        void Awake()
+        {
+            damage = owner.damage;
+        }
+
         void OnEnable()
         {
-            StartCoroutine(SetBackArrow(delay));
+            StartCoroutine(SetBackProjectile(delay));
         }
 
         void OnTriggerEnter(Collider other)
@@ -38,13 +51,18 @@ namespace ETeam.FeelJoon
 
         void Update()
         {
-            transform.Translate(transform.forward * moveSpeed * Time.deltaTime);
+            if (!gameObject.activeSelf)
+            {
+                return;
+            }
+
+            transform.localPosition += new Vector3(0f, 0f, moveSpeed * Time.deltaTime);
         }
 
         #endregion Unity Methods
 
         #region Helper Methods
-        private IEnumerator SetBackArrow(float delay)
+        private IEnumerator SetBackProjectile(float delay)
         {
             yield return new WaitForSeconds(delay);
             gameObject.SetActive(false);

@@ -9,6 +9,6 @@ namespace ETeam.FeelJoon
             get;
         }
     
-        void TakeDamage(int damage, GameObject hitEffectPrefab = null);
+        void TakeDamage(int damage, Transform target = null, GameObject hitEffectPrefab = null);
     }
 }

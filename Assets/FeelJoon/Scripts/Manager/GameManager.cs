@@ -32,7 +32,10 @@ public class GameManager : Singleton<GameManager>
 
     #endregion Properties
 
-    public void Revive() // ���� �߻���. ��?
+    /// <summary>
+    /// 부활 구현 함수
+    /// </summary>
+    public void Revive()
     {
         mainPlayer = player.GetComponent<MainPlayerController>();
 

@@ -33,6 +33,8 @@ namespace ETeam.FeelJoon
 
         protected bool isMove;
 
+        private ManualCollision playerManualCollision;
+
         [Header("Ã¼·Â")]
         public int maxHealth = 100;
         public int health;
@@ -47,6 +49,8 @@ namespace ETeam.FeelJoon
 
         protected readonly int hashSwapIndex = Animator.StringToHash("SwapIndex");
         protected readonly int hashHitTrigger = Animator.StringToHash("HitTrigger");
+
+        private Color originColor;
 
         #endregion Variables
 
@@ -88,9 +92,13 @@ namespace ETeam.FeelJoon
 
             currentPlayerWeapon = PlayerWeapon.Default;
 
+            originColor = characterFace.color;
+
             health = maxHealth;
             gameoverUI.SetActive(false);
             gameoverText = gameoverUI.GetComponentInChildren<TMP_Text>();
+
+            playerManualCollision = GetComponentInChildren<PlayerManualCollision>();
         }
 
         protected virtual void Update()
@@ -103,7 +111,6 @@ namespace ETeam.FeelJoon
         #region Helper Methods
         private IEnumerator ChangePlayerUIColor()
         {
-            Color originColor = characterFace.color;
             characterFace.color = Color.red;
             yield return StartCoroutine(CloseUpPlayer());
             characterFace.color = originColor;
@@ -139,8 +146,21 @@ namespace ETeam.FeelJoon
 
         public void OnExecuteMeleeAttack()
         {
-            IDamageable damageable = target.GetComponent<IDamageable>();
-            damageable.TakeDamage(damage);
+            playerManualCollision.CheckCollision();
+
+            foreach (Collider targetCollider in playerManualCollision.targetColliders)
+            {
+                if (targetCollider == null)
+                {
+                    continue;
+                }
+
+                IDamageable damageable = targetCollider.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(damage);
+                }
+            }
         }
 
         public void OnExecuteProjectileAttack()
@@ -153,7 +173,7 @@ namespace ETeam.FeelJoon
         #region IDamageable
         public bool IsAlive => health > 0;
 
-        public void TakeDamage(int damage, GameObject hitEffectPrefab = null)
+        public void TakeDamage(int damage, Transform target = null, GameObject hitEffectPrefab = null)
         {
             if (!IsAlive)
             {

@@ -20,9 +20,6 @@ namespace ETeam.FeelJoon
 
         private Transform myTransform;
 
-        [HideInInspector]
-        public BoxCollider manualCollision;
-
         #endregion Variables
 
         #region Unity Methods
@@ -87,8 +84,6 @@ namespace ETeam.FeelJoon
                     itemInstances[index] = EquipMeshItem(itemObject);
                     break;
             }
-
-            // GetComponent<PlayerController>().animator.Rebind();
         }
 
         private void RemoveItemBy(ItemType type)
@@ -144,13 +139,6 @@ namespace ETeam.FeelJoon
                     itemInstances[index] = EquipMeshItem(itemObject);
                     break;
             }
-
-            //if (itemInstances[index] != null)
-            //{
-            //    itemInstances[index].name = slot.allowedItems[0].ToString();
-            //}
-
-            // GetComponent<PlayerController>().animator.Rebind();
         }
 
         private ItemInstances EquipSkinnedItem(ItemObject itemObject)
@@ -183,11 +171,9 @@ namespace ETeam.FeelJoon
             Transform[] itemTransforms = combiner.AddMesh(itemObject.modelPrefab);
             if (itemTransforms.Length > 0)
             {
-                Debug.Log("¿Ö ³ª¿Í");
                 ItemInstances instance = new GameObject().AddComponent<ItemInstances>();
                 instance.itemTransforms.AddRange(itemTransforms.ToList<Transform>());
                 instance.transform.parent = myTransform;
-                manualCollision = instance.itemTransforms[0].GetComponent<BoxCollider>();
 
                 return instance;
             }

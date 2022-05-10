@@ -17,6 +17,8 @@ namespace ETeam.FeelJoon
         private readonly int hashIsAlive = Animator.StringToHash("IsAlive");
         private readonly int hashOnDeadTrigger = Animator.StringToHash("OnDeadTrigger");
 
+        private readonly string reviveMessage = "초 후에\n자동으로\n부활합니다.";
+
         #endregion Variables
 
         public override void OnInitialized()
@@ -31,8 +33,6 @@ namespace ETeam.FeelJoon
             currentActionMap = playerInput.currentActionMap;
             playerInput.SwitchCurrentActionMap("PlayerDead");
 
-            Debug.Log("히히 죽엇땅");
-
             animator.SetBool(hashIsAlive, context.IsAlive);
             animator.SetTrigger(hashOnDeadTrigger);
         }
@@ -40,11 +40,11 @@ namespace ETeam.FeelJoon
         public override void Update(float deltaTime)
         {
             int reviveCount = Mathf.RoundToInt(5 - stateMachine.ElapsedTimeInState);
-            context.gameoverText.text = $"{reviveCount}초 후에\n자동으로\n부활합니다.";
+            string countReviveMessage = reviveCount.ToString("n0") + reviveMessage;
+            context.gameoverText.text = countReviveMessage;
 
             if (stateMachine.ElapsedTimeInState > 5.0f)
             {
-                Debug.Log("개같이 부활!");
                 playerInput.currentActionMap = currentActionMap;
                 GameManager.Instance.Revive();
 

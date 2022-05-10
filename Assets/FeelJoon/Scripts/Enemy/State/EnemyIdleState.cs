@@ -36,8 +36,8 @@ namespace ETeam.FeelJoon
 
             if (context.IsAvailableAttack)
             {
-                // animator.SetTrigger(hashAttack);
-                // animator.SetInteger(hashAttackIndex, Random.Range(0, 2));
+                animator.SetTrigger(hashAttack);
+                animator.SetInteger(hashAttackIndex, Random.Range(0, 2));
                 stateMachine.ChangeState<EnemyAttackState>();
             }
             else

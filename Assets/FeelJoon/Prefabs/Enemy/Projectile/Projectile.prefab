@@ -111,3 +111,4 @@ MonoBehaviour:
   moveSpeed: 0
   damage: 30
   delay: 1
+  owner: {fileID: 0}

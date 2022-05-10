@@ -22,7 +22,6 @@ namespace ETeam.FeelJoon
 
         public override void OnEnter()
         {
-            Debug.Log($"드루왔니?");
             animator?.SetBool(hashIsMove, context.IsMove);
             controller?.Move(Vector3.zero);
         }

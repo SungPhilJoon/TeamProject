@@ -7,8 +7,9 @@ namespace ETeam.FeelJoon
 {
     public class Arrow : MonoBehaviour
     {
-        public float moveSpeed = 0f;
-        public int damage;
+        [HideInInspector] public float moveSpeed = 0f;
+        [HideInInspector] public MainPlayerController owner;
+        [HideInInspector] public int damage;
         public float delay = 2f;
 
         void OnEnable()
@@ -23,10 +24,13 @@ namespace ETeam.FeelJoon
 
         void OnTriggerEnter(Collider other)
         {
-            IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+            if (other.CompareTag("Enemy"))
+            {
+                IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
 
-            damageable?.TakeDamage(damage);
-            gameObject.SetActive(false);
+                damageable?.TakeDamage(damage, owner.transform);
+                gameObject.SetActive(false);
+            }
         }
 
         private IEnumerator SetBackArrow(float delay)

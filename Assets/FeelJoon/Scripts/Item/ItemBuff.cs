@@ -8,10 +8,9 @@ namespace ETeam.FeelJoon
 {
     public enum CharacterAttribute
     {
-        Agility,
-        Intellect,
-        Stamina,
         Strength,
+        Defensive,
+        CriticalRate,
         Health,
         Mana
     }

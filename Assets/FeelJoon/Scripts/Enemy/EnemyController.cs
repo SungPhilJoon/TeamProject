@@ -14,17 +14,21 @@ namespace ETeam.FeelJoon
     }
 
     /// <summary>
-    /// EnemyController�� �⺻ ����Ÿ Ŭ���� �Դϴ�.
-    /// �ٰŸ��� ���Ÿ� Enemy�� �� Ŭ������ ��� �޾ƾ� �մϴ�. 
+    /// 몬스터의 데이터와 행동을 제어하는 클래스
     /// </summary>
     public class EnemyController : MonoBehaviour, IAttackable, IDamageable
     {
+        #region Delegates
+        public System.Func<GameObject, float, IEnumerator> GenerateHandler; 
+
+        #endregion Delegates
+
         #region Variables
         protected StateMachine<EnemyController> stateMachine;
 
         protected Animator animator;
 
-        protected ObjectPoolManager<Projectile> objectPoolManager;
+        public Projectile projectile;
 
         public LayerMask targetMask;
         public EnemyType enemyType;
@@ -34,25 +38,26 @@ namespace ETeam.FeelJoon
 
         public float attackRange;
 
-        [Header("ü��")]
+        [Header("몬스터 체력")]
         public int maxHealth = 100;
         public int health;
 
-        [Header("����")]
+        [Header("몬스터 전투")]
         public int damage;
         public float coolTime;
         private ManualCollision enemyManualCollision;
 
-        [Header("������ ���")]
+        [Header("드랍 아이템 목록")]
         [SerializeField] private ItemObjectDatabase database;
 
         private Transform projectilePoint;
-        private Vector3 generatePosition; // �ٽ� ������ ������ ��ġ
-        [SerializeField] private float delay = 3f;
+        private Vector3 generatePosition; // 몬스터가 다시 생성되는 위치
 
         protected readonly int hashHitTrigger = Animator.StringToHash("Hit");
 
         [SerializeField] private NPCBattleUI battleUI;
+
+        private bool isCalledStartMethod = false;
 
         #endregion Variables
 
@@ -105,11 +110,22 @@ namespace ETeam.FeelJoon
                 return;
             }
 
-            ProjectilePoint = transform.GetChild(transform.childCount - 1);
+            projectilePoint = transform.GetChild(transform.childCount - 1);
+        }
 
-            objectPoolManager = new ObjectPoolManager<Projectile>(PooledObjectNameList.NameOfProjectile, projectilePoint);
+        protected virtual void OnEnable()
+        {
+            if (isCalledStartMethod)
+            {
+                stateMachine.ChangeState<EnemyIdleState>();
 
-            generatePosition = transform.position;
+                transform.position = generatePosition;
+
+                health = maxHealth;
+                battleUI.Value = health;
+
+                enemyFOV.target = null;
+            }
         }
 
         protected virtual void Start()
@@ -135,7 +151,9 @@ namespace ETeam.FeelJoon
                 battleUI.Value = health;
             }
 
-            GameManager.Instance.GenerateMonsterUpdate = GenerateMonsterUpdate;
+            generatePosition = transform.position;
+
+            isCalledStartMethod = true;
         }
 
         protected virtual void Update()
@@ -143,7 +161,6 @@ namespace ETeam.FeelJoon
             if (GameManager.Instance.IsPlayerDead)
             {
                 stateMachine.ChangeState<EnemyVictoryState>();
-                Debug.Log(stateMachine.CurrentState);
             }
 
             stateMachine.Update(Time.deltaTime);
@@ -174,26 +191,6 @@ namespace ETeam.FeelJoon
             dropItem.AddComponent<CameraFacing>();
         }
 
-        private void GenerateMonsterUpdate(float delay)
-        {
-            StartCoroutine(MonsterDelayGenerated(delay));
-        }
-
-        private IEnumerator MonsterDelayGenerated(float delay)
-        {
-            float normalTime = 0f;
-
-            while (normalTime < delay)
-            {
-                normalTime += Time.deltaTime;
-
-                yield return null;
-            }
-
-            transform.position = generatePosition;
-            this.gameObject.SetActive(true);
-        }
-
         #endregion Helper Methods
 
         #region IAttackable
@@ -211,17 +208,22 @@ namespace ETeam.FeelJoon
                 }
 
                 IDamageable damageable = targetCollider.GetComponent<IDamageable>();
-                damageable.TakeDamage(damage);
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(damage);
+                }
             }
         }
 
         public void OnExecuteProjectileAttack()
         {
-            Projectile projectile = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfProjectile);
             projectile.gameObject.SetActive(true);
+
             projectile.transform.position = projectilePoint.position;
+
             projectile.transform.forward = (Target.position - projectilePoint.position).normalized;
-            projectile.moveSpeed = 5f;
+
+            projectile.moveSpeed = 9f;
         }
 
         #endregion IAttackable
@@ -229,7 +231,7 @@ namespace ETeam.FeelJoon
         #region IDamageable
         public bool IsAlive => health > 0;
 
-        public void TakeDamage(int damage, GameObject hitEffectPrefab)
+        public void TakeDamage(int damage, Transform target = null, GameObject hitEffectPrefab = null)
         {
             if (!IsAlive)
             {
@@ -247,6 +249,11 @@ namespace ETeam.FeelJoon
             if (IsAlive) 
             {
                 animator.SetTrigger(hashHitTrigger);
+
+                if (target != null)
+                {
+                    enemyFOV.FindTakeDamagedTarget(target);
+                }
             }
             else
             {

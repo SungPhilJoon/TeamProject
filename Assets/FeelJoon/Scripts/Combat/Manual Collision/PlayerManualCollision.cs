@@ -19,21 +19,12 @@ namespace ETeam.FeelJoon
             playerController = parent.GetComponent<PlayerController>();
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Enemy"))
-            {
-                playerController.Target = other.transform;
-                CheckCollision();
-            }
-        }
-
         #endregion Unity Methods
 
         #region Helper Methods
         public override void CheckCollision()
         {
-            playerController.OnExecuteMeleeAttack();
+           targetColliders = Physics.OverlapBox(transform.position, boxSize * 0.5f, transform.rotation, playerController.targetMask);
         }
 
         #endregion Helper Methods

@@ -11,12 +11,18 @@ namespace ETeam.KyungSeo
     public partial class MainPlayerController : PlayerController
     {
         #region Variables
+        [Header("활 데미지")]
+        [SerializeField] private int bowNormalDamage;
 
         private GameObject bowPrefab = null;
 
         private Transform spawnPoint;
 
         public ObjectPoolManager<Arrow> objectPoolManager;
+
+        [HideInInspector] public Arrow currentArrow;
+
+        protected readonly int hashDrawBow = Animator.StringToHash("DrawBow");
         
         #endregion Helper Methods
 
@@ -24,10 +30,13 @@ namespace ETeam.KyungSeo
         public void EnterNormalBowAttack()
         {
             animator.SetTrigger(hashOnNormalAttack);
-            Arrow arrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
-            arrow.gameObject.SetActive(true);
-            arrow.transform.position = spawnPoint.position;
-            arrow.transform.forward = spawnPoint.forward;
+            animator.SetBool(hashDrawBow, true);
+
+            currentArrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
+            currentArrow.moveSpeed = 10f;
+            currentArrow.damage = bowNormalDamage;
+
+            // 여기서 Aim 부분을 구현하면 될 거 같습니다.
 
             //if(!cameraFocus._isAimOn)
             //    arrow.transform.forward = spawnPoint.forward;
@@ -39,13 +48,20 @@ namespace ETeam.KyungSeo
             //        arrow.transform.forward = (hit.point - arrow.transform.position).normalized;
             //    }
             //}
-            
-            arrow.moveSpeed = 10f;
+
+
         }
 
         public void ExitNormalBowAttack()
         {
-            
+            animator.SetBool(hashDrawBow, false);
+
+            // Arrow currentArrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
+            currentArrow.gameObject.SetActive(true);
+
+            currentArrow.owner = this;
+            currentArrow.transform.position = spawnPoint.position;
+            currentArrow.transform.forward = spawnPoint.forward;
         }
 
         public void EnterSkillBowAttack()
