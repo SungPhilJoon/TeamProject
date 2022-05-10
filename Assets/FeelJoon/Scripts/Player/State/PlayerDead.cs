@@ -39,7 +39,7 @@ namespace ETeam.FeelJoon
 
         public override void Update(float deltaTime)
         {
-            int reviveCount = Mathf.RoundToInt(5 - stateMachine.ElapsedTimeInState);
+            float reviveCount = 5 - stateMachine.ElapsedTimeInState;
             string countReviveMessage = reviveCount.ToString("n0") + reviveMessage;
             context.gameoverText.text = countReviveMessage;
 
