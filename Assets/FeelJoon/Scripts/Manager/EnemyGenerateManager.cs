@@ -11,16 +11,39 @@ public class EnemyGenerateManager : Singleton<EnemyGenerateManager>
 
     [SerializeField] private float generateDelay = 2f;
 
+    private EnemyController[] enemies;
+
     #endregion Variables
+
+    #region Properties
+    public EnemyController[] Enemies => enemies;
+
+    #endregion Properties
+
+    #region Unity Methods
+    protected override void Awake()
+    {
+        base.Awake();
+
+        enemies = new EnemyController[transform.childCount];
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            enemies[i] = transform.GetChild(i).GetComponent<EnemyController>();
+        }
+    }
+
     void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).GetComponent<EnemyController>().GenerateHandler = GenerateEnemyDelay;
+            enemies[i].GenerateHandler = GenerateEnemyDelay;
         }
 
         StartCoroutine(UpdateDelay(updateDelay));
     }
+
+    #endregion Unity Methods
 
     #region Helper Methods
     public void EnemyGenerate()
@@ -29,9 +52,7 @@ public class EnemyGenerateManager : Singleton<EnemyGenerateManager>
         {
             if (!transform.GetChild(i).gameObject.activeSelf)
             {
-                GameObject enemy = transform.GetChild(i).gameObject;
-
-                StartCoroutine(enemy.GetComponent<EnemyController>().GenerateHandler(enemy, generateDelay));
+                StartCoroutine(enemies[i].GenerateHandler(enemies[i].gameObject, generateDelay));
                 break;
             }
         }

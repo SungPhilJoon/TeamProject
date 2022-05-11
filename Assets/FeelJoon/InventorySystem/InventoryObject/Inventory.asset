@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb98bcfb34a4204fb7721fd56874fa8, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
-  database: {fileID: 11400000, guid: 9a1ddcfb850a5864091ae9853bab9cff, type: 2}
+  database:
+  - {fileID: 11400000, guid: 9bcb85f160f811149b0074c3a51b0355, type: 2}
+  - {fileID: 11400000, guid: 8fbe845d9d6b7ea4c92bee79b60837b2, type: 2}
+  - {fileID: 11400000, guid: d2d0e214cf2a43648a3c5027e35f83d8, type: 2}
   type: 0
   container:
     slots:
@@ -20,6 +23,7 @@ MonoBehaviour:
       item:
         id: 2
         name: GreatSword01
+        itemType: 0
         buffs:
         - stat: 0
           value: 0
@@ -30,137 +34,160 @@ MonoBehaviour:
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0
     - allowedItems: 
       item:
         id: -1
         name: 
+        itemType: 0
         buffs: []
       amount: 0

@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d555e77c5043524bb7cbad5eab77704, type: 3}
-  m_Name: ItemDatabase
+  m_Name: SwordDatabase
   m_EditorClassIdentifier: 
+  databaseType: 0
   itemObjects:
   - {fileID: 11400000, guid: 13aded826775c35479d3bee340719783, type: 2}
-  - {fileID: 11400000, guid: f7ddc8dca9a5b6d4db17153724977799, type: 2}
   - {fileID: 11400000, guid: acfedf58586133040819c30c7fed72e5, type: 2}
-  - {fileID: 11400000, guid: f619d1812e16c794abae7631feacd083, type: 2}
-  - {fileID: 11400000, guid: 4b9b447c1a2251f44a83228d700b88b6, type: 2}
   - {fileID: 11400000, guid: d9801347bef8b6f47b5cdda3f4d6fcac, type: 2}

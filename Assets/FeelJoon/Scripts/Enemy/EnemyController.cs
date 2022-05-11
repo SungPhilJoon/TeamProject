@@ -48,7 +48,7 @@ namespace ETeam.FeelJoon
         private ManualCollision enemyManualCollision;
 
         [Header("드랍 아이템 목록")]
-        [SerializeField] private ItemObjectDatabase database;
+        [SerializeField] private ItemObjectDatabase[] database;
 
         private Transform projectilePoint;
         private Vector3 generatePosition; // 몬스터가 다시 생성되는 위치
@@ -171,7 +171,10 @@ namespace ETeam.FeelJoon
         #region Helper Methods
         private void DropItem()
         {
-            ItemObject dropItemObject = database.itemObjects[Random.Range(0, database.itemObjects.Length)];
+            int rndItemDatabaseNumber = Random.Range(0, database.Length);
+
+            ItemObject dropItemObject = database[rndItemDatabaseNumber].
+                itemObjects[Random.Range(0, database[rndItemDatabaseNumber].itemObjects.Length)];
 
             GameObject dropItem = new GameObject();
             dropItem.layer = LayerMask.NameToLayer("Interactable");

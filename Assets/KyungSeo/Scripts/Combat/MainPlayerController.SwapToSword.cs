@@ -10,19 +10,23 @@ namespace ETeam.KyungSeo
     public partial class MainPlayerController : PlayerController
     {
         #region Variables
-        [SerializeField] private GameObject swordPrefab = null;
+        private GameObject swordPrefab = null;
 
         [Header("Ä® µ¥¹ÌÁö")]
         [SerializeField] private int swordNormalDamage = 30;
-        [SerializeField] private int swordSkillDamage = 50;
+        [SerializeField] private int swordSkill1_Damage = 50;
 
         [Header("ÄðÅ¸ÀÓ")]
         public float skill1_CoolTime = 5f;
 
+        [Header("½ºÅ³ ÇÁ¸®ÆÕ")]
+        [SerializeField] private Skill1_ShockWave shockWave;
+
         protected readonly int hashIsComboAttack = Animator.StringToHash("IsComboAttack");
         protected readonly int hashOnNormalAttack = Animator.StringToHash("OnNormalAttack");
         protected readonly int hashSwordSkill = Animator.StringToHash("SwordSkill");
-        protected readonly int hashIsOnStopLooping = Animator.StringToHash("IsOnStopLooping");
+
+        private bool isSwordSkill1_Available = true;
 
         #endregion Variables
 
@@ -47,9 +51,22 @@ namespace ETeam.KyungSeo
 
         public void EnterSkillSwordAttack()
         {
-            Damage = swordSkillDamage;
+            if (!isSwordSkill1_Available)
+            {
+                GameManager.Instance.unavailableSkillText.SetActive(true);
+
+                return;
+            }
+
+            Instantiate(shockWave.gameObject, spawnPoint.position, spawnPoint.rotation);
+
+            shockWave.transform.forward = spawnPoint.forward;
+            shockWave.owner = this;
+            shockWave.damage = swordSkill1_Damage;
+
             animator.SetTrigger(hashSwordSkill);
-            animator.SetBool(hashIsOnStopLooping, false);
+            isSwordSkill1_Available = false;
+            StartCoroutine(Skill1_CoolTime(skill1_CoolTime));
 
             if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
             {
@@ -59,8 +76,6 @@ namespace ETeam.KyungSeo
 
         public void ExitSkillSwordAttack()
         {
-            animator.SetBool(hashIsOnStopLooping, true);
-
             if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
             {
                 ps.Stop();
@@ -81,7 +96,7 @@ namespace ETeam.KyungSeo
                 yield return new WaitForFixedUpdate();
             }
 
-
+            isSwordSkill1_Available = true;
         }
 
         #endregion CoolTime

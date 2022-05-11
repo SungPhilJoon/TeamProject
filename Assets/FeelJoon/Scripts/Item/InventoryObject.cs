@@ -18,7 +18,7 @@ namespace ETeam.FeelJoon
     [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
     public class InventoryObject : ScriptableObject
     {
-        public ItemObjectDatabase database;
+        public ItemObjectDatabase[] database;
         public InterfaceType type;
 
         [SerializeField] private Inventory container = new Inventory();
@@ -59,7 +59,9 @@ namespace ETeam.FeelJoon
 
             InventorySlot slot = FindItemInInventory(item);
 
-            if (!database.itemObjects[item.id].stackable || slot == null)
+            int itemType = (int)item.itemType;
+
+            if (!database[itemType].itemObjects[item.id - itemType * 100].stackable || slot == null)    
             {
                 GetEmptySlot().AddItem(item, amount);
             }

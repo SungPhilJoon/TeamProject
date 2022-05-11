@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : class
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
 	private static T instance;
 
@@ -12,7 +12,12 @@ public class Singleton<T> : MonoBehaviour where T : class
 		{
             if (instance == null)
             {
-                instance = System.Activator.CreateInstance(typeof(T)) as T;
+                instance = FindObjectOfType<T>();
+
+                if (instance == null)
+                {
+                    Debug.Log("Type does not exist");
+                }
             }
 
             return instance;

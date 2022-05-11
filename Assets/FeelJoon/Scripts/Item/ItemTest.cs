@@ -9,20 +9,19 @@ namespace ETeam.FeelJoon
     {
         #region Variables
         public InventoryObject inventoryObject;
-        public ItemObjectDatabase databaseObject;
+        public ItemObjectDatabase[] databaseObjects;
 
         #endregion Variables
 
         #region Helper Methods
         public void AddNewItem()
         {
-            if (databaseObject.itemObjects.Length > 0)
-            {
-                ItemObject newItemObject = databaseObject.itemObjects[Random.Range(0, databaseObject.itemObjects.Length)];
-                Item newItem = new Item(newItemObject);
+            int rndItemDatabaseNumber = Random.Range(0, databaseObjects.Length);
 
-                inventoryObject.AddItem(newItem, 1);
-            }
+            ItemObject newItemObject = databaseObjects[rndItemDatabaseNumber].itemObjects[Random.Range(0, databaseObjects[rndItemDatabaseNumber].itemObjects.Length)];
+            Item newItem = new Item(newItemObject);
+            
+            inventoryObject.AddItem(newItem, 1);
         }
 
         public void ClearInventory()

@@ -36,7 +36,7 @@ namespace ETeam.KyungSeo
 
         private bool isOnUI = false;
 
-        public CharacterController controller; // 캐싱할 CharacterController - PJ
+        [HideInInspector] public CharacterController controller; // 캐싱할 CharacterController - PJ
 
         [Header("저항 계수")]
         public float gravity = -29.81f; // 중력 계수 : rigidbody를 사용하지 않기 위한 중력계수
@@ -95,6 +95,7 @@ namespace ETeam.KyungSeo
 
             equipmentWeapon = defaultWeaponPrefab;
 
+            inventory.OnUseItem -= OnUseItem;
             inventory.OnUseItem += OnUseItem;
         }
 

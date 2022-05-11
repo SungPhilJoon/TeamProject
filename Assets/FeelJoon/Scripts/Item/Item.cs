@@ -11,6 +11,7 @@ namespace ETeam.FeelJoon
     {
         public int id = -1;
         public string name;
+        public ItemType itemType;
 
         public ItemBuff[] buffs;
 
@@ -24,6 +25,7 @@ namespace ETeam.FeelJoon
         {
             name = itemObject.name;
             id = itemObject.data.id;
+            itemType = itemObject.type;
 
             buffs = new ItemBuff[itemObject.data.buffs.Length];
             for (int i = 0; i < buffs.Length; i++)

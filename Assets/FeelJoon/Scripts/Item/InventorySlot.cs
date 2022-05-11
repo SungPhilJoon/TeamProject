@@ -25,8 +25,8 @@ namespace ETeam.FeelJoon
         {
             get
             {
-                return item.id >= 0 ? parent.database.itemObjects[item.id]
-                     : null;
+                return item.id >= 0 ? GetItemObject(item.itemType, item.id)
+                    : null;
             }
         }
 
@@ -72,6 +72,24 @@ namespace ETeam.FeelJoon
             }
 
             return false;
+        }
+
+        public ItemObject GetItemObject(ItemType itemType, int id)
+        {
+            if (itemType.Equals(ItemType.Sword))
+            {
+                return parent.database[(int)ItemType.Sword].itemObjects[id - itemCodeList.swordCode];
+            }
+            else if (itemType.Equals(ItemType.Bow))
+            {
+                return parent.database[(int)ItemType.Bow].itemObjects[id - itemCodeList.bowCode];
+            }
+            else if (itemType.Equals(ItemType.Food))
+            {
+                return parent.database[(int)ItemType.Food].itemObjects[id - itemCodeList.foodCode];
+            }
+
+            return null;
         }
 
         #endregion Helper Methods

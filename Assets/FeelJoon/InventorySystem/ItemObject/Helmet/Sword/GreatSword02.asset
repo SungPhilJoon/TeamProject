@@ -17,8 +17,9 @@ MonoBehaviour:
   icon: {fileID: -1812244852503348542, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
   modelPrefab: {fileID: 8862475838909730621, guid: 1d0b677ce4f1d364fafbdf3f8bebdb8a, type: 3}
   data:
-    id: 5
+    id: 2
     name: 
+    itemType: 0
     buffs: []
   boneNames: []
   description: 
