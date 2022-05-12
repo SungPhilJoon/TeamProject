@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using ETeam.FeelJoon;
+using ETeam.YongHak;
 using UnityEngine.EventSystems;
 
 namespace ETeam.KyungSeo
@@ -296,5 +297,21 @@ namespace ETeam.KyungSeo
         }
 
         #endregion Helper Methods
+
+        #region Shop
+
+        public bool Enter(RectTransform uiGroup)
+        {
+            Debug.Log("체크1");
+            uiGroup.anchoredPosition = Vector3.zero;
+            return uiGroup.gameObject.activeSelf;
+        }
+
+        /*public bool Exit(RectTransform uiGroup)
+        {
+            uiGroup.anchoredPosition = Vector3.down * 2000;
+        }*/
+
+        #endregion Shop
     }
 }

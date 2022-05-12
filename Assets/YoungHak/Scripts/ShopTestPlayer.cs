@@ -39,7 +39,7 @@ namespace ETeam.YongHak
             }
         }
 
-        private void onTriggerEnter(Collider other)
+        /*private void onTriggerEnter(Collider other)
         {
             Debug.Log("체크1");
             if(other.tag == "Shop")
@@ -57,6 +57,6 @@ namespace ETeam.YongHak
                 Shop shop = other.GetComponent<Shop>();
                 shop.Exit();
             }
-        }
+        }*/
     }
 }
