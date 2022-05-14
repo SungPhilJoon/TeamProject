@@ -11,6 +11,10 @@ namespace ETeam.YongHak
         private ScrollRect scrollRect;
         public float space = 50f;
         public GameObject uiPrefab;
+
+        public GameObject uiSword;
+        public GameObject uiBow;
+        public GameObject uiItem;
         public List<RectTransform> uiObjects = new List<RectTransform>();
         #endregion Variables
         
@@ -39,6 +43,27 @@ namespace ETeam.YongHak
             }
 
             scrollRect.content.sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, y);
+        }
+
+        public void TapChange1()
+        {
+            uiSword.SetActive(true);
+            uiBow.SetActive(false);
+            uiItem.SetActive(false);
+        }
+
+        public void TapChange2()
+        {
+            uiSword.SetActive(false);
+            uiBow.SetActive(true);
+            uiItem.SetActive(false);
+        }
+
+        public void TapChange3()
+        {
+            uiSword.SetActive(false);
+            uiBow.SetActive(false);
+            uiItem.SetActive(true);
         }
         #endregion Method
     }
