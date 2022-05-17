@@ -20,6 +20,7 @@ namespace ETeam.YongHak
         public Text coinText;
         public int coin = 10000;
         private string coinString;
+        JsonTest jsonTest;
         
         #endregion Variables
 
@@ -28,6 +29,8 @@ namespace ETeam.YongHak
         void Start()
         {
             //uiGroup.anchoredPosition = Vector3.zero;
+            jsonTest = new JsonTest();
+            jsonTest.Load();
         }
 
         void Update()
@@ -58,6 +61,11 @@ namespace ETeam.YongHak
             }
 
             coin -= price;
+        }
+
+        public int getCoin()
+        {
+            return coin;
         }
 
         IEnumerator Talk()
