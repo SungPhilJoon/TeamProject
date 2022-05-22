@@ -13,6 +13,9 @@ namespace ETeam.YongHak
         #region Variables
         public float Distance => distance;
         private float distance = 3.0f;
+        private new GameObject gameObject;
+        [SerializeField] private ItemObjectDatabase[] database;
+        public ItemObject itemObject;
         public RectTransform uiGroup;
         ShopTestPlayer enterPlayer;
         public int[] itemPrice;
@@ -20,6 +23,7 @@ namespace ETeam.YongHak
         public Text coinText;
         public int coin = 10000;
         private string coinString;
+        public int dataBaseIndex;
         JsonTest jsonTest;
         
         #endregion Variables
@@ -50,19 +54,6 @@ namespace ETeam.YongHak
             uiGroup.anchoredPosition = Vector3.down * 2000;
         }
 
-        public void Buy(int index)
-        {
-            int price = itemPrice[index];
-            if(price > coin)
-            {
-                StopCoroutine(Talk());
-                StartCoroutine(Talk());
-                return;
-            }
-
-            coin -= price;
-        }
-
         public int getCoin()
         {
             return coin;
@@ -85,8 +76,26 @@ namespace ETeam.YongHak
                 Debug.Log(distance);
                 return false;
             }
+            gameObject = other;
             
             return other.GetComponent<MainPlayerController>()?.Enter(uiGroup) ?? false;
+        }
+
+        public void Buy(int itemIndex)
+        {
+            ItemObject dropItemObject = database[dataBaseIndex].itemObjects[itemIndex];
+
+            int price = itemPrice[dataBaseIndex];
+            if(price > coin)
+            {
+                StopCoroutine(Talk());
+                StartCoroutine(Talk());
+                return;
+            }
+            itemObject = dropItemObject;
+            gameObject.GetComponent<MainPlayerController>().inventory.AddItem(new Item(itemObject), 1);
+
+            coin -= price;
         }
 
         public void StopInteract(GameObject other)
