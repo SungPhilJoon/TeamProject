@@ -143,6 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1777817948}
+  - component: {fileID: 6081129980237761261}
   m_Layer: 6
   m_Name: ManualCollision
   m_TagString: Untagged
@@ -164,6 +165,31 @@ Transform:
   m_Father: {fileID: 7644081197255851407}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6081129980237761261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777817947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817a01e60dfa72f489794b1f7b3cb907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  boxSize: {x: 3, y: 2, z: 2}
+  targetColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1993477202
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +264,6 @@ GameObject:
   - component: {fileID: 7644081197255851401}
   - component: {fileID: 7644081197255851442}
   - component: {fileID: 7644081196902287087}
-  - component: {fileID: 2121845231}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -863,10 +888,12 @@ MonoBehaviour:
   reviveTransform: {fileID: 0}
   gameoverUI: {fileID: 0}
   gameoverText: {fileID: 0}
-  swordPrefab: {fileID: 0}
+  bowNormalDamage: 0
+  currentArrow: {fileID: 0}
   swordNormalDamage: 30
-  swordSkillDamage: 50
+  swordSkill1_Damage: 50
   skill1_CoolTime: 5
+  shockWave: {fileID: 0}
   moveSpeed: 5
   dashDistance: 5
   settingsUI: {fileID: 0}
@@ -915,32 +942,6 @@ MonoBehaviour:
   defaultItemObjects:
   - {fileID: 11400000, guid: acfedf58586133040819c30c7fed72e5, type: 2}
   - {fileID: 11400000, guid: f619d1812e16c794abae7631feacd083, type: 2}
-  manualCollision: {fileID: 0}
---- !u!114 &2121845231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7644081197255851443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 817a01e60dfa72f489794b1f7b3cb907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  boxSize: {x: 3, y: 2, z: 2}
-  targetColliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &7644081197937451187
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 8613725634309072391}
   - component: {fileID: 8613725634308302375}
   - component: {fileID: 8613725634307171559}
-  - component: {fileID: 8613725635131721237}
-  - component: {fileID: 5578926642556897095}
   m_Layer: 0
   m_Name: BossThrowingWeapon
   m_TagString: Untagged
@@ -83,32 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8613725635131721237
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8613725634309175847}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 13.008653
-  m_Direction: 1
-  m_Center: {x: 0.0000000011869419, y: -2.2215738, z: -0.00000056276843}
---- !u!114 &5578926642556897095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8613725634309175847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef66602193b275b49885982d0a198f3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPower: 5
-  moveSpeed: 10
-  disappearTime: 5

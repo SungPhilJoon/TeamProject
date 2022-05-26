@@ -26,6 +26,11 @@ namespace ETeam.KyungSeo
     {
         #region variables
 
+        private StateMachine<EnemyController> stateMachine;
+        private BossFieldOfView bossFOV;
+
+        private EnemyType enemyType = EnemyType.Boss;
+
         [CanBeNull] public GameObject target;
         public GameObject weaponProjectile;
         public GameObject bossWeapon;
@@ -107,7 +112,7 @@ namespace ETeam.KyungSeo
             }
 
             float distance = Vector3.Distance(target.transform.position, transform.position);
-            // 무지성 if 드가자~
+            // 무지성 if 드가자~ // if문 자체를 리뉴얼해야 하는데...
             if (distance <= attackDistance)
                 ChangeState(BossState.Melee);
             else if (distance >= attackDistance && distance <= throwDistance)
@@ -117,7 +122,7 @@ namespace ETeam.KyungSeo
             else if (phaseNumber == 2 && distance >= jumpDistance)
                 ChangeState(BossState.Jump);
             else
-                ChangeState(BossState.Idle);
+                stateMachine.ChangeState<EnemyIdleState>(); // 이렇게??
         }
 
         private void ChangeState(BossState newState)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using ETeam.KyungSeo;
+using ETeam.FeelJoon;
 using UnityEngine;
 
 public class WeaponThrow : MonoBehaviour
@@ -11,6 +12,7 @@ public class WeaponThrow : MonoBehaviour
     public float moveSpeed = 5.0f;
     public float disappearTime = 5.0f;
 
+    public BossController owner;
     private Transform target;
     private Vector3 targetDir;
 
@@ -18,22 +20,25 @@ public class WeaponThrow : MonoBehaviour
     {
         Destroy(gameObject, disappearTime);
         target = FindObjectOfType<MainPlayerController>().transform;
-        targetDir = (transform.position - target.transform.position);
+    }
+
+    private void OnEnable()
+    {
+        targetDir = (target.transform.position - owner.transform.position);
+        transform.LookAt(target);
     }
 
     private void Update()
     {
-        transform.Translate(targetDir * moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            MainPlayerController player = other.GetComponent<MainPlayerController>();
-            Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
-            player.TakeDamage(attackPower);
-            playerRigidbody.AddForce(new Vector3(attackPower, attackPower, attackPower), ForceMode.Impulse);
+            IDamageable player = other.GetComponent<IDamageable>();
+            player?.TakeDamage(attackPower);
         }
     }
 }
