@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1777817948}
-  - component: {fileID: 1777817949}
+  - component: {fileID: 6081129980237761261}
   m_Layer: 6
   m_Name: ManualCollision
   m_TagString: Untagged
@@ -165,7 +165,7 @@ Transform:
   m_Father: {fileID: 7644081197255851407}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1777817949
+--- !u!114 &6081129980237761261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  boxSize: {x: 2, y: 2, z: 2}
+  boxSize: {x: 3, y: 2, z: 2}
   targetColliders:
   - {fileID: 0}
   - {fileID: 0}
@@ -1182,7 +1182,6 @@ MonoBehaviour:
   characterFaceCameraTransform: {fileID: 1302949263}
   gameoverUI: {fileID: 0}
   gameoverText: {fileID: 0}
-  reviveTransform: {fileID: 0}
   bowNormalDamage: 15
   bowNormalCoolTime: 0
   bowSkill1_CoolTime: 0
@@ -1193,14 +1192,6 @@ MonoBehaviour:
   skill1_CoolTime: 5
   shockWave: {fileID: 3073920981943686648, guid: 4cfa6fcc86f31eb4b888c4833876ef3c, type: 3}
   moveSpeed: 5
-  dashDistance: 5
-  settingsUI: {fileID: 0}
-  inventoryUI: {fileID: 0}
-  equipmentUI: {fileID: 0}
-  focus: {fileID: 0}
-  isSettingOn: 0
-  isInventoryOn: 0
-  isEquipmentOn: 0
   controller: {fileID: 0}
   gravity: -29.81
   drags: {x: 10, y: 10, z: 10}

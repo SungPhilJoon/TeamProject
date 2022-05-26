@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ETeam.FeelJoon;
 using UnityEngine;
 
 namespace ETeam.KyungSeo
@@ -19,7 +20,7 @@ namespace ETeam.KyungSeo
         {
             if (other.CompareTag("Player"))
             {
-                PlayerTest player = other.GetComponent<PlayerTest>();
+                PlayerController player = other.GetComponent<PlayerController>();
                 player.TakeDamage(boss.attackPower);
             }
         }

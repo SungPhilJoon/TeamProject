@@ -187,8 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7352d312bb71864429c8898835d1ea03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponProjectile: {fileID: 4419544271345794199, guid: 5a75852b321eb794e9ad70023b40dd11,
-    type: 3}
+  weaponProjectile: {fileID: 4419544271345794199, guid: 5a75852b321eb794e9ad70023b40dd11, type: 3}
   bossWeapon: {fileID: 1766272735}
 --- !u!136 &176708301
 CapsuleCollider:
@@ -215,7 +214,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -345,7 +343,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -441,7 +438,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -793,7 +789,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -889,7 +884,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1194,6 +1188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  weaponProjectile: {fileID: 0}
+  bossWeapon: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
   currentHp: 0
   maxHp: 100
@@ -1302,7 +1298,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1585,6 +1580,7 @@ GameObject:
   - component: {fileID: 1766272738}
   - component: {fileID: 1766272737}
   - component: {fileID: 1766272740}
+  - component: {fileID: 1766272741}
   m_Layer: 0
   m_Name: BossWeapon
   m_TagString: Untagged
@@ -1630,7 +1626,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1681,6 +1676,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3bb65567522254f87af4d391350e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1766272741
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766272735}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1871228706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,9 +1771,6 @@ GameObject:
   - component: {fileID: 1895405493}
   - component: {fileID: 1895405492}
   - component: {fileID: 1895405498}
-  - component: {fileID: 1895405491}
-  - component: {fileID: 1895405490}
-  - component: {fileID: 1895405489}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1772,49 +1778,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1895405489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895405488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783dcc2b2b96c1040a26b33c8d697cc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyCodeRun: 304
-  keyCodeJump: 32
---- !u!114 &1895405490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895405488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eea3ba02e80c2cd49a6cdb8742d5dbd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotCamXAxisSpeed: 5
-  rotCamYAxisSpeed: 3
---- !u!114 &1895405491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1895405488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13fd026bdd929c648ac1c9f0e26cc0f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  jumpForce: 10
-  gravity: -20
 --- !u!143 &1895405492
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1874,7 +1837,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -2005,7 +1967,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

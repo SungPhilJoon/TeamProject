@@ -94,6 +94,8 @@ public sealed class StateMachine<T>
 		currentState.OnEnter();
 		elapsedTimeInState = 0.0f;
 
+		Debug.Log($"Exit : {previousState}, Enter : {currentState}");
+
 		return currentState as R;
 	}
 }

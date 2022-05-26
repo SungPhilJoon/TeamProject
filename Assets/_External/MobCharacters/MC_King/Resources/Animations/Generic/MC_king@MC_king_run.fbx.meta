@@ -1,152 +1,394 @@
 fileFormatVersion: 2
 guid: a62cb0ab07043ef42b46f2223abae3b3
-timeCreated: 1504469360
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Chest
-    100002: collarLeft
-    100004: collarRear
-    100006: collarRight
-    100008: Head
-    100010: Hips
-    100012: LeftArm
-    100014: LeftFoot
-    100016: LeftForeArm
-    100018: LeftHand
-    100020: LeftHandIndex01
-    100022: LeftHandIndex02
-    100024: LeftHandIndex03
-    100026: LeftHandMiddle01
-    100028: LeftHandMiddle02
-    100030: LeftHandMiddle03
-    100032: LeftHandPinky01
-    100034: LeftHandPinky02
-    100036: LeftHandPinky03
-    100038: LeftHandRing01
-    100040: LeftHandRing02
-    100042: LeftHandRing03
-    100044: LeftHandThumb01
-    100046: LeftHandThumb02
-    100048: LeftHandThumb03
-    100050: LeftLeg
-    100052: LeftShoulder
-    100054: LeftToe
-    100056: LeftUpLeg
-    100058: MantleLeft
-    100060: MantleRear
-    100062: MantleRight
-    100064: //RootNode
-    100066: Neck
-    100068: RightArm
-    100070: RightFoot
-    100072: RightForeArm
-    100074: RightHand
-    100076: RightHandIndex01
-    100078: RightHandIndex02
-    100080: RightHandIndex03
-    100082: RightHandMiddle01
-    100084: RightHandMiddle02
-    100086: RightHandMiddle03
-    100088: RightHandPinky01
-    100090: RightHandPinky02
-    100092: RightHandPinky03
-    100094: RightHandRing01
-    100096: RightHandRing02
-    100098: RightHandRing03
-    100100: RightHandThumb01
-    100102: RightHandThumb02
-    100104: RightHandThumb03
-    100106: RightLeg
-    100108: RightShoulder
-    100110: RightToe
-    100112: RightUpLeg
-    100114: Spine
-    400000: Chest
-    400002: collarLeft
-    400004: collarRear
-    400006: collarRight
-    400008: Head
-    400010: Hips
-    400012: LeftArm
-    400014: LeftFoot
-    400016: LeftForeArm
-    400018: LeftHand
-    400020: LeftHandIndex01
-    400022: LeftHandIndex02
-    400024: LeftHandIndex03
-    400026: LeftHandMiddle01
-    400028: LeftHandMiddle02
-    400030: LeftHandMiddle03
-    400032: LeftHandPinky01
-    400034: LeftHandPinky02
-    400036: LeftHandPinky03
-    400038: LeftHandRing01
-    400040: LeftHandRing02
-    400042: LeftHandRing03
-    400044: LeftHandThumb01
-    400046: LeftHandThumb02
-    400048: LeftHandThumb03
-    400050: LeftLeg
-    400052: LeftShoulder
-    400054: LeftToe
-    400056: LeftUpLeg
-    400058: MantleLeft
-    400060: MantleRear
-    400062: MantleRight
-    400064: //RootNode
-    400066: Neck
-    400068: RightArm
-    400070: RightFoot
-    400072: RightForeArm
-    400074: RightHand
-    400076: RightHandIndex01
-    400078: RightHandIndex02
-    400080: RightHandIndex03
-    400082: RightHandMiddle01
-    400084: RightHandMiddle02
-    400086: RightHandMiddle03
-    400088: RightHandPinky01
-    400090: RightHandPinky02
-    400092: RightHandPinky03
-    400094: RightHandRing01
-    400096: RightHandRing02
-    400098: RightHandRing03
-    400100: RightHandThumb01
-    400102: RightHandThumb02
-    400104: RightHandThumb03
-    400106: RightLeg
-    400108: RightShoulder
-    400110: RightToe
-    400112: RightUpLeg
-    400114: Spine
-    7400000: MC_king_run
-    9500000: //RootNode
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Chest
+  - first:
+      1: 100002
+    second: collarLeft
+  - first:
+      1: 100004
+    second: collarRear
+  - first:
+      1: 100006
+    second: collarRight
+  - first:
+      1: 100008
+    second: Head
+  - first:
+      1: 100010
+    second: Hips
+  - first:
+      1: 100012
+    second: LeftArm
+  - first:
+      1: 100014
+    second: LeftFoot
+  - first:
+      1: 100016
+    second: LeftForeArm
+  - first:
+      1: 100018
+    second: LeftHand
+  - first:
+      1: 100020
+    second: LeftHandIndex01
+  - first:
+      1: 100022
+    second: LeftHandIndex02
+  - first:
+      1: 100024
+    second: LeftHandIndex03
+  - first:
+      1: 100026
+    second: LeftHandMiddle01
+  - first:
+      1: 100028
+    second: LeftHandMiddle02
+  - first:
+      1: 100030
+    second: LeftHandMiddle03
+  - first:
+      1: 100032
+    second: LeftHandPinky01
+  - first:
+      1: 100034
+    second: LeftHandPinky02
+  - first:
+      1: 100036
+    second: LeftHandPinky03
+  - first:
+      1: 100038
+    second: LeftHandRing01
+  - first:
+      1: 100040
+    second: LeftHandRing02
+  - first:
+      1: 100042
+    second: LeftHandRing03
+  - first:
+      1: 100044
+    second: LeftHandThumb01
+  - first:
+      1: 100046
+    second: LeftHandThumb02
+  - first:
+      1: 100048
+    second: LeftHandThumb03
+  - first:
+      1: 100050
+    second: LeftLeg
+  - first:
+      1: 100052
+    second: LeftShoulder
+  - first:
+      1: 100054
+    second: LeftToe
+  - first:
+      1: 100056
+    second: LeftUpLeg
+  - first:
+      1: 100058
+    second: MantleLeft
+  - first:
+      1: 100060
+    second: MantleRear
+  - first:
+      1: 100062
+    second: MantleRight
+  - first:
+      1: 100064
+    second: //RootNode
+  - first:
+      1: 100066
+    second: Neck
+  - first:
+      1: 100068
+    second: RightArm
+  - first:
+      1: 100070
+    second: RightFoot
+  - first:
+      1: 100072
+    second: RightForeArm
+  - first:
+      1: 100074
+    second: RightHand
+  - first:
+      1: 100076
+    second: RightHandIndex01
+  - first:
+      1: 100078
+    second: RightHandIndex02
+  - first:
+      1: 100080
+    second: RightHandIndex03
+  - first:
+      1: 100082
+    second: RightHandMiddle01
+  - first:
+      1: 100084
+    second: RightHandMiddle02
+  - first:
+      1: 100086
+    second: RightHandMiddle03
+  - first:
+      1: 100088
+    second: RightHandPinky01
+  - first:
+      1: 100090
+    second: RightHandPinky02
+  - first:
+      1: 100092
+    second: RightHandPinky03
+  - first:
+      1: 100094
+    second: RightHandRing01
+  - first:
+      1: 100096
+    second: RightHandRing02
+  - first:
+      1: 100098
+    second: RightHandRing03
+  - first:
+      1: 100100
+    second: RightHandThumb01
+  - first:
+      1: 100102
+    second: RightHandThumb02
+  - first:
+      1: 100104
+    second: RightHandThumb03
+  - first:
+      1: 100106
+    second: RightLeg
+  - first:
+      1: 100108
+    second: RightShoulder
+  - first:
+      1: 100110
+    second: RightToe
+  - first:
+      1: 100112
+    second: RightUpLeg
+  - first:
+      1: 100114
+    second: Spine
+  - first:
+      4: 400000
+    second: Chest
+  - first:
+      4: 400002
+    second: collarLeft
+  - first:
+      4: 400004
+    second: collarRear
+  - first:
+      4: 400006
+    second: collarRight
+  - first:
+      4: 400008
+    second: Head
+  - first:
+      4: 400010
+    second: Hips
+  - first:
+      4: 400012
+    second: LeftArm
+  - first:
+      4: 400014
+    second: LeftFoot
+  - first:
+      4: 400016
+    second: LeftForeArm
+  - first:
+      4: 400018
+    second: LeftHand
+  - first:
+      4: 400020
+    second: LeftHandIndex01
+  - first:
+      4: 400022
+    second: LeftHandIndex02
+  - first:
+      4: 400024
+    second: LeftHandIndex03
+  - first:
+      4: 400026
+    second: LeftHandMiddle01
+  - first:
+      4: 400028
+    second: LeftHandMiddle02
+  - first:
+      4: 400030
+    second: LeftHandMiddle03
+  - first:
+      4: 400032
+    second: LeftHandPinky01
+  - first:
+      4: 400034
+    second: LeftHandPinky02
+  - first:
+      4: 400036
+    second: LeftHandPinky03
+  - first:
+      4: 400038
+    second: LeftHandRing01
+  - first:
+      4: 400040
+    second: LeftHandRing02
+  - first:
+      4: 400042
+    second: LeftHandRing03
+  - first:
+      4: 400044
+    second: LeftHandThumb01
+  - first:
+      4: 400046
+    second: LeftHandThumb02
+  - first:
+      4: 400048
+    second: LeftHandThumb03
+  - first:
+      4: 400050
+    second: LeftLeg
+  - first:
+      4: 400052
+    second: LeftShoulder
+  - first:
+      4: 400054
+    second: LeftToe
+  - first:
+      4: 400056
+    second: LeftUpLeg
+  - first:
+      4: 400058
+    second: MantleLeft
+  - first:
+      4: 400060
+    second: MantleRear
+  - first:
+      4: 400062
+    second: MantleRight
+  - first:
+      4: 400064
+    second: //RootNode
+  - first:
+      4: 400066
+    second: Neck
+  - first:
+      4: 400068
+    second: RightArm
+  - first:
+      4: 400070
+    second: RightFoot
+  - first:
+      4: 400072
+    second: RightForeArm
+  - first:
+      4: 400074
+    second: RightHand
+  - first:
+      4: 400076
+    second: RightHandIndex01
+  - first:
+      4: 400078
+    second: RightHandIndex02
+  - first:
+      4: 400080
+    second: RightHandIndex03
+  - first:
+      4: 400082
+    second: RightHandMiddle01
+  - first:
+      4: 400084
+    second: RightHandMiddle02
+  - first:
+      4: 400086
+    second: RightHandMiddle03
+  - first:
+      4: 400088
+    second: RightHandPinky01
+  - first:
+      4: 400090
+    second: RightHandPinky02
+  - first:
+      4: 400092
+    second: RightHandPinky03
+  - first:
+      4: 400094
+    second: RightHandRing01
+  - first:
+      4: 400096
+    second: RightHandRing02
+  - first:
+      4: 400098
+    second: RightHandRing03
+  - first:
+      4: 400100
+    second: RightHandThumb01
+  - first:
+      4: 400102
+    second: RightHandThumb02
+  - first:
+      4: 400104
+    second: RightHandThumb03
+  - first:
+      4: 400106
+    second: RightLeg
+  - first:
+      4: 400108
+    second: RightShoulder
+  - first:
+      4: 400110
+    second: RightToe
+  - first:
+      4: 400112
+    second: RightUpLeg
+  - first:
+      4: 400114
+    second: Spine
+  - first:
+      74: 7400000
+    second: MC_king_run
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 1
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: MC_king_run
       takeName: Take 001
+      internalID: 0
       firstFrame: 1
       lastFrame: 16
       wrapMode: 0
@@ -294,25 +536,45 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -322,11 +584,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: Hips
     hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
