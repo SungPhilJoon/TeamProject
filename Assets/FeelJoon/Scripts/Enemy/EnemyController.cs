@@ -19,7 +19,7 @@ namespace ETeam.FeelJoon
     public class EnemyController : MonoBehaviour, IAttackable, IDamageable
     {
         #region Delegates
-        public System.Func<GameObject, float, IEnumerator> GenerateHandler; 
+        public System.Func<GameObject, float, IEnumerator> GenerateHandler;
 
         #endregion Delegates
 
@@ -60,6 +60,9 @@ namespace ETeam.FeelJoon
         private bool isCalledStartMethod = false;
 
         #endregion Variables
+
+        // 수연 : 몬스터 잡은 횟수를 퀘스트에 보내주기 위한 유니티이벤트
+        public UnityEngine.Events.UnityEvent onDead;
 
         #region Properties
         public StateMachine<EnemyController> StateMachine => stateMachine;
@@ -260,6 +263,7 @@ namespace ETeam.FeelJoon
             }
             else
             {
+                onDead?.Invoke();   // 수연
                 DropItem();
                 stateMachine.ChangeState<EnemyDeadState>();
             }
