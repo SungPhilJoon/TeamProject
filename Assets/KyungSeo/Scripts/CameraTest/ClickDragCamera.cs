@@ -41,8 +41,8 @@ namespace ETeam.KyungSeo
 
         private void Awake()
         {
-            imageAim.enabled = false;
-            _isAimOn = false;
+            //imageAim.enabled = false;
+            //_isAimOn = false;
         }
 
         private void Start()

@@ -20,6 +20,10 @@ MonoBehaviour:
     id: 101
     name: 
     itemType: 1
-    buffs: []
+    buffs:
+    - stat: 0
+      value: 0
+      min: 20
+      max: 30
   boneNames: []
   description: 

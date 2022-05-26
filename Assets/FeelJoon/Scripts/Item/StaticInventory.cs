@@ -14,6 +14,16 @@ namespace ETeam.FeelJoon
 
         #endregion Variables
 
+        #region Unity Methods
+        protected override void Awake()
+        {
+            base.Awake();
+
+            gameObject.SetActive(false);
+        }
+
+        #endregion Unity Methods
+
         #region Helper Methods
         public override void CreateSlotUIs()
         {

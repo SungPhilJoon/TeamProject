@@ -157,6 +157,57 @@ namespace ETeam.KyungSeo
 
         #endregion
 
+        #region Input Methods : Shortcut
+        public void UseFirstSlotItem(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.started)
+            {
+                if (shortcut.Slots[0].SlotItemObject == null)
+                {
+                    return;
+                }
+                shortcut.UseItem(shortcut.Slots[0]);
+            }
+        }
+
+        public void UseSecondSlotItem(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.started)
+            {
+                if (shortcut.Slots[1].SlotItemObject == null)
+                {
+                    return;
+                }
+                shortcut.UseItem(shortcut.Slots[1]);
+            }
+        }
+
+        public void UseThirdSlotItem(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.started)
+            {
+                if (shortcut.Slots[2].SlotItemObject == null)
+                {
+                    return;
+                }
+                shortcut.UseItem(shortcut.Slots[2]);
+            }
+        }
+
+        public void UseFourthSlotItem(InputAction.CallbackContext callbackContext)
+        {
+            if (callbackContext.started)
+            {
+                if (shortcut.Slots[3].SlotItemObject == null)
+                {
+                    return;
+                }
+                shortcut.UseItem(shortcut.Slots[3]);
+            }
+        }
+
+        #endregion Input Methods : Shortcut
+
         #region Input Methods : Call UIs
 
         public void CallSettings(InputAction.CallbackContext callbackContext)

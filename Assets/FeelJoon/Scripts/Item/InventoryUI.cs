@@ -25,7 +25,7 @@ namespace ETeam.FeelJoon
         public Dictionary<GameObject, InventorySlot> slotUIs = new Dictionary<GameObject, InventorySlot>();
 
         #region Unity Methods
-        void Awake()
+        protected virtual void Awake()
         {
             CreateSlotUIs();
 
@@ -38,8 +38,6 @@ namespace ETeam.FeelJoon
 
             AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
             AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
-
-            gameObject.SetActive(false);
         }
 
         protected virtual void Start()
@@ -51,9 +49,9 @@ namespace ETeam.FeelJoon
                     inventoryObject.Slots[i].item = new Item();
                 }
 
-                OnPostUpdate(inventoryObject.Slots[i]);
+                // OnPostUpdate(inventoryObject.Slots[i]);
 
-                // inventoryObject.Slots[i].UpdateSlot(inventoryObject.Slots[i].item, inventoryObject.Slots[i].amount);
+                inventoryObject.Slots[i].UpdateSlot(inventoryObject.Slots[i].item, inventoryObject.Slots[i].amount);
             }
         }
 

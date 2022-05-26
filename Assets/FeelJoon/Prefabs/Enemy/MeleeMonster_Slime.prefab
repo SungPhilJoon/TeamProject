@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fc85658170a2c43878b068f81d28b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reverseFace: 0
+  reverseFace: 1
   axis: 0
 --- !u!114 &1216769745
 MonoBehaviour:
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3becc255f2ffcab408bf6729e33ad7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageTextPrefab: {fileID: 0}
+  damageTextPrefab: {fileID: 1103786050056733834, guid: 9434d69d8f1d0c9408bef85882dad2ef, type: 3}
 --- !u!1 &1501256280
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +404,36 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2094638319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2094638320}
+  m_Layer: 7
+  m_Name: hitTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2094638320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094638319}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3129358202837166138}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3125528108701820212
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +563,7 @@ Transform:
   - {fileID: 3129249846874614838}
   - {fileID: 1216769740}
   - {fileID: 8394030169675504120}
+  - {fileID: 2094638320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 220, z: 0}
@@ -546,7 +577,7 @@ Animator:
   m_GameObject: {fileID: 3126954958066994564}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 032e9c3d6b8f7bd4281b52741574f3af, type: 3}
-  m_Controller: {fileID: 9100000, guid: 650108d77c2f03647a72c8a30349e3ad, type: 2}
+  m_Controller: {fileID: 9100000, guid: 52eb00546b8a24b42858fc3efd40ed3f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -606,6 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e37a5860f537cb48aeb77d033f0f7a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
   targetMask:
     serializedVersion: 2
     m_Bits: 64
@@ -614,10 +646,17 @@ MonoBehaviour:
   attackRange: 4
   maxHealth: 100
   health: 0
-  damage: 100
-  coolTime: 2
-  projectilePoint: {fileID: 0}
+  damage: 10
+  coolTime: 3
+  database:
+  - {fileID: 11400000, guid: 9bcb85f160f811149b0074c3a51b0355, type: 2}
+  - {fileID: 11400000, guid: 8fbe845d9d6b7ea4c92bee79b60837b2, type: 2}
+  - {fileID: 11400000, guid: d2d0e214cf2a43648a3c5027e35f83d8, type: 2}
   battleUI: {fileID: 1216769745}
+  hitTransform: {fileID: 2094638320}
+  onDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!195 &3126621444051470056
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -992,5 +1031,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405724a3a76ed7d44bb81a728022f81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
+  parent: {fileID: 3129358202837166138}
   boxSize: {x: 1, y: 1, z: 3}
+  targetColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

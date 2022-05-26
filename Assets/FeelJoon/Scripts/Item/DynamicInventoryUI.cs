@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using ETeam.KyungSeo;
 using System;
 using System.Linq;
@@ -23,6 +24,17 @@ namespace ETeam.FeelJoon
 
         #endregion Variables
 
+        #region Unity Methods
+        protected override void Awake()
+        {
+            base.Awake();
+
+            gameObject.SetActive(false);
+        }
+
+        #endregion Unity Methods
+
+        #region Helper Methods
         public override void CreateSlotUIs()
         {
             slotUIs = new Dictionary<GameObject, InventorySlot>();
@@ -98,5 +110,7 @@ namespace ETeam.FeelJoon
                 }
             }
         }
+
+        #endregion Helper Methods
     }
 }

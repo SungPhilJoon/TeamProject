@@ -13,10 +13,6 @@ namespace ETeam.FeelJoon
         #endregion Variables
 
         #region Unity Methods
-        //void Awake()
-        //{
-        //}
-
         void Start()
         {
             parent = GameManager.Instance.Player.transform;

@@ -143,6 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1777817948}
+  - component: {fileID: 1777817949}
   m_Layer: 6
   m_Name: ManualCollision
   m_TagString: Untagged
@@ -158,12 +159,37 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777817947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7644081197255851407}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1777817949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777817947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817a01e60dfa72f489794b1f7b3cb907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  boxSize: {x: 2, y: 2, z: 2}
+  targetColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1993477202
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,12 +244,111 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042826285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 2}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7644081197255851407}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2124594998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2124594999}
+  - component: {fileID: 2124595002}
+  - component: {fileID: 2124595001}
+  - component: {fileID: 2124595000}
+  m_Layer: 6
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2124594999
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124594998}
+  m_LocalRotation: {x: -0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 7644081197255851407}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &2124595002
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124594998}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &2124595001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124594998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
+--- !u!114 &2124595000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124594998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &7644081197255851443
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +363,6 @@ GameObject:
   - component: {fileID: 7644081197255851401}
   - component: {fileID: 7644081197255851442}
   - component: {fileID: 7644081196902287087}
-  - component: {fileID: 2121845231}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -261,6 +385,7 @@ Transform:
   - {fileID: 5572673307168930258}
   - {fileID: 1302949263}
   - {fileID: 1777817948}
+  - {fileID: 2124594999}
   - {fileID: 2042826286}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -832,6 +957,198 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e30ea24c-9c50-4ee4-b04b-f1d04a2b62c3
     m_ActionName: Default/TurnCamera[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseFirstSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b0f7ed2c-aa8d-41b8-93d1-46b700e95013
+    m_ActionName: Default/UseFirstSlotItem[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseSecondSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: edaadcab-5975-42c8-9f0e-f1b9bd0c7caf
+    m_ActionName: Default/New action1
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseThirdSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 269def45-e57d-48c6-819e-892954f7017b
+    m_ActionName: Default/New action2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseFourthSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2122a1ad-c2ba-4008-bdcd-092719259227
+    m_ActionName: Default/New action3
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseFirstSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f4d56b22-aa8e-4abb-b938-2fc60fefcf55
+    m_ActionName: PlayerSword/UseFirstSlotItem[/Keyboard/f1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseSecondSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ec93730d-d54e-4e36-9501-c12fa5718fad
+    m_ActionName: PlayerSword/UseSecondSlotItem[/Keyboard/f2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseThirdSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7095ff6f-942f-4b84-b424-35aade99c42f
+    m_ActionName: PlayerSword/UseThirdSlotItem[/Keyboard/f3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseFourthSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2048aacf-c673-49f3-bd6b-8af57073744e
+    m_ActionName: PlayerSword/UseFourthSlotItem[/Keyboard/f4]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseFirstSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 443a8a6c-299c-404c-8f68-60e435e27802
+    m_ActionName: PlayerBow/UseFirstSlotItem[/Keyboard/f1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseSecondSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4f850d17-1d7f-4e43-98f3-541eaf6cb501
+    m_ActionName: PlayerBow/UseSecondSlotItem[/Keyboard/f2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseThirdSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 777bf939-65df-4631-a235-1fab1d7b928f
+    m_ActionName: PlayerBow/UseThirdSlotItem[/Keyboard/f3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7644081197255851401}
+        m_TargetAssemblyTypeName: ETeam.KyungSeo.MainPlayerController, Assembly-CSharp
+        m_MethodName: UseFourthSlotItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 156f6068-c438-43f5-8cf6-4a7d35e56460
+    m_ActionName: PlayerBow/UseFourthSlotItem[/Keyboard/f4]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Default
@@ -855,18 +1172,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   hitTransform: {fileID: 7644081197937451186}
+  hitEffectPrefab: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
+  gold: 10000
+  playerStats: {fileID: 11400000, guid: 14f26ef801f78074fb4fba356f0153e1, type: 2}
   maxHealth: 500
   health: 0
   closeupSpeed: 3
   characterFace: {fileID: 0}
   characterFaceCameraTransform: {fileID: 1302949263}
-  reviveTransform: {fileID: 0}
   gameoverUI: {fileID: 0}
   gameoverText: {fileID: 0}
-  swordPrefab: {fileID: 0}
+  reviveTransform: {fileID: 0}
+  bowNormalDamage: 15
+  bowNormalCoolTime: 0
+  bowSkill1_CoolTime: 0
+  aimImage: {fileID: 0}
+  currentArrow: {fileID: 0}
   swordNormalDamage: 30
-  swordSkillDamage: 50
+  increaseSwordSkill1_Damage: 20
   skill1_CoolTime: 5
+  shockWave: {fileID: 3073920981943686648, guid: 4cfa6fcc86f31eb4b888c4833876ef3c, type: 3}
   moveSpeed: 5
   dashDistance: 5
   settingsUI: {fileID: 0}
@@ -882,8 +1207,10 @@ MonoBehaviour:
   weaponErrorText: {fileID: 0}
   attackStateController: {fileID: 0}
   defaultWeaponPrefab: {fileID: 8045601669049900088, guid: db9c622fd2549ea468a7af4d0df2c126, type: 3}
+  criticalRate: 0
   inventory: {fileID: 11400000, guid: 58c58be2cdbc69d45b532bc1a59e7dc7, type: 2}
   equipment: {fileID: 11400000, guid: cd413d767adb19b458c72db0009fbe99, type: 2}
+  shortcut: {fileID: 11400000, guid: 36578ec9e695f2f41812157d23006254, type: 2}
 --- !u!114 &7644081197255851442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,32 +1242,6 @@ MonoBehaviour:
   defaultItemObjects:
   - {fileID: 11400000, guid: acfedf58586133040819c30c7fed72e5, type: 2}
   - {fileID: 11400000, guid: f619d1812e16c794abae7631feacd083, type: 2}
-  manualCollision: {fileID: 0}
---- !u!114 &2121845231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7644081197255851443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 817a01e60dfa72f489794b1f7b3cb907, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  boxSize: {x: 3, y: 2, z: 2}
-  targetColliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &7644081197937451187
 GameObject:
   m_ObjectHideFlags: 0
@@ -3199,9 +3500,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2829148430046862697, guid: fdf678a7193c58346a367114b3da57ac, type: 3}
   m_PrefabInstance: {fileID: 7644081196218377403}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4127043194365634750 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6004152290323041285, guid: fdf678a7193c58346a367114b3da57ac, type: 3}
+--- !u!1 &8866819108009413569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1231873419245186938, guid: fdf678a7193c58346a367114b3da57ac, type: 3}
   m_PrefabInstance: {fileID: 7644081196218377403}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2177507722551171610 stripped
@@ -3209,3 +3510,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8371405442995453601, guid: fdf678a7193c58346a367114b3da57ac, type: 3}
   m_PrefabInstance: {fileID: 7644081196218377403}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &4127043194365634750 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6004152290323041285, guid: fdf678a7193c58346a367114b3da57ac, type: 3}
+  m_PrefabInstance: {fileID: 7644081196218377403}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1806094000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866819108009413569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643b15ab4f3f9b8408d5772eeb12fc93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

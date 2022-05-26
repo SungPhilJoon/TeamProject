@@ -27,5 +27,10 @@ namespace ETeam.FeelJoon
         {
             
         }
+
+        public override void OnExit()
+        {
+            
+        }
     }
 }

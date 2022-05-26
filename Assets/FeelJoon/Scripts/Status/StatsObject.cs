@@ -153,6 +153,17 @@ namespace ETeam.FeelJoon
         {
             Health += value;
 
+            int maxHealth = GetModifiedValue(CharacterAttribute.Health);
+
+            if (Health > maxHealth)
+            {
+                Health = maxHealth;
+            }
+            else if (Health < 0)
+            {
+                Health = 0;
+            }
+
             OnChangedStats?.Invoke(this);
 
             return Health;
@@ -162,9 +173,38 @@ namespace ETeam.FeelJoon
         {
             Mana += value;
 
+            int maxMana = GetModifiedValue(CharacterAttribute.Mana);
+
+            if (Mana > maxMana)
+            {
+                Mana = maxMana;
+            }
+            else if (Mana < 0)
+            {
+                Mana = 0;
+            }
+
             OnChangedStats?.Invoke(this);
 
             return Mana;
+        }
+
+        public int AddExp(int value)
+        {
+            exp += value;
+
+            int maxExp = 100;
+
+            if (exp >= maxExp)
+            {
+                ++level;
+
+                exp = 0;
+            }
+
+            OnChangedStats?.Invoke(this);
+
+            return exp;
         }
     }
 }

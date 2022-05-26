@@ -20,6 +20,8 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject unavailableSkillText;
 
+    [SerializeField] private Text goldAmountText;
+
     private readonly int Dead = Animator.StringToHash("IsPlayerDead");
 
     #endregion Variables
@@ -32,10 +34,17 @@ public class GameManager : Singleton<GameManager>
         mainPlayer = player.GetComponent<MainPlayerController>();
     }
 
+    void Start()
+    {
+        StartCoroutine(UpdateGoldAmount());
+    }
+
     #endregion Unity Methods
 
     #region Properties
     public GameObject Player => player;
+
+    public MainPlayerController Main => mainPlayer;
 
     public EnemyController[] Enemies => EnemyGenerateManager.Instance.Enemies;
 
@@ -52,7 +61,9 @@ public class GameManager : Singleton<GameManager>
         mainPlayer.transform.position = mainPlayer.reviveTransform.position;
         mainPlayer.controller.enabled = true;
 
-        mainPlayer.health = mainPlayer.maxHealth;
+        StatsObject playerStats = mainPlayer.playerStats;
+
+        playerStats.AddHealth(playerStats.GetModifiedValue(CharacterAttribute.Health));
 
         mainPlayer.StateMachine.ChangeState<PlayerIdle>();
         mainPlayer.animator.ResetTrigger("OnDeadTrigger");
@@ -64,6 +75,19 @@ public class GameManager : Singleton<GameManager>
         {
             Enemies[i].EnemyAnimator.SetBool(Dead, false);
             Enemies[i].StateMachine.ChangeState<EnemyIdleState>();
+        }
+    }
+
+    private IEnumerator UpdateGoldAmount()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+
+            if (goldAmountText != null)
+            {
+                goldAmountText.text = mainPlayer.gold.ToString("#,###");
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ETeam.KyungSeo
 
         [Header("Ä® µ¥¹ÌÁö")]
         [SerializeField] private int swordNormalDamage = 30;
-        [SerializeField] private int swordSkill1_Damage = 50;
+        [SerializeField] private int increaseSwordSkill1_Damage = 20;
 
         [Header("ÄðÅ¸ÀÓ")]
         public float skill1_CoolTime = 5f;
@@ -38,7 +38,7 @@ namespace ETeam.KyungSeo
         #region Action Methods
         public void EnterNormalSwordAttack()
         {
-            Damage = swordNormalDamage;
+            // Damage = swordNormalDamage;
             animator.SetTrigger(hashOnNormalAttack);
 
             animator.SetBool(hashIsComboAttack, true);
@@ -58,15 +58,17 @@ namespace ETeam.KyungSeo
                 return;
             }
 
-            Instantiate(shockWave.gameObject, spawnPoint.position, spawnPoint.rotation);
-
             shockWave.transform.forward = spawnPoint.forward;
             shockWave.owner = this;
-            shockWave.damage = swordSkill1_Damage;
+
+            Instantiate(shockWave.gameObject, spawnPoint.position, spawnPoint.rotation);
+            // Damage = swordNormalDamage;
+            shockWave.damage = Damage + increaseSwordSkill1_Damage;
 
             animator.SetTrigger(hashSwordSkill);
-            isSwordSkill1_Available = false;
-            StartCoroutine(Skill1_CoolTime(skill1_CoolTime));
+            StartCoroutine(SwordSkill1_CoolTime());
+
+            playerStats.AddMana(-10);
 
             if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
             {
@@ -84,21 +86,16 @@ namespace ETeam.KyungSeo
 
         #endregion Action Methods
 
-        #region CoolTime
-        private IEnumerator Skill1_CoolTime(float skill1_CoolTime)
+        #region Cool Time
+        private IEnumerator SwordSkill1_CoolTime()
         {
-            float normalTime = 0f;
+            isSwordSkill1_Available = false;
 
-            while (skill1_CoolTime > normalTime)
-            {
-                normalTime += Time.fixedDeltaTime;
-
-                yield return new WaitForFixedUpdate();
-            }
+            yield return StartCoroutine(skillCoolTimeHandlers[SkillNameList.SwordSkill1_Name.GetHashCode()](skill1_CoolTime));
 
             isSwordSkill1_Available = true;
         }
 
-        #endregion CoolTime
+        #endregion Cool Time
     }
 }

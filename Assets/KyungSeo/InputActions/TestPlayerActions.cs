@@ -134,6 +134,42 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseFirstSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4d56b22-aa8e-4abb-b938-2fc60fefcf55"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseSecondSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec93730d-d54e-4e36-9501-c12fa5718fad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseThirdSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""7095ff6f-942f-4b84-b424-35aade99c42f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseFourthSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""2048aacf-c673-49f3-bd6b-8af57073744e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -433,6 +469,50 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""TurnCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3de3ca0-7358-4b26-ae0c-06c1c19826ff"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseFirstSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc259334-e6f3-49e6-92b6-830559b528e5"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseSecondSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30365795-ecb9-4685-871c-5dfeda5a727f"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseThirdSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4033439-a6f5-4993-9fc9-9b4bfc77958e"",
+                    ""path"": ""<Keyboard>/f4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseFourthSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -552,6 +632,42 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""name"": ""Call Equipment"",
                     ""type"": ""Button"",
                     ""id"": ""c627fc47-752b-4b1f-bf19-c3f6e9fc719a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseFirstSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""443a8a6c-299c-404c-8f68-60e435e27802"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseSecondSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f850d17-1d7f-4e43-98f3-541eaf6cb501"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseThirdSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""777bf939-65df-4631-a235-1fab1d7b928f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseFourthSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""156f6068-c438-43f5-8cf6-4a7d35e56460"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -866,6 +982,50 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""TurnCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ea36025-7918-4041-8ecb-71b35803307f"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseFirstSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75736797-bc49-4fd5-b6b5-423baae15273"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseSecondSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f843f7a6-a707-410c-9a0d-866e1eea66a0"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseThirdSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32f5b959-023d-4ad5-ab39-6af3770f924b"",
+                    ""path"": ""<Keyboard>/f4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseFourthSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -949,6 +1109,42 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""name"": ""TurnCamera"",
                     ""type"": ""Button"",
                     ""id"": ""e30ea24c-9c50-4ee4-b04b-f1d04a2b62c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseFirstSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0f7ed2c-aa8d-41b8-93d1-46b700e95013"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseSecondSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""edaadcab-5975-42c8-9f0e-f1b9bd0c7caf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseThirdSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""269def45-e57d-48c6-819e-892954f7017b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseFourthSlotItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""2122a1ad-c2ba-4008-bdcd-092719259227"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1175,6 +1371,50 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""TurnCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""801ae01d-716c-4096-ad5f-e6079c509638"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseFirstSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c4606e2-6b94-49e9-8585-e9d88fb90490"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseSecondSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad4ea321-c680-41d7-a431-c09c0f3fb487"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseThirdSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ff93fd3-c20d-427f-9108-1f3324e3e4d1"",
+                    ""path"": ""<Keyboard>/f4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseFourthSlotItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1284,6 +1524,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         m_PlayerSword_CallSettings = m_PlayerSword.FindAction("Call Settings", throwIfNotFound: true);
         m_PlayerSword_CallInventory = m_PlayerSword.FindAction("Call Inventory", throwIfNotFound: true);
         m_PlayerSword_CallEquipment = m_PlayerSword.FindAction("Call Equipment", throwIfNotFound: true);
+        m_PlayerSword_UseFirstSlotItem = m_PlayerSword.FindAction("UseFirstSlotItem", throwIfNotFound: true);
+        m_PlayerSword_UseSecondSlotItem = m_PlayerSword.FindAction("UseSecondSlotItem", throwIfNotFound: true);
+        m_PlayerSword_UseThirdSlotItem = m_PlayerSword.FindAction("UseThirdSlotItem", throwIfNotFound: true);
+        m_PlayerSword_UseFourthSlotItem = m_PlayerSword.FindAction("UseFourthSlotItem", throwIfNotFound: true);
         // PlayerBow
         m_PlayerBow = asset.FindActionMap("PlayerBow", throwIfNotFound: true);
         m_PlayerBow_Move = m_PlayerBow.FindAction("Move", throwIfNotFound: true);
@@ -1299,6 +1543,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         m_PlayerBow_CallSettings = m_PlayerBow.FindAction("Call Settings", throwIfNotFound: true);
         m_PlayerBow_CallInventory = m_PlayerBow.FindAction("Call Inventory", throwIfNotFound: true);
         m_PlayerBow_CallEquipment = m_PlayerBow.FindAction("Call Equipment", throwIfNotFound: true);
+        m_PlayerBow_UseFirstSlotItem = m_PlayerBow.FindAction("UseFirstSlotItem", throwIfNotFound: true);
+        m_PlayerBow_UseSecondSlotItem = m_PlayerBow.FindAction("UseSecondSlotItem", throwIfNotFound: true);
+        m_PlayerBow_UseThirdSlotItem = m_PlayerBow.FindAction("UseThirdSlotItem", throwIfNotFound: true);
+        m_PlayerBow_UseFourthSlotItem = m_PlayerBow.FindAction("UseFourthSlotItem", throwIfNotFound: true);
         // Default
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
         m_Default_Move = m_Default.FindAction("Move", throwIfNotFound: true);
@@ -1310,6 +1558,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         m_Default_SwapSword = m_Default.FindAction("SwapSword", throwIfNotFound: true);
         m_Default_SwapBow = m_Default.FindAction("SwapBow", throwIfNotFound: true);
         m_Default_TurnCamera = m_Default.FindAction("TurnCamera", throwIfNotFound: true);
+        m_Default_UseFirstSlotItem = m_Default.FindAction("UseFirstSlotItem", throwIfNotFound: true);
+        m_Default_UseSecondSlotItem = m_Default.FindAction("UseSecondSlotItem", throwIfNotFound: true);
+        m_Default_UseThirdSlotItem = m_Default.FindAction("UseThirdSlotItem", throwIfNotFound: true);
+        m_Default_UseFourthSlotItem = m_Default.FindAction("UseFourthSlotItem", throwIfNotFound: true);
         // PlayerDead
         m_PlayerDead = asset.FindActionMap("PlayerDead", throwIfNotFound: true);
         m_PlayerDead_Newaction = m_PlayerDead.FindAction("New action", throwIfNotFound: true);
@@ -1384,6 +1636,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerSword_CallSettings;
     private readonly InputAction m_PlayerSword_CallInventory;
     private readonly InputAction m_PlayerSword_CallEquipment;
+    private readonly InputAction m_PlayerSword_UseFirstSlotItem;
+    private readonly InputAction m_PlayerSword_UseSecondSlotItem;
+    private readonly InputAction m_PlayerSword_UseThirdSlotItem;
+    private readonly InputAction m_PlayerSword_UseFourthSlotItem;
     public struct PlayerSwordActions
     {
         private @TestPlayerActions m_Wrapper;
@@ -1400,6 +1656,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         public InputAction @CallSettings => m_Wrapper.m_PlayerSword_CallSettings;
         public InputAction @CallInventory => m_Wrapper.m_PlayerSword_CallInventory;
         public InputAction @CallEquipment => m_Wrapper.m_PlayerSword_CallEquipment;
+        public InputAction @UseFirstSlotItem => m_Wrapper.m_PlayerSword_UseFirstSlotItem;
+        public InputAction @UseSecondSlotItem => m_Wrapper.m_PlayerSword_UseSecondSlotItem;
+        public InputAction @UseThirdSlotItem => m_Wrapper.m_PlayerSword_UseThirdSlotItem;
+        public InputAction @UseFourthSlotItem => m_Wrapper.m_PlayerSword_UseFourthSlotItem;
         public InputActionMap Get() { return m_Wrapper.m_PlayerSword; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1445,6 +1705,18 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @CallEquipment.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallEquipment;
                 @CallEquipment.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallEquipment;
                 @CallEquipment.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnCallEquipment;
+                @UseFirstSlotItem.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseFirstSlotItem;
+                @UseFirstSlotItem.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseFirstSlotItem;
+                @UseFirstSlotItem.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseFirstSlotItem;
+                @UseSecondSlotItem.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseSecondSlotItem;
+                @UseSecondSlotItem.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseSecondSlotItem;
+                @UseSecondSlotItem.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseSecondSlotItem;
+                @UseThirdSlotItem.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseThirdSlotItem;
+                @UseThirdSlotItem.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseThirdSlotItem;
+                @UseThirdSlotItem.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseThirdSlotItem;
+                @UseFourthSlotItem.started -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseFourthSlotItem;
+                @UseFourthSlotItem.performed -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseFourthSlotItem;
+                @UseFourthSlotItem.canceled -= m_Wrapper.m_PlayerSwordActionsCallbackInterface.OnUseFourthSlotItem;
             }
             m_Wrapper.m_PlayerSwordActionsCallbackInterface = instance;
             if (instance != null)
@@ -1485,6 +1757,18 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @CallEquipment.started += instance.OnCallEquipment;
                 @CallEquipment.performed += instance.OnCallEquipment;
                 @CallEquipment.canceled += instance.OnCallEquipment;
+                @UseFirstSlotItem.started += instance.OnUseFirstSlotItem;
+                @UseFirstSlotItem.performed += instance.OnUseFirstSlotItem;
+                @UseFirstSlotItem.canceled += instance.OnUseFirstSlotItem;
+                @UseSecondSlotItem.started += instance.OnUseSecondSlotItem;
+                @UseSecondSlotItem.performed += instance.OnUseSecondSlotItem;
+                @UseSecondSlotItem.canceled += instance.OnUseSecondSlotItem;
+                @UseThirdSlotItem.started += instance.OnUseThirdSlotItem;
+                @UseThirdSlotItem.performed += instance.OnUseThirdSlotItem;
+                @UseThirdSlotItem.canceled += instance.OnUseThirdSlotItem;
+                @UseFourthSlotItem.started += instance.OnUseFourthSlotItem;
+                @UseFourthSlotItem.performed += instance.OnUseFourthSlotItem;
+                @UseFourthSlotItem.canceled += instance.OnUseFourthSlotItem;
             }
         }
     }
@@ -1506,6 +1790,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerBow_CallSettings;
     private readonly InputAction m_PlayerBow_CallInventory;
     private readonly InputAction m_PlayerBow_CallEquipment;
+    private readonly InputAction m_PlayerBow_UseFirstSlotItem;
+    private readonly InputAction m_PlayerBow_UseSecondSlotItem;
+    private readonly InputAction m_PlayerBow_UseThirdSlotItem;
+    private readonly InputAction m_PlayerBow_UseFourthSlotItem;
     public struct PlayerBowActions
     {
         private @TestPlayerActions m_Wrapper;
@@ -1523,6 +1811,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         public InputAction @CallSettings => m_Wrapper.m_PlayerBow_CallSettings;
         public InputAction @CallInventory => m_Wrapper.m_PlayerBow_CallInventory;
         public InputAction @CallEquipment => m_Wrapper.m_PlayerBow_CallEquipment;
+        public InputAction @UseFirstSlotItem => m_Wrapper.m_PlayerBow_UseFirstSlotItem;
+        public InputAction @UseSecondSlotItem => m_Wrapper.m_PlayerBow_UseSecondSlotItem;
+        public InputAction @UseThirdSlotItem => m_Wrapper.m_PlayerBow_UseThirdSlotItem;
+        public InputAction @UseFourthSlotItem => m_Wrapper.m_PlayerBow_UseFourthSlotItem;
         public InputActionMap Get() { return m_Wrapper.m_PlayerBow; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1571,6 +1863,18 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @CallEquipment.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallEquipment;
                 @CallEquipment.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallEquipment;
                 @CallEquipment.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnCallEquipment;
+                @UseFirstSlotItem.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseFirstSlotItem;
+                @UseFirstSlotItem.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseFirstSlotItem;
+                @UseFirstSlotItem.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseFirstSlotItem;
+                @UseSecondSlotItem.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseSecondSlotItem;
+                @UseSecondSlotItem.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseSecondSlotItem;
+                @UseSecondSlotItem.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseSecondSlotItem;
+                @UseThirdSlotItem.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseThirdSlotItem;
+                @UseThirdSlotItem.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseThirdSlotItem;
+                @UseThirdSlotItem.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseThirdSlotItem;
+                @UseFourthSlotItem.started -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseFourthSlotItem;
+                @UseFourthSlotItem.performed -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseFourthSlotItem;
+                @UseFourthSlotItem.canceled -= m_Wrapper.m_PlayerBowActionsCallbackInterface.OnUseFourthSlotItem;
             }
             m_Wrapper.m_PlayerBowActionsCallbackInterface = instance;
             if (instance != null)
@@ -1614,6 +1918,18 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @CallEquipment.started += instance.OnCallEquipment;
                 @CallEquipment.performed += instance.OnCallEquipment;
                 @CallEquipment.canceled += instance.OnCallEquipment;
+                @UseFirstSlotItem.started += instance.OnUseFirstSlotItem;
+                @UseFirstSlotItem.performed += instance.OnUseFirstSlotItem;
+                @UseFirstSlotItem.canceled += instance.OnUseFirstSlotItem;
+                @UseSecondSlotItem.started += instance.OnUseSecondSlotItem;
+                @UseSecondSlotItem.performed += instance.OnUseSecondSlotItem;
+                @UseSecondSlotItem.canceled += instance.OnUseSecondSlotItem;
+                @UseThirdSlotItem.started += instance.OnUseThirdSlotItem;
+                @UseThirdSlotItem.performed += instance.OnUseThirdSlotItem;
+                @UseThirdSlotItem.canceled += instance.OnUseThirdSlotItem;
+                @UseFourthSlotItem.started += instance.OnUseFourthSlotItem;
+                @UseFourthSlotItem.performed += instance.OnUseFourthSlotItem;
+                @UseFourthSlotItem.canceled += instance.OnUseFourthSlotItem;
             }
         }
     }
@@ -1631,6 +1947,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_SwapSword;
     private readonly InputAction m_Default_SwapBow;
     private readonly InputAction m_Default_TurnCamera;
+    private readonly InputAction m_Default_UseFirstSlotItem;
+    private readonly InputAction m_Default_UseSecondSlotItem;
+    private readonly InputAction m_Default_UseThirdSlotItem;
+    private readonly InputAction m_Default_UseFourthSlotItem;
     public struct DefaultActions
     {
         private @TestPlayerActions m_Wrapper;
@@ -1644,6 +1964,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         public InputAction @SwapSword => m_Wrapper.m_Default_SwapSword;
         public InputAction @SwapBow => m_Wrapper.m_Default_SwapBow;
         public InputAction @TurnCamera => m_Wrapper.m_Default_TurnCamera;
+        public InputAction @UseFirstSlotItem => m_Wrapper.m_Default_UseFirstSlotItem;
+        public InputAction @UseSecondSlotItem => m_Wrapper.m_Default_UseSecondSlotItem;
+        public InputAction @UseThirdSlotItem => m_Wrapper.m_Default_UseThirdSlotItem;
+        public InputAction @UseFourthSlotItem => m_Wrapper.m_Default_UseFourthSlotItem;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1680,6 +2004,18 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @TurnCamera.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnTurnCamera;
                 @TurnCamera.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnTurnCamera;
                 @TurnCamera.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnTurnCamera;
+                @UseFirstSlotItem.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseFirstSlotItem;
+                @UseFirstSlotItem.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseFirstSlotItem;
+                @UseFirstSlotItem.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseFirstSlotItem;
+                @UseSecondSlotItem.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseSecondSlotItem;
+                @UseSecondSlotItem.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseSecondSlotItem;
+                @UseSecondSlotItem.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseSecondSlotItem;
+                @UseThirdSlotItem.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseThirdSlotItem;
+                @UseThirdSlotItem.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseThirdSlotItem;
+                @UseThirdSlotItem.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseThirdSlotItem;
+                @UseFourthSlotItem.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseFourthSlotItem;
+                @UseFourthSlotItem.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseFourthSlotItem;
+                @UseFourthSlotItem.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnUseFourthSlotItem;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -1711,6 +2047,18 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
                 @TurnCamera.started += instance.OnTurnCamera;
                 @TurnCamera.performed += instance.OnTurnCamera;
                 @TurnCamera.canceled += instance.OnTurnCamera;
+                @UseFirstSlotItem.started += instance.OnUseFirstSlotItem;
+                @UseFirstSlotItem.performed += instance.OnUseFirstSlotItem;
+                @UseFirstSlotItem.canceled += instance.OnUseFirstSlotItem;
+                @UseSecondSlotItem.started += instance.OnUseSecondSlotItem;
+                @UseSecondSlotItem.performed += instance.OnUseSecondSlotItem;
+                @UseSecondSlotItem.canceled += instance.OnUseSecondSlotItem;
+                @UseThirdSlotItem.started += instance.OnUseThirdSlotItem;
+                @UseThirdSlotItem.performed += instance.OnUseThirdSlotItem;
+                @UseThirdSlotItem.canceled += instance.OnUseThirdSlotItem;
+                @UseFourthSlotItem.started += instance.OnUseFourthSlotItem;
+                @UseFourthSlotItem.performed += instance.OnUseFourthSlotItem;
+                @UseFourthSlotItem.canceled += instance.OnUseFourthSlotItem;
             }
         }
     }
@@ -1807,6 +2155,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         void OnCallSettings(InputAction.CallbackContext context);
         void OnCallInventory(InputAction.CallbackContext context);
         void OnCallEquipment(InputAction.CallbackContext context);
+        void OnUseFirstSlotItem(InputAction.CallbackContext context);
+        void OnUseSecondSlotItem(InputAction.CallbackContext context);
+        void OnUseThirdSlotItem(InputAction.CallbackContext context);
+        void OnUseFourthSlotItem(InputAction.CallbackContext context);
     }
     public interface IPlayerBowActions
     {
@@ -1823,6 +2175,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         void OnCallSettings(InputAction.CallbackContext context);
         void OnCallInventory(InputAction.CallbackContext context);
         void OnCallEquipment(InputAction.CallbackContext context);
+        void OnUseFirstSlotItem(InputAction.CallbackContext context);
+        void OnUseSecondSlotItem(InputAction.CallbackContext context);
+        void OnUseThirdSlotItem(InputAction.CallbackContext context);
+        void OnUseFourthSlotItem(InputAction.CallbackContext context);
     }
     public interface IDefaultActions
     {
@@ -1835,6 +2191,10 @@ public partial class @TestPlayerActions : IInputActionCollection2, IDisposable
         void OnSwapSword(InputAction.CallbackContext context);
         void OnSwapBow(InputAction.CallbackContext context);
         void OnTurnCamera(InputAction.CallbackContext context);
+        void OnUseFirstSlotItem(InputAction.CallbackContext context);
+        void OnUseSecondSlotItem(InputAction.CallbackContext context);
+        void OnUseThirdSlotItem(InputAction.CallbackContext context);
+        void OnUseFourthSlotItem(InputAction.CallbackContext context);
     }
     public interface IPlayerDeadActions
     {

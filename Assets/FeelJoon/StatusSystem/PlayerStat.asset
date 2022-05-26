@@ -16,7 +16,16 @@ MonoBehaviour:
   - type: 0
     value:
       modifiedValue: 100
-  - type: 0
+  - type: 1
+    value:
+      modifiedValue: 100
+  - type: 2
+    value:
+      modifiedValue: 100
+  - type: 3
+    value:
+      modifiedValue: 100
+  - type: 4
     value:
       modifiedValue: 100
   level: 1

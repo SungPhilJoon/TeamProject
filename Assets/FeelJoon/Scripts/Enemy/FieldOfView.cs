@@ -47,7 +47,6 @@ namespace ETeam.FeelJoon
                 yield return new WaitForSeconds(delay);
                 if (isTakeDamage && Vector3.Distance(target.position, transform.position) > viewRadius)
                 {
-                    Debug.Log("»£√‚ ¡ﬂ");
                     continue;
                 }
 

@@ -57,6 +57,11 @@ namespace ETeam.FeelJoon
 
         [SerializeField] private NPCBattleUI battleUI;
 
+        public Transform hitTransform;
+
+        private int minRandomGoldAmount;
+        private int maxRandomGoldAmount;
+
         private bool isCalledStartMethod = false;
 
         #endregion Variables
@@ -108,6 +113,9 @@ namespace ETeam.FeelJoon
         #region Unity Methods
         protected virtual void Awake()
         {
+            minRandomGoldAmount = (int)(maxHealth * 0.2f);
+            maxRandomGoldAmount = maxHealth;
+
             if (enemyType == EnemyType.Melee)
             {
                 return;
@@ -161,7 +169,7 @@ namespace ETeam.FeelJoon
 
         protected virtual void Update()
         {
-            if (GameManager.Instance.IsPlayerDead)
+            if (health > 0 && GameManager.Instance.IsPlayerDead)
             {
                 stateMachine.ChangeState<EnemyVictoryState>();
             }
@@ -179,6 +187,8 @@ namespace ETeam.FeelJoon
             ItemObject dropItemObject = database[rndItemDatabaseNumber].
                 itemObjects[Random.Range(0, database[rndItemDatabaseNumber].itemObjects.Length)];
 
+            dropItemObject.data = dropItemObject.CreateItem();
+
             GameObject dropItem = new GameObject();
             dropItem.layer = LayerMask.NameToLayer("Interactable");
 
@@ -195,6 +205,11 @@ namespace ETeam.FeelJoon
 
             dropItem.AddComponent<PickupItem>().itemObject = dropItemObject;
             dropItem.AddComponent<CameraFacing>();
+        }
+
+        private void DropGold()
+        {
+            GameManager.Instance.Main.gold += Random.Range(minRandomGoldAmount, maxRandomGoldAmount);
         }
 
         #endregion Helper Methods
@@ -227,8 +242,6 @@ namespace ETeam.FeelJoon
 
             projectile.transform.position = projectilePoint.position;
 
-            projectile.transform.forward = (Target.position - projectilePoint.position).normalized;
-
             projectile.moveSpeed = 9f;
         }
 
@@ -246,13 +259,19 @@ namespace ETeam.FeelJoon
 
             health -= damage;
 
+            if (hitEffectPrefab)
+            {
+                GameObject obj = Instantiate(hitEffectPrefab, hitTransform.position, Quaternion.identity);
+                // Destroy(obj, 1f);
+            }
+
             if (battleUI != null)
             {
                 battleUI.Value = health;
                 battleUI.CreateDamageText(damage);
             }
 
-            if (IsAlive) 
+            if (IsAlive)
             {
                 animator.SetTrigger(hashHitTrigger);
 
@@ -265,7 +284,15 @@ namespace ETeam.FeelJoon
             {
                 onDead?.Invoke();   // 수연
                 DropItem();
+                DropGold();
                 stateMachine.ChangeState<EnemyDeadState>();
+
+                if (Target == null)
+                {
+                    GameManager.Instance.Main.playerStats.AddExp(25);
+                    return;
+                }
+                Target.GetComponent<PlayerController>().playerStats.AddExp(25);
             }
         }
 

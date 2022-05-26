@@ -28,7 +28,7 @@ namespace ETeam.KyungSeo
 
         [Header("카메라")]
         public Transform focus;
-        private Camera camera;
+        private Camera mainCamera;
         private ClickDragCamera cameraFocus;
 
         [HideInInspector] public bool isSettingOn = false; // 테스트 UI표시용
@@ -37,7 +37,7 @@ namespace ETeam.KyungSeo
 
         private bool isOnUI = false;
 
-        [HideInInspector] public CharacterController controller; // 캐싱할 CharacterController - PJ
+        [HideInInspector] public CharacterController controller; // 캐싱할 CharacterController
 
         [Header("저항 계수")]
         public float gravity = -29.81f; // 중력 계수 : rigidbody를 사용하지 않기 위한 중력계수
@@ -45,7 +45,9 @@ namespace ETeam.KyungSeo
 
         private bool isGround = false;
 
-        private Vector3 calcVelocity; // 계산에 사용될 Vector3 레퍼런스 - PJ
+        private Vector3 calcVelocity; // 계산에 사용될 Vector3 레퍼런스
+
+        private Dictionary<int, Func<float, IEnumerator>> skillCoolTimeHandlers = new Dictionary<int, Func<float, IEnumerator>>();
 
         private PlayerInput playerInput;
 
@@ -57,10 +59,12 @@ namespace ETeam.KyungSeo
         [SerializeField] private GameObject defaultWeaponPrefab;
         private GameObject previousWeapon;
         private GameObject equipmentWeapon;
+        [SerializeField] private int criticalRate = 0;
         // 인벤토리
         [Header("인벤토리")]
         public InventoryObject inventory;
         public InventoryObject equipment;
+        public InventoryObject shortcut;
         private PlayerEquipment playerEquipment;
 
         #endregion Variables
@@ -68,8 +72,22 @@ namespace ETeam.KyungSeo
         #region Properties
         public override int Damage
         {
-            get => damage;
-            protected set => damage = value;
+            get
+            {
+                if (damage <= 0)
+                {
+                    damage = playerStats.GetModifiedValue(CharacterAttribute.Strength) / 2;
+                }
+
+                return damage;
+            }
+            set => damage = value;
+        }
+
+        public int CriticalRate
+        {
+            get => criticalRate;
+            set => criticalRate = value;
         }
 
         public PlayerInput PlayerInput => playerInput;
@@ -84,7 +102,8 @@ namespace ETeam.KyungSeo
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
             attackStateController = GetComponent<AttackStateController>();
-            camera = Camera.main;
+
+            cameraFocus = focus.GetComponentInChildren<ClickDragCamera>();
 
             spawnPoint = transform.GetChild(transform.childCount - 1);
 
@@ -98,10 +117,15 @@ namespace ETeam.KyungSeo
 
             inventory.OnUseItem -= OnUseItem;
             inventory.OnUseItem += OnUseItem;
+            shortcut.OnUseItem -= OnUseItem;
+            shortcut.OnUseItem += OnUseItem;
         }
 
         void Start()
         {
+            skillCoolTimeHandlers.Add(SkillNameList.SwordSkill1_Name.GetHashCode(), Skill_CoolTime);
+            skillCoolTimeHandlers.Add(SkillNameList.BowNormal_Name.GetHashCode(), Skill_CoolTime);
+
             StartCoroutine(CheckEquipWeapon());
         }
 
@@ -165,7 +189,11 @@ namespace ETeam.KyungSeo
             {
                 if (buff.stat == CharacterAttribute.Health)
                 {
-                    this.health += buff.value;
+                    playerStats.AddHealth(buff.value);
+                }
+                else if (buff.stat == CharacterAttribute.Mana)
+                {
+                    playerStats.AddMana(buff.value);
                 }
             }
         }
@@ -293,6 +321,18 @@ namespace ETeam.KyungSeo
 
                 swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0].gameObject;
                 bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
+            }
+        }
+
+        private IEnumerator Skill_CoolTime(float skill_CoolTime)
+        {
+            float normalTime = 0f;
+
+            while (skill_CoolTime > normalTime)
+            {
+                normalTime += Time.fixedDeltaTime;
+
+                yield return new WaitForFixedUpdate();
             }
         }
 

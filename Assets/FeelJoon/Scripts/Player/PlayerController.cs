@@ -31,9 +31,17 @@ namespace ETeam.FeelJoon
 
         public Transform hitTransform;
 
+        public GameObject hitEffectPrefab;
+
         protected bool isMove;
 
         private ManualCollision playerManualCollision;
+
+        [Header("골드")]
+        public int gold;
+
+        [Header("플레이어 Stats")]
+        public StatsObject playerStats;
 
         [Header("체력")]
         public int maxHealth = 100;
@@ -43,9 +51,10 @@ namespace ETeam.FeelJoon
         [SerializeField] private float closeupSpeed;
         [SerializeField] private RawImage characterFace;
         [SerializeField] private Transform characterFaceCameraTransform;
-        public Transform reviveTransform;
         public GameObject gameoverUI;
         [HideInInspector] public TMP_Text gameoverText;
+
+        public Transform reviveTransform;
 
         protected readonly int hashSwapIndex = Animator.StringToHash("SwapIndex");
         protected readonly int hashHitTrigger = Animator.StringToHash("HitTrigger");
@@ -66,8 +75,7 @@ namespace ETeam.FeelJoon
 
         public virtual int Damage
         {
-            get;
-            protected set;
+            get; set;
         }
 
         public bool IsMove
@@ -94,7 +102,9 @@ namespace ETeam.FeelJoon
 
             originColor = characterFace.color;
 
-            health = maxHealth;
+            maxHealth = playerStats.GetModifiedValue(CharacterAttribute.Health);
+            playerStats.Health = maxHealth;
+
             gameoverUI.SetActive(false);
             gameoverText = gameoverUI.GetComponentInChildren<TMP_Text>();
 
@@ -158,7 +168,7 @@ namespace ETeam.FeelJoon
                 IDamageable damageable = targetCollider.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    damageable.TakeDamage(damage);
+                    damageable.TakeDamage(damage, null, hitEffectPrefab);
                 }
             }
         }
@@ -171,7 +181,7 @@ namespace ETeam.FeelJoon
         #endregion IAttackable
 
         #region IDamageable
-        public bool IsAlive => health > 0;
+        public bool IsAlive => playerStats.Health > 0;
 
         public void TakeDamage(int damage, Transform target = null, GameObject hitEffectPrefab = null)
         {
@@ -180,7 +190,7 @@ namespace ETeam.FeelJoon
                 return;
             }
 
-            health -= damage;
+            playerStats.Health = playerStats.AddHealth(-damage);
 
             if (hitEffectPrefab)
             {
@@ -189,7 +199,6 @@ namespace ETeam.FeelJoon
 
             if (IsAlive)
             {
-                // animator?.SetTrigger(hashHitTrigger);
                 StopCoroutine(ChangePlayerUIColor());
                 StartCoroutine(ChangePlayerUIColor());
             }

@@ -19,12 +19,12 @@ namespace ETeam.FeelJoon
         #region Unity Methods
         void Start()
         {
-            SetBackShockWave(delay);
+            Destroy(this.gameObject, 2f);
         }
 
         void Update()
         {
-            transform.Translate(transform.forward * moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
 
         void OnTriggerEnter(Collider other)
@@ -33,6 +33,7 @@ namespace ETeam.FeelJoon
             {
                 if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
                 {
+                    Debug.Log(owner);
                     damageable.TakeDamage(damage, owner.transform);
                 }
             }
