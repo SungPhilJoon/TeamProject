@@ -158,7 +158,10 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
 
         if (hitEffectPrefab)
         {
-            Instantiate(hitEffectPrefab, hitTransform.position, Quaternion.identity);
+            if (hitTransform != null)
+            {
+                Instantiate(hitEffectPrefab, hitTransform.position, Quaternion.identity);
+            }
         }
 
         health -= damage;

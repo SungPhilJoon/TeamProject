@@ -49,8 +49,10 @@ public class BossJumpAndSit : State<BossController>
     {
         //Vector3 jumpNormalizeDirection = (targetPosition - firstBossPosition).normalized;
 
-        if (context.transform.position.y < firstBossPosition.y)
+        if (context.transform.position.y < 0f)
         {
+            context.transform.position = new Vector3(context.transform.position.x, 0f, context.transform.position.z);
+            stateMachine.ChangeState<BossIdle>();
             return;
         }
 

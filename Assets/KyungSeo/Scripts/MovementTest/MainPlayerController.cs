@@ -59,7 +59,6 @@ namespace ETeam.KyungSeo
         [SerializeField] private GameObject defaultWeaponPrefab;
         private GameObject previousWeapon;
         private GameObject equipmentWeapon;
-        [SerializeField] private int criticalRate = 0;
         // 인벤토리
         [Header("인벤토리")]
         public InventoryObject inventory;
@@ -70,26 +69,6 @@ namespace ETeam.KyungSeo
         #endregion Variables
 
         #region Properties
-        public override int Damage
-        {
-            get
-            {
-                if (damage <= 0)
-                {
-                    damage = playerStats.GetModifiedValue(CharacterAttribute.Strength) / 2;
-                }
-
-                return damage;
-            }
-            set => damage = value;
-        }
-
-        public int CriticalRate
-        {
-            get => criticalRate;
-            set => criticalRate = value;
-        }
-
         public PlayerInput PlayerInput => playerInput;
 
         #endregion Properties
@@ -104,6 +83,8 @@ namespace ETeam.KyungSeo
             attackStateController = GetComponent<AttackStateController>();
 
             cameraFocus = focus.GetComponentInChildren<ClickDragCamera>();
+
+            mainCamera = Camera.main;
 
             spawnPoint = transform.GetChild(transform.childCount - 1);
 
@@ -269,6 +250,9 @@ namespace ETeam.KyungSeo
 
                 if (currentPlayerWeapon == PlayerWeapon.Default)
                 {
+                    swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0]?.gameObject;
+                    bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
+
                     swordPrefab?.SetActive(false);
                     bowPrefab?.SetActive(false);
                 }

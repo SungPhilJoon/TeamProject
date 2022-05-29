@@ -223,12 +223,14 @@ namespace ETeam.KyungSeo
                 if (isInventoryOn)
                 {
                     isInventoryOn = false;
-                    inventoryUI.gameObject.SetActive(false);
+                    inventoryUI.rectTransform.anchoredPosition = new Vector3(500, -50, 0);
+                    // inventoryUI.gameObject.SetActive(false);
                 }
                 if (isEquipmentOn)
                 {
                     isEquipmentOn = false;
-                    equipmentUI.gameObject.SetActive(false);
+                    equipmentUI.rectTransform.anchoredPosition = new Vector3(-500, 0, 0);
+                    // equipmentUI.gameObject.SetActive(false);
                 }
 
                 isSettingOn = false;
@@ -242,12 +244,14 @@ namespace ETeam.KyungSeo
             if (!isInventoryOn)
             {
                 isInventoryOn = true;
-                inventoryUI.gameObject.SetActive(true);
+                inventoryUI.rectTransform.anchoredPosition = new Vector3(-500, -50, 0);
+                // inventoryUI.gameObject.SetActive(true);
             }
             else
             {
                 isInventoryOn = false;
-                inventoryUI.gameObject.SetActive(false);
+                inventoryUI.rectTransform.anchoredPosition = new Vector3(500, -50, 0);
+                // inventoryUI.gameObject.SetActive(false);
             }
         }
 
@@ -256,12 +260,14 @@ namespace ETeam.KyungSeo
             if (!isEquipmentOn)
             {
                 isEquipmentOn = true;
-                equipmentUI.gameObject.SetActive(true);
+                equipmentUI.rectTransform.anchoredPosition = new Vector3(500, 0, 0);
+                // equipmentUI.gameObject.SetActive(true);
             }
             else
             {
                 isEquipmentOn = false;
-                equipmentUI.gameObject.SetActive(false);
+                equipmentUI.rectTransform.anchoredPosition = new Vector3(-500, 0, 0);
+                // equipmentUI.gameObject.SetActive(false);
             }
         }
 

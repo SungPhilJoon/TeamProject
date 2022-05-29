@@ -14,7 +14,6 @@ namespace ETeam.KyungSeo
 
         [Header("Ä® µ¥¹ÌÁö")]
         [SerializeField] private int swordNormalDamage = 30;
-        [SerializeField] private int increaseSwordSkill1_Damage = 20;
 
         [Header("ÄðÅ¸ÀÓ")]
         public float skill1_CoolTime = 5f;
@@ -38,7 +37,6 @@ namespace ETeam.KyungSeo
         #region Action Methods
         public void EnterNormalSwordAttack()
         {
-            // Damage = swordNormalDamage;
             animator.SetTrigger(hashOnNormalAttack);
 
             animator.SetBool(hashIsComboAttack, true);
@@ -62,8 +60,6 @@ namespace ETeam.KyungSeo
             shockWave.owner = this;
 
             Instantiate(shockWave.gameObject, spawnPoint.position, spawnPoint.rotation);
-            // Damage = swordNormalDamage;
-            shockWave.damage = Damage + increaseSwordSkill1_Damage;
 
             animator.SetTrigger(hashSwordSkill);
             StartCoroutine(SwordSkill1_CoolTime());

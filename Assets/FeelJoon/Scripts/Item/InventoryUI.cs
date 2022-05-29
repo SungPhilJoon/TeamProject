@@ -32,7 +32,9 @@ namespace ETeam.FeelJoon
             for (int i = 0; i < inventoryObject.Slots.Length; i++)
             {
                 inventoryObject.Slots[i].parent = inventoryObject;
+                inventoryObject.Slots[i].OnPreUpdate -= OnPreUpdate;
                 inventoryObject.Slots[i].OnPreUpdate += OnPreUpdate;
+                inventoryObject.Slots[i].OnPostUpdate -= OnPostUpdate;
                 inventoryObject.Slots[i].OnPostUpdate += OnPostUpdate;
             }
 

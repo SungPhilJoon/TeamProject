@@ -11,16 +11,25 @@ namespace ETeam.FeelJoon
         #region Variables
         public float surfaceOffset = 1.5f;
         public Transform target = null;
+        public MainPlayerController owner;
 
         #endregion Variables
 
+        #region Unity Methods
         void Update()
         {
-            if (target)
-            {
-                transform.position = target.position + Vector3.up * surfaceOffset;
-            }
+            //if (target)
+            //{
+            //    transform.position = target.position + Vector3.up * surfaceOffset;
+            //}
         }
+
+        void OnTriggerStay(Collider other)
+        {
+            
+        }
+
+        #endregion Unity Methods
 
         #region Helper Methods
         public void SetPosition(RaycastHit hit)

@@ -48,12 +48,12 @@ namespace ETeam.FeelJoon
                 item = new Item();
             }
 
-            OnPreUpdate(this);
+            OnPreUpdate.Invoke(this);
 
             this.item = item;
             this.amount = amount;
 
-            OnPostUpdate(this);
+            OnPostUpdate.Invoke(this);
         }
 
         public bool CanPlaceInSlot(ItemObject itemObject)

@@ -100,7 +100,7 @@ namespace ETeam.FeelJoon
             SetBaseValue(CharacterAttribute.Strength, 100);
             SetBaseValue(CharacterAttribute.Defensive, 100);
             SetBaseValue(CharacterAttribute.CriticalRate, 100);
-            SetBaseValue(CharacterAttribute.Health, 100);
+            // SetBaseValue(CharacterAttribute.Health, 1000);
             SetBaseValue(CharacterAttribute.Mana, 100);
 
             Health = GetModifiedValue(CharacterAttribute.Health);

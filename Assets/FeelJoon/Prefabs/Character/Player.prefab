@@ -1171,34 +1171,48 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 384
+  criticalRate: 0
   hitTransform: {fileID: 7644081197937451186}
   hitEffectPrefab: {fileID: 1570927096764274, guid: 643639841fb531e4ba8097fed4eb9ac7, type: 3}
   gold: 10000
   playerStats: {fileID: 11400000, guid: 14f26ef801f78074fb4fba356f0153e1, type: 2}
   maxHealth: 500
-  health: 0
+  health: 1000
+  maxMana: 100
+  mana: 500
   closeupSpeed: 3
   characterFace: {fileID: 0}
   characterFaceCameraTransform: {fileID: 1302949263}
   gameoverUI: {fileID: 0}
   gameoverText: {fileID: 0}
+  reviveTransform: {fileID: 0}
   bowNormalDamage: 15
-  bowNormalCoolTime: 0
+  bowNormalCoolTime: 1
   bowSkill1_CoolTime: 0
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  placeArea: {fileID: 0}
   aimImage: {fileID: 0}
   currentArrow: {fileID: 0}
   swordNormalDamage: 30
-  increaseSwordSkill1_Damage: 20
   skill1_CoolTime: 5
   shockWave: {fileID: 3073920981943686648, guid: 4cfa6fcc86f31eb4b888c4833876ef3c, type: 3}
   moveSpeed: 5
+  dashDistance: 5
+  settingsUI: {fileID: 0}
+  inventoryUI: {fileID: 0}
+  equipmentUI: {fileID: 0}
+  focus: {fileID: 0}
+  isSettingOn: 0
+  isInventoryOn: 0
+  isEquipmentOn: 0
   controller: {fileID: 0}
   gravity: -29.81
   drags: {x: 10, y: 10, z: 10}
   weaponErrorText: {fileID: 0}
   attackStateController: {fileID: 0}
   defaultWeaponPrefab: {fileID: 8045601669049900088, guid: db9c622fd2549ea468a7af4d0df2c126, type: 3}
-  criticalRate: 0
   inventory: {fileID: 11400000, guid: 58c58be2cdbc69d45b532bc1a59e7dc7, type: 2}
   equipment: {fileID: 11400000, guid: cd413d767adb19b458c72db0009fbe99, type: 2}
   shortcut: {fileID: 11400000, guid: 36578ec9e695f2f41812157d23006254, type: 2}
@@ -2521,7 +2535,7 @@ PrefabInstance:
     - target: {fileID: 5316820693925015571, guid: fdf678a7193c58346a367114b3da57ac, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 4059dd938f1a25b4d8bbfcc959ea1fbd, type: 2}
+      objectReference: {fileID: 9100000, guid: f590ea4e7f98ef741a6625bc3b44037a, type: 2}
     - target: {fileID: 5316820693925015571, guid: fdf678a7193c58346a367114b3da57ac, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0

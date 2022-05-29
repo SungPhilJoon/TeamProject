@@ -19,6 +19,9 @@ public class GameManager : Singleton<GameManager>
     private MainPlayerController mainPlayer;
 
     public GameObject unavailableSkillText;
+    public GameObject reviveParticle;
+
+    private Vector3 revivePosition;
 
     [SerializeField] private Text goldAmountText;
 
@@ -36,6 +39,8 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        revivePosition = mainPlayer.reviveTransform.position;
+
         StartCoroutine(UpdateGoldAmount());
     }
 
@@ -58,12 +63,15 @@ public class GameManager : Singleton<GameManager>
     public void Revive()
     {
         mainPlayer.controller.enabled = false;
-        mainPlayer.transform.position = mainPlayer.reviveTransform.position;
+        mainPlayer.transform.position = revivePosition;
+        GameObject reviveObj = Instantiate(reviveParticle, revivePosition, Quaternion.identity);
+        Destroy(reviveObj, 2f);
         mainPlayer.controller.enabled = true;
 
         StatsObject playerStats = mainPlayer.playerStats;
 
         playerStats.AddHealth(playerStats.GetModifiedValue(CharacterAttribute.Health));
+        playerStats.AddMana(playerStats.GetModifiedValue(CharacterAttribute.Mana));
 
         mainPlayer.StateMachine.ChangeState<PlayerIdle>();
         mainPlayer.animator.ResetTrigger("OnDeadTrigger");

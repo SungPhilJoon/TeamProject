@@ -29,7 +29,8 @@ namespace ETeam.FeelJoon
         {
             base.Awake();
 
-            gameObject.SetActive(false);
+            gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(500, -50, 0);
+            // gameObject.SetActive(false);
         }
 
         #endregion Unity Methods

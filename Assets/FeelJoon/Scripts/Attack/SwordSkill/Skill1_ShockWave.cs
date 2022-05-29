@@ -9,6 +9,7 @@ namespace ETeam.FeelJoon
     {
         #region Variables
         [SerializeField] private float moveSpeed;
+        [SerializeField] private int increaseSwordSkill1_Damage = 20;
         [HideInInspector] public MainPlayerController owner;
         [HideInInspector] public int damage;
 
@@ -33,8 +34,8 @@ namespace ETeam.FeelJoon
             {
                 if (other.TryGetComponent<IDamageable>(out IDamageable damageable))
                 {
-                    Debug.Log(owner);
-                    damageable.TakeDamage(damage, owner.transform);
+                    int finalDamage = owner.Damage + increaseSwordSkill1_Damage;
+                    damageable.TakeDamage(finalDamage, owner.transform);
                 }
             }
         }

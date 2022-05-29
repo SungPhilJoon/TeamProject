@@ -3011,23 +3011,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926810575}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &941861327 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8866819108009413569, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
-  m_PrefabInstance: {fileID: 7644081196902287085}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &941861330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 941861327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 643b15ab4f3f9b8408d5772eeb12fc93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &949322365
 GameObject:
   m_ObjectHideFlags: 0
@@ -3482,7 +3465,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 200317830}
-  unavailableSkillText: {fileID: 0}
+  unavailableSkillText: {fileID: 1582868436}
+  reviveParticle: {fileID: 1714681308540598, guid: 5cbc537826220e04592d5a41a0dd985f, type: 3}
   goldAmountText: {fileID: 0}
 --- !u!4 &1033982254
 Transform:
@@ -4854,15 +4838,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf722eace92e1b42bc93f51d81ad067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBossMeleeAttack1_Available: 1
-  isBossThrowAttack1_Available: 1
-  isBossThrowAttack2_Available: 1
+  isBossMeleeAttack_Available: 1
+  isBossThrowAttack_Available: 1
   targetMask:
     serializedVersion: 2
     m_Bits: 64
   enemyType: 2
   agent: {fileID: 0}
-  maxHealth: 100
+  maxHealth: 1000
   health: 0
   bossPhase: 1
   damage: 50
@@ -4870,7 +4853,6 @@ MonoBehaviour:
   coolTime: 3
   meleeAttackCoolDown: 3
   throwAttackCoolDown: 7
-  jumpSitAttackCoolDown: 10
   bossWeapon: {fileID: 5146150259417203617, guid: 1c18f34a47c1d224b85b3559ceaa62c8, type: 3}
   throwPoint: {fileID: 25744199}
   database: []
@@ -8986,7 +8968,7 @@ PrefabInstance:
     - target: {fileID: 2583974479865468072, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: b2cd41f5af4f5e441a272457119e8e42, type: 2}
+      objectReference: {fileID: 9100000, guid: f590ea4e7f98ef741a6625bc3b44037a, type: 2}
     - target: {fileID: 7644081197255851401, guid: ba0d172f3197650469dd0a155c1f6fd9, type: 3}
       propertyPath: focus
       value: 

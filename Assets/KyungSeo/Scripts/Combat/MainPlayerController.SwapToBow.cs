@@ -56,6 +56,25 @@ namespace ETeam.KyungSeo
             cameraFocus.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
+        private IEnumerator ShowPlaceArea()
+        {
+            while (true)
+            {
+                yield return null;
+
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, 20, groundLayerMask))
+                {
+                    if (placeArea)
+                    {
+                        placeArea.SetPosition(hit);
+                    }
+                }
+            }
+        }
+
         #endregion Helper Methods
 
         #region Action Methods
@@ -78,21 +97,6 @@ namespace ETeam.KyungSeo
             currentArrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
             currentArrow.moveSpeed = 10f;
             currentArrow.damage = Damage / 5;
-
-            // 여기서 Aim 부분을 구현하면 될 거 같습니다.
-
-            //if(!cameraFocus._isAimOn)
-            //    arrow.transform.forward = spawnPoint.forward;
-            //else
-            //{
-            //    Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-            //    if (Physics.Raycast(ray, out RaycastHit hit))
-            //    {
-            //        arrow.transform.forward = (hit.point - arrow.transform.position).normalized;
-            //    }
-            //}
-
-
         }
 
         public void ExitNormalBowAttack()
@@ -115,21 +119,16 @@ namespace ETeam.KyungSeo
 
         public void EnterSkillBowAttack()
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100, groundLayerMask))
-            {
-                if (placeArea)
-                {
-                    placeArea.SetPosition(hit);
-                }
-            }
+            placeArea.gameObject.SetActive(true);
+            placeArea.owner = this;
+            StartCoroutine(ShowPlaceArea());
         }
 
         public void ExitSkillBowAttack()
         {
-
+            placeArea.transform.position = new Vector3(960f, 540f, 0f);
+            StopCoroutine(ShowPlaceArea());
+            placeArea.gameObject.SetActive(false);
         }
         
         public void AimIn(InputAction.CallbackContext callbackContext)

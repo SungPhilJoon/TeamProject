@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using ETeam.KyungSeo;
-using System;
+// using System;
 
 namespace ETeam.FeelJoon
 {
@@ -28,6 +28,7 @@ namespace ETeam.FeelJoon
         public LayerMask targetMask;
 
         protected int damage;
+        [SerializeField] private int criticalRate;
 
         public Transform hitTransform;
 
@@ -46,6 +47,10 @@ namespace ETeam.FeelJoon
         [Header("체력")]
         public int maxHealth = 100;
         public int health;
+
+        [Header("마나")]
+        public int maxMana = 100;
+        public int mana;
 
         [Header("캐릭터 UI")]
         [SerializeField] private float closeupSpeed;
@@ -73,9 +78,33 @@ namespace ETeam.FeelJoon
             set => target = value;
         }
 
-        public virtual int Damage
+        public int Damage
         {
-            get; set;
+            get
+            {
+                if (damage <= 0)
+                {
+                    damage = playerStats.GetModifiedValue(CharacterAttribute.Strength) / 2;
+                }
+
+                int criticalAttackRange = Random.Range(0, 100);
+
+                int finalDamage = damage + playerStats.level * 10;
+
+                if (criticalRate > criticalAttackRange)
+                {
+                    return finalDamage * 2;
+                }
+
+                return finalDamage;
+            }
+            set => damage = value;
+        }
+
+        public int CriticalRate
+        {
+            get => criticalRate;
+            set => criticalRate = value;
         }
 
         public bool IsMove
@@ -102,8 +131,13 @@ namespace ETeam.FeelJoon
 
             originColor = characterFace.color;
 
+            playerStats.SetBaseValue(CharacterAttribute.Health, health);
             maxHealth = playerStats.GetModifiedValue(CharacterAttribute.Health);
             playerStats.Health = maxHealth;
+
+            playerStats.SetBaseValue(CharacterAttribute.Mana, mana);
+            maxMana = playerStats.GetModifiedValue(CharacterAttribute.Mana);
+            playerStats.Mana = maxMana;
 
             gameoverUI.SetActive(false);
             gameoverText = gameoverUI.GetComponentInChildren<TMP_Text>();
@@ -168,7 +202,7 @@ namespace ETeam.FeelJoon
                 IDamageable damageable = targetCollider.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    damageable.TakeDamage(damage, null, hitEffectPrefab);
+                    damageable.TakeDamage(Damage, null, hitEffectPrefab);
                 }
             }
         }
