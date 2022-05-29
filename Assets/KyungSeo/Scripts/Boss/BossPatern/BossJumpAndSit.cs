@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using ETeam.FeelJoon;
 
 public class BossJumpAndSit : State<BossController>
@@ -15,6 +16,8 @@ public class BossJumpAndSit : State<BossController>
     private float normalTime;
 
     private Animator animator;
+    private CharacterController controller;
+    private NavMeshAgent agent;
 
     protected readonly int hashJumpTrigger = Animator.StringToHash("JumpTrigger");
     protected readonly int hashAttackDistance = Animator.StringToHash("AttackDistance");
@@ -26,6 +29,8 @@ public class BossJumpAndSit : State<BossController>
     public override void OnInitialized()
     {
         animator = context.GetComponent<Animator>();
+        controller = context.GetComponent<CharacterController>();
+        agent = context.GetComponent<NavMeshAgent>();
     }
 
     public override void OnEnter()
@@ -47,24 +52,31 @@ public class BossJumpAndSit : State<BossController>
 
     public override void Update(float deltaTime)
     {
-        //Vector3 jumpNormalizeDirection = (targetPosition - firstBossPosition).normalized;
-
-        if (context.transform.position.y < 0f)
+        if (controller.isGrounded)
         {
-            context.transform.position = new Vector3(context.transform.position.x, 0f, context.transform.position.z);
-            stateMachine.ChangeState<BossIdle>();
+            agent.ResetPath();
+            controller.Move(Vector3.zero);
+
+            if (stateMachine.ElapsedTimeInState > normalTime + 1.5f)
+            {
+                Debug.Log("»£√‚");
+                animator.SetTrigger(hashJumpTrigger);
+                stateMachine.ChangeState<BossIdle>();
+            }
+
             return;
         }
 
-        if (context.transform.position.y >= targetDistance - 1)
+        if (context.transform.position.y >= firstBossPosition.y)
         {
-            animator.SetTrigger(hashJumpTrigger);
-            Debug.Log("æ…æ“¥œ?");
-        }
+            normalTime += deltaTime;
+            Vector3 tempPos = Parabola(firstBossPosition, targetPosition, targetDistance, normalTime / 3);
 
-        normalTime += Time.deltaTime;
-        Vector3 tempPos = Parabola(firstBossPosition, targetPosition, targetDistance, normalTime / 5);
-        context.transform.position = tempPos;
+            agent.SetDestination(new Vector3(tempPos.x, firstBossPosition.y, tempPos.z));
+
+            controller.Move(new Vector3(agent.velocity.x, tempPos.y, agent.velocity.z) * deltaTime);
+        }
+        // context.transform.position = tempPos;
     }
 
     public override void OnExit()

@@ -120,27 +120,22 @@ namespace ETeam.KyungSeo
             {
                 calcVelocity.y = 0;
             }
-                isGround = controller.isGrounded;
-                if (isGround && calcVelocity.y < 0)
-                {
-                    calcVelocity.y = 0;
-                }
 
-                if (isMove)
-                {
-                    Vector3 lookForward = new Vector3(focus.forward.x, 0f, focus.forward.z).normalized;
-                    Vector3 lookRight = new Vector3(focus.right.x, 0f, focus.right.z).normalized;
-                    Vector3 moveDir = lookForward * movement.z + lookRight * movement.x;
+            if (isMove)
+            {
+                Vector3 lookForward = new Vector3(focus.forward.x, 0f, focus.forward.z).normalized;
+                Vector3 lookRight = new Vector3(focus.right.x, 0f, focus.right.z).normalized;
+                Vector3 moveDir = lookForward * movement.z + lookRight * movement.x;
 
-                    transform.forward = Vector3.Lerp(transform.forward, moveDir, 30f * Time.deltaTime);
-                    controller.Move(moveDir * Time.deltaTime * moveSpeed);
-                }
+                transform.forward = Vector3.Lerp(transform.forward, moveDir, 30f * Time.deltaTime);
+                controller.Move(moveDir * Time.deltaTime * moveSpeed);
+            }
 
-                calcVelocity.y += gravity * Time.deltaTime;
+            calcVelocity.y += gravity * Time.deltaTime;
 
-                calcVelocity.x /= 1 + drags.x * Time.deltaTime;
-                calcVelocity.y /= 1 + drags.y * Time.deltaTime;
-                calcVelocity.z /= 1 + drags.z * Time.deltaTime;
+            calcVelocity.x /= 1 + drags.x * Time.deltaTime;
+            calcVelocity.y /= 1 + drags.y * Time.deltaTime;
+            calcVelocity.z /= 1 + drags.z * Time.deltaTime;
 
             if (IsAlive)
             { 

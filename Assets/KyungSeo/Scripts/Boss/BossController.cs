@@ -62,14 +62,17 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     {
         get => projectilePoint;
     }
+
     public bool IsAvailableMeleeAttack
     {
         get => (targetDistance < 5 && targetDistance > 0);
     }
+
     public bool IsAvailableThrowAttack
     {
         get => (targetDistance >= 5);
     }
+
     public Transform Target => bossFOV.target;
 
     public float HealthPercentage => health / (float)maxHealth;
