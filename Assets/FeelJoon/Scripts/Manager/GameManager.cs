@@ -21,6 +21,8 @@ public class GameManager : Singleton<GameManager>
     public GameObject unavailableSkillText;
     public GameObject reviveParticle;
 
+    public Camera mainCamera;
+
     private Vector3 revivePosition;
 
     [SerializeField] private Text goldAmountText;
@@ -34,6 +36,7 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
 
+        mainCamera = Camera.main;
         mainPlayer = player.GetComponent<MainPlayerController>();
     }
 

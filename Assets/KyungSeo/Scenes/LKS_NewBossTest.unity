@@ -891,7 +891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223168204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11.358552}
+  m_LocalPosition: {x: 0, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 553946245}
@@ -2567,7 +2567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724966199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 3}
+  m_LocalPosition: {x: 0, y: 1, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1188147139}
@@ -2586,7 +2586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  boxSize: {x: 3, y: 2, z: 3}
+  boxSize: {x: 10, y: 2, z: 10}
   targetColliders:
   - {fileID: 0}
   - {fileID: 0}
@@ -3467,6 +3467,7 @@ MonoBehaviour:
   player: {fileID: 200317830}
   unavailableSkillText: {fileID: 1582868436}
   reviveParticle: {fileID: 1714681308540598, guid: 5cbc537826220e04592d5a41a0dd985f, type: 3}
+  mainCamera: {fileID: 0}
   goldAmountText: {fileID: 0}
 --- !u!4 &1033982254
 Transform:
@@ -4853,6 +4854,8 @@ MonoBehaviour:
   coolTime: 3
   meleeAttackCoolDown: 3
   throwAttackCoolDown: 7
+  attackPlaceArea: {fileID: 8119845913196407611, guid: 23d943994772b22479c9420cf7a94bb5, type: 3}
+  jumpAttackPlaceArea: {fileID: 8572852672181077455, guid: 8236933fb8986d04b8c5ca4a99f14806, type: 3}
   bossWeapon: {fileID: 5146150259417203617, guid: 1c18f34a47c1d224b85b3559ceaa62c8, type: 3}
   throwPoint: {fileID: 25744199}
   database: []
@@ -8713,6 +8716,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100066, guid: 9d4e7ddd4d0ef1845b081ce958257b16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100066, guid: 9d4e7ddd4d0ef1845b081ce958257b16, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -8822,15 +8829,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 9d4e7ddd4d0ef1845b081ce958257b16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.865183
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 9d4e7ddd4d0ef1845b081ce958257b16, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.049999237
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 9d4e7ddd4d0ef1845b081ce958257b16, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.71816254
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 9d4e7ddd4d0ef1845b081ce958257b16, type: 3}
       propertyPath: m_LocalRotation.w

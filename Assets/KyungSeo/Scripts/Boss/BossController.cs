@@ -31,6 +31,8 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     public float coolTime;
     public float meleeAttackCoolDown = 3f;
     public float throwAttackCoolDown = 7f;
+    public GameObject attackPlaceArea;
+    public GameObject jumpAttackPlaceArea;
     //public float jumpSitAttackCoolDown = 10f;
 
     private ManualCollision bossManualCollision;
@@ -74,6 +76,8 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     }
 
     public Transform Target => bossFOV.target;
+
+    public ManualCollision BossManualCollision => bossManualCollision;
 
     public float HealthPercentage => health / (float)maxHealth;
 
@@ -145,6 +149,13 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
         bossWeapon.owner = this;
         GameObject obj = Instantiate(bossWeapon.gameObject, throwPoint.position, Quaternion.identity);
         obj.transform.parent = null;
+
+        GameObject areaObj = GameObject.Instantiate(attackPlaceArea,
+            transform.position + transform.forward * 30f,
+            transform.rotation);
+        areaObj.transform.localScale += Vector3.forward * 5f;
+
+        GameObject.Destroy(areaObj, 1.5f);
     }
 
     #endregion IAttackable

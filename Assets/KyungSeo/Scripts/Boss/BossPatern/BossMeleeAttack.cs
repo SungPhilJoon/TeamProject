@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ETeam.FeelJoon;
+using Random = UnityEngine.Random;
 
 public class BossMeleeAttack : State<BossController>
 {
@@ -22,13 +23,13 @@ public class BossMeleeAttack : State<BossController>
 
     public override void OnEnter()
     {
-    //    if (!context.isBossMeleeAttack1_Available)
-    //    {
-    //        stateMachine.ChangeState<BossIdle>();
-    //        return;
-    //    }
-
         context.transform.LookAt(context.Target);
+
+        GameObject obj = GameObject.Instantiate(context.attackPlaceArea, 
+            context.BossManualCollision.transform.position - Vector3.up * 0.9f,
+            context.BossManualCollision.transform.rotation);
+
+        GameObject.Destroy(obj, 1.5f);
 
         animator.SetTrigger(hashAttackTrigger);
         animator.SetFloat(hashAttackDistance, context.targetDistance);
@@ -38,7 +39,7 @@ public class BossMeleeAttack : State<BossController>
 
     public override void Update(float deltaTime)
     {
-        if(stateMachine.ElapsedTimeInState > context.coolTime)
+        if (stateMachine.ElapsedTimeInState > context.coolTime)
         {
             stateMachine.ChangeState<BossIdle>();
         }

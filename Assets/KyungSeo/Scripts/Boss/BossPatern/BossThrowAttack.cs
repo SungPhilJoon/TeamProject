@@ -23,12 +23,6 @@ public class BossThrowAttack : State<BossController>
 
     public override void OnEnter()
     {
-        //if (!context.isBossThrowAttack1_Available)
-        //{
-        //    stateMachine.ChangeState<BossIdle>();
-        //    return;
-        //}
-
         context.transform.LookAt(context.Target);
 
         animator.SetTrigger(hashAttackTrigger);

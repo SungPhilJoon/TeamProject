@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using ETeam.FeelJoon;
+using Random = UnityEngine.Random;
 
 public class BossJumpAndSit : State<BossController>
 {
@@ -18,6 +19,8 @@ public class BossJumpAndSit : State<BossController>
     private Animator animator;
     private CharacterController controller;
     private NavMeshAgent agent;
+
+    private bool isCheckCollision = false;
 
     protected readonly int hashJumpTrigger = Animator.StringToHash("JumpTrigger");
     protected readonly int hashAttackDistance = Animator.StringToHash("AttackDistance");
@@ -41,7 +44,15 @@ public class BossJumpAndSit : State<BossController>
 
         normalTime = 0f;
 
+        isCheckCollision = false;
+
         context.transform.LookAt(context.Target);
+
+        GameObject obj = GameObject.Instantiate(context.jumpAttackPlaceArea,
+            targetPosition + (firstBossPosition - targetPosition).normalized * agent.stoppingDistance, 
+            Quaternion.identity);
+
+        GameObject.Destroy(obj, 5f);
 
         animator.SetTrigger(hashJumpTrigger);
         animator.SetFloat(hashAttackDistance, context.targetDistance);
@@ -57,9 +68,18 @@ public class BossJumpAndSit : State<BossController>
             agent.ResetPath();
             controller.Move(Vector3.zero);
 
-            if (stateMachine.ElapsedTimeInState > normalTime + 1.5f)
+            GameManager.Instance.mainCamera.transform.localPosition = new Vector3(Random.insideUnitCircle.x * 0.5f, 
+                Random.insideUnitCircle.y * 0.5f,
+                GameManager.Instance.mainCamera.transform.localPosition.z);
+
+            if (!isCheckCollision)
             {
-                Debug.Log("È£Ãâ");
+                isCheckCollision = true;
+                CheckCollision();
+            }
+            
+            if (stateMachine.ElapsedTimeInState > normalTime + 0.5f)
+            {
                 animator.SetTrigger(hashJumpTrigger);
                 stateMachine.ChangeState<BossIdle>();
             }
@@ -76,11 +96,11 @@ public class BossJumpAndSit : State<BossController>
 
             controller.Move(new Vector3(agent.velocity.x, tempPos.y, agent.velocity.z) * deltaTime);
         }
-        // context.transform.position = tempPos;
     }
 
     public override void OnExit()
     {
+
     }
 
     #endregion State
@@ -94,6 +114,21 @@ public class BossJumpAndSit : State<BossController>
         var mid = Vector3.Lerp(start, end, t);
 
         return new Vector3(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t), mid.z);
+    }
+
+    private void CheckCollision()
+    {
+        Collider[] targetColliders = Physics.OverlapSphere(context.transform.position, 20.0f, context.targetMask);
+
+        foreach (Collider targetCollider in targetColliders)
+        {
+            if (targetCollider.TryGetComponent<IDamageable>(out IDamageable damageable))
+            {
+                int finalDamage = Mathf.RoundToInt(targetDistance) * 20;
+
+                damageable.TakeDamage(finalDamage);
+            }
+        }
     }
 
     #endregion Helper Methods
