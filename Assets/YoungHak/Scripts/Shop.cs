@@ -12,6 +12,7 @@ namespace ETeam.YongHak
     {
         #region Variables
         public float Distance => distance;
+        public Animator anim;
         private float distance = 3.0f;
         private new GameObject gameObject;
         [SerializeField] private ItemObjectDatabase[] database;
@@ -52,6 +53,7 @@ namespace ETeam.YongHak
         public void Exit()
         {
             uiGroup.anchoredPosition = Vector3.down * 2000;
+            anim.SetTrigger("doHello");
         }
 
         public int getCoin()
