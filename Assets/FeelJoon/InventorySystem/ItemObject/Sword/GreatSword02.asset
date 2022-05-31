@@ -18,7 +18,7 @@ MonoBehaviour:
   modelPrefab: {fileID: 8862475838909730621, guid: 1d0b677ce4f1d364fafbdf3f8bebdb8a, type: 3}
   data:
     id: 2
-    name: 
+    name: "\uC874\uB098 \uC318 \uCE7C"
     itemType: 0
     buffs:
     - stat: 0
@@ -30,4 +30,4 @@ MonoBehaviour:
       min: 15
       max: 25
   boneNames: []
-  description: 
+  description: "\uC874\uB098 \uC318 \uCE7C\uC774\uB2E4."

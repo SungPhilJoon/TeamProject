@@ -14,6 +14,7 @@ namespace ETeam.FeelJoon
 
         [NonSerialized] public InventoryObject parent;
         [NonSerialized] public GameObject slotUI;
+        [NonSerialized] public RectTransform slotRectTransform;
 
         [NonSerialized] public Action<InventorySlot> OnPreUpdate;
         [NonSerialized] public Action<InventorySlot> OnPostUpdate;

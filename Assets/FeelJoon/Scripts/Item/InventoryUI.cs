@@ -24,6 +24,8 @@ namespace ETeam.FeelJoon
 
         public Dictionary<GameObject, InventorySlot> slotUIs = new Dictionary<GameObject, InventorySlot>();
 
+        public ItempTooltipUI itemTooltipUI;
+
         #region Unity Methods
         protected virtual void Awake()
         {
@@ -102,12 +104,19 @@ namespace ETeam.FeelJoon
         {
             MouseData.slotHoveredOver = go;
             MouseData.slotHoveredOver.GetComponent<Image>().color = Color.yellow;
+
+            if (slotUIs[go] != null)
+            {
+                ShowOrHideItemTooltip();
+            }
         }
 
         public void OnExitSlot(GameObject go)
         {
             MouseData.slotHoveredOver = null;
             go.GetComponent<Image>().color = new Color(184f / 255f, 152f / 255f, 109f / 255f, 1f);
+
+            ShowOrHideItemTooltip();
         }
 
         public void OnStartDrag(GameObject go)
@@ -188,6 +197,38 @@ namespace ETeam.FeelJoon
         protected virtual void OnLeftClick(InventorySlot slot)
         {
 
+        }
+
+        private void ShowOrHideItemTooltip()
+        {
+            bool isValid =
+                MouseData.slotHoveredOver != null &&
+                slotUIs[MouseData.slotHoveredOver].item.id >= 0 &&
+                (MouseData.slotHoveredOver != MouseData.tempItemBeingDragged);
+
+            if (isValid)
+            {
+                UpdateTooltipUI(slotUIs[MouseData.slotHoveredOver]);
+                itemTooltipUI.Show();
+            }
+            else
+            {
+                itemTooltipUI.Hide();
+            }
+        }
+
+        private void UpdateTooltipUI(InventorySlot slot)
+        {
+            if (slot.item.id < 0)
+            {
+                return;
+            }
+
+            // 툴팁 정보 갱신
+            itemTooltipUI.SetItemInfo(slot.item);
+
+            // 툴팁 위치 조정
+            itemTooltipUI.SetRectPosition(slot.slotRectTransform);
         }
 
         #endregion Helper Methods

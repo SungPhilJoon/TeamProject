@@ -53,6 +53,7 @@ namespace ETeam.FeelJoon
                 AddEvent(go, EventTriggerType.PointerClick, (data) => { OnClick(go, (PointerEventData)data); });
 
                 inventoryObject.Slots[i].slotUI = go;
+                inventoryObject.Slots[i].slotRectTransform = go.GetComponent<RectTransform>();
                 slotUIs.Add(go, inventoryObject.Slots[i]);
 
                 go.name += $": {i}";
