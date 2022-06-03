@@ -21,6 +21,10 @@ namespace ETeam.KyungSeo
         [Header("활 스킬 공격 영역")]
         public LayerMask groundLayerMask;
         public Skill1_PlaceAreaWithMouse placeArea;
+        [SerializeField] private GameObject particleObject;
+
+        [Header("활 스킬 Icon")]
+        [SerializeField] private Image[] bowSkill_Icon;
 
         [Header("Aim")]
         [SerializeField] private Image aimImage;
@@ -56,24 +60,7 @@ namespace ETeam.KyungSeo
             cameraFocus.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
-        private IEnumerator ShowPlaceArea()
-        {
-            while (true)
-            {
-                yield return null;
-
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 20, groundLayerMask))
-                {
-                    if (placeArea)
-                    {
-                        placeArea.SetPosition(hit);
-                    }
-                }
-            }
-        }
+        
 
         #endregion Helper Methods
 
@@ -101,13 +88,14 @@ namespace ETeam.KyungSeo
 
         public void ExitNormalBowAttack()
         {
+            if (!isBowNormal_Available) return;
+
             aimImage.enabled = false;
 
             OffAimCameraMove();
 
             animator.SetBool(hashDrawBow, false);
 
-            // Arrow currentArrow = objectPoolManager.GetPooledObject(PooledObjectNameList.NameOfArrow);
             currentArrow.gameObject.SetActive(true);
 
             currentArrow.owner = this;
@@ -119,16 +107,26 @@ namespace ETeam.KyungSeo
 
         public void EnterSkillBowAttack()
         {
+            if (!isBowSkill1_Available)
+            {
+                GameManager.Instance.unavailableSkillText.SetActive(true);
+
+                return;
+            }
+
             placeArea.gameObject.SetActive(true);
             placeArea.owner = this;
-            StartCoroutine(ShowPlaceArea());
         }
 
         public void ExitSkillBowAttack()
         {
-            placeArea.transform.position = new Vector3(960f, 540f, 0f);
-            StopCoroutine(ShowPlaceArea());
+            if (!isBowSkill1_Available) return;
+
             placeArea.gameObject.SetActive(false);
+            GameObject obj = Instantiate(particleObject, placeArea.transform.position + Vector3.up * 9f, Quaternion.identity);
+            Destroy(obj, placeArea.duration);
+
+            StartCoroutine(BowSkill1_CoolTime());
         }
         
         public void AimIn(InputAction.CallbackContext callbackContext)
@@ -145,9 +143,18 @@ namespace ETeam.KyungSeo
         {
             isBowNormal_Available = false;
 
-            yield return StartCoroutine(skillCoolTimeHandlers[SkillNameList.BowNormal_Name.GetHashCode()](bowNormalCoolTime));
+            yield return StartCoroutine(skillCoolTimeHandlers[SkillNameList.BowNormal_Name.GetHashCode()](bowNormalCoolTime, null));
 
             isBowNormal_Available = true;
+        }
+
+        private IEnumerator BowSkill1_CoolTime()
+        {
+            isBowSkill1_Available = false;
+
+            yield return StartCoroutine(skillCoolTimeHandlers[SkillNameList.BowSkill1_Name.GetHashCode()](bowSkill1_CoolTime, bowSkill_Icon[0]));
+
+            isBowSkill1_Available = true;
         }
 
         #endregion Cool Time

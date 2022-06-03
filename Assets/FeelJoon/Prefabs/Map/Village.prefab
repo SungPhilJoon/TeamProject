@@ -4849,7 +4849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7129195011669456846}
   m_Layer: 10
-  m_Name: Low poly
+  m_Name: Village
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -30,6 +30,10 @@ namespace ETeam.YongHak
         #endregion Variables
 
         #region Method
+        void Awake()
+        {
+
+        }
 
         void Start()
         {
@@ -38,17 +42,16 @@ namespace ETeam.YongHak
             jsonTest.Load();
         }
 
-        void Update()
-        {
-            coinString = coin.ToString();
-            coinText.text = coinString;
-        }
-
         /*public void Enter(ShopTestPlayer player)
         {
             enterPlayer = player;
             uiGroup.anchoredPosition = Vector3.zero;
         }*/
+
+        private void Init()
+        {
+
+        }
 
         public void Exit()
         {
@@ -63,9 +66,9 @@ namespace ETeam.YongHak
 
         IEnumerator Talk()
         {
-            talkText.text = "어이 돈이 모자라";
             yield return new WaitForSeconds(2f);
-            talkText.text = "원하는게 있나?";
+
+            talkText.text = ShopNPCDialogueList.EnterDialogue;
         }
 
         public bool Interact(GameObject other)
@@ -87,15 +90,21 @@ namespace ETeam.YongHak
         {
             ItemObject dropItemObject = database[dataBaseIndex].itemObjects[itemIndex];
 
-            int price = itemPrice[dataBaseIndex];
+            int price = dropItemObject.price; // itemPrice[dataBaseIndex];
             if(price > coin)
             {
+                talkText.text = ShopNPCDialogueList.InsufficientDialogue;
+
                 StopCoroutine(Talk());
                 StartCoroutine(Talk());
+
                 return;
             }
-            itemObject = dropItemObject;
-            gameObject.GetComponent<MainPlayerController>().inventory.AddItem(new Item(itemObject), 1);
+
+            talkText.text = ShopNPCDialogueList.PurchaseDialogue;
+
+            // itemObject = dropItemObject;
+            GameManager.Instance.Main.inventory.AddItem(new Item(dropItemObject), 1);
 
             coin -= price;
         }

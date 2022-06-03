@@ -9,6 +9,15 @@ namespace ETeam.KyungSeo
 {
     public partial class MainPlayerController : PlayerController
     {
+        #region Variables
+        [Header("½ºÅ³ Äü½½·Ô Ã¢")]
+        [SerializeField] private GameObject[] skillListSlot;
+
+        private int swordSkillListSlotNumber = 0;
+        private int bowSkillListSlotNumber = 1;
+
+        #endregion Variables
+
         #region Input Methods : Movements
 
         public void Move(InputAction.CallbackContext callbackContext)
@@ -123,6 +132,8 @@ namespace ETeam.KyungSeo
                     playerInput.SwitchCurrentActionMap("PlayerBow");
                 }
 
+                skillListSlot[swordSkillListSlotNumber].SetActive(false);
+                skillListSlot[bowSkillListSlotNumber].SetActive(true);
             }
         }
 
@@ -142,6 +153,9 @@ namespace ETeam.KyungSeo
                     animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
                     playerInput.SwitchCurrentActionMap("PlayerSword");
                 }
+
+                skillListSlot[swordSkillListSlotNumber].SetActive(true);
+                skillListSlot[bowSkillListSlotNumber].SetActive(false);
             }
         }
 
@@ -152,6 +166,11 @@ namespace ETeam.KyungSeo
                 SwapWeapon(defaultWeaponPrefab, PlayerWeapon.Default);
                 animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
                 playerInput.SwitchCurrentActionMap("Default");
+            }
+
+            for (int i = 0; i < skillListSlot.Length; i++)
+            {
+                skillListSlot[i].SetActive(false);
             }
         }
 

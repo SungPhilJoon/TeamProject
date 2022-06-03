@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ETeam.FeelJoon;
 
 public class ObjectMoveDestroy : MonoBehaviour
 {
@@ -24,10 +25,16 @@ public class ObjectMoveDestroy : MonoBehaviour
     bool ishit;
     float m_scalefactor;
 
+    private int damage;
+    private Transform target;
+
     private void Start()
     {
         m_scalefactor = VariousEffectsScene.m_gaph_scenesizefactor;//transform.parent.localScale.x;
         time = Time.time;
+
+        damage = GameManager.Instance.Main.Damage / 5;
+        target = GameManager.Instance.Main.transform;
     }
 
     void LateUpdate()
@@ -47,6 +54,14 @@ public class ObjectMoveDestroy : MonoBehaviour
                 MakeHitObject(transform);
                 Destroy(gameObject);
             }
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy") && other.TryGetComponent<IDamageable>(out IDamageable damageable))
+        {
+            damageable.TakeDamage(damage, target);
         }
     }
 

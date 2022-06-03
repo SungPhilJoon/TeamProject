@@ -47,7 +47,7 @@ namespace ETeam.KyungSeo
 
         private Vector3 calcVelocity; // 계산에 사용될 Vector3 레퍼런스
 
-        private Dictionary<int, Func<float, IEnumerator>> skillCoolTimeHandlers = new Dictionary<int, Func<float, IEnumerator>>();
+        private Dictionary<int, Func<float, Image, IEnumerator>> skillCoolTimeHandlers = new Dictionary<int, Func<float, Image, IEnumerator>>();
 
         private PlayerInput playerInput;
 
@@ -106,6 +106,13 @@ namespace ETeam.KyungSeo
         {
             skillCoolTimeHandlers.Add(SkillNameList.SwordSkill1_Name.GetHashCode(), Skill_CoolTime);
             skillCoolTimeHandlers.Add(SkillNameList.BowNormal_Name.GetHashCode(), Skill_CoolTime);
+            skillCoolTimeHandlers.Add(SkillNameList.BowSkill1_Name.GetHashCode(), Skill_CoolTime);
+
+            for(int i = 0; i < swordSkill_Icon.Length; i++)
+            {
+                swordSkill_Icon[i].fillAmount = 1;
+                bowSkill_Icon[i].fillAmount = 1;
+            }
 
             StartCoroutine(CheckEquipWeapon());
         }
@@ -303,7 +310,7 @@ namespace ETeam.KyungSeo
             }
         }
 
-        private IEnumerator Skill_CoolTime(float skill_CoolTime)
+        private IEnumerator Skill_CoolTime(float skill_CoolTime, Image skillIcon)
         {
             float normalTime = 0f;
 
@@ -312,6 +319,13 @@ namespace ETeam.KyungSeo
                 normalTime += Time.fixedDeltaTime;
 
                 yield return new WaitForFixedUpdate();
+
+                if (skillIcon == null)
+                {
+                    continue;
+                }
+
+                skillIcon.fillAmount = normalTime / skill_CoolTime;
             }
         }
 

@@ -16,33 +16,52 @@ public class MultipleObjectsMake : _ObjectsMakeBase
     float m_count;
     float m_scalefactor;
 
-    void Start()
+    void Awake()
     {
-        m_Time = m_Time2 = Time.time;
         m_scalefactor = VariousEffectsScene.m_gaph_scenesizefactor; //transform.parent.localScale.x; 
     }
 
-
-    void Update()
+    void OnEnable()
     {
-        if (Time.time > m_Time + m_startDelay)
+        StartCoroutine(ParticleActiveRoutine());
+    }
+
+    void OnDisable()
+    {
+        StopCoroutine(ParticleActiveRoutine());
+    }
+
+    private IEnumerator ParticleActiveRoutine()
+    {
+        m_Time = m_Time2 = Time.time;
+
+        float normalTime = 0f;
+        float duration = m_makeCount * m_makeDelay;
+
+        while (normalTime < duration)
         {
-            if (Time.time > m_Time2 + m_makeDelay && m_count < m_makeCount)
+            normalTime += Time.deltaTime;
+            yield return null;
+
+            if (Time.time > m_Time + m_startDelay)
             {
-                Vector3 m_pos = transform.position + GetRandomVector(m_randomPos)* m_scalefactor; 
-                Quaternion m_rot = transform.rotation * Quaternion.Euler(GetRandomVector(m_randomRot));
-                
-
-                for (int i = 0; i < m_makeObjs.Length; i++)
+                if (Time.time > m_Time2 + m_makeDelay && m_count < m_makeCount)
                 {
-                    GameObject m_obj = Instantiate(m_makeObjs[i], m_pos, m_rot);
-                    Vector3 m_scale = (m_makeObjs[i].transform.localScale + GetRandomVector2(m_randomScale));
-                    m_obj.transform.parent = this.transform;
-                    m_obj.transform.localScale = m_scale;
-                }
+                    Vector3 m_pos = transform.position + GetRandomVector(m_randomPos) * m_scalefactor;
+                    Quaternion m_rot = transform.rotation * Quaternion.Euler(GetRandomVector(m_randomRot));
 
-                m_Time2 = Time.time;
-                m_count++;
+
+                    for (int i = 0; i < m_makeObjs.Length; i++)
+                    {
+                        GameObject m_obj = Instantiate(m_makeObjs[i], m_pos, m_rot);
+                        Vector3 m_scale = (m_makeObjs[i].transform.localScale + GetRandomVector2(m_randomScale));
+                        m_obj.transform.parent = this.transform;
+                        m_obj.transform.localScale = m_scale;
+                    }
+
+                    m_Time2 = Time.time;
+                    m_count++;
+                }
             }
         }
     }

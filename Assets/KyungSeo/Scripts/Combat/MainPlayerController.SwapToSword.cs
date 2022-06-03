@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using ETeam.FeelJoon;
 
 namespace ETeam.KyungSeo
@@ -20,6 +21,9 @@ namespace ETeam.KyungSeo
 
         [Header("½ºÅ³ ÇÁ¸®ÆÕ")]
         [SerializeField] private Skill1_ShockWave shockWave;
+
+        [Header("Ä® ½ºÅ³ Icon")]
+        [SerializeField] private Image[] swordSkill_Icon;
 
         protected readonly int hashIsComboAttack = Animator.StringToHash("IsComboAttack");
         protected readonly int hashOnNormalAttack = Animator.StringToHash("OnNormalAttack");
@@ -87,7 +91,7 @@ namespace ETeam.KyungSeo
         {
             isSwordSkill1_Available = false;
 
-            yield return StartCoroutine(skillCoolTimeHandlers[SkillNameList.SwordSkill1_Name.GetHashCode()](skill1_CoolTime));
+            yield return StartCoroutine(skillCoolTimeHandlers[SkillNameList.SwordSkill1_Name.GetHashCode()](skill1_CoolTime, swordSkill_Icon[0]));
 
             isSwordSkill1_Available = true;
         }

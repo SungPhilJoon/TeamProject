@@ -262,7 +262,7 @@ namespace ETeam.FeelJoon
             if (hitEffectPrefab)
             {
                 GameObject obj = Instantiate(hitEffectPrefab, hitTransform.position, Quaternion.identity);
-                // Destroy(obj, 1f);
+                Destroy(obj, 1f);
             }
 
             if (battleUI != null)

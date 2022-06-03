@@ -28,6 +28,8 @@ namespace ETeam.FeelJoon
         public Sprite icon;
         public GameObject modelPrefab;
 
+        public int price;
+
         public Item data = new Item();
 
         public List<string> boneNames = new List<string>();

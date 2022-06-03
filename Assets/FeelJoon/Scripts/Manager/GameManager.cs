@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ETeam.KyungSeo;
 using ETeam.FeelJoon;
+using ETeam.YongHak;
 using System;
 
 public class GameManager : Singleton<GameManager>
@@ -23,6 +24,8 @@ public class GameManager : Singleton<GameManager>
 
     public Camera mainCamera;
 
+    private Shop shop;
+
     private Vector3 revivePosition;
 
     [SerializeField] private Text goldAmountText;
@@ -38,6 +41,8 @@ public class GameManager : Singleton<GameManager>
 
         mainCamera = Camera.main;
         mainPlayer = player.GetComponent<MainPlayerController>();
+
+        shop = FindObjectOfType<Shop>();
     }
 
     void Start()
@@ -98,6 +103,12 @@ public class GameManager : Singleton<GameManager>
             if (goldAmountText != null)
             {
                 goldAmountText.text = mainPlayer.gold.ToString("#,###");
+
+            }
+            
+            if (shop != null)
+            {
+                shop.coinText.text = mainPlayer.gold.ToString("#,###");
             }
         }
     }

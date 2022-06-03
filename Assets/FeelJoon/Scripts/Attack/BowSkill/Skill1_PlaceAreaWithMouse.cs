@@ -11,7 +11,10 @@ namespace ETeam.FeelJoon
         #region Variables
         public float surfaceOffset = 1.5f;
         public Transform target = null;
+
         public MainPlayerController owner;
+
+        public float duration;
 
         #endregion Variables
 
@@ -22,11 +25,17 @@ namespace ETeam.FeelJoon
             //{
             //    transform.position = target.position + Vector3.up * surfaceOffset;
             //}
-        }
 
-        void OnTriggerStay(Collider other)
-        {
-            
+            Ray ray = GameManager.Instance.mainCamera.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 50, owner.groundLayerMask))
+            {
+                if (owner.placeArea)
+                {
+                    owner.placeArea.SetPosition(hit);
+                }
+            }
         }
 
         #endregion Unity Methods

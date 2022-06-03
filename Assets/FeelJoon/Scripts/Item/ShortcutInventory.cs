@@ -29,6 +29,7 @@ namespace ETeam.FeelJoon
                 AddEvent(go, EventTriggerType.Drag, delegate { OnDrag(go); });
 
                 inventoryObject.Slots[i].slotUI = go;
+                inventoryObject.Slots[i].slotRectTransform = go.GetComponent<RectTransform>();
                 slotUIs.Add(go, inventoryObject.Slots[i]);
             }
         }

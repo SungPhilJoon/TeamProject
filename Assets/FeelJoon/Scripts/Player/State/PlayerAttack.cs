@@ -14,6 +14,11 @@ namespace ETeam.FeelJoon
 
         #endregion Variables
 
+        #region Properties
+        public bool BowSkill1PlaceAreaActive => mainPlayerController.placeArea.gameObject.activeSelf;
+
+        #endregion Properties
+
         public override void OnInitialized()
         {
             attackStateController = context.GetComponent<AttackStateController>();
@@ -32,10 +37,32 @@ namespace ETeam.FeelJoon
                 return;
             }
 
-            if (stateMachine.ElapsedTimeInState < 2.0f)
+            #region Bow Attack State Routine
+            if (!BowSkill1PlaceAreaActive && (stateMachine.ElapsedTimeInState < 2.0f)) // Bow Stance Normal Attack
             {
-                mainPlayerController.currentArrow.moveSpeed += deltaTime * 50f;
+                if (mainPlayerController.currentArrow != null)
+                {
+                    mainPlayerController.currentArrow.moveSpeed += deltaTime * 50f;
+                }
+
+                return;
             }
+
+            //if (BowSkill1PlaceAreaActive) // Bow Stance Skill1
+            //{
+            //    Ray ray = GameManager.Instance.mainCamera.ScreenPointToRay(Input.mousePosition);
+
+            //    RaycastHit hit;
+            //    if (Physics.Raycast(ray, out hit, 20, mainPlayerController.groundLayerMask))
+            //    {
+            //        if (mainPlayerController.placeArea)
+            //        {
+            //            mainPlayerController.placeArea.SetPosition(hit);
+            //        }
+            //    }
+            //}
+
+            #endregion Bow Attack State Routine
         }
 
         public override void OnExit()
