@@ -7,23 +7,29 @@ namespace ETeam.KyungSeo
 {
     public class BossRoom : MonoBehaviour
     {
-        [SerializeField] private TestBoss bossEnemy;
+        [SerializeField] private BossController bossEnemy;
+        public GameObject bossHPBar;
 
         private void Awake()
         {
-            bossEnemy = FindObjectOfType<TestBoss>();
+            bossEnemy = FindObjectOfType<BossController>();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnEnable()
+        {
+            bossHPBar.SetActive(false);
+        }
+
+        private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("Player"))
-                bossEnemy.target = other.gameObject;
+                bossHPBar.SetActive(true);
         }
-
+        
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Player"))
-                bossEnemy.target = null;
+                bossHPBar.SetActive(false);
         }
     }
 }

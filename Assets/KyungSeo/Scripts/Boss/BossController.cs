@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using ETeam.FeelJoon;
 using System;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController), typeof(NavMeshAgent))]
 public partial class BossController : MonoBehaviour, IAttackable, IDamageable
@@ -23,6 +24,8 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     [Header("보스 체력")]
     public int maxHealth;
     public int health;
+    public Image bossHPBar;
+    public Text bossHPText;
 
     [Header("보스 전투")]
     public int bossPhase = 1;
@@ -79,7 +82,17 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
 
     public ManualCollision BossManualCollision => bossManualCollision;
 
-    public float HealthPercentage => health / (float)maxHealth;
+    public float HealthPercentage => Health / (float)maxHealth;
+
+    private int Health
+    {
+        get => health;
+        set
+        {
+            health = Mathf.Clamp(value, 0, maxHealth);
+            RefreshHealthInfo();
+        }
+    }
 
     public int FinalDamage => damage * increaseDamageAmount;
 
@@ -113,7 +126,7 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
         skillCoolTimeHandlers.Add(BossSkillNameList.BossThrowAttack1_Name.GetHashCode(), SkillCoolTime);
         skillCoolTimeHandlers.Add(BossSkillNameList.BossThrowAttack2_Name.GetHashCode(), SkillCoolTime);
 
-        health = maxHealth;
+        Health = maxHealth;
     }
 
     void Update()
@@ -161,7 +174,7 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     #endregion IAttackable
 
     #region IDamageable
-    public bool IsAlive => health > 0;
+    public bool IsAlive => Health > 0;
 
     public void TakeDamage(int damage, Transform target = null, GameObject hitEffectPrefab = null)
     {
@@ -178,7 +191,7 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
             }
         }
 
-        health -= damage;
+        Health -= damage;
 
         if (!IsAlive)
         {
@@ -207,7 +220,12 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
             yield return new WaitForFixedUpdate();
         }
     }
+    
+    private void RefreshHealthInfo()
+    {
+        bossHPBar.fillAmount = Health / (float) maxHealth;
+        bossHPText.text = $"{Health}/{maxHealth}";
+    }
 
     #endregion Helper Methods
-
 }
