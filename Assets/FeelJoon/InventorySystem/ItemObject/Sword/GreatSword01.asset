@@ -19,16 +19,20 @@ MonoBehaviour:
   price: 500
   data:
     id: 1
-    name: GreatSword01
+    name: "\uC7AC\uB828\uB41C \uAC15\uCCA0 \uB300\uAC80"
     itemType: 0
     buffs:
     - stat: 0
-      value: 42
+      value: 41
       min: 30
       max: 50
     - stat: 2
-      value: 13
+      value: 18
       min: 10
       max: 20
   boneNames: []
-  description: "\uC880 \uC318 \uCE7C\uC774\uB2E4."
+  description: "\uC77C\uBC18\uC801\uC778 \uAC15\uCCA0\uC744 \uC5EC\uB7EC \uBC88 \uC7AC\uB828\uD558\uC5EC
+    \uB9CC\uB4E4\uC5B4\uC9C4 \uAC80.\n\n\uC18C\uC7AC\uB294 \uD3C9\uBC94\uD558\uC9C0\uB9CC
+    \uB300\uC7A5\uC7A5\uC774\uC758 \uB178\uB825\uC774 \uAE43\uB4E4\uC5B4 \uC870\uAE08
+    \uAC15\uB825\uD574\uC9C4 \uB290\uB08C\uC774 \uB4E0\uB2E4. \uD55C\uBC88 \uD718\uB458\uB7EC
+    \uBCFC\uAE4C?"

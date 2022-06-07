@@ -19,16 +19,22 @@ MonoBehaviour:
   price: 1500
   data:
     id: 2
-    name: GreatSword02
+    name: "\uC6B4\uC11D \uB300\uAC80"
     itemType: 0
     buffs:
     - stat: 0
-      value: 43
+      value: 52
       min: 40
       max: 70
     - stat: 2
-      value: 16
+      value: 21
       min: 15
       max: 25
   boneNames: []
-  description: "\uC874\uB098 \uC318 \uCE7C\uC774\uB2E4."
+  description: "\uB9C8\uC744 \uBC16\uC5D0 \uB5A8\uC5B4\uC84C\uB2E4\uB358 \uC6B4\uC11D\uC744
+    \uB300\uC7A5\uC7A5\uC774\uB4E4\uC774 \uD63C\uC2E0\uC758 \uD798\uC744 \uB2E4 \uD558\uC5EC
+    \uBCBC\uB824\uB0B8 \uBA85\uC791.\n\n\uC6B4\uC11D\uC758 \uAC15\uB825\uD55C \uD798\uC774
+    \uAE43\uB4E4\uC5B4 \uC788\uC5B4 \uB9E4\uC6B0 \uAC15\uB825\uD55C \uD798\uC744
+    \uBC1C\uD718 \uD560 \uC218 \uC788\uB2E4.\n\n\uD3C9\uC0C1\uC2DC\uBCF4\uB2E4 \uAC80\uC774
+    \uB354 \uAC00\uBCCD\uAC8C \uB290\uAEF4\uC9C0\uB294 \uAC83\uC740 \uAE30\uBD84
+    \uD0D3\uC77C\uAE4C? \uB0B4 \uD798\uC774 \uAC15\uB825\uD574\uC9C4 \uAC83\uC77C\uAE4C?"

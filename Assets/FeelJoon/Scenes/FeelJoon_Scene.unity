@@ -316,7 +316,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1237,7 +1237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223168204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -17}
+  m_LocalPosition: {x: 0, y: 0, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 553946245}
@@ -3858,7 +3858,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553946244}
-  m_LocalRotation: {x: -0.000000011313341, y: 0.9659259, z: -0.25881907, w: -0.000000042221963}
+  m_LocalRotation: {x: -0.0000000113133405, y: 0.9659259, z: -0.25881907, w: -0.000000042221963}
   m_LocalPosition: {x: 23.65, y: 3.66, z: 1.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7422,8 +7422,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -160}
-  m_SizeDelta: {x: 350, y: 160}
+  m_AnchoredPosition: {x: 0, y: -120}
+  m_SizeDelta: {x: 350, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1129788954
 MonoBehaviour:
@@ -7447,7 +7447,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -11807,7 +11807,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
-    m_FontSize: 20
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
@@ -11815,8 +11815,8 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Item Title
 --- !u!222 &1633811193
@@ -12591,7 +12591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1807442339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13112,7 +13112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1881928164
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14009,7 +14009,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -16398,19 +16398,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questObject: {fileID: 11400000, guid: 0f4e658ee7126fb40970b064ed7ab2b0, type: 2}
   readyDialogue:
-    name: "\uCE5C\uAD6C"
+    name: "\uC140\uB9AC"
     sentences:
     - 
   acceptedDialogue:
-    name: "\uCE5C\uAD6C"
+    name: "\uC140\uB9AC"
     sentences:
-    - "\uC544\uC9C1\uB3C4 \uBABB\uC7A1\uC558\uC5B4? \uC5B4\uD734 \uC880 \uBE68\uB9AC\uC880
-      \uC7A1\uC544\uBD10!!!"
+    - "\uB108\uBB34 \uBB34\uB9AC\uD558\uC9C0\uB294 \uB9C8."
   completedDialogue:
-    name: "\uCE5C\uAD6C"
+    name: "\uC140\uB9AC"
     sentences:
-    - "\uC5D0\uD734 \uC774\uC81C\uC57C \uB2E4 \uC7A1\uC740\uAC70\uC57C? \uAE30\uB2E4\uB9AC\uB2E4\uAC00
-      \uB299\uC5B4 \uC8FD\uB294 \uC904 \uC54C\uC558\uB2E4!"
+    - "\uBD80\uD0C1\uC744 \uB4E4\uC5B4\uC918\uC11C \uC815\uB9D0 \uACE0\uB9C8\uC6CC.\n\uC774\uAC74
+      \uB0B4 \uB9C8\uC74C\uC774\uB2C8 \uBC1B\uC544\uC918."
 --- !u!4 &1700180176658314592
 Transform:
   m_ObjectHideFlags: 0
@@ -18792,13 +18791,32 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1856616802233550715, guid: dbbe521d4dfc30c4c8c6cdab780e60cc, type: 3}
+      propertyPath: dialogue.name
+      value: "\uC5D8\uB9AC"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856616802233550715, guid: dbbe521d4dfc30c4c8c6cdab780e60cc, type: 3}
       propertyPath: dialogue.sentences.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1856616802233550715, guid: dbbe521d4dfc30c4c8c6cdab780e60cc, type: 3}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: "\uC720\uB2C8\uD2F0\uCA29, \uC548\uB155!\n\uC624\uB298 \uB0A0\uC528\uAC00
+        \uCC38 \uC88B\uC9C0?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856616802233550715, guid: dbbe521d4dfc30c4c8c6cdab780e60cc, type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: "\uADF8\uB7EC\uACE0\uBCF4\uB2C8, \uC140\uB9AC\uAC00 \uC694\uC998 \uACE0\uBBFC\uC774
+        \uC788\uB294 \uAC83 \uAC19\uC544."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856616802233550715, guid: dbbe521d4dfc30c4c8c6cdab780e60cc, type: 3}
+      propertyPath: dialogue.sentences.Array.data[2]
+      value: "\uD639\uC2DC \uAD1C\uCC2E\uC73C\uBA74 \uC140\uB9AC\uC758 \uACE0\uBBFC\uC744
+        \uD574\uACB0\uD574 \uC904 \uC218 \uC788\uC744\uAE4C?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856616802233550715, guid: dbbe521d4dfc30c4c8c6cdab780e60cc, type: 3}
       propertyPath: dialogue.sentences.Array.data[3]
-      value: "\uD638\uD638, \uADF8\uB798 \uC790\uAE30\uC57C \uB610 \uBCF4\uC790\uC544\uC559\n(\uC2D3\uBC1C
-        \uADF8\uB0E5 \uC874\uB098 \uC2EB\uC5B4)"
+      value: "\uC140\uB9AC\uB294 \uC800\uAE30\uC5D0 \uC788\uC5B4.\n\uB0B4 \uC30D\uB465\uC774\uB2C8\uAE4C
+        \uAE08\uBC29 \uC54C\uC544\uBCFC \uC218 \uC788\uC744\uAC70\uC57C.\n\uBD80\uD0C1\uD574!"
       objectReference: {fileID: 0}
     - target: {fileID: 1865225372795892286, guid: dbbe521d4dfc30c4c8c6cdab780e60cc, type: 3}
       propertyPath: m_Layer
@@ -22916,7 +22934,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
-    m_FontSize: 17
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

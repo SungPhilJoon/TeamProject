@@ -16,15 +16,16 @@ MonoBehaviour:
     id: 2
     type: 0
     targetID: 2
-    count: 2
-    completedCount: 0
+    count: 3
+    completedCount: 3
     rewardExp: 90
     rewardGold: 3000
     rewardItemId: 200
     rewardItemObjectDatabase: {fileID: 11400000, guid: d2d0e214cf2a43648a3c5027e35f83d8, type: 2}
     title: "\uB4DC\uB798\uACE4\uC744 \uC7A1\uC544\uC918"
-    description: "\uC544 \uAC4D \uAF34\uBCF4\uAE30 \uC2EB\uC73C\uB2C8\uAE50 \uADF8\uB0E5
-      \uC7A1\uC544\uC918\uBD10"
+    description: "\uB9C8\uC744 \uBC16 \uB4DC\uB798\uACE4\uC740 \uAD49\uC7A5\uD788
+      \uD749\uD3ED\uD574. \uB4DC\uB798\uACE4\uC744 \uC7A1\uC544\uC904\uB798? \uC138
+      \uB9C8\uB9AC \uC815\uB3C4\uBA74 \uB420 \uAC83 \uAC19\uC544."
     content: "\uB4DC\uB798\uACE4 \uCC98\uCE58"
   status: 0
   index: 0

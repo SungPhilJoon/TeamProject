@@ -22,6 +22,11 @@ MonoBehaviour:
     rewardGold: 0
     rewardItemId: 0
     rewardItemObjectDatabase: {fileID: 0}
-    title: 
-    description: 
+    title: "\uC0AC\uC545\uD55C \uC655\uC744 \uCC98\uCE58\uD558\uC790!"
+    description: "\uC0AC\uB0E5\uD130 \uBC16\uC5D0 \uC790\uCE6D \uC655\uC774\uB77C\uB294
+      \uC0AC\uB78C\uC774 \uB09C\uB3D9\uC744 \uBD80\uB9AC\uACE0 \uC788\uC5B4. \uCC98\uCE58\uD574\uC904
+      \uC218 \uC788\uACA0\uB2C8?"
+    content: "\uC0AC\uC545\uD55C \uC655\uC744 \uCC98\uCE58"
   status: 0
+  index: 0
+  tracker: {fileID: 0}

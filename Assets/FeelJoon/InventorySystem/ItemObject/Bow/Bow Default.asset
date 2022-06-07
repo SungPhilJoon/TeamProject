@@ -19,12 +19,15 @@ MonoBehaviour:
   price: 500
   data:
     id: 100
-    name: Bow Default
+    name: "\uB098\uBB34\uD65C"
     itemType: 1
     buffs:
     - stat: 0
-      value: 27
+      value: 25
       min: 20
       max: 30
   boneNames: []
-  description: "\uADF8\uB0E5 \uD65C\uC774\uB2E4."
+  description: "\uB098\uBB34\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uD3C9\uBC94\uD55C \uB098\uBB34
+    \uD65C.\n\n\uC7A5\uCC29\uD558\uBA74 \uD654\uC0B4\uC744 \uC3E0 \uC218 \uC788\uB2E4.\n\uB108\uBB34
+    \uD5D8\uD558\uAC8C \uB2E4\uB8E8\uBA74 \uBD80\uB7EC\uC838\uBC84\uB9B4 \uC9C0\uB3C4
+    \uBAA8\uB974\uB2C8 \uC870\uC2EC\uD558\uC790!"
