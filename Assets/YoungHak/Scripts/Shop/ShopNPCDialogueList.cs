@@ -6,5 +6,5 @@ public struct ShopNPCDialogueList
 {
     public static readonly string EnterDialogue = "원하는 게 있나?";
     public static readonly string InsufficientDialogue = "어이 돈이 모자라";
-    public static readonly string PurchaseDialogue = "좋은 선택이네! 후회하지 않은 선택일거야 후후";
+    public static readonly string PurchaseDialogue = "좋은 선택이네!\n후회하지 않은\n선택일거야";
 }

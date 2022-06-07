@@ -14,7 +14,7 @@ namespace ETeam.YongHak
         public float Distance => distance;
         public Animator anim;
         private float distance = 3.0f;
-        private new GameObject gameObject;
+        
         [SerializeField] private ItemObjectDatabase[] database;
         public ItemObject itemObject;
         public RectTransform uiGroup;
@@ -26,6 +26,8 @@ namespace ETeam.YongHak
         private string coinString;
         public int dataBaseIndex;
         JsonTest jsonTest;
+
+        private readonly int hashStopInteract = Animator.StringToHash("doHello");
         
         #endregion Variables
 
@@ -56,7 +58,7 @@ namespace ETeam.YongHak
         public void Exit()
         {
             uiGroup.anchoredPosition = Vector3.down * 2000;
-            anim.SetTrigger("doHello");
+            anim.SetTrigger(hashStopInteract);
         }
 
         public int getCoin()
@@ -81,7 +83,6 @@ namespace ETeam.YongHak
                 Debug.Log(distance);
                 return false;
             }
-            gameObject = other;
             
             return other.GetComponent<MainPlayerController>()?.Enter(uiGroup) ?? false;
         }
@@ -91,7 +92,7 @@ namespace ETeam.YongHak
             ItemObject dropItemObject = database[dataBaseIndex].itemObjects[itemIndex];
 
             int price = dropItemObject.price; // itemPrice[dataBaseIndex];
-            if(price > coin)
+            if(price > GameManager.Instance.Main.gold)
             {
                 talkText.text = ShopNPCDialogueList.InsufficientDialogue;
 
@@ -106,12 +107,13 @@ namespace ETeam.YongHak
             // itemObject = dropItemObject;
             GameManager.Instance.Main.inventory.AddItem(new Item(dropItemObject), 1);
 
-            coin -= price;
+            GameManager.Instance.Main.gold -= price;
         }
 
         public void StopInteract(GameObject other)
         {
-
+            uiGroup.anchoredPosition = Vector3.down * 2000;
+            anim.SetTrigger(hashStopInteract);
         }
 
         #endregion Method

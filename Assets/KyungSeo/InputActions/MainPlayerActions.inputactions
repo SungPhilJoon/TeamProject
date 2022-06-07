@@ -114,6 +114,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Call QuestView",
+                    "type": "Button",
+                    "id": "7fef6056-9c52-4bdc-9b6c-7df239b1ce52",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "UseFirstSlotItem",
                     "type": "Button",
                     "id": "f4d56b22-aa8e-4abb-b938-2fc60fefcf55",
@@ -491,6 +500,17 @@
                     "action": "UseFourthSlotItem",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2075f9b2-ecee-448d-881b-e21a479a7c7a",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Call QuestView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -610,6 +630,15 @@
                     "name": "Call Equipment",
                     "type": "Button",
                     "id": "c627fc47-752b-4b1f-bf19-c3f6e9fc719a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Call QuestView",
+                    "type": "Button",
+                    "id": "d4a17b4c-41da-43b1-85d1-c1f3712a2756",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1004,6 +1033,17 @@
                     "action": "UseFourthSlotItem",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ffb35551-9f98-4247-b9b5-cb3f9effe410",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Call QuestView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -1060,6 +1100,15 @@
                     "name": "Call Equipment",
                     "type": "Button",
                     "id": "90f8e8ac-8822-4e41-b79c-5d4e41306433",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Call QuestView",
+                    "type": "Button",
+                    "id": "eea10fe2-361b-4aa6-a223-edae12238b20",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1391,6 +1440,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "UseFourthSlotItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "746da71d-b24a-4886-8b08-06760a84775f",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Call QuestView",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

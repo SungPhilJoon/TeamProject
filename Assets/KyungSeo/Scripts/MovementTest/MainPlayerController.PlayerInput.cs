@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using ETeam.FeelJoon;
 
@@ -13,8 +14,20 @@ namespace ETeam.KyungSeo
         [Header("스킬 퀵슬롯 창")]
         [SerializeField] private GameObject[] skillListSlot;
 
-        private int swordSkillListSlotNumber = 0;
-        private int bowSkillListSlotNumber = 1;
+        [Header("Setting UIs")]
+        [SerializeField] private Image settingsUI; // 테스트로 UI(설정창)를 띄우고 끄게 해 보려고
+        [SerializeField] private Image inventoryUI; // 캐릭터 인벤토리
+        [SerializeField] private Image equipmentUI; // 캐릭터 장비창
+        [SerializeField] private Image QuestViewUI; // 퀘스트 창
+
+        // 테스트 UI표시용
+        [HideInInspector] public bool isSettingOn = false;
+        [HideInInspector] public bool isInventoryOn = false;
+        [HideInInspector] public bool isEquipmentOn = false;
+        [HideInInspector] public bool isQuestViewOn = false;
+
+        private int swordID = (int)ItemType.Sword;
+        private int bowID = (int)ItemType.Bow;
 
         #endregion Variables
 
@@ -119,9 +132,13 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                if (equipment.Slots[(int)ItemType.Bow].SlotItemObject == null)
+                if (equipment.Slots[bowID].SlotItemObject == null)
                 {
                     bowPrefab = null;
+                }
+                else
+                {
+                    bowPrefab = playerEquipment.itemInstances[bowID].itemTransforms[0].gameObject;
                 }
 
                 SwapWeapon(bowPrefab, PlayerWeapon.Bow);
@@ -130,10 +147,10 @@ namespace ETeam.KyungSeo
                 {
                     animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
                     playerInput.SwitchCurrentActionMap("PlayerBow");
-                }
 
-                skillListSlot[swordSkillListSlotNumber].SetActive(false);
-                skillListSlot[bowSkillListSlotNumber].SetActive(true);
+                    skillListSlot[swordID].SetActive(false);
+                    skillListSlot[bowID].SetActive(true);
+                }
             }
         }
 
@@ -141,9 +158,13 @@ namespace ETeam.KyungSeo
         {
             if (callbackContext.started)
             {
-                if (equipment.Slots[(int)ItemType.Sword].SlotItemObject == null)
+                if (equipment.Slots[swordID].SlotItemObject == null)
                 {
                     swordPrefab = null;
+                }
+                else
+                {
+                    swordPrefab = playerEquipment.itemInstances[swordID].itemTransforms[0].gameObject;
                 }
 
                 SwapWeapon(swordPrefab, PlayerWeapon.Sword);
@@ -152,10 +173,10 @@ namespace ETeam.KyungSeo
                 {
                     animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
                     playerInput.SwitchCurrentActionMap("PlayerSword");
-                }
 
-                skillListSlot[swordSkillListSlotNumber].SetActive(true);
-                skillListSlot[bowSkillListSlotNumber].SetActive(false);
+                    skillListSlot[swordID].SetActive(true);
+                    skillListSlot[bowID].SetActive(false);
+                }
             }
         }
 
@@ -287,6 +308,20 @@ namespace ETeam.KyungSeo
                 isEquipmentOn = false;
                 equipmentUI.rectTransform.anchoredPosition = new Vector3(-500, 0, 0);
                 // equipmentUI.gameObject.SetActive(false);
+            }
+        }
+
+        public void CallQuestView(InputAction.CallbackContext callbackContext)
+        {
+            if (!isQuestViewOn)
+            {
+                isQuestViewOn = true;
+                QuestViewUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                isQuestViewOn = false;
+                QuestViewUI.gameObject.SetActive(false);
             }
         }
 

@@ -38,6 +38,9 @@ namespace ETeam.FeelJoon
 
         public float attackRange;
 
+        [Header("몬스터 ID")]
+        public int enemyID;
+
         [Header("몬스터 체력")]
         public int maxHealth = 100;
         public int health;
@@ -50,7 +53,7 @@ namespace ETeam.FeelJoon
         [Header("드랍 아이템 목록")]
         [SerializeField] private ItemObjectDatabase[] database;
 
-        private Transform projectilePoint;
+        private Transform projectilePoint; // 몬스터가 투사체를 발사하는 위치
         private Vector3 generatePosition; // 몬스터가 다시 생성되는 위치
 
         protected readonly int hashHitTrigger = Animator.StringToHash("Hit");
@@ -286,6 +289,8 @@ namespace ETeam.FeelJoon
                 DropItem();
                 DropGold();
                 stateMachine.ChangeState<EnemyDeadState>();
+
+                QuestManager.Instance.ProcessQuest(QuestType.DestroyEnemy, enemyID);
 
                 if (Target == null)
                 {

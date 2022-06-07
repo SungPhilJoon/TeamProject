@@ -18,22 +18,12 @@ namespace ETeam.KyungSeo
         public float moveSpeed; // 이동 스피드
         [SerializeField] private float dashDistance = 5.0f; // 대쉬 거리 - PJ
 
-        [Header("Setting UIs")]
-        [SerializeField] private Image settingsUI; // 테스트로 UI(설정창)를 띄우고 끄게 해 보려고
-        [SerializeField] private Image inventoryUI; // 캐릭터 인벤토리
-        [SerializeField] private Image equipmentUI; // 캐릭터 장비창
-
         private Vector2 inputValue = Vector2.zero; // 입력 Vector
         private Vector3 movement = Vector3.zero; // 이동 방향 Vector
 
         [Header("카메라")]
         public Transform focus;
-        private Camera mainCamera;
         private ClickDragCamera cameraFocus;
-
-        [HideInInspector] public bool isSettingOn = false; // 테스트 UI표시용
-        [HideInInspector] public bool isInventoryOn = false;
-        [HideInInspector] public bool isEquipmentOn = false;
 
         private bool isOnUI = false;
 
@@ -84,8 +74,6 @@ namespace ETeam.KyungSeo
 
             cameraFocus = focus.GetComponentInChildren<ClickDragCamera>();
 
-            mainCamera = Camera.main;
-
             spawnPoint = transform.GetChild(transform.childCount - 1);
 
             objectPoolManager = new ObjectPoolManager<Arrow>(PooledObjectNameList.NameOfArrow, spawnPoint);
@@ -113,8 +101,6 @@ namespace ETeam.KyungSeo
                 swordSkill_Icon[i].fillAmount = 1;
                 bowSkill_Icon[i].fillAmount = 1;
             }
-
-            StartCoroutine(CheckEquipWeapon());
         }
 
 
@@ -206,7 +192,7 @@ namespace ETeam.KyungSeo
         /// </summary>
         /// <param name="weaponToSwap"></param>
         /// <param name="changedPlayerWeapon"></param>
-        private void SwapWeapon(GameObject weaponToSwap, PlayerWeapon changedPlayerWeapon)
+        public void SwapWeapon(GameObject weaponToSwap, PlayerWeapon changedPlayerWeapon)
         {
             try
             {
@@ -226,87 +212,27 @@ namespace ETeam.KyungSeo
 
                 weaponErrorText.SetActive(true);
 
-                animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
+                // animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
             }
             finally
             {
-                if (previousWeapon)
-
-                previousWeapon.SetActive(false);
-                equipmentWeapon.SetActive(true);
+                previousWeapon?.SetActive(false);
+                equipmentWeapon?.SetActive(true);
             }
         }
 
-        /// <summary>
-        /// 매 시간 호출하고 체크하여 무기를 업데이트 해주는 함수입니다.
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerator CheckEquipWeapon()
+        public void ChangePlayerWeaponToDefalut()
         {
-            swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0]?.gameObject;
-            bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
+            Debug.Log("장착된 무기가 없습니다.");
+            weaponErrorText.SetActive(true);
 
-            while (true)
+            SwapWeapon(defaultWeaponPrefab, PlayerWeapon.Default);
+            animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
+            playerInput.SwitchCurrentActionMap("Default");
+
+            for (int i = 0; i < skillListSlot.Length; i++)
             {
-                yield return null;
-
-                if (currentPlayerWeapon == PlayerWeapon.Default)
-                {
-                    swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0]?.gameObject;
-                    bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
-
-                    swordPrefab?.SetActive(false);
-                    bowPrefab?.SetActive(false);
-                }
-
-                if (currentPlayerWeapon == PlayerWeapon.Sword)
-                {
-                    bowPrefab?.SetActive(false);
-                    swordPrefab.SetActive(true);
-
-                    try
-                    {
-                        if (equipment.Slots[(int)ItemType.Sword].SlotItemObject == null)
-                        {
-                            throw new NullReferenceException();
-                        }
-                    }
-                    catch(NullReferenceException e)
-                    {
-                        Debug.Log("장착된 무기가 없습니다.");
-                        weaponErrorText.SetActive(true);
-
-                        SwapWeapon(defaultWeaponPrefab, PlayerWeapon.Default);
-                        animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
-                        playerInput.SwitchCurrentActionMap("Default");
-                    }
-                }
-
-                if (currentPlayerWeapon == PlayerWeapon.Bow)
-                {
-                    swordPrefab?.SetActive(false);
-                    bowPrefab?.SetActive(true);
-
-                    try
-                    {
-                        if (equipment.Slots[(int)ItemType.Bow].SlotItemObject == null)
-                        {
-                            throw new NullReferenceException();
-                        }
-                    }
-                    catch(NullReferenceException e)
-                    {
-                        Debug.Log("장착된 무기가 없습니다.");
-                        weaponErrorText.SetActive(true);
-
-                        SwapWeapon(defaultWeaponPrefab, PlayerWeapon.Default);
-                        animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
-                        playerInput.SwitchCurrentActionMap("Default");
-                    }
-                }
-
-                swordPrefab = playerEquipment.itemInstances[(int)ItemType.Sword].itemTransforms[0].gameObject;
-                bowPrefab = playerEquipment.itemInstances[(int)ItemType.Bow].itemTransforms[0].gameObject;
+                skillListSlot[i].SetActive(false);
             }
         }
 

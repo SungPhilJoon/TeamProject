@@ -730,6 +730,7 @@ MonoBehaviour:
   enemyType: 0
   enemyFOV: {fileID: 0}
   attackRange: 4
+  enemyID: 1
   maxHealth: 100
   health: 0
   damage: 10

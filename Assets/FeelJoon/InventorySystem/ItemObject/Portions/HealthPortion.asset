@@ -16,13 +16,14 @@ MonoBehaviour:
   stackable: 1
   icon: {fileID: 6828423950733908299, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
   modelPrefab: {fileID: 0}
+  price: 250
   data:
     id: 200
-    name: "\uBE68\uAC04 \uBB3C\uC57D"
+    name: HealthPortion
     itemType: 2
     buffs:
     - stat: 3
-      value: 20
+      value: 29
       min: 10
       max: 30
   boneNames: []

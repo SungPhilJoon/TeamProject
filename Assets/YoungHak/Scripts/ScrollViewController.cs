@@ -16,6 +16,9 @@ namespace ETeam.YongHak
         public GameObject uiBow;
         public GameObject uiItem;
         public List<RectTransform> uiObjects = new List<RectTransform>();
+
+        public Shop shop;
+
         #endregion Variables
         
         #region Method
@@ -50,7 +53,7 @@ namespace ETeam.YongHak
             uiSword.SetActive(true);
             uiBow.SetActive(false);
             uiItem.SetActive(false);
-            Shop shop = GameObject.Find("Shop").GetComponent<Shop>();
+            
             shop.dataBaseIndex = 0;
         }
 
@@ -59,7 +62,7 @@ namespace ETeam.YongHak
             uiSword.SetActive(false);
             uiBow.SetActive(true);
             uiItem.SetActive(false);
-            Shop shop = GameObject.Find("Shop").GetComponent<Shop>();
+            
             shop.dataBaseIndex = 1;
         }
 
@@ -68,7 +71,7 @@ namespace ETeam.YongHak
             uiSword.SetActive(false);
             uiBow.SetActive(false);
             uiItem.SetActive(true);
-            Shop shop = GameObject.Find("Shop").GetComponent<Shop>();
+            
             shop.dataBaseIndex = 2;
         }
         #endregion Method

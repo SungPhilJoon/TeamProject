@@ -16,13 +16,14 @@ MonoBehaviour:
   stackable: 1
   icon: {fileID: 4257004438954200034, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
   modelPrefab: {fileID: 0}
+  price: 200
   data:
     id: 201
-    name: "\uD30C\uB780 \uBB3C\uC57D"
+    name: ManaPortion
     itemType: 2
     buffs:
     - stat: 4
-      value: 0
+      value: 17
       min: 10
       max: 30
   boneNames: []

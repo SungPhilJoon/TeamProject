@@ -16,17 +16,18 @@ MonoBehaviour:
   stackable: 0
   icon: {fileID: -2547253450580561565, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
   modelPrefab: {fileID: 2470473293590542276, guid: 25b6794a35e74fb44948d3379ad3dc8f, type: 3}
+  price: 1000
   data:
     id: 0
-    name: "\uAC1C \uD6C4\uC9C4\uCE7C"
+    name: Sword Default
     itemType: 0
     buffs:
     - stat: 0
-      value: 0
+      value: 49
       min: 30
       max: 50
     - stat: 2
-      value: 0
+      value: 18
       min: 10
       max: 20
   boneNames: []

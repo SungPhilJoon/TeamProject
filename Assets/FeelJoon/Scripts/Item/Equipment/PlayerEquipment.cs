@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace ETeam.FeelJoon
 
         public ItemObject[] defaultItemObjects = new ItemObject[2];
 
+        private MainPlayerController mainPlayerController;
+
         private Transform myTransform;
 
         #endregion Variables
@@ -26,6 +29,7 @@ namespace ETeam.FeelJoon
         void Awake()
         {
             combiner = new EquipmentCombiner(gameObject);
+            mainPlayerController = GetComponent<MainPlayerController>();
             myTransform = GetComponent<Transform>();
 
             for (int i = 0; i < equipment.Slots.Length; i++)
@@ -37,13 +41,13 @@ namespace ETeam.FeelJoon
             }
         }
 
-        void Start()
-        {
-            foreach (InventorySlot slot in equipment.Slots)
-            {
-                OnEquipItem(slot);
-            }
-        }
+        //void Start()
+        //{
+        //    foreach (InventorySlot slot in equipment.Slots)
+        //    {
+        //        OnEquipItem(slot);
+        //    }
+        //}
 
         private void OnDestroy()
         {
@@ -84,6 +88,8 @@ namespace ETeam.FeelJoon
                     itemInstances[index] = EquipMeshItem(itemObject);
                     break;
             }
+
+            CheckEquipWeapon(itemObject);
         }
 
         private void RemoveItemBy(ItemType type)
@@ -139,6 +145,8 @@ namespace ETeam.FeelJoon
                     itemInstances[index] = EquipMeshItem(itemObject);
                     break;
             }
+
+            CheckEquipWeapon(itemObject);
         }
 
         private ItemInstances EquipSkinnedItem(ItemObject itemObject)
@@ -179,6 +187,47 @@ namespace ETeam.FeelJoon
             }
 
             return null;
+        }
+
+        private void CheckEquipWeapon(ItemObject itemObject)
+        {
+            int swordID = 0; // (int)ItemType.Sword;
+            int bowID = 1; // (int)ItemType.Bow;
+
+            GameObject swordPrefab = itemInstances[swordID]?.itemTransforms[0].gameObject ?? null;
+            GameObject bowPrefab = itemInstances[bowID]?.itemTransforms[0].gameObject ?? null;
+
+            if (mainPlayerController.currentPlayerWeapon == PlayerWeapon.Default)
+            {
+                swordPrefab?.SetActive(false);
+                bowPrefab?.SetActive(false);
+            }
+            else if (mainPlayerController.currentPlayerWeapon == PlayerWeapon.Sword)
+            {
+                if (itemObject.Equals(defaultItemObjects[swordID]))
+                {
+                    mainPlayerController.ChangePlayerWeaponToDefalut();
+                    return;
+                }
+
+                mainPlayerController.SwapWeapon(swordPrefab, PlayerWeapon.Sword);
+
+                bowPrefab?.SetActive(false);
+                swordPrefab?.SetActive(true);
+            }
+            else if (mainPlayerController.currentPlayerWeapon == PlayerWeapon.Bow)
+            {
+                if (itemObject.Equals(defaultItemObjects[bowID]))
+                {
+                    mainPlayerController.ChangePlayerWeaponToDefalut();
+                    return;
+                }
+
+                mainPlayerController.SwapWeapon(bowPrefab, PlayerWeapon.Bow);
+
+                swordPrefab?.SetActive(false);
+                bowPrefab?.SetActive(true);
+            }
         }
 
         #endregion Helper Methods
