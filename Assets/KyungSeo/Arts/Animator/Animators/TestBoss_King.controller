@@ -389,7 +389,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MC_king_sit
-  m_Speed: 3
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -693115097307809344}
@@ -644,7 +644,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Boss_Jump
-  m_Speed: 0.7
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5810272481044412041}

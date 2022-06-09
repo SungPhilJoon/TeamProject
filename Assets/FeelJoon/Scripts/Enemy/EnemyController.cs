@@ -69,9 +69,6 @@ namespace ETeam.FeelJoon
 
         #endregion Variables
 
-        // 수연 : 몬스터 잡은 횟수를 퀘스트에 보내주기 위한 유니티이벤트
-        public UnityEngine.Events.UnityEvent onDead;
-
         #region Properties
         public StateMachine<EnemyController> StateMachine => stateMachine;
 
@@ -208,6 +205,8 @@ namespace ETeam.FeelJoon
 
             dropItem.AddComponent<PickupItem>().itemObject = dropItemObject;
             dropItem.AddComponent<CameraFacing>();
+
+            Destroy(dropItem, 10f);
         }
 
         private void DropGold()
@@ -285,19 +284,13 @@ namespace ETeam.FeelJoon
             }
             else
             {
-                onDead?.Invoke();   // 수연
                 DropItem();
                 DropGold();
                 stateMachine.ChangeState<EnemyDeadState>();
 
                 QuestManager.Instance.ProcessQuest(QuestType.DestroyEnemy, enemyID);
 
-                if (Target == null)
-                {
-                    GameManager.Instance.Main.playerStats.AddExp(25);
-                    return;
-                }
-                Target.GetComponent<PlayerController>().playerStats.AddExp(25);
+                GameManager.Instance.Main.playerStats.AddExp(25);
             }
         }
 

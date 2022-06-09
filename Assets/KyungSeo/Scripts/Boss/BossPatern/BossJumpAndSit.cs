@@ -15,6 +15,7 @@ public class BossJumpAndSit : State<BossController>
     private float targetDistance;
 
     private float normalTime;
+    private float jumpTime;
 
     private Animator animator;
     private CharacterController controller;
@@ -43,6 +44,7 @@ public class BossJumpAndSit : State<BossController>
         targetDistance = context.targetDistance;
 
         normalTime = 0f;
+        jumpTime = targetDistance / 10f;
 
         isCheckCollision = false;
 
@@ -52,7 +54,7 @@ public class BossJumpAndSit : State<BossController>
             targetPosition + (firstBossPosition - targetPosition).normalized * agent.stoppingDistance, 
             Quaternion.identity);
 
-        GameObject.Destroy(obj, 5f);
+        GameObject.Destroy(obj, 2f);
 
         animator.SetTrigger(hashJumpTrigger);
         animator.SetFloat(hashAttackDistance, context.targetDistance);
@@ -90,7 +92,7 @@ public class BossJumpAndSit : State<BossController>
         if (context.transform.position.y >= firstBossPosition.y)
         {
             normalTime += deltaTime;
-            Vector3 tempPos = Parabola(firstBossPosition, targetPosition, targetDistance, normalTime / 3);
+            Vector3 tempPos = Parabola(firstBossPosition, targetPosition, targetDistance, normalTime / jumpTime);
 
             agent.SetDestination(new Vector3(tempPos.x, firstBossPosition.y, tempPos.z));
 

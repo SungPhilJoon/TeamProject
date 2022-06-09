@@ -70,18 +70,18 @@ namespace ETeam.KyungSeo
 
             playerStats.AddMana(-10);
 
-            if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
-            {
-                ps.Play();
-            }
+            //if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
+            //{
+            //    ps.Play();
+            //}
         }
 
         public void ExitSkillSwordAttack()
         {
-            if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
-            {
-                ps.Stop();
-            }
+            //if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
+            //{
+            //    ps.Stop();
+            //}
         }
 
         #endregion Action Methods

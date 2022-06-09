@@ -18,6 +18,10 @@ namespace ETeam.FeelJoon
         private bool isStartQuestDialogue = false;
         private GameObject interactGO = null;
 
+        private Animator animator;
+
+        private Vector3 originalRotation;
+
         #endregion Variables
 
         #region Unity Methods
@@ -25,6 +29,30 @@ namespace ETeam.FeelJoon
         {
             QuestManager.Instance.OnCompletedQuest -= OnCompletedQuest;
             QuestManager.Instance.OnCompletedQuest += OnCompletedQuest;
+
+            animator = GetComponentInChildren<Animator>();
+
+            originalRotation = transform.rotation.eulerAngles;
+
+            if (QuestManager.Instance.questDatabase.questObjects.Length.Equals(0))
+            {
+                return;
+            }
+
+            foreach (QuestObject questObject in QuestManager.Instance.questDatabase.questObjects)
+            {
+                if (questObject.status.Equals(QuestStatus.None) || 
+                    questObject.status.Equals(QuestStatus.Accepted) || 
+                    questObject.status.Equals(QuestStatus.Completed))
+                {
+                    this.questObject = questObject;
+
+                    QuestManager.Instance.OnAcceptedQuest -= OnAcceptedQuest;
+                    QuestManager.Instance.OnAcceptedQuest += OnAcceptedQuest;
+
+                    break;
+                }
+            }
         }
 
         #endregion Unity Methods
@@ -49,6 +77,8 @@ namespace ETeam.FeelJoon
 
             this.interactGO = other;
 
+            transform.LookAt(interactGO.transform.position + Vector3.up * 0.5f);
+
             DialogueManager.Instance.OnEndDialogue -= OnEndDialogue;
             DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
             isStartQuestDialogue = true;
@@ -57,30 +87,111 @@ namespace ETeam.FeelJoon
             {
                 readyDialogue.sentences[0] = questObject.data.description;
                 DialogueManager.Instance.StartDialogue(readyDialogue);
+                // questObject.status = QuestStatus.Accepted;
+
+                // QuestManager.Instance.acceptedQuestObjects.Add(questObject);
+
+                animator?.SetBool("IsQuestNone", true);
+            }
+            else if (questObject.status == QuestStatus.Accepted)
+            {
+                DialogueManager.Instance.StartDialogue(acceptedDialogue);
+
+                animator?.SetBool("IsQuestAccepted", true);
+            }
+            else if (questObject.status == QuestStatus.Completed)
+            {
+                DialogueManager.Instance.StartDialogue(completedDialogue);
+
+                QuestRewardPopupUI questRewardPopupUI = QuestManager.Instance.questRewardPopupUI;
+
+                questRewardPopupUI.gameObject.SetActive(true);
+
+                questRewardPopupUI.expText.text = questObject.data.rewardExp.ToString("#,###");
+                questRewardPopupUI.goldText.text = questObject.data.rewardGold.ToString("#,###");
+                questRewardPopupUI.itemIcon.sprite = questObject.SearchRewardItemObjectWithID(questObject.data.rewardItemId).icon;
+                //QuestManager.Instance.acceptedQuestObjects.Remove(questObject);
+                //if (questObject.tracker != null)
+                //{
+                //    Destroy(questObject.tracker?.gameObject);
+                //}
+
+                //if (QuestManager.Instance.guideObject.activeSelf)
+                //{
+                //    QuestManager.Instance.guideObject.SetActive(false);
+                //}
+
+                animator?.SetBool("IsQuestCompleted", true);
+
+                // process reward
+                //if (other.TryGetComponent<MainPlayerController>(out MainPlayerController mainPlayerController))
+                //{
+                //    mainPlayerController.playerStats.AddExp(questObject.data.rewardExp);
+                //    mainPlayerController.gold += questObject.data.rewardGold;
+                //    mainPlayerController.inventory.AddItem
+                //        (new Item(questObject.SearchRewardItemObjectWithID(questObject.data.rewardItemId)), 1);
+                //}
+
+                //questObject.status = QuestStatus.Rewarded;
+                //QuestManager.Instance.rewardedQuestObjects.Add(questObject);
+                //foreach (QuestObject questObject in QuestManager.Instance.questDatabase.questObjects)
+                //{
+                //    if (questObject.status.Equals(QuestStatus.Accepted))
+                //    {
+                //        this.questObject = questObject;
+                //        break;
+                //    }
+
+                //    if (questObject.status.Equals(QuestStatus.None))
+                //    {
+                //        this.questObject = questObject;
+                //        break;
+                //    }
+                //}
+            }
+
+            return true;
+        }
+
+        public void StopInteract(GameObject other)
+        {
+            isStartQuestDialogue = false;
+
+            if (questObject.status.Equals(QuestStatus.None))
+            {
                 questObject.status = QuestStatus.Accepted;
 
                 QuestManager.Instance.acceptedQuestObjects.Add(questObject);
+
+                animator?.SetBool("IsQuestNone", false);
+
+                QuestManager.Instance.guideObject.SetActive(true);
 
                 questObject.tracker = Instantiate(QuestManager.Instance.questTrackerUI, QuestManager.Instance.questTracker);
 
                 questObject.tracker.transform.GetChild(0).GetComponent<Text>().text = questObject.data.title;
                 questObject.tracker.transform.GetChild(1).GetComponent<Text>().text = questObject.data.content +
                     " : " + $"{questObject.data.completedCount} / {questObject.data.count}";
-
-                QuestManager.Instance.OnAcceptedQuest -= OnAcceptedQuest;
-                QuestManager.Instance.OnAcceptedQuest += OnAcceptedQuest;
             }
-            else if (questObject.status == QuestStatus.Accepted)
+            else if (questObject.status.Equals(QuestStatus.Accepted))
             {
-                DialogueManager.Instance.StartDialogue(acceptedDialogue);
+                animator?.SetBool("IsQuestAccepted", false);
             }
-            else if (questObject.status == QuestStatus.Completed)
+            else if (questObject.status.Equals(QuestStatus.Completed))
             {
-                DialogueManager.Instance.StartDialogue(completedDialogue);
                 QuestManager.Instance.acceptedQuestObjects.Remove(questObject);
-                Destroy(questObject.tracker.gameObject);
+                if (questObject.tracker != null)
+                {
+                    Destroy(questObject.tracker?.gameObject);
+                }
 
-                // process reward
+                if (QuestManager.Instance.guideObject.activeSelf)
+                {
+                    QuestManager.Instance.guideObject.SetActive(false);
+                }
+
+                animator?.SetBool("IsQuestCompleted", false);
+
                 if (other.TryGetComponent<MainPlayerController>(out MainPlayerController mainPlayerController))
                 {
                     mainPlayerController.playerStats.AddExp(questObject.data.rewardExp);
@@ -90,15 +201,26 @@ namespace ETeam.FeelJoon
                 }
 
                 questObject.status = QuestStatus.Rewarded;
-                this.questObject = QuestManager.Instance.questDatabase.questObjects[this.questObject.data.id + 1];
+                QuestManager.Instance.rewardedQuestObjects.Add(questObject);
+                foreach (QuestObject questObject in QuestManager.Instance.questDatabase.questObjects)
+                {
+                    if (questObject.status.Equals(QuestStatus.Accepted))
+                    {
+                        this.questObject = questObject;
+                        break;
+                    }
+
+                    if (questObject.status.Equals(QuestStatus.None))
+                    {
+                        this.questObject = questObject;
+                        break;
+                    }
+                }
+
+                QuestManager.Instance.questRewardPopupUI.gameObject.SetActive(false);
             }
 
-            return true;
-        }
-
-        public void StopInteract(GameObject other)
-        {
-            isStartQuestDialogue = false;
+            transform.rotation = Quaternion.Euler(originalRotation);
         }
 
         #endregion IInteractable Interface

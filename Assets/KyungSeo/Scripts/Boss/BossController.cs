@@ -202,6 +202,7 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
         if (HealthPercentage < 0.5f && bossPhase.Equals(1))
         {
             bossPhase = 2;
+            coolTime = 2f;
             stateMachine.ChangeState<BossAngry>();
         }
     }
