@@ -32,6 +32,8 @@ public class GameManager : Singleton<GameManager>
 
     private readonly int Dead = Animator.StringToHash("IsPlayerDead");
 
+    public bool isCharacterEnterBossGround = false;
+
     #endregion Variables
 
     #region Unity Methods

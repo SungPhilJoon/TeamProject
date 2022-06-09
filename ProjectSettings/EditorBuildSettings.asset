@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/SuYune/Scenes/LoadingScene.unity
+    guid: b7cd08ecb90f26144a1607e72f03ae6d
+  - enabled: 1
+    path: Assets/SuYune/Scenes/LoadingTestScene.unity
+    guid: b698870128d6ebd4194342c8414c1c6a
   m_configObjects: {}
