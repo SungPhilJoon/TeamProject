@@ -70,7 +70,7 @@ public class LoadingUIManager : Singleton<LoadingUIManager>
             yield return null;
             
             timer += Time.unscaledDeltaTime;
-            progressBar.fillAmount = Mathf.Lerp(0.0f, 1f, timer/5);
+            progressBar.fillAmount = Mathf.Lerp(0.0f, 1f, timer/3);
 
             if (progressBar.fillAmount >= 1f)
             {

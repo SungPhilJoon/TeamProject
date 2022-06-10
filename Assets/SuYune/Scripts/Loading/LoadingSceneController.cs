@@ -80,7 +80,7 @@ public class LoadingSceneController : MonoBehaviour
             else        // 로딩바의 남은 10%는 1초간 채운 뒤 씬을 불러옴
             {
                 timer += Time.unscaledDeltaTime;
-                progressBar.fillAmount = Mathf.Lerp(0.8f, 1f, timer/10);
+                progressBar.fillAmount = Mathf.Lerp(0.8f, 1f, timer/3);
                 if(progressBar.fillAmount >= 1f)
                 {
                     op.allowSceneActivation = true;
