@@ -662,7 +662,7 @@ Animator:
   m_GameObject: {fileID: 3882450236991537298}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0d3c605385d6d9547a1e3f24e8248962, type: 3}
-  m_Controller: {fileID: 9100000, guid: aa2d33211d20e94498341e25f66054de, type: 2}
+  m_Controller: {fileID: 9100000, guid: d7e927182b5540249bc1c80833106d5c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -741,9 +741,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d2d0e214cf2a43648a3c5027e35f83d8, type: 2}
   battleUI: {fileID: 1118811889}
   hitTransform: {fileID: 2094418713}
-  onDead:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3884202847204555206
 MonoBehaviour:
   m_ObjectHideFlags: 0

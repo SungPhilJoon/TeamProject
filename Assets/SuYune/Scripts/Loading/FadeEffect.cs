@@ -15,11 +15,10 @@ public class FadeEffect : MonoBehaviour
     [SerializeField]
     [Range(0.01f, 10f)]
     private float fadeTime;     // 값이 10이면 1초 (값이 클수록 빠름)
-    [SerializeField]
-    private Image fadeImage;
+    public Image fadeImage;
 
-    [SerializeField]
-    private Image background;
+    [Header("로딩씬 바탕화면")]
+    public Image background;
     [SerializeField]
     private Text gameTip;
 

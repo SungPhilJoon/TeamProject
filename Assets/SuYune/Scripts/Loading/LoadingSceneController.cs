@@ -8,35 +8,41 @@ using UnityEngine.SceneManagement;
 
 public class LoadingSceneController : MonoBehaviour
 {
+    #region Variables
     static int nextSceneNum = 1;
 
     [SerializeField]
-    private Image progressBar;
+    private GameObject progressBarObject;
     [SerializeField]
-    private Image startImage;
+    private Image progressBar;
 
-    public static void LoadScene(int sceneNum)
-    {
-        nextSceneNum = sceneNum;
-        // SceneManager.LoadScene("LoadingScene");
-        SceneManager.LoadScene(1);
-    }
+    private FadeEffect fadeEffect;
 
+    #endregion Variables
+
+    #region Unity Methods
     private void Awake()
     {
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
+        fadeEffect = GetComponent<FadeEffect>();
     }
 
     private void Start()
     {
-        startImage.gameObject.SetActive(true);
         // StartCoroutine(LoadSceneProgress());
     }
 
+    #endregion Unity Methods
+
+    #region Helper Methods
     public void OnClickStart()
     {
-        startImage.gameObject.SetActive(false);
-        Time.timeScale = 1f;
+        fadeEffect.fadeImage.gameObject.SetActive(true);
+        fadeEffect.background.gameObject.SetActive(true);
+
+        progressBarObject.SetActive(true);
+
+        // Time.timeScale = 1f;
         StartCoroutine(LoadSceneProgress());
     }
 
@@ -49,6 +55,12 @@ public class LoadingSceneController : MonoBehaviour
 #endif
     }
 
+    public static void LoadScene(int sceneNum)
+    {
+        nextSceneNum = sceneNum;
+        // SceneManager.LoadScene("LoadingScene");
+        SceneManager.LoadScene(1);
+    }
 
     IEnumerator LoadSceneProgress()
     {
@@ -78,4 +90,6 @@ public class LoadingSceneController : MonoBehaviour
         }
         
     }
+
+    #endregion Helper Methods
 }
