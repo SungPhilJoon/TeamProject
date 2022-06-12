@@ -233,7 +233,7 @@ namespace UnityChanAdventure.FeelJoon
 
             playerStats.Health = playerStats.AddHealth(-damage);
 
-            AudioManager.Instance.PlaySFX(
+            AudioManager.Instance.PlayForceSFX(
             AudioManager.Instance.playerSFXAudioSource,
             AudioManager.Instance.playerSFXClips,
             "PlayerTakeDamage");

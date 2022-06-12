@@ -205,6 +205,11 @@ namespace UnityChanAdventure.KyungSeo
 
                 equipmentWeapon = weaponToSwap;
                 currentPlayerWeapon = changedPlayerWeapon;
+
+                AudioManager.Instance.PlayForceSFX(
+                AudioManager.Instance.playerSFXAudioSource,
+                AudioManager.Instance.playerSFXClips,
+                "PlayerWeaponChange");
             }
             catch(NullReferenceException e)
             {
