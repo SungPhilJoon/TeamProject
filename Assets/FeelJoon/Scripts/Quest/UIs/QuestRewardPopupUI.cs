@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class QuestRewardPopupUI : MonoBehaviour
     {
         #region Variables
         public Text expText;
         public Text goldText;
+        public Text itemName;
+        public Text itemDescription;
         public Image itemIcon;
 
         #endregion Variables

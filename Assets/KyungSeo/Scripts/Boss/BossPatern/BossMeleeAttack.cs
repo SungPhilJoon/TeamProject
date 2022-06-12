@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 using Random = UnityEngine.Random;
 
 public class BossMeleeAttack : State<BossController>

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class DamageText : MonoBehaviour
     {

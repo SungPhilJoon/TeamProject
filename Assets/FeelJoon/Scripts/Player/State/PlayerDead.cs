@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class PlayerDead : State<PlayerController>
     {

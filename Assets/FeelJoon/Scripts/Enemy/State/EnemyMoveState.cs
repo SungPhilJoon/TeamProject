@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class EnemyMoveState : State<EnemyController>
     {

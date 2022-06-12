@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 
 public class BossDead : State<BossController>
 {
@@ -23,12 +23,21 @@ public class BossDead : State<BossController>
     {
         animator.SetBool(hashIsAlive, context.IsAlive);
         animator.SetTrigger(hashOnDead);
-        Debug.Log("Á×¾ú´Ï?"); // ¿©·¯¹ø Á×³×...¤¾;
+
+        AudioManager.Instance.PlayForceSFX(
+        AudioManager.Instance.enemySFXAudioSource,
+        AudioManager.Instance.enemySFXClips,
+        "BossDead");
     }
 
     public override void Update(float deltaTime)
     {
-        
+        Time.timeScale = Mathf.Lerp(0.1f, 1f, stateMachine.ElapsedTimeInState / 1.5f);
+
+        if (stateMachine.ElapsedTimeInState > 4.0f)
+        {
+            GameObject.Destroy(context.gameObject);
+        }
     }
 
     public override void OnExit()

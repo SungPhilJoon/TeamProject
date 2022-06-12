@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 using Random = UnityEngine.Random;
 
 public class BossJumpAndSit : State<BossController>
@@ -70,14 +70,17 @@ public class BossJumpAndSit : State<BossController>
             agent.ResetPath();
             controller.Move(Vector3.zero);
 
-            GameManager.Instance.mainCamera.transform.localPosition = new Vector3(Random.insideUnitCircle.x * 0.5f, 
-                Random.insideUnitCircle.y * 0.5f,
-                GameManager.Instance.mainCamera.transform.localPosition.z);
+            GameManager.Instance.CameraVibrateEffect(0.5f);
 
             if (!isCheckCollision)
             {
                 isCheckCollision = true;
                 CheckCollision();
+
+                AudioManager.Instance.PlaySFX(
+                AudioManager.Instance.enemySFXAudioSource,
+                AudioManager.Instance.enemySFXClips,
+                "BossAttackEffect");
             }
             
             if (stateMachine.ElapsedTimeInState > normalTime + 0.5f)
@@ -102,7 +105,10 @@ public class BossJumpAndSit : State<BossController>
 
     public override void OnExit()
     {
-
+        AudioManager.Instance.PlaySFX(
+        AudioManager.Instance.enemySFXAudioSource,
+        AudioManager.Instance.enemySFXClips,
+        "BossAttackEffect");
     }
 
     #endregion State

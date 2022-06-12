@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 using System;
 using System.Linq;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class DynamicInventoryUI : InventoryUI
     {
@@ -111,6 +111,11 @@ namespace ETeam.FeelJoon
                     }
                 }
             }
+
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "BtnClick");
         }
 
         #endregion Helper Methods

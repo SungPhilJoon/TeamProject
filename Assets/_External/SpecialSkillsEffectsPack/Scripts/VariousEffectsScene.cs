@@ -12,7 +12,7 @@ public class VariousEffectsScene : MonoBehaviour {
     GameObject gm;
     public  int inputLocation;
     public Text m_scalefactor;
-    public static float m_gaph_scenesizefactor = 1;
+    public static float m_gaph_scenesizefactor = 7;
     public Text m_effectName;
     int index = 0;
 

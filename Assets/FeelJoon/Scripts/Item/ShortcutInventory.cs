@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     [RequireComponent(typeof(EventTrigger))]
     public class ShortcutInventory : InventoryUI

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 using UnityEngine.UI;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class PlayerInGameUI : MonoBehaviour
     {
@@ -14,6 +14,8 @@ namespace ETeam.FeelJoon
         public Text levelText;
         public Slider healthSlider;
         public Slider manaSlider;
+        public Image levelImage;
+        public GameObject levelUpText;
 
         #endregion Variables
 
@@ -41,6 +43,15 @@ namespace ETeam.FeelJoon
 
             healthSlider.value = statsObject.HealthPercentage;
             manaSlider.value = statsObject.ManaPercentage;
+            levelImage.fillAmount = statsObject.expPercentage;
+
+            if (statsObject.levelUp)
+            {
+                GameObject obj = Instantiate(levelUpText, transform.parent);
+                statsObject.levelUp = false;
+
+                Destroy(obj, 3f);
+            }
         }
     }
 }

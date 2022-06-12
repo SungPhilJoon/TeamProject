@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
-using ETeam.KyungSeo;
-using ETeam.FeelJoon;
+using UnityChanAdventure.KyungSeo;
+using UnityChanAdventure.FeelJoon;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -38,6 +38,11 @@ public class WeaponThrow : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySFX(
+            AudioManager.Instance.enemySFXAudioSource,
+            AudioManager.Instance.enemySFXClips,
+            "BossAttackEffect");
+
             StopCoroutine(CameraVibrate());
             StartCoroutine(CameraVibrate());
 
@@ -54,9 +59,7 @@ public class WeaponThrow : MonoBehaviour
         while (normalTime <= 1f)
         {
             normalTime += Time.deltaTime;
-            GameManager.Instance.mainCamera.transform.localPosition = new Vector3(Random.insideUnitCircle.x * 0.5f,
-            Random.insideUnitCircle.y * 0.5f,
-            GameManager.Instance.mainCamera.transform.localPosition.z);
+            GameManager.Instance.CameraVibrateEffect(0.5f);
 
             yield return null;
         }

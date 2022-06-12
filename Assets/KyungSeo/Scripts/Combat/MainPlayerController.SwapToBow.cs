@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 
-namespace ETeam.KyungSeo
+namespace UnityChanAdventure.KyungSeo
 {
     public partial class MainPlayerController : PlayerController
     {
@@ -71,6 +71,11 @@ namespace ETeam.KyungSeo
             {
                 GameManager.Instance.unavailableSkillText.SetActive(true);
 
+                AudioManager.Instance.PlaySFX(
+                AudioManager.Instance.uiSFXAudioSource,
+                AudioManager.Instance.uiSFXClips,
+                "ErrorText");
+
                 return;
             }
 
@@ -102,6 +107,8 @@ namespace ETeam.KyungSeo
             currentArrow.transform.position = spawnPoint.position;
             currentArrow.transform.forward = spawnPoint.forward;
 
+            playerStats.AddMana(-20);
+
             StartCoroutine(BowNormal_CoolTime());
         }
 
@@ -110,6 +117,11 @@ namespace ETeam.KyungSeo
             if (!isBowSkill1_Available)
             {
                 GameManager.Instance.unavailableSkillText.SetActive(true);
+
+                AudioManager.Instance.PlaySFX(
+                AudioManager.Instance.uiSFXAudioSource,
+                AudioManager.Instance.uiSFXClips,
+                "ErrorText");
 
                 return;
             }
@@ -120,7 +132,15 @@ namespace ETeam.KyungSeo
 
         public void ExitSkillBowAttack()
         {
-            if (!isBowSkill1_Available) return;
+            if (!isBowSkill1_Available)
+            {
+                return;
+            }
+
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.playerSFXAudioSource,
+            AudioManager.Instance.playerSFXClips,
+            "BowSkill");
 
             placeArea.gameObject.SetActive(false);
             GameObject obj = Instantiate(particleObject, placeArea.transform.position + Vector3.up * 9f, Quaternion.identity);

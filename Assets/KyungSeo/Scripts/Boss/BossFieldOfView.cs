@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class BossFieldOfView : MonoBehaviour
     {
@@ -17,11 +17,27 @@ namespace ETeam.FeelJoon
     
         public float delay = 0.2f;
 
-        private bool isTakeDamage = false;
+        // private bool isTakeDamage = false;
 
         private BossController bossController;
 
         #endregion Variables
+
+        #region Properties
+        public Transform Target
+        {
+            get
+            {
+                if (bossController.isPlayerEnterBossGround)
+                {
+                    return target;
+                }
+
+                return null;
+            }
+        }
+
+        #endregion Properties
 
         #region Unity Methods
 
@@ -40,54 +56,56 @@ namespace ETeam.FeelJoon
         #endregion Unity Methods
 
         #region Helper Methods
-        private IEnumerator FindTargetsWithDelay(float delay)
-        {
-            while(true)
-            {
-                yield return new WaitForSeconds(delay);
-                if (isTakeDamage && Vector3.Distance(target.position, transform.position) > viewRadius)
-                {
-                    Debug.Log("호출 중");
-                    continue;
-                }
+        //private IEnumerator FindTargetsWithDelay(float delay)
+        //{
+        //    while(true)
+        //    {
+        //        yield return new WaitForSeconds(delay);
+        //        if (isTakeDamage && Vector3.Distance(target.position, transform.position) > viewRadius)
+        //        {
+        //            Debug.Log("호출 중");
+        //            continue;
+        //        }
 
-                FindVisibleTarget();
-            }
-        }
+        //        FindVisibleTarget();
+        //    }
+        //}
     
-        private void FindVisibleTarget()
-        {
-            this.target = null;
-            isTakeDamage = false;
+        //private void FindVisibleTarget()
+        //{
+        //    this.target = null;
+        //    isTakeDamage = false;
     
-            Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-            if (targetsInViewRadius.Length == 0)
-            {
-                return;
-            }
-            Transform target = targetsInViewRadius[0].transform;
+        //    Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        //    if (targetsInViewRadius.Length == 0)
+        //    {
+        //        return;
+        //    }
+        //    Transform target = targetsInViewRadius[0].transform;
 
-            Vector3 dirToTarget = (target.position- transform.position);
-            float dstToTarget = Vector3.Distance(transform.position, target.position);
-            if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
-            {
-                this.target = target;
-            }
-        }
+        //    Vector3 dirToTarget = (target.position- transform.position);
+        //    float dstToTarget = Vector3.Distance(transform.position, target.position);
+        //    if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+        //    {
+        //        this.target = target;
+        //    }
+        //}
 
-        public void FindTakeDamagedTarget(Transform target)
-        {
-            isTakeDamage = true;
-            this.target = target;
-        }
+        //public void FindTakeDamagedTarget(Transform target)
+        //{
+        //    isTakeDamage = true;
+        //    this.target = target;
+        //}
 
         private IEnumerator CheckDistanceToTarget(float delay)
         {
             while (true)
             {
                 yield return new WaitForSeconds(delay);
-
-                bossController.targetDistance = Vector3.Distance(target.position, transform.position);
+                if (Target != null)
+                {
+                    bossController.targetDistance = Vector3.Distance(Target.position, transform.position);
+                }
             }
         }
     

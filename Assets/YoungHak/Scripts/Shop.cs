@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using ETeam.YongHak;
-using ETeam.FeelJoon;
-using ETeam.KyungSeo;
+using UnityChanAdventure.YongHak;
+using UnityChanAdventure.FeelJoon;
+using UnityChanAdventure.KyungSeo;
 
-namespace ETeam.YongHak
+namespace UnityChanAdventure.YongHak
 {
     public class Shop : MonoBehaviour, IInteractable
     {
@@ -32,11 +32,6 @@ namespace ETeam.YongHak
         #endregion Variables
 
         #region Method
-        void Awake()
-        {
-
-        }
-
         void Start()
         {
             //uiGroup.anchoredPosition = Vector3.zero;
@@ -75,12 +70,9 @@ namespace ETeam.YongHak
 
         public bool Interact(GameObject other)
         {
-            Debug.Log("체크1");
             float calcDistance = Vector3.Distance(transform.position, other.transform.position);
             if (calcDistance > distance)
             {
-                Debug.Log(calcDistance);
-                Debug.Log(distance);
                 return false;
             }
             
@@ -108,6 +100,11 @@ namespace ETeam.YongHak
             GameManager.Instance.Main.inventory.AddItem(new Item(dropItemObject), 1);
 
             GameManager.Instance.Main.gold -= price;
+
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "BtnClick");
         }
 
         public void StopInteract(GameObject other)

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using ETeam.KyungSeo;
-using ETeam.FeelJoon;
-using ETeam.YongHak;
+using UnityChanAdventure.KyungSeo;
+using UnityChanAdventure.FeelJoon;
+using UnityChanAdventure.YongHak;
 using System;
+using System.Linq;
+using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -32,7 +34,10 @@ public class GameManager : Singleton<GameManager>
 
     private readonly int Dead = Animator.StringToHash("IsPlayerDead");
 
-    public bool isCharacterEnterBossGround = false;
+    [Header("보스 몬스터들")]
+    public BossController[] bossEnemies;
+
+    [SerializeField] private AudioClip villageBGM;
 
     #endregion Variables
 
@@ -45,6 +50,8 @@ public class GameManager : Singleton<GameManager>
         mainPlayer = player.GetComponent<MainPlayerController>();
 
         shop = FindObjectOfType<Shop>();
+
+        mainCamera.transform.localPosition = Vector3.forward * -11f;
     }
 
     void Start()
@@ -67,6 +74,7 @@ public class GameManager : Singleton<GameManager>
 
     #endregion Properties
 
+    #region Helper Methods
     /// <summary>
     /// 부활 구현 함수
     /// </summary>
@@ -89,11 +97,30 @@ public class GameManager : Singleton<GameManager>
 
         mainPlayer.gameoverUI.SetActive(false);
 
+        if (isPlayerEnterBossGround())
+        {
+            foreach (BossController bossEnemy in bossEnemies)
+            {
+                if (bossEnemy.isPlayerEnterBossGround)
+                {
+                    bossEnemy.isPlayerEnterBossGround = false;
+                    bossEnemy.bossHPBarObj.SetActive(false);
+                    break;
+                }
+            }
+        }
+
         for (int i = 0; i < Enemies.Length; i++)
         {
             Enemies[i].EnemyAnimator.SetBool(Dead, false);
             Enemies[i].StateMachine.ChangeState<EnemyIdleState>();
         }
+
+        AudioManager.Instance.ChangeBGMAndPlayDelay(villageBGM, 0.1f);
+        AudioManager.Instance.PlayForceSFX(
+        AudioManager.Instance.playerSFXAudioSource,
+        AudioManager.Instance.playerSFXClips,
+        "PlayerRevive");
     }
 
     private IEnumerator UpdateGoldAmount()
@@ -114,4 +141,16 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
+
+    public bool isPlayerEnterBossGround()
+    {
+        return bossEnemies.Any(boss => boss.isPlayerEnterBossGround == true);
+    }
+
+    public void CameraVibrateEffect(float intensity)
+    {
+        mainCamera.transform.localPosition = new Vector3(Random.insideUnitCircle.x * intensity, Random.insideUnitCircle.y * intensity, mainCamera.transform.localPosition.z);
+    }
+
+    #endregion Helper Methods
 }

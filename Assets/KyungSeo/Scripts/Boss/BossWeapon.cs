@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 using UnityEngine;
 
-namespace ETeam.KyungSeo
+namespace UnityChanAdventure.KyungSeo
 {
     [RequireComponent(typeof(CapsuleCollider))]
     public class BossWeapon : MonoBehaviour

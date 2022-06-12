@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class DialogueManager : Singleton<DialogueManager>
     {
@@ -52,6 +52,11 @@ namespace ETeam.FeelJoon
 
         public void DisplayNextSentence()
         {
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "BtnClick");
+
             if (sentences.Count.Equals(0))
             {
                 EndDialogue();
@@ -91,6 +96,11 @@ namespace ETeam.FeelJoon
 
         public void CloseDialogue()
         {
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "BtnClick");
+
             EndDialogue();
         }
 

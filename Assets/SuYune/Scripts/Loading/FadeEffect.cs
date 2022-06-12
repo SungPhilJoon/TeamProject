@@ -45,7 +45,7 @@ public class FadeEffect : MonoBehaviour
     {
         if(fadeImage.color.a == 1)
         {
-            if (GameManager.Instance != null && GameManager.Instance.isCharacterEnterBossGround)
+            if (GameManager.Instance != null && GameManager.Instance.isPlayerEnterBossGround())
             {
                 BossLoadingView();
                 OnFade(FadeState.FadeIn);
@@ -72,7 +72,7 @@ public class FadeEffect : MonoBehaviour
     {
         if (fadeImage.color.a == 1)
         {
-            if (GameManager.Instance != null && GameManager.Instance.isCharacterEnterBossGround)
+            if (GameManager.Instance != null && GameManager.Instance.isPlayerEnterBossGround())
             {
                 BossLoadingView();
                 OnFade(FadeState.FadeIn);

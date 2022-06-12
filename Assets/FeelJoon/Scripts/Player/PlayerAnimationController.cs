@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class PlayerAnimationController : MonoBehaviour
     {
@@ -22,7 +22,30 @@ namespace ETeam.FeelJoon
 
         public void OnExecuteMeleeAttack()
         {
+            AudioManager.Instance.PlaySFX(
+            AudioManager.Instance.playerSFXAudioSource,
+            AudioManager.Instance.playerSFXClips,
+            "SwordAttack");
+
             playerController.OnExecuteMeleeAttack();
+        }
+
+        public void OnExecuteProjectileAttack()
+        {
+            AudioManager.Instance.PlaySFX(
+            AudioManager.Instance.playerSFXAudioSource,
+            AudioManager.Instance.playerSFXClips,
+            "BowAttack");
+        }
+
+        public void InstantiateShockWave()
+        {
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.playerSFXAudioSource,
+            AudioManager.Instance.playerSFXClips,
+            "SwordSkill");
+
+            GameManager.Instance.Main.InstantiateShockWave();
         }
     }
 }

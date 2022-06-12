@@ -27,6 +27,7 @@ MonoBehaviour:
       modifiedValue: 100
   - type: 4
     value:
-      modifiedValue: 100
+      modifiedValue: 500
   level: 1
   exp: 0
+  gold: 142081

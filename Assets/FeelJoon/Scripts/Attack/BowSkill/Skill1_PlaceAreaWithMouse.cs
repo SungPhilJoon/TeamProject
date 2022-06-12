@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class Skill1_PlaceAreaWithMouse : MonoBehaviour
     {
@@ -29,7 +29,7 @@ namespace ETeam.FeelJoon
             Ray ray = GameManager.Instance.mainCamera.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 50, owner.groundLayerMask))
+            if (Physics.Raycast(ray, out hit, 80, owner.groundLayerMask))
             {
                 if (owner.placeArea)
                 {

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public enum EnemyType
     {
@@ -48,13 +48,20 @@ namespace ETeam.FeelJoon
         [Header("몬스터 전투")]
         public int damage;
         public float coolTime;
+        public int exp;
+        [SerializeField] private AudioClip enemyDeadClip;
         private ManualCollision enemyManualCollision;
 
         [Header("드랍 아이템 목록")]
         [SerializeField] private ItemObjectDatabase[] database;
 
+        [Header("아이템 드랍 확률")]
+        [SerializeField] private float dropItemPercentage;
+        private float rndNumberWithDropItem;
+
         private Transform projectilePoint; // 몬스터가 투사체를 발사하는 위치
         private Vector3 generatePosition; // 몬스터가 다시 생성되는 위치
+        private AudioSource audioSource;
 
         protected readonly int hashHitTrigger = Animator.StringToHash("Hit");
 
@@ -126,6 +133,8 @@ namespace ETeam.FeelJoon
 
         protected virtual void OnEnable()
         {
+            rndNumberWithDropItem = Random.Range(0f, 100f);
+
             if (isCalledStartMethod)
             {
                 stateMachine.ChangeState<EnemyIdleState>();
@@ -148,6 +157,8 @@ namespace ETeam.FeelJoon
             stateMachine.AddState(new EnemyVictoryState());
 
             animator = GetComponent<Animator>();
+
+            audioSource = GetComponent<AudioSource>();
 
             health = maxHealth;
 
@@ -244,7 +255,7 @@ namespace ETeam.FeelJoon
 
             projectile.transform.position = projectilePoint.position;
 
-            projectile.moveSpeed = 9f;
+            projectile.moveSpeed = 15f;
         }
 
         #endregion IAttackable
@@ -260,6 +271,14 @@ namespace ETeam.FeelJoon
             }
 
             health -= damage;
+
+            if (audioSource != null)
+            {
+                AudioManager.Instance.PlaySFX(
+                audioSource, 
+                AudioManager.Instance.enemySFXClips, 
+                "EnemyHit");
+            }
 
             if (hitEffectPrefab)
             {
@@ -277,20 +296,26 @@ namespace ETeam.FeelJoon
             {
                 animator.SetTrigger(hashHitTrigger);
 
-                if (target != null)
+                if (Target == null)
                 {
                     enemyFOV.FindTakeDamagedTarget(target);
                 }
             }
             else
             {
-                DropItem();
+                if (rndNumberWithDropItem < dropItemPercentage)
+                {
+                    DropItem();
+                }
+
                 DropGold();
                 stateMachine.ChangeState<EnemyDeadState>();
 
+                AudioManager.Instance.PlayForceSFX(audioSource, enemyDeadClip);
+
                 QuestManager.Instance.ProcessQuest(QuestType.DestroyEnemy, enemyID);
 
-                GameManager.Instance.Main.playerStats.AddExp(25);
+                GameManager.Instance.Main.playerStats.AddExp(exp);
             }
         }
 

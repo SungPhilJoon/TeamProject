@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityChanAdventure.FeelJoon;
 
-namespace ETeam.YongHak
+namespace UnityChanAdventure.YongHak
 {
     public class ScrollViewController : MonoBehaviour
     {
@@ -27,11 +28,6 @@ namespace ETeam.YongHak
             scrollRect = GetComponent<ScrollRect>();
         }
 
-        void Update()
-        {
-            
-        }
-
         //스크롤 뷰에 새로은 오브젝트를 추가하는 코드
         public void AddNewUiObject()
         {
@@ -50,6 +46,11 @@ namespace ETeam.YongHak
 
         public void TapChange1()
         {
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "BtnClick");
+
             uiSword.SetActive(true);
             uiBow.SetActive(false);
             uiItem.SetActive(false);
@@ -59,6 +60,11 @@ namespace ETeam.YongHak
 
         public void TapChange2()
         {
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "BtnClick");
+
             uiSword.SetActive(false);
             uiBow.SetActive(true);
             uiItem.SetActive(false);
@@ -68,6 +74,11 @@ namespace ETeam.YongHak
 
         public void TapChange3()
         {
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "BtnClick");
+
             uiSword.SetActive(false);
             uiBow.SetActive(false);
             uiItem.SetActive(true);

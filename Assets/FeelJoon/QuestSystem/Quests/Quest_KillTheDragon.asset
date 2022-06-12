@@ -18,7 +18,7 @@ MonoBehaviour:
     targetID: 2
     count: 3
     completedCount: 0
-    rewardExp: 90
+    rewardExp: 250
     rewardGold: 3000
     rewardItemId: 200
     rewardItemObjectDatabase: {fileID: 11400000, guid: d2d0e214cf2a43648a3c5027e35f83d8, type: 2}

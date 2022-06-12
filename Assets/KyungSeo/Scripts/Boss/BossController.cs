@@ -1,10 +1,11 @@
+using UnityChanAdventure.FeelJoon;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using ETeam.FeelJoon;
-using System;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(CharacterController), typeof(NavMeshAgent))]
 public partial class BossController : MonoBehaviour, IAttackable, IDamageable
@@ -13,7 +14,7 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     protected StateMachine<BossController> stateMachine;
 
     private Animator animator;
-    
+
     public LayerMask targetMask;
     public EnemyType enemyType;
 
@@ -27,6 +28,8 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     public Image bossHPBar;
     public Text bossHPText;
 
+    [HideInInspector] public GameObject bossHPBarObj;
+
     [Header("보스 전투")]
     public int bossPhase = 1;
     public int damage = 50;
@@ -36,6 +39,7 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     public float throwAttackCoolDown = 7f;
     public GameObject attackPlaceArea;
     public GameObject jumpAttackPlaceArea;
+    public int exp;
     //public float jumpSitAttackCoolDown = 10f;
 
     private ManualCollision bossManualCollision;
@@ -47,14 +51,22 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     [Header("드랍 아이템 목록")]
     [SerializeField] private ItemObjectDatabase[] database;
 
+    [Header("보스 ID")]
+    public int bossID;
+
+    [Header("보스 데미지 텍스트")]
+    [SerializeField] private NPCBattleUI battleUI;
+
+    [Header("Boss Gates")]
+    [SerializeField] private GateController enterGate;
+    [SerializeField] private GateController exitGate;
+    [HideInInspector] public bool isPlayerEnterBossGround = false;
+
     public Transform hitTransform;
 
     private Transform projectilePoint;
 
     private Dictionary<int, Func<float, IEnumerator>> skillCoolTimeHandlers = new Dictionary<int, Func<float, IEnumerator>>();
-
-    private int minRandomGoldAmount;
-    private int maxRandomGoldAmount;
 
     public float targetDistance;
 
@@ -78,7 +90,7 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
         get => (targetDistance >= 5);
     }
 
-    public Transform Target => bossFOV.target;
+    public Transform Target => bossFOV.Target;
 
     public ManualCollision BossManualCollision => bossManualCollision;
 
@@ -87,11 +99,6 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     private int Health
     {
         get => health;
-        set
-        {
-            health = Mathf.Clamp(value, 0, maxHealth);
-            RefreshHealthInfo();
-        }
     }
 
     public int FinalDamage => damage * increaseDamageAmount;
@@ -101,9 +108,6 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     #region Unity Methods
     void Awake()
     {
-        minRandomGoldAmount = maxHealth / 5;
-        maxRandomGoldAmount = maxHealth;
-
         bossFOV = GetComponent<BossFieldOfView>();
         agent = GetComponent<NavMeshAgent>();
         bossManualCollision = GetComponentInChildren<ManualCollision>();
@@ -118,15 +122,28 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
         stateMachine.AddState(new BossThrowAttack());
         stateMachine.AddState(new BossJumpAndSit());
         stateMachine.AddState(new BossDead());
-        
+
         animator = GetComponent<Animator>();
-        //animator.SetFloat(hashAttackDistance, targetDistance);
 
         skillCoolTimeHandlers.Add(BossSkillNameList.BossMeleeAttack1_Name.GetHashCode(), SkillCoolTime);
         skillCoolTimeHandlers.Add(BossSkillNameList.BossThrowAttack1_Name.GetHashCode(), SkillCoolTime);
         skillCoolTimeHandlers.Add(BossSkillNameList.BossThrowAttack2_Name.GetHashCode(), SkillCoolTime);
 
-        Health = maxHealth;
+        health = maxHealth;
+
+        if (battleUI != null)
+        {
+            battleUI.MinimumValue = 0;
+            battleUI.MaximumValue = maxHealth;
+            battleUI.Value = Health;
+        }
+
+        enterGate.OnEnterGate -= OnEnterBossGate;
+        enterGate.OnEnterGate += OnEnterBossGate;
+        exitGate.OnEnterGate -= OnExitBossGate;
+        exitGate.OnEnterGate += OnExitBossGate;
+
+        bossHPBarObj = bossHPBar.transform.parent.parent.gameObject;
     }
 
     void Update()
@@ -141,9 +158,14 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
 
     public void OnExecuteMeleeAttack()
     {
+        AudioManager.Instance.PlaySFX(
+        AudioManager.Instance.enemySFXAudioSource,
+        AudioManager.Instance.enemySFXClips,
+        "BossAttackEffect");
+
         bossManualCollision.CheckCollision();
 
-        foreach(Collider targetCollider in bossManualCollision.targetColliders)
+        foreach (Collider targetCollider in bossManualCollision.targetColliders)
         {
             if (targetCollider == null)
             {
@@ -191,11 +213,42 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
             }
         }
 
-        Health -= damage;
+        health -= damage;
+
+        if (bossHPBar != null && bossHPText != null)
+        {
+            bossHPBar.fillAmount = HealthPercentage;
+
+            if (health <= 0)
+            {
+                bossHPText.text = $"0/{maxHealth}";
+            }
+            else
+            {
+                bossHPText.text = $"{health}/{maxHealth}";
+            }
+        }
+
+        if (battleUI != null)
+        {
+            battleUI.Value = health;
+            battleUI.CreateDamageText(damage);
+        }
 
         if (!IsAlive)
         {
+            for (int i = 0; i < 5; i++)
+            {
+                DropItem();
+            }
+            DropGold();
+
             stateMachine.ChangeState<BossDead>();
+
+            QuestManager.Instance.ProcessQuest(QuestType.DestroyEnemy, bossID);
+
+            GameManager.Instance.Main.playerStats.AddExp(exp);
+
             return;
         }
 
@@ -210,7 +263,6 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     #endregion IDamageable
 
     #region Helper Methods
-
     private IEnumerator SkillCoolTime(float skillCoolTime)
     {
         float normalTime = 0f;
@@ -221,11 +273,63 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
             yield return new WaitForFixedUpdate();
         }
     }
-    
-    private void RefreshHealthInfo()
+
+    private void DropItem()
     {
-        bossHPBar.fillAmount = Health / (float) maxHealth;
-        bossHPText.text = $"{Health}/{maxHealth}";
+        int rndItemDatabaseNumber = Random.Range(0, database.Length);
+
+        ItemObject dropItemObject = database[rndItemDatabaseNumber].
+            itemObjects[Random.Range(0, database[rndItemDatabaseNumber].itemObjects.Length)];
+
+        dropItemObject.data = dropItemObject.CreateItem();
+
+        GameObject dropItem = new GameObject();
+        dropItem.layer = LayerMask.NameToLayer("Interactable");
+
+        Vector2 randomItemPosition = Random.insideUnitCircle * 3f;
+        dropItem.transform.position = new Vector3(randomItemPosition.x + transform.position.x,
+            transform.position.y + 1f,
+            randomItemPosition.y + transform.position.z);
+
+        SpriteRenderer itemImage = dropItem.AddComponent<SpriteRenderer>();
+        itemImage.sprite = dropItemObject.icon;
+
+        SphereCollider itemCollider = dropItem.AddComponent<SphereCollider>();
+        itemCollider.radius = 0.3f;
+
+        dropItem.AddComponent<PickupItem>().itemObject = dropItemObject;
+        dropItem.AddComponent<CameraFacing>();
+
+        Destroy(dropItem, 10f);
+    }
+
+    private void DropGold()
+    {
+        GameManager.Instance.Main.gold += 100000;
+    }
+
+    private void OnEnterBossGate()
+    {
+        AudioManager.Instance.enemySFXAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("EnemySFXVolume", 0f);
+
+        StartCoroutine(SwitchFlag());
+        bossHPBarObj.SetActive(true);
+    }
+
+    private void OnExitBossGate()
+    {
+        AudioManager.Instance.enemySFXAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("EnemySFXVolume", -30f);
+
+        StopCoroutine(SwitchFlag());
+        isPlayerEnterBossGround = false;
+        bossHPBarObj.SetActive(false);
+    }
+
+    private IEnumerator SwitchFlag()
+    {
+        yield return new WaitForSeconds(5f);
+
+        isPlayerEnterBossGround = true;
     }
 
     #endregion Helper Methods

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.FeelJoon;
-using ETeam.KyungSeo;
+using UnityChanAdventure.FeelJoon;
+using UnityChanAdventure.KyungSeo;
 
 public class EnemyGenerateManager : Singleton<EnemyGenerateManager>
 {

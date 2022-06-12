@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.KyungSeo;
-using ETeam.FeelJoon;
+using UnityChanAdventure.KyungSeo;
+using UnityChanAdventure.FeelJoon;
 
 public class ComboFinish : StateMachineBehaviour
 {

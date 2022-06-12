@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.YongHak;
+using UnityChanAdventure.YongHak;
 
-namespace ETeam.YongHak
+namespace UnityChanAdventure.YongHak
 {
     public class ShopTestPlayer : MonoBehaviour
     {

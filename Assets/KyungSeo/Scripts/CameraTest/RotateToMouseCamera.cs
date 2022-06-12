@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace ETeam.KyungSeo
+namespace UnityChanAdventure.KyungSeo
 {
     public class RotateToMouseCamera : MonoBehaviour
     {

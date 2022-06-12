@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public interface IDamageable
     {

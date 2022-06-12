@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using ETeam.FeelJoon;
-using ETeam.YongHak;
+using UnityChanAdventure.FeelJoon;
+using UnityChanAdventure.YongHak;
 using UnityEngine.EventSystems;
 
-namespace ETeam.KyungSeo
+namespace UnityChanAdventure.KyungSeo
 {
     [RequireComponent(typeof(CharacterController))]
     public partial class MainPlayerController : PlayerController
@@ -208,11 +208,12 @@ namespace ETeam.KyungSeo
             }
             catch(NullReferenceException e)
             {
-                Debug.Log("장착된 무기가 없습니다.");
+                AudioManager.Instance.PlaySFX(
+                AudioManager.Instance.uiSFXAudioSource,
+                AudioManager.Instance.uiSFXClips,
+                "ErrorText");
 
                 weaponErrorText.SetActive(true);
-
-                // animator.SetInteger(hashSwapIndex, (int)currentPlayerWeapon);
             }
             finally
             {
@@ -223,7 +224,11 @@ namespace ETeam.KyungSeo
 
         public void ChangePlayerWeaponToDefalut()
         {
-            Debug.Log("장착된 무기가 없습니다.");
+            AudioManager.Instance.PlaySFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "ErrorText");
+
             weaponErrorText.SetActive(true);
 
             SwapWeapon(defaultWeaponPrefab, PlayerWeapon.Default);

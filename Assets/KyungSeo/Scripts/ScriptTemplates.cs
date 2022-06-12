@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ETeam.KyungSeo
+namespace UnityChanAdventure.KyungSeo
 {
     public class ScriptTemplates : MonoBehaviour
     {

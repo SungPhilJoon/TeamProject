@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 using System;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     [CreateAssetMenu(fileName = "New Stats", menuName = "Stats System/New Character Stats")]
     public class StatsObject : ScriptableObject
@@ -20,7 +20,10 @@ namespace ETeam.FeelJoon
         public int level;
         public int exp;
 
+        public int gold;
+
         [NonSerialized] private bool isInitialize = false;
+        [NonSerialized] public bool levelUp = false;
 
         #endregion Variables
 
@@ -31,6 +34,11 @@ namespace ETeam.FeelJoon
         }
 
         public int Mana
+        {
+            get; set;
+        }
+
+        public int MaxEXP
         {
             get; set;
         }
@@ -70,6 +78,17 @@ namespace ETeam.FeelJoon
                 }
 
                 return (maxMana > 0 ? ((float)mana / (float)maxMana) : 0f);
+            }
+        }
+
+        public float expPercentage
+        {
+            get
+            {
+                int exp = this.exp;
+                int maxEXP = this.MaxEXP;
+
+                return (exp > 0f ? ((float)exp / (float)maxEXP) : 0f);
             }
         }
 
@@ -193,13 +212,22 @@ namespace ETeam.FeelJoon
         {
             exp += value;
 
-            int maxExp = 100;
+            MaxEXP = level * 100 + 50;
 
-            if (exp >= maxExp)
+            if (exp >= MaxEXP)
             {
-                ++level;
+                int temp = level;
 
-                exp = 0;
+                while (exp >= MaxEXP)
+                {
+                    ++temp;
+
+                    exp -= MaxEXP;
+                    MaxEXP = temp * 100 + 50;
+                }
+
+                level = temp;
+                levelUp = true;
             }
 
             OnChangedStats?.Invoke(this);

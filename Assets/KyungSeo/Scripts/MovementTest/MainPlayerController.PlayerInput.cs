@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 
-namespace ETeam.KyungSeo
+namespace UnityChanAdventure.KyungSeo
 {
     public partial class MainPlayerController : PlayerController
     {

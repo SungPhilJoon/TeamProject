@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class QuestNPC : MonoBehaviour, IInteractable
     {
@@ -105,49 +105,17 @@ namespace ETeam.FeelJoon
 
                 QuestRewardPopupUI questRewardPopupUI = QuestManager.Instance.questRewardPopupUI;
 
+                ItemObject rewardItemObject = questObject.SearchRewardItemObjectWithID(questObject.data.rewardItemId);
+
                 questRewardPopupUI.gameObject.SetActive(true);
 
                 questRewardPopupUI.expText.text = questObject.data.rewardExp.ToString("#,###");
                 questRewardPopupUI.goldText.text = questObject.data.rewardGold.ToString("#,###");
-                questRewardPopupUI.itemIcon.sprite = questObject.SearchRewardItemObjectWithID(questObject.data.rewardItemId).icon;
-                //QuestManager.Instance.acceptedQuestObjects.Remove(questObject);
-                //if (questObject.tracker != null)
-                //{
-                //    Destroy(questObject.tracker?.gameObject);
-                //}
-
-                //if (QuestManager.Instance.guideObject.activeSelf)
-                //{
-                //    QuestManager.Instance.guideObject.SetActive(false);
-                //}
+                questRewardPopupUI.itemName.text = rewardItemObject.data.name;
+                questRewardPopupUI.itemDescription.text = rewardItemObject.description;
+                questRewardPopupUI.itemIcon.sprite = rewardItemObject.icon;
 
                 animator?.SetBool("IsQuestCompleted", true);
-
-                // process reward
-                //if (other.TryGetComponent<MainPlayerController>(out MainPlayerController mainPlayerController))
-                //{
-                //    mainPlayerController.playerStats.AddExp(questObject.data.rewardExp);
-                //    mainPlayerController.gold += questObject.data.rewardGold;
-                //    mainPlayerController.inventory.AddItem
-                //        (new Item(questObject.SearchRewardItemObjectWithID(questObject.data.rewardItemId)), 1);
-                //}
-
-                //questObject.status = QuestStatus.Rewarded;
-                //QuestManager.Instance.rewardedQuestObjects.Add(questObject);
-                //foreach (QuestObject questObject in QuestManager.Instance.questDatabase.questObjects)
-                //{
-                //    if (questObject.status.Equals(QuestStatus.Accepted))
-                //    {
-                //        this.questObject = questObject;
-                //        break;
-                //    }
-
-                //    if (questObject.status.Equals(QuestStatus.None))
-                //    {
-                //        this.questObject = questObject;
-                //        break;
-                //    }
-                //}
             }
 
             return true;
@@ -185,13 +153,9 @@ namespace ETeam.FeelJoon
                     Destroy(questObject.tracker?.gameObject);
                 }
 
-                if (QuestManager.Instance.guideObject.activeSelf)
-                {
-                    QuestManager.Instance.guideObject.SetActive(false);
-                }
-
                 animator?.SetBool("IsQuestCompleted", false);
 
+                // Reward
                 if (other.TryGetComponent<MainPlayerController>(out MainPlayerController mainPlayerController))
                 {
                     mainPlayerController.playerStats.AddExp(questObject.data.rewardExp);
@@ -218,6 +182,11 @@ namespace ETeam.FeelJoon
                 }
 
                 QuestManager.Instance.questRewardPopupUI.gameObject.SetActive(false);
+
+                AudioManager.Instance.PlayForceSFX(
+                AudioManager.Instance.uiSFXAudioSource,
+                AudioManager.Instance.uiSFXClips,
+                "QuestClear");
             }
 
             transform.rotation = Quaternion.Euler(originalRotation);
@@ -236,7 +205,10 @@ namespace ETeam.FeelJoon
             if (questObject.data.id == this.questObject.data.id
                 && questObject.status == QuestStatus.Completed)
             {
-                // Process npc effect
+                if (QuestManager.Instance.guideObject.activeSelf)
+                {
+                    QuestManager.Instance.guideObject.SetActive(false);
+                }
             }
         }
 

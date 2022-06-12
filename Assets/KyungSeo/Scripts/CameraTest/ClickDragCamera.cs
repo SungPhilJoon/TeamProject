@@ -6,9 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 
-namespace ETeam.KyungSeo
+namespace UnityChanAdventure.KyungSeo
 {
     [ExecuteInEditMode]
     public class ClickDragCamera : MonoBehaviour

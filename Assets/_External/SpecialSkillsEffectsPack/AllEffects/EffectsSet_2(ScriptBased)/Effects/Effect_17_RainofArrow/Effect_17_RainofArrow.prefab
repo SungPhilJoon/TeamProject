@@ -81,4 +81,4 @@ MonoBehaviour:
   m_makeDelay: 0.05
   m_randomPos: {x: 2, y: 0, z: 2}
   m_randomRot: {x: 10, y: 10, z: 0}
-  m_rnadomScale: {x: 0, y: 0, z: 0}
+  m_randomScale: {x: 3, y: 3, z: 3}

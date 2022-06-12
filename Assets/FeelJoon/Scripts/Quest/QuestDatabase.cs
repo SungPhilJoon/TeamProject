@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     [CreateAssetMenu(fileName ="New Quest Database", menuName ="Quest System/Quests/New Quest Database")]
     public class QuestDatabase : ScriptableObject

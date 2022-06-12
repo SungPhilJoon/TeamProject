@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 using System;
 using UnityEngine.Serialization;
 

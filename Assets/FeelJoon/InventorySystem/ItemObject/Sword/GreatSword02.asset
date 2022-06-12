@@ -23,7 +23,7 @@ MonoBehaviour:
     itemType: 0
     buffs:
     - stat: 0
-      value: 52
+      value: 50
       min: 40
       max: 70
     - stat: 2

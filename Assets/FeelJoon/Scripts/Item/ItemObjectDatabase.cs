@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     [CreateAssetMenu(fileName = "New Item Dataabase", menuName = "Inventory System/Items/Database")]
     public class ItemObjectDatabase : ScriptableObject

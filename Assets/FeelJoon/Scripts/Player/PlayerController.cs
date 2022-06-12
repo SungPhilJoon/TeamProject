@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 // using System;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public enum PlayerWeapon
     {
@@ -39,17 +39,17 @@ namespace ETeam.FeelJoon
         private ManualCollision playerManualCollision;
 
         [Header("골드")]
-        public int gold;
+        [HideInInspector] public int gold;
 
         [Header("플레이어 Stats")]
         public StatsObject playerStats;
 
         [Header("체력")]
-        public int maxHealth = 100;
+        [HideInInspector] public int maxHealth = 100;
         public int health;
 
         [Header("마나")]
-        public int maxMana = 100;
+        [HideInInspector] public int maxMana = 100;
         public int mana;
 
         [Header("캐릭터 UI")]
@@ -143,11 +143,18 @@ namespace ETeam.FeelJoon
             gameoverText = gameoverUI.GetComponentInChildren<TMP_Text>();
 
             playerManualCollision = GetComponentInChildren<PlayerManualCollision>();
+
+            gold = playerStats.gold;
         }
 
         protected virtual void Update()
         {
             stateMachine.Update(Time.deltaTime);
+        }
+
+        protected virtual void OnApplicationQuit()
+        {
+            playerStats.gold = gold;
         }
 
         #endregion Unity Methods
@@ -226,6 +233,11 @@ namespace ETeam.FeelJoon
 
             playerStats.Health = playerStats.AddHealth(-damage);
 
+            AudioManager.Instance.PlaySFX(
+            AudioManager.Instance.playerSFXAudioSource,
+            AudioManager.Instance.playerSFXClips,
+            "PlayerTakeDamage");
+
             if (hitEffectPrefab)
             {
                 Instantiate(hitEffectPrefab, hitTransform);
@@ -234,10 +246,16 @@ namespace ETeam.FeelJoon
             if (IsAlive)
             {
                 StopCoroutine(ChangePlayerUIColor());
+                characterFace.color = originColor;
                 StartCoroutine(ChangePlayerUIColor());
             }
             else
             {
+                AudioManager.Instance.PlayForceSFX(
+                AudioManager.Instance.playerSFXAudioSource,
+                AudioManager.Instance.playerSFXClips,
+                "PlayerDead");
+
                 stateMachine.ChangeState<PlayerDead>();
                 gameoverUI.SetActive(true);
             }

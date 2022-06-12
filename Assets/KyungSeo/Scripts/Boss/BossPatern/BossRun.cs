@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 
 public class BossRun : State<BossController>
 {

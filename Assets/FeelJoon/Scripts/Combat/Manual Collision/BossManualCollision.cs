@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ETeam.KyungSeo;
+using UnityChanAdventure.KyungSeo;
 
-namespace ETeam.FeelJoon
+namespace UnityChanAdventure.FeelJoon
 {
     public class BossManualCollision : ManualCollision
     {
@@ -35,9 +35,7 @@ namespace ETeam.FeelJoon
             while (normalTime <= 1f)
             {
                 normalTime += Time.deltaTime;
-                GameManager.Instance.mainCamera.transform.localPosition = new Vector3(Random.insideUnitCircle.x * 0.5f,
-                Random.insideUnitCircle.y * 0.5f,
-                GameManager.Instance.mainCamera.transform.localPosition.z);
+                GameManager.Instance.CameraVibrateEffect(0.5f);
 
                 yield return null;
             }

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d6d337f580d1d45854d6cac23384a0, type: 3}
+  m_Name: BowOfLuxury
+  m_EditorClassIdentifier: 
+  type: 1
+  stackable: 0
+  icon: {fileID: 6156541482399309507, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+  modelPrefab: {fileID: 4969098438501753596, guid: ffec1bf2dd0fef14a94de33c26c91aa6, type: 3}
+  price: 0
+  data:
+    id: 103
+    name: "\uAC04\uC9C0\uB098\uB294 \uD65C"
+    itemType: 1
+    buffs:
+    - stat: 0
+      value: 0
+      min: 200
+      max: 220
+  boneNames: []
+  description: "\uC804\uC124\uC758 \uB300\uC7A5\uC7A5\uC774 \uD5E4\uD30C\uC774\uC2A4\uD1A0\uC2A4\uAC00
+    \uB9CC\uB4E4\uC5C8\uB2E4\uB294 \uD65C\uC774\uB2E4.\n\n\uC774 \uC2E0\uBE44\uB85C\uC6B4
+    \uD65C\uC740 \uC2E0\uACC4\uC5D0\uC11C\uB9CC \uB098\uC628\uB2E4\uB294 \uC7AC\uB8CC\uB85C\uB9CC
+    \uB9CC\uB4E4\uC5B4\uC838 \uC808\uB300 \uBD80\uB7EC\uC9C0\uC9C0 \uC54A\uACE0 \uC624\uD788\uB824
+    \uB354\uC6B1 \uAC15\uB825\uD55C \uACF5\uACA9\uC744 \uC120\uC0AC\uD558\uAC8C \uD574\uC900\uB2E4.\n\n\uC774
+    \uD65C\uB9CC \uC788\uC73C\uBA74 \uC5B4\uB5A4 \uD654\uC0B4\uB85C\uB3C4 \uBAA8\uB4E0\uAC78
+    \uB6AB\uC744 \uC218 \uC788\uB2E4."

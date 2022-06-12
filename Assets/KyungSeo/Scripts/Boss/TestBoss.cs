@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
@@ -9,7 +9,7 @@ using UnityEngine.AI;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace ETeam.KyungSeo
+namespace UnityChanAdventure.KyungSeo
 {
     public enum BossState
     {

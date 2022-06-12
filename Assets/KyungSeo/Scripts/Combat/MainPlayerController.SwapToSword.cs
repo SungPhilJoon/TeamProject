@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using ETeam.FeelJoon;
+using UnityChanAdventure.FeelJoon;
 
-namespace ETeam.KyungSeo
+namespace UnityChanAdventure.KyungSeo
 {
     public partial class MainPlayerController : PlayerController
     {
@@ -34,7 +34,13 @@ namespace ETeam.KyungSeo
         #endregion Variables
 
         #region Helper Methods
+        public void InstantiateShockWave()
+        {
+            shockWave.transform.forward = spawnPoint.forward;
+            shockWave.owner = this;
 
+            Instantiate(shockWave.gameObject, spawnPoint.position, spawnPoint.rotation);
+        }
 
         #endregion Helper Methods
 
@@ -57,31 +63,23 @@ namespace ETeam.KyungSeo
             {
                 GameManager.Instance.unavailableSkillText.SetActive(true);
 
+                AudioManager.Instance.PlaySFX(
+                AudioManager.Instance.uiSFXAudioSource,
+                AudioManager.Instance.uiSFXClips,
+                "ErrorText");
+
                 return;
             }
-
-            shockWave.transform.forward = spawnPoint.forward;
-            shockWave.owner = this;
-
-            Instantiate(shockWave.gameObject, spawnPoint.position, spawnPoint.rotation);
 
             animator.SetTrigger(hashSwordSkill);
             StartCoroutine(SwordSkill1_CoolTime());
 
             playerStats.AddMana(-10);
-
-            //if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
-            //{
-            //    ps.Play();
-            //}
         }
 
         public void ExitSkillSwordAttack()
         {
-            //if (swordPrefab.TryGetComponent<ParticleSystem>(out ParticleSystem ps))
-            //{
-            //    ps.Stop();
-            //}
+            
         }
 
         #endregion Action Methods
