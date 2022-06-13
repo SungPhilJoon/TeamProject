@@ -16,14 +16,14 @@ MonoBehaviour:
   stackable: 0
   icon: {fileID: -1510542724075705309, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
   modelPrefab: {fileID: 8919685932961527619, guid: fe18d291a7d3fe841b443a4f3c023a80, type: 3}
-  price: 500
+  price: 1000
   data:
     id: 100
     name: "\uB098\uBB34\uD65C"
     itemType: 1
     buffs:
     - stat: 0
-      value: 25
+      value: 22
       min: 20
       max: 30
   boneNames: []

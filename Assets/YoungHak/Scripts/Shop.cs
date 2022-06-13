@@ -93,6 +93,15 @@ namespace UnityChanAdventure.YongHak
 
                 return;
             }
+            else if (GameManager.Instance.Main.inventory.EmptySlotCount.Equals(0))
+            {
+                talkText.text = ShopNPCDialogueList.InventoryFullDialogue;
+
+                StopCoroutine(Talk());
+                StartCoroutine(Talk());
+
+                return;
+            }
 
             talkText.text = ShopNPCDialogueList.PurchaseDialogue;
 

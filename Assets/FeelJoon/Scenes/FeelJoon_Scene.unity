@@ -1003,6 +1003,22 @@ PrefabInstance:
       propertyPath: database.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: d2d0e214cf2a43648a3c5027e35f83d8, type: 2}
+    - target: {fileID: 64147127758583888, guid: f58876670573e4a4b92d7b589f8d51bb, type: 3}
+      propertyPath: dropItemObjects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 64147127758583888, guid: f58876670573e4a4b92d7b589f8d51bb, type: 3}
+      propertyPath: dropItemObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: a90bdd71629bd3c4b810db6c943d4ee0, type: 2}
+    - target: {fileID: 64147127758583888, guid: f58876670573e4a4b92d7b589f8d51bb, type: 3}
+      propertyPath: dropItemObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b9b447c1a2251f44a83228d700b88b6, type: 2}
+    - target: {fileID: 64147127758583888, guid: f58876670573e4a4b92d7b589f8d51bb, type: 3}
+      propertyPath: dropItemObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4783a8b2cbe8c30459bf043ae48126f0, type: 2}
     - target: {fileID: 64147128502511905, guid: f58876670573e4a4b92d7b589f8d51bb, type: 3}
       propertyPath: m_Name
       value: MC_King_Humanoid
@@ -1648,7 +1664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223168204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 1.3929781}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 553946245}
@@ -4770,7 +4786,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553946244}
-  m_LocalRotation: {x: -0.0000000113133405, y: 0.9659259, z: -0.25881907, w: -0.000000042221963}
+  m_LocalRotation: {x: -0.0000000113133405, y: 0.9659258, z: -0.25881907, w: -0.00000004222196}
   m_LocalPosition: {x: 23.65, y: 3.66, z: 1.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11359,6 +11375,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
+    - target: {fileID: 8091424476808393323, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424476973709507, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -11367,6 +11387,22 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
+    - target: {fileID: 8091424477048358621, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7684229962811652356}
+    - target: {fileID: 8091424477048358621, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477048358621, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityChanAdventure.YongHak.Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477048358621, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424477070837784, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -11387,6 +11423,22 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
+    - target: {fileID: 8091424477281656188, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7684229962811652356}
+    - target: {fileID: 8091424477281656188, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477281656188, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityChanAdventure.YongHak.Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477281656188, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424477305049547, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: shop
       value: 
@@ -11396,9 +11448,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
     - target: {fileID: 8091424477324968344, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_Text
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477324968344, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
+    - target: {fileID: 8091424477363345510, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7684229962811652356}
+    - target: {fileID: 8091424477363345510, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477363345510, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityChanAdventure.YongHak.Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477363345512, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424477421492772, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -11511,6 +11583,18 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
+    - target: {fileID: 8091424477678657836, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7684229962811652356}
+    - target: {fileID: 8091424477678657836, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477678657836, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityChanAdventure.YongHak.Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424477780885301, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -11535,6 +11619,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: -17
       objectReference: {fileID: 0}
+    - target: {fileID: 8091424477890940491, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477890940491, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424477890940491, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424477933861554, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -11552,6 +11648,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
     - target: {fileID: 8091424478013010826, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_Text
+      value: "\uB9C8\uB098 \uD3EC\uC158"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478013010826, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
@@ -11559,10 +11659,18 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
+    - target: {fileID: 8091424478035398407, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424478067343944, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
+    - target: {fileID: 8091424478111626409, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_Text
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424478111626409, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_FontData.m_Font
       value: 
@@ -11575,6 +11683,34 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
+    - target: {fileID: 8091424478315442282, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7684229962811652356}
+    - target: {fileID: 8091424478315442282, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478315442282, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityChanAdventure.YongHak.Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478315442282, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478358176493, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478358176493, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478358176493, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424478361619047, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -11603,6 +11739,38 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 0c27b93834cdddc4aa3b808d4aff5217, type: 3}
+    - target: {fileID: 8091424478448332860, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478448332860, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478448332860, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478448332862, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478581593292, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4257004438954200034, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    - target: {fileID: 8091424478587692551, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7684229962811652356}
+    - target: {fileID: 8091424478587692551, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Buy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091424478587692551, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityChanAdventure.YongHak.Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8091424478694852592, guid: 9e2830df85acc654486f6e89d24b46c0, type: 3}
       propertyPath: m_FontData.m_Font
       value: 

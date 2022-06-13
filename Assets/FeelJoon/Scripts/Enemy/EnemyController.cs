@@ -195,8 +195,18 @@ namespace UnityChanAdventure.FeelJoon
         {
             int rndItemDatabaseNumber = Random.Range(0, database.Length);
 
-            ItemObject dropItemObject = database[rndItemDatabaseNumber].
+            ItemObject dropItemObject;
+
+            if (rndItemDatabaseNumber.Equals(2))
+            {
+                dropItemObject = database[rndItemDatabaseNumber].
                 itemObjects[Random.Range(0, database[rndItemDatabaseNumber].itemObjects.Length)];
+            }
+            else
+            {
+                dropItemObject = database[rndItemDatabaseNumber].
+                itemObjects[Random.Range(0, database[rndItemDatabaseNumber].itemObjects.Length - 1)];
+            }
 
             dropItemObject.data = dropItemObject.CreateItem();
 

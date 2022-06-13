@@ -62,6 +62,9 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     [SerializeField] private GateController exitGate;
     [HideInInspector] public bool isPlayerEnterBossGround = false;
 
+    [Header("Drop ItemObject List")]
+    [SerializeField] private ItemObject[] dropItemObjects;
+
     public Transform hitTransform;
 
     private Transform projectilePoint;
@@ -237,9 +240,9 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
 
         if (!IsAlive)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < dropItemObjects.Length; i++)
             {
-                DropItem();
+                DropItem(dropItemObjects[i]);
             }
             DropGold();
 
@@ -274,13 +277,8 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
         }
     }
 
-    private void DropItem()
+    private void DropItem(ItemObject dropItemObject)
     {
-        int rndItemDatabaseNumber = Random.Range(0, database.Length);
-
-        ItemObject dropItemObject = database[rndItemDatabaseNumber].
-            itemObjects[Random.Range(0, database[rndItemDatabaseNumber].itemObjects.Length)];
-
         dropItemObject.data = dropItemObject.CreateItem();
 
         GameObject dropItem = new GameObject();

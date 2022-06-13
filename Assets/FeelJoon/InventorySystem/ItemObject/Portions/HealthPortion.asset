@@ -19,13 +19,13 @@ MonoBehaviour:
   price: 250
   data:
     id: 200
-    name: "\uCCB4\uB825\uD3EC\uC158"
+    name: "\uCCB4\uB825 \uD3EC\uC158"
     itemType: 2
     buffs:
     - stat: 3
-      value: 10
-      min: 10
-      max: 30
+      value: 108
+      min: 100
+      max: 150
   boneNames: []
   description: "\uBCD1\uC5D0 \uB2F4\uAE34 \uBD89\uC740\uC0C9\uC758 \uC561\uCCB4.\n\n\uB9C8\uC2DC\uBA74
     \uCCB4\uB825\uC744 \uD68C\uBCF5\uD560 \uC218 \uC788\uB2E4.\n\n\uB538\uAE30\uB9DB\uC77C

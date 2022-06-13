@@ -16,18 +16,18 @@ MonoBehaviour:
   stackable: 0
   icon: {fileID: -1812244852503348542, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
   modelPrefab: {fileID: 8862475838909730621, guid: 1d0b677ce4f1d364fafbdf3f8bebdb8a, type: 3}
-  price: 1500
+  price: 2500
   data:
     id: 2
-    name: "\uC6B4\uC11D \uB300\uAC80"
+    name: GreatSword02
     itemType: 0
     buffs:
     - stat: 0
-      value: 50
+      value: 48
       min: 40
       max: 70
     - stat: 2
-      value: 21
+      value: 24
       min: 15
       max: 25
   boneNames: []

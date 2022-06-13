@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   stackable: 0
-  icon: {fileID: -2547253450580561565, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
-  modelPrefab: {fileID: 2470473293590542276, guid: 25b6794a35e74fb44948d3379ad3dc8f, type: 3}
+  icon: {fileID: 2177018490394213437, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
+  modelPrefab: {fileID: 8045601669049900088, guid: db9c622fd2549ea468a7af4d0df2c126, type: 3}
   price: 1000
   data:
-    id: 0
-    name: "\uB179\uC2A8 \uB300\uAC80"
+    id: 1
+    name: "\uB179\uC2A8 \uC1E0 \uAC80"
     itemType: 0
     buffs:
     - stat: 0
-      value: 35
+      value: 36
       min: 30
       max: 50
     - stat: 2
-      value: 17
+      value: 18
       min: 10
       max: 20
   boneNames: []
-  description: "\uC1E0\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uAC80.\n\n\uB9CC\uB4E4\uC5B4\uC9C4
-    \uB2F9\uC2DC\uC5D0\uB294 \uC900\uC218\uD55C \uC131\uB2A5\uC744 \uAC00\uC84C\uC73C\uB098,
-    \uBC29\uCE58\uB41C \uCC44\uB85C \uC2DC\uAC04\uC774 \uC624\uB798 \uD758\uB7EC
-    \uB179\uC774 \uC2AC\uC5B4 \uBC84\uB838\uB2E4.\n\n\uC7A5\uCC29\uD558\uACE0 \uD06C\uAC8C
-    \uD718\uB458\uB7EC \uBCF4\uC790."
+  description: "\uC77C\uBC18\uC801\uC778 \uAC15\uCCA0\uC744 \uC5EC\uB7EC \uBC88 \uC7AC\uB828\uD558\uC5EC
+    \uB9CC\uB4E4\uC5B4\uC9C4 \uAC80.\n\n\uC18C\uC7AC\uB294 \uD3C9\uBC94\uD558\uC9C0\uB9CC
+    \uB300\uC7A5\uC7A5\uC774\uC758 \uB178\uB825\uC774 \uAE43\uB4E4\uC5B4 \uC870\uAE08
+    \uAC15\uB825\uD574\uC9C4 \uB290\uB08C\uC774 \uB4E0\uB2E4. \uD55C\uBC88 \uD718\uB458\uB7EC
+    \uBCFC\uAE4C?"

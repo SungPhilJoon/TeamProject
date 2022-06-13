@@ -16,14 +16,14 @@ MonoBehaviour:
   stackable: 0
   icon: {fileID: 6156541482399309507, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
   modelPrefab: {fileID: 4969098438501753596, guid: ffec1bf2dd0fef14a94de33c26c91aa6, type: 3}
-  price: 0
+  price: 10000
   data:
     id: 103
-    name: "\uC804\uC124\uC758 \uD65C"
+    name: BowOfLuxury
     itemType: 1
     buffs:
     - stat: 0
-      value: 205
+      value: 219
       min: 200
       max: 220
   boneNames: []

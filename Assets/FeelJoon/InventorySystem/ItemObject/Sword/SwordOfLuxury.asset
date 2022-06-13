@@ -16,7 +16,7 @@ MonoBehaviour:
   stackable: 0
   icon: {fileID: 998269421714546344, guid: 83bf93558b0ec514a95bd6edcd67f7ac, type: 3}
   modelPrefab: {fileID: 8776784857761737274, guid: 9a2d7bffd865fa84db59c12311ccbd6d, type: 3}
-  price: 3000
+  price: 10000
   data:
     id: 3
     name: "\uC804\uC124\uC758 \uCE7C"
