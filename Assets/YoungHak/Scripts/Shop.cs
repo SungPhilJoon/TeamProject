@@ -81,6 +81,11 @@ namespace UnityChanAdventure.YongHak
 
         public void Buy(int itemIndex)
         {
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "BtnClick");
+
             ItemObject dropItemObject = database[dataBaseIndex].itemObjects[itemIndex];
 
             int price = dropItemObject.price; // itemPrice[dataBaseIndex];
@@ -109,15 +114,15 @@ namespace UnityChanAdventure.YongHak
             GameManager.Instance.Main.inventory.AddItem(new Item(dropItemObject), 1);
 
             GameManager.Instance.Main.gold -= price;
-
-            AudioManager.Instance.PlayForceSFX(
-            AudioManager.Instance.uiSFXAudioSource,
-            AudioManager.Instance.uiSFXClips,
-            "BtnClick");
         }
 
         public void StopInteract(GameObject other)
         {
+            AudioManager.Instance.PlayForceSFX(
+            AudioManager.Instance.uiSFXAudioSource,
+            AudioManager.Instance.uiSFXClips,
+            "BtnClick");
+
             uiGroup.anchoredPosition = Vector3.down * 2000;
             anim.SetTrigger(hashStopInteract);
         }
