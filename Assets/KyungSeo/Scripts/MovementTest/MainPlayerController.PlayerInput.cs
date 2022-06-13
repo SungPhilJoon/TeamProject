@@ -38,17 +38,22 @@ namespace UnityChanAdventure.KyungSeo
             if (IsAlive && callbackContext.performed) // 키 누르고있으면 이동하도록 value 읽기
             {
                 inputValue = callbackContext.ReadValue<Vector2>();
+
                 movement.x = inputValue.x;
                 movement.y = 0f;
                 movement.z = inputValue.y;
+
                 isMove = true;
+
                 stateMachine.ChangeState<PlayerMove>();
             }
 
             if (IsAlive && callbackContext.canceled) // 키를 떼면 정지
             {
                 movement = Vector2.zero;
+
                 isMove = false;
+
                 stateMachine.ChangeState<PlayerIdle>();
             }
         }
@@ -60,6 +65,7 @@ namespace UnityChanAdventure.KyungSeo
                 Vector3 dashVelocity = Vector3.Scale(transform.forward, dashDistance * new Vector3((Mathf.Log(1 / (drags.x * Time.deltaTime + 1)) / -Time.deltaTime),
                     0,
                     (Mathf.Log(1 / (drags.z * Time.deltaTime + 1)) / -Time.deltaTime)));
+
                 calcVelocity += dashVelocity;
                 stateMachine.ChangeState<PlayerDash>();
             }

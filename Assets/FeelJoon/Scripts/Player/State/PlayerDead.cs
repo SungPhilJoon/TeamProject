@@ -12,12 +12,12 @@ namespace UnityChanAdventure.FeelJoon
         private CharacterController controller;
         private PlayerInput playerInput;
 
-        private InputActionMap currentActionMap;
+        private InputActionMap previousActionMap;
 
         private readonly int hashIsAlive = Animator.StringToHash("IsAlive");
         private readonly int hashOnDeadTrigger = Animator.StringToHash("OnDeadTrigger");
 
-        private readonly string reviveMessage = "초 후에\n자동으로\n부활합니다.";
+        private readonly string reviveMessage = "초 후에\n마을에서\n부활합니다.";
 
         #endregion Variables
 
@@ -30,7 +30,7 @@ namespace UnityChanAdventure.FeelJoon
 
         public override void OnEnter()
         {
-            currentActionMap = playerInput.currentActionMap;
+            previousActionMap = playerInput.currentActionMap;
             playerInput.SwitchCurrentActionMap("PlayerDead");
 
             animator.SetBool(hashIsAlive, context.IsAlive);
@@ -39,17 +39,14 @@ namespace UnityChanAdventure.FeelJoon
 
         public override void Update(float deltaTime)
         {
-            float reviveCount = 5 - stateMachine.ElapsedTimeInState;
+            float reviveCount = 8 - stateMachine.ElapsedTimeInState;
             string countReviveMessage = reviveCount.ToString("n0") + reviveMessage;
             context.gameoverText.text = countReviveMessage;
 
-            if (stateMachine.ElapsedTimeInState > 5.0f)
+            if (stateMachine.ElapsedTimeInState > 8.0f)
             {
-                playerInput.currentActionMap = currentActionMap;
-                GameManager.Instance.Revive();
-
-                // context.gameObject.SetActive(false);
-                // GameObject.Destroy(context.gameObject);
+                playerInput.currentActionMap = previousActionMap;
+                GameManager.Instance.PlayerRespawn();
             }
         }
 

@@ -20,8 +20,8 @@ namespace UnityChanAdventure.FeelJoon
         #region Variables
         protected StateMachine<PlayerController> stateMachine;
 
-        [HideInInspector]
-        public Animator animator;
+        [HideInInspector] public Animator animator;
+        [HideInInspector] public CharacterController controller;
         public PlayerWeapon currentPlayerWeapon;
 
         protected Transform target;
@@ -125,6 +125,7 @@ namespace UnityChanAdventure.FeelJoon
             stateMachine.AddState(new PlayerDead());
 
             animator = GetComponentInChildren<Animator>();
+            controller = GetComponent<CharacterController>();
             isMove = false;
 
             currentPlayerWeapon = PlayerWeapon.Default;
@@ -184,6 +185,19 @@ namespace UnityChanAdventure.FeelJoon
             }
 
             yield return null;
+        }
+
+        private IEnumerator GameOverUISetActiveWithDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            gameoverUI.SetActive(true);
+
+            yield return null;
+
+            controller.enabled = false;
+            transform.position = reviveTransform.position;
+            controller.enabled = true;
         }
         
         #endregion Helper Methods
@@ -257,7 +271,9 @@ namespace UnityChanAdventure.FeelJoon
                 "PlayerDead");
 
                 stateMachine.ChangeState<PlayerDead>();
-                gameoverUI.SetActive(true);
+                StartCoroutine(GameOverUISetActiveWithDelay(5.0f));
+
+                isMove = false;
             }
         }
         #endregion IDamageable

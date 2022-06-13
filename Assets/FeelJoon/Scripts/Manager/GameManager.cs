@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject unavailableSkillText;
     public GameObject reviveParticle;
 
-    public Camera mainCamera;
+    [HideInInspector] public Camera mainCamera;
 
     private Shop shop;
 
@@ -78,13 +78,10 @@ public class GameManager : Singleton<GameManager>
     /// <summary>
     /// 부활 구현 함수
     /// </summary>
-    public void Revive()
+    public void PlayerRespawn()
     {
-        mainPlayer.controller.enabled = false;
-        mainPlayer.transform.position = revivePosition;
         GameObject reviveObj = Instantiate(reviveParticle, revivePosition, Quaternion.identity);
         Destroy(reviveObj, 2f);
-        mainPlayer.controller.enabled = true;
 
         StatsObject playerStats = mainPlayer.playerStats;
 

@@ -320,14 +320,14 @@ public partial class BossController : MonoBehaviour, IAttackable, IDamageable
     {
         AudioManager.Instance.enemySFXAudioSource.outputAudioMixerGroup.audioMixer.SetFloat("EnemySFXVolume", -30f);
 
-        StopCoroutine(SwitchFlag());
+        //StopCoroutine(SwitchFlag());
         isPlayerEnterBossGround = false;
         bossHPBarObj.SetActive(false);
     }
 
     private IEnumerator SwitchFlag()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
 
         isPlayerEnterBossGround = true;
     }

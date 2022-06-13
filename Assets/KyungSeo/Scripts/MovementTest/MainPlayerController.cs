@@ -27,8 +27,6 @@ namespace UnityChanAdventure.KyungSeo
 
         private bool isOnUI = false;
 
-        [HideInInspector] public CharacterController controller; // 캐싱할 CharacterController
-
         [Header("저항 계수")]
         public float gravity = -29.81f; // 중력 계수 : rigidbody를 사용하지 않기 위한 중력계수
         public Vector3 drags; // 저항력

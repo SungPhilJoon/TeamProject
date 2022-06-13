@@ -19,11 +19,11 @@ MonoBehaviour:
   price: 0
   data:
     id: 103
-    name: "\uAC04\uC9C0\uB098\uB294 \uD65C"
+    name: "\uC804\uC124\uC758 \uD65C"
     itemType: 1
     buffs:
     - stat: 0
-      value: 0
+      value: 205
       min: 200
       max: 220
   boneNames: []
