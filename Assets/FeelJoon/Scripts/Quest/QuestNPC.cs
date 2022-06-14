@@ -125,11 +125,16 @@ namespace UnityChanAdventure.FeelJoon
         {
             isStartQuestDialogue = false;
 
+            if (GameManager.Instance.Main.Target.GetComponent<DialogueNPC>() != null)
+            {
+                return;
+            }
+
             if (questObject.status.Equals(QuestStatus.None))
             {
                 questObject.status = QuestStatus.Accepted;
 
-                QuestManager.Instance.acceptedQuestObjects.Add(questObject);
+                QuestManager.Instance.acceptedQuestListView.AddElement(questObject);
 
                 animator?.SetBool("IsQuestNone", false);
 
@@ -165,7 +170,8 @@ namespace UnityChanAdventure.FeelJoon
                 }
 
                 questObject.status = QuestStatus.Rewarded;
-                QuestManager.Instance.rewardedQuestObjects.Add(questObject);
+                QuestManager.Instance.acceptedQuestListView.RemoveElement(questObject);
+                QuestManager.Instance.rewardedQuestListView.AddElement(questObject);
                 foreach (QuestObject questObject in QuestManager.Instance.questDatabase.questObjects)
                 {
                     if (questObject.status.Equals(QuestStatus.Accepted))
@@ -214,8 +220,19 @@ namespace UnityChanAdventure.FeelJoon
 
         private void OnAcceptedQuest(QuestObject questObject)
         {
-                questObject.tracker.transform.GetChild(1).GetComponent<Text>().text = questObject.data.content +
-                    " : " + $"{questObject.data.completedCount} / {questObject.data.count}";
+            questObject.tracker.transform.GetChild(1).GetComponent<Text>().text = questObject.data.content +
+                " : " + $"{questObject.data.completedCount} / {questObject.data.count}";
+
+            foreach(var element in QuestManager.Instance.acceptedQuestListView.elementsByQuest)
+            {
+                if (element.Key.Equals(questObject))
+                {
+                    QuestToggleContext questToggleContext = element.Value.GetComponent<QuestToggleContext>();
+                    questToggleContext.questDisplayGroup.taskDescription.text
+                        = questObject.data.content +
+                        " : " + $"{questObject.data.completedCount} / {questObject.data.count}";
+                }
+            }
         }
 
         #endregion Helper Methods

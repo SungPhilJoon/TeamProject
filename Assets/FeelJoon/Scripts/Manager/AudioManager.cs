@@ -9,7 +9,7 @@ namespace UnityChanAdventure.FeelJoon
     public class AudioManager : Singleton<AudioManager>
     {
         #region Variables
-        public AudioClip[] bgmClips;
+        // public AudioClip[] bgmClips;
         public SFX[] playerSFXClips;
         public SFX[] enemySFXClips;
         public SFX[] uiSFXClips;

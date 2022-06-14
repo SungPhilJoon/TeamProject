@@ -23,7 +23,7 @@ MonoBehaviour:
     itemType: 2
     buffs:
     - stat: 4
-      value: 116
+      value: 101
       min: 100
       max: 150
   boneNames: []

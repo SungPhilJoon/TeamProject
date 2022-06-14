@@ -19,7 +19,7 @@ MonoBehaviour:
   price: 2500
   data:
     id: 2
-    name: GreatSword02
+    name: "\uC6B4\uC11D \uAC80"
     itemType: 0
     buffs:
     - stat: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
       min: 40
       max: 70
     - stat: 2
-      value: 24
+      value: 19
       min: 15
       max: 25
   boneNames: []

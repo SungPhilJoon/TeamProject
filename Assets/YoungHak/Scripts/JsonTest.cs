@@ -37,7 +37,6 @@ public class JsonTest : MonoBehaviour
         }
         catch(Exception e)
         {
-            Debug.Log("첫 실행");
             shop.coin = 10000;
         }
     }

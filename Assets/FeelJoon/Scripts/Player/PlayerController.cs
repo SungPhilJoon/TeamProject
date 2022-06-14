@@ -164,27 +164,8 @@ namespace UnityChanAdventure.FeelJoon
         private IEnumerator ChangePlayerUIColor()
         {
             characterFace.color = Color.red;
-            yield return StartCoroutine(CloseUpPlayer());
-            characterFace.color = originColor;
-        }
-
-        private IEnumerator CloseUpPlayer()
-        {
-            while (characterFaceCameraTransform.localPosition.z > 0.8)
-            {
-                characterFaceCameraTransform.localPosition -= new Vector3(0f, 0f, Time.deltaTime * closeupSpeed);
-                yield return null;
-            }
-
             yield return new WaitForSeconds(0.5f);
-
-            while (characterFaceCameraTransform.localPosition.z < 1.6)
-            {
-                characterFaceCameraTransform.localPosition += new Vector3(0f, 0f, Time.deltaTime * closeupSpeed);
-                yield return null;
-            }
-
-            yield return null;
+            characterFace.color = originColor;
         }
 
         private IEnumerator GameOverUISetActiveWithDelay(float delay)
@@ -259,8 +240,8 @@ namespace UnityChanAdventure.FeelJoon
 
             if (IsAlive)
             {
-                StopCoroutine(ChangePlayerUIColor());
                 characterFace.color = originColor;
+                StopCoroutine(ChangePlayerUIColor());
                 StartCoroutine(ChangePlayerUIColor());
             }
             else

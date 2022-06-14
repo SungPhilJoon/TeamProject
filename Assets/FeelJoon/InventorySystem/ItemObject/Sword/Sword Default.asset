@@ -18,16 +18,16 @@ MonoBehaviour:
   modelPrefab: {fileID: 8045601669049900088, guid: db9c622fd2549ea468a7af4d0df2c126, type: 3}
   price: 1000
   data:
-    id: 1
+    id: 0
     name: "\uB179\uC2A8 \uC1E0 \uAC80"
     itemType: 0
     buffs:
     - stat: 0
-      value: 36
+      value: 48
       min: 30
       max: 50
     - stat: 2
-      value: 18
+      value: 10
       min: 10
       max: 20
   boneNames: []

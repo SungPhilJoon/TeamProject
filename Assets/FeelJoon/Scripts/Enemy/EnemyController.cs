@@ -285,7 +285,7 @@ namespace UnityChanAdventure.FeelJoon
             if (audioSource != null)
             {
                 AudioManager.Instance.PlaySFX(
-                audioSource, 
+                AudioManager.Instance.enemySFXAudioSource, 
                 AudioManager.Instance.enemySFXClips, 
                 "EnemyHit");
             }
@@ -321,7 +321,7 @@ namespace UnityChanAdventure.FeelJoon
                 DropGold();
                 stateMachine.ChangeState<EnemyDeadState>();
 
-                AudioManager.Instance.PlayForceSFX(audioSource, enemyDeadClip);
+                AudioManager.Instance.PlayForceSFX(AudioManager.Instance.enemySFXAudioSource, enemyDeadClip);
 
                 QuestManager.Instance.ProcessQuest(QuestType.DestroyEnemy, enemyID);
 

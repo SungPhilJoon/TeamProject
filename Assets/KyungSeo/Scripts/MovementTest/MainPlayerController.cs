@@ -269,7 +269,6 @@ namespace UnityChanAdventure.KyungSeo
 
         public bool Enter(RectTransform uiGroup)
         {
-            Debug.Log("체크1");
             uiGroup.anchoredPosition = Vector3.zero;
             return uiGroup.gameObject.activeSelf;
         }

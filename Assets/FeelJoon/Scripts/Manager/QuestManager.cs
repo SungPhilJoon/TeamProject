@@ -17,8 +17,8 @@ namespace UnityChanAdventure.FeelJoon
         public event Action<QuestObject> OnAcceptedQuest;
         public event Action<QuestObject> OnCompletedQuest;
 
-        public List<QuestObject> acceptedQuestObjects = new List<QuestObject>();
-        public List<QuestObject> rewardedQuestObjects = new List<QuestObject>();
+        public Dictionary<QuestObject, GameObject> acceptedQuestObjects = new Dictionary<QuestObject, GameObject>();
+        public Dictionary<QuestObject, GameObject> rewardedQuestObjects = new Dictionary<QuestObject, GameObject>();
 
         [Header("Quest Tracker")]
         public Image questTrackerUI;
@@ -30,6 +30,11 @@ namespace UnityChanAdventure.FeelJoon
         [Header("Quest Accept Guide Object")]
         public GameObject guideObject;
 
+        [Header("Quest View")]
+        public GameObject questView;
+        public QuestListView acceptedQuestListView;
+        public QuestListView rewardedQuestListView;
+
         #endregion Variables
 
         #region Unity Methods
@@ -37,13 +42,23 @@ namespace UnityChanAdventure.FeelJoon
         {
             base.Awake();
 
-            acceptedQuestObjects = acceptedQuestDatabase.questObjects.ToList<QuestObject>();
-            rewardedQuestObjects = rewardedQuestDatabase.questObjects.ToList<QuestObject>();
+            // acceptedQuestObjects = acceptedQuestDatabase.questObjects.ToList<QuestObject>();
+            // rewardedQuestObjects = rewardedQuestDatabase.questObjects.ToList<QuestObject>();
+
+            for (int i = 0; i < acceptedQuestDatabase.questObjects.Length; i++)
+            {
+                acceptedQuestListView.AddElement(acceptedQuestDatabase.questObjects[i]);
+            }
+
+            for (int i = 0; i < rewardedQuestDatabase.questObjects.Length; i++)
+            {
+                rewardedQuestListView.AddElement(rewardedQuestDatabase.questObjects[i]);
+            }
         }
 
         void Start()
         {
-            foreach (QuestObject questObject in acceptedQuestObjects)
+            foreach (QuestObject questObject in acceptedQuestListView.elementsByQuest.Keys)
             {
                 questObject.tracker = Instantiate(QuestManager.Instance.questTrackerUI, QuestManager.Instance.questTracker);
 
@@ -51,12 +66,14 @@ namespace UnityChanAdventure.FeelJoon
                 questObject.tracker.transform.GetChild(1).GetComponent<Text>().text = questObject.data.content +
                     " : " + $"{questObject.data.completedCount} / {questObject.data.count}";
             }
+
+            questView.SetActive(false);
         }
 
         void OnApplicationQuit()
         {
-            acceptedQuestDatabase.questObjects = acceptedQuestObjects.ToArray();
-            rewardedQuestDatabase.questObjects = rewardedQuestObjects.ToArray();
+            acceptedQuestDatabase.questObjects = acceptedQuestListView.elementsByQuest.Keys.ToArray();
+            rewardedQuestDatabase.questObjects = rewardedQuestListView.elementsByQuest.Keys.ToArray();
         }
 
         #endregion Unity Methods

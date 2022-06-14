@@ -92,9 +92,6 @@ namespace UnityChanAdventure.FeelJoon
 
             player.Damage = player.playerStats.GetModifiedValue(CharacterAttribute.Strength) / 2;
             player.CriticalRate = player.playerStats.GetModifiedValue(CharacterAttribute.CriticalRate) / 10;
-
-            Debug.Log(player.Damage);
-            Debug.Log(player.CriticalRate);
         }
 
         private void OnChangedStats(StatsObject statsObject)

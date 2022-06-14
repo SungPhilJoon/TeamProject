@@ -19,7 +19,7 @@ MonoBehaviour:
   price: 10000
   data:
     id: 103
-    name: BowOfLuxury
+    name: "\uC804\uC124\uC758 \uD65C"
     itemType: 1
     buffs:
     - stat: 0

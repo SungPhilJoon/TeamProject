@@ -125,8 +125,10 @@ namespace UnityChanAdventure.KyungSeo
                 {
                     IInteractable interactable = target.GetComponent<IInteractable>();
                     interactable?.Interact(this.gameObject);
-                    target = null;
+                    return;
                 }
+
+                target = null;
             }
         }
 
